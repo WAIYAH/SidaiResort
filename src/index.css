@@ -2,41 +2,64 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
+/* Sidai Resort Design System - Maasai-Inspired Safari Luxury
+All colors MUST be HSL. Vibrant African-inspired palette.
 */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Core Background & Text Colors */
+    --background: 42 67% 95%; /* Warm beige background */
+    --foreground: 0 0% 13%; /* Deep charcoal for text */
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    /* Card & Surface Colors */
+    --card: 0 0% 100%; /* Pure white for cards */
+    --card-foreground: 0 0% 13%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 0 0% 13%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Sidai Brand Colors - Maasai Inspired */
+    --primary: 51 100% 50%; /* Vibrant yellow #FFD700 */
+    --primary-foreground: 0 0% 13%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 120 61% 34%; /* Lush green #228B22 */
+    --secondary-foreground: 0 0% 100%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted: 42 67% 95%; /* Soft beige */
+    --muted-foreground: 0 0% 45%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --accent: 16 100% 66%; /* Maasai red #FF4500 */
+    --accent-foreground: 0 0% 100%;
 
+    /* Safari Blue for Water Elements */
+    --safari-blue: 210 87% 56%; /* Blue #1E90FF */
+    --safari-blue-foreground: 0 0% 100%;
+
+    /* Functional Colors */
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --border: 42 20% 85%;
+    --input: 42 20% 90%;
+    --ring: 51 100% 50%;
 
-    --radius: 0.5rem;
+    --radius: 12px;
+
+    /* Gradients & Effects */
+    --gradient-sunset: linear-gradient(135deg, hsl(16 100% 66%), hsl(51 100% 50%));
+    --gradient-savanna: linear-gradient(180deg, hsl(120 61% 34%), hsl(120 45% 25%));
+    --gradient-sky: linear-gradient(180deg, hsl(210 87% 56%), hsl(210 100% 85%));
+    --gradient-earth: linear-gradient(45deg, hsl(42 67% 95%), hsl(30 45% 85%));
+    
+    /* Glassmorphism */
+    --glass-bg: hsla(0, 0%, 100%, 0.15);
+    --glass-border: hsla(0, 0%, 100%, 0.3);
+    
+    /* Shadows & Glow */
+    --glow-yellow: 0 0 40px hsl(51 100% 50% / 0.3);
+    --shadow-neumorphism: 8px 8px 16px hsl(42 30% 80%), -8px -8px 16px hsl(0 0% 100%);
+    --shadow-card: 0 10px 30px hsl(0 0% 0% / 0.1);
 
     --sidebar-background: 0 0% 98%;
 
@@ -56,41 +79,44 @@ All colors MUST be HSL.
   }
 
   .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
+    /* Dark theme - Evening Safari */
+    --background: 0 0% 8%; /* Deep night */
+    --foreground: 42 67% 95%;
 
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card: 0 0% 12%;
+    --card-foreground: 42 67% 95%;
 
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 0 0% 12%;
+    --popover-foreground: 42 67% 95%;
 
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
+    --primary: 51 100% 50%; /* Keep vibrant yellow */
+    --primary-foreground: 0 0% 8%;
 
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
+    --secondary: 120 45% 25%; /* Darker green */
+    --secondary-foreground: 42 67% 95%;
 
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 42 30% 65%;
 
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
+    --accent: 16 90% 58%; /* Slightly darker red */
+    --accent-foreground: 42 67% 95%;
 
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
+    --safari-blue: 210 87% 56%;
+    --safari-blue-foreground: 42 67% 95%;
 
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --destructive: 0 62.8% 45%;
+    --destructive-foreground: 42 67% 95%;
+
+    --border: 0 0% 20%;
+    --input: 0 0% 18%;
+    --ring: 51 100% 50%;
+
+    /* Dark gradients */
+    --gradient-sunset: linear-gradient(135deg, hsl(16 90% 58%), hsl(51 100% 50%));
+    --gradient-savanna: linear-gradient(180deg, hsl(120 45% 25%), hsl(120 30% 15%));
+    --gradient-sky: linear-gradient(180deg, hsl(210 60% 25%), hsl(210 40% 15%));
+    --glass-bg: hsla(0, 0%, 0%, 0.3);
+    --glass-border: hsla(42, 67%, 95%, 0.1);
   }
 }
 
@@ -100,6 +126,96 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-playfair;
+  }
+
+  /* Smooth scrolling for the entire page */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Custom animations and effects */
+  .glassmorphism {
+    background: var(--glass-bg);
+    backdrop-filter: blur(10px);
+    border: 1px solid var(--glass-border);
+  }
+
+  .neumorphism {
+    box-shadow: var(--shadow-neumorphism);
+  }
+
+  .glow-effect {
+    box-shadow: var(--glow-yellow);
+  }
+
+  /* Maasai pattern overlay */
+  .maasai-pattern {
+    position: relative;
+  }
+
+  .maasai-pattern::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: 
+      repeating-linear-gradient(
+        45deg,
+        transparent,
+        transparent 10px,
+        hsl(51 100% 50% / 0.05) 10px,
+        hsl(51 100% 50% / 0.05) 20px
+      );
+    pointer-events: none;
+    z-index: 1;
+  }
+}
+
+@layer components {
+  /* Hero text animations */
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  @keyframes ripple {
+    0% {
+      transform: scale(1);
+      opacity: 1;
+    }
+    100% {
+      transform: scale(4);
+      opacity: 0;
+    }
+  }
+
+  .animate-fade-in-up {
+    animation: fadeInUp 1s ease-out forwards;
+  }
+
+  .animate-float {
+    animation: float 3s ease-in-out infinite;
+  }
+
+  .animate-ripple {
+    animation: ripple 1.5s ease-out infinite;
   }
 }
