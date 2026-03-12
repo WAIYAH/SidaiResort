@@ -8,6 +8,11 @@ const Navigation = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
 
+  // Close mobile menu on route change
+  useEffect(() => {
+    setIsMobileMenuOpen(false);
+  }, [location.pathname]);
+
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
@@ -17,6 +22,16 @@ const Navigation = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => { document.body.style.overflow = ''; };
+  }, [isMobileMenuOpen]);
+
   const navLinks = [
     { name: 'Home', path: '/' },
     { name: 'Services', path: '/services' },
@@ -25,22 +40,22 @@ const Navigation = () => {
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-      isScrolled ? 'glassmorphism shadow-lg' : 'bg-transparent'
+      isScrolled || isMobileMenuOpen ? 'glassmorphism shadow-lg' : 'bg-transparent'
     }`}>
       <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-16 lg:h-20">
+        <div className="flex items-center justify-between h-14 sm:h-16 lg:h-20">
           {/* Logo */}
           <Link 
             to="/" 
             className="flex items-center space-x-2 group"
           >
-            <div className="text-2xl lg:text-3xl font-montserrat font-bold text-primary group-hover:glow-effect transition-all duration-300">
+            <div className="text-xl sm:text-2xl lg:text-3xl font-montserrat font-bold text-primary group-hover:glow-effect transition-all duration-300">
               Sidai Resort
             </div>
           </Link>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-8">
+          <div className="hidden md:flex items-center space-x-6 lg:space-x-8">
             {navLinks.map((link) => (
               <Link
                 key={link.name}
@@ -69,6 +84,7 @@ const Navigation = () => {
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             className="md:hidden p-2 rounded-lg hover:bg-primary/10 transition-colors duration-300"
+            aria-label={isMobileMenuOpen ? 'Close menu' : 'Open menu'}
           >
             {isMobileMenuOpen ? (
               <X className="w-6 h-6 text-primary" />
@@ -78,32 +94,32 @@ const Navigation = () => {
           </button>
         </div>
 
-        {/* Mobile Navigation Menu */}
+        {/* Mobile Navigation Menu - Full screen overlay */}
         {isMobileMenuOpen && (
-          <div className="md:hidden glassmorphism mt-2 rounded-lg overflow-hidden">
-            <div className="px-2 pt-2 pb-3 space-y-1">
+          <div className="md:hidden fixed inset-0 top-14 bg-background/95 backdrop-blur-md z-40">
+            <div className="flex flex-col items-center justify-center h-full space-y-6 px-6">
               {navLinks.map((link) => (
                 <Link
                   key={link.name}
                   to={link.path}
-                  className={`block px-3 py-2 rounded-md font-montserrat font-medium transition-all duration-300 ${
+                  className={`text-2xl font-montserrat font-semibold transition-all duration-300 ${
                     location.pathname === link.path
-                      ? 'text-primary bg-primary/10'
-                      : 'text-foreground hover:text-primary hover:bg-primary/5'
+                      ? 'text-primary'
+                      : 'text-foreground hover:text-primary'
                   }`}
                   onClick={() => setIsMobileMenuOpen(false)}
                 >
                   {link.name}
                 </Link>
               ))}
-              <div className="px-3 py-2">
-                <Button 
-                  variant="default" 
-                  className="w-full bg-gradient-sunset hover:glow-effect font-montserrat font-semibold"
-                >
-                  Book Now
-                </Button>
-              </div>
+              <Button 
+                variant="default" 
+                size="lg"
+                className="w-full max-w-xs bg-gradient-sunset hover:glow-effect font-montserrat font-semibold mt-4"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                Book Now
+              </Button>
             </div>
           </div>
         )}

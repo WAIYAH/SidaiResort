@@ -1,16 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { 
-  Users, 
-  Waves, 
-  UtensilsCrossed, 
-  Flower, 
-  Calendar, 
-  Wifi, 
-  Car, 
-  TreePine,
-  ChevronRight,
-  CheckCircle
+  Users, Waves, UtensilsCrossed, Flower, Calendar, Wifi, Car, TreePine,
+  ChevronRight, CheckCircle
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
@@ -99,115 +91,99 @@ const Services = () => {
   };
 
   const additionalServices = [
-    {
-      icon: TreePine,
-      title: 'Safari Adventures',
-      description: 'Guided game drives, walking safaris, and cultural village visits'
-    },
-    {
-      icon: Calendar,
-      title: 'Event Planning',
-      description: 'Weddings, celebrations, and special occasions coordination'
-    },
-    {
-      icon: Car,
-      title: 'Airport Transfers',
-      description: 'Luxury transportation to and from all major airports'
-    },
-    {
-      icon: Wifi,
-      title: 'Connectivity',
-      description: 'High-speed internet and business center facilities'
-    }
+    { icon: TreePine, title: 'Safari Adventures', description: 'Guided game drives, walking safaris, and cultural village visits' },
+    { icon: Calendar, title: 'Event Planning', description: 'Weddings, celebrations, and special occasions coordination' },
+    { icon: Car, title: 'Airport Transfers', description: 'Luxury transportation to and from all major airports' },
+    { icon: Wifi, title: 'Connectivity', description: 'High-speed internet and business center facilities' }
   ];
 
   return (
-    <div className="min-h-screen pt-20">
+    <div className="min-h-screen pt-14 sm:pt-16 lg:pt-20">
       {/* Hero Section */}
-      <section className="relative h-96 flex items-center justify-center bg-gradient-savanna overflow-hidden">
+      <section className="relative h-64 sm:h-80 lg:h-96 flex items-center justify-center bg-gradient-savanna overflow-hidden">
         <div className="absolute inset-0 maasai-pattern opacity-20"></div>
         <div className="text-center text-white z-10 max-w-4xl px-4">
-          <h1 className="text-4xl md:text-6xl font-montserrat font-bold mb-6 animate-fade-in-up">
+          <h1 className="text-3xl sm:text-4xl md:text-6xl font-montserrat font-bold mb-4 sm:mb-6 animate-fade-in-up">
             Our <span className="text-primary glow-effect">Sidai</span> Services
           </h1>
-          <p className="text-xl md:text-2xl font-playfair opacity-90 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
+          <p className="text-base sm:text-xl md:text-2xl font-playfair opacity-90 animate-fade-in-up" style={{ animationDelay: '0.3s' }}>
             Discover world-class amenities and authentic experiences
           </p>
         </div>
       </section>
 
       {/* Main Services Section */}
-      <section className="py-20 bg-background">
+      <section className="py-12 sm:py-16 lg:py-20 bg-background">
         <div className="container mx-auto px-4">
           <Tabs value={activeTab} onValueChange={setActiveTab} className="max-w-7xl mx-auto">
-            <TabsList className="grid w-full grid-cols-2 lg:grid-cols-4 mb-12 bg-muted/50 rounded-xl p-2">
+            <TabsList className="grid w-full grid-cols-4 mb-8 sm:mb-12 bg-muted/50 rounded-xl p-1 sm:p-2 h-auto">
               <TabsTrigger 
                 value="conferencing" 
-                className="flex items-center space-x-2 font-montserrat font-medium data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
+                className="flex flex-col sm:flex-row items-center gap-1 sm:gap-2 font-montserrat font-medium text-xs sm:text-sm py-2 sm:py-2.5 data-[state=active]:bg-primary data-[state=active]:text-primary-foreground"
               >
                 <Users className="w-4 h-4" />
-                <span className="hidden sm:inline">Conferencing</span>
+                <span className="hidden xs:inline sm:inline">Conference</span>
               </TabsTrigger>
               <TabsTrigger 
                 value="swimming" 
-                className="flex items-center space-x-2 font-montserrat font-medium data-[state=active]:bg-safari-blue data-[state=active]:text-white"
+                className="flex flex-col sm:flex-row items-center gap-1 sm:gap-2 font-montserrat font-medium text-xs sm:text-sm py-2 sm:py-2.5 data-[state=active]:bg-safari-blue data-[state=active]:text-white"
               >
                 <Waves className="w-4 h-4" />
-                <span className="hidden sm:inline">Swimming</span>
+                <span className="hidden xs:inline sm:inline">Swimming</span>
               </TabsTrigger>
               <TabsTrigger 
                 value="dining" 
-                className="flex items-center space-x-2 font-montserrat font-medium data-[state=active]:bg-accent data-[state=active]:text-accent-foreground"
+                className="flex flex-col sm:flex-row items-center gap-1 sm:gap-2 font-montserrat font-medium text-xs sm:text-sm py-2 sm:py-2.5 data-[state=active]:bg-accent data-[state=active]:text-accent-foreground"
               >
                 <UtensilsCrossed className="w-4 h-4" />
-                <span className="hidden sm:inline">Dining</span>
+                <span className="hidden xs:inline sm:inline">Dining</span>
               </TabsTrigger>
               <TabsTrigger 
                 value="wellness" 
-                className="flex items-center space-x-2 font-montserrat font-medium data-[state=active]:bg-secondary data-[state=active]:text-secondary-foreground"
+                className="flex flex-col sm:flex-row items-center gap-1 sm:gap-2 font-montserrat font-medium text-xs sm:text-sm py-2 sm:py-2.5 data-[state=active]:bg-secondary data-[state=active]:text-secondary-foreground"
               >
                 <Flower className="w-4 h-4" />
-                <span className="hidden sm:inline">Wellness</span>
+                <span className="hidden xs:inline sm:inline">Wellness</span>
               </TabsTrigger>
             </TabsList>
 
             {Object.entries(services).map(([key, service]) => (
               <TabsContent key={key} value={key} className="mt-0">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start">
                   <div className="order-2 lg:order-1">
-                    <div className="flex items-center mb-6">
-                      <service.icon className="w-8 h-8 text-primary mr-4" />
+                    <div className="flex items-start sm:items-center mb-4 sm:mb-6 gap-3 sm:gap-4">
+                      <service.icon className="w-7 h-7 sm:w-8 sm:h-8 text-primary flex-shrink-0 mt-1 sm:mt-0" />
                       <div>
-                        <h2 className="text-3xl md:text-4xl font-montserrat font-bold text-foreground">
+                        <h2 className="text-2xl sm:text-3xl md:text-4xl font-montserrat font-bold text-foreground">
                           {service.title}
                         </h2>
-                        <p className="text-lg text-muted-foreground font-playfair">
+                        <p className="text-sm sm:text-lg text-muted-foreground font-playfair">
                           {service.subtitle}
                         </p>
                       </div>
                     </div>
 
-                    <p className="text-lg leading-relaxed mb-8 text-foreground">
+                    <p className="text-base sm:text-lg leading-relaxed mb-6 sm:mb-8 text-foreground">
                       {service.description}
                     </p>
 
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-8">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4 mb-6 sm:mb-8">
                       {service.features.map((feature, index) => (
-                        <div key={index} className="flex items-start space-x-3">
-                          <CheckCircle className="w-5 h-5 text-secondary flex-shrink-0 mt-0.5" />
-                          <span className="text-foreground">{feature}</span>
+                        <div key={index} className="flex items-start space-x-2 sm:space-x-3">
+                          <CheckCircle className="w-4 h-4 sm:w-5 sm:h-5 text-secondary flex-shrink-0 mt-0.5" />
+                          <span className="text-sm sm:text-base text-foreground">{feature}</span>
                         </div>
                       ))}
                     </div>
 
-                    <div className="bg-muted/50 rounded-lg p-6 mb-8">
-                      <h4 className="font-montserrat font-semibold text-foreground mb-2">Pricing</h4>
-                      <p className="text-muted-foreground">{service.pricing}</p>
+                    <div className="bg-muted/50 rounded-lg p-4 sm:p-6 mb-6 sm:mb-8">
+                      <h4 className="font-montserrat font-semibold text-foreground mb-2 text-sm sm:text-base">Pricing</h4>
+                      <p className="text-muted-foreground text-sm sm:text-base">{service.pricing}</p>
                     </div>
 
                     <Button 
                       size="lg" 
-                      className="bg-gradient-sunset hover:glow-effect font-montserrat font-semibold transform hover:scale-105 transition-all duration-300"
+                      className="w-full sm:w-auto bg-gradient-sunset hover:glow-effect font-montserrat font-semibold transform hover:scale-105 transition-all duration-300"
                     >
                       Book This Experience
                       <ChevronRight className="ml-2 w-5 h-5" />
@@ -219,7 +195,8 @@ const Services = () => {
                       <img 
                         src={service.image} 
                         alt={service.title}
-                        className="w-full h-96 lg:h-full object-cover"
+                        className="w-full h-56 sm:h-72 lg:h-96 object-cover"
+                        loading="lazy"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent" />
                     </div>
@@ -232,29 +209,29 @@ const Services = () => {
       </section>
 
       {/* Additional Services */}
-      <section className="py-20 bg-gradient-earth">
+      <section className="py-12 sm:py-16 lg:py-20 bg-gradient-earth">
         <div className="container mx-auto px-4">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-montserrat font-bold text-foreground mb-6">
+          <div className="text-center mb-10 sm:mb-16">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-montserrat font-bold text-foreground mb-4 sm:mb-6">
               Additional <span className="text-secondary">Experiences</span>
             </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-base sm:text-xl text-muted-foreground max-w-3xl mx-auto">
               Complete your Sidai journey with our comprehensive range of complementary services.
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-8 max-w-6xl mx-auto">
             {additionalServices.map((service, index) => (
               <Card 
                 key={index} 
                 className="text-center glassmorphism hover:glow-effect transition-all duration-300 transform hover:scale-105"
               >
-                <CardHeader>
-                  <service.icon className="w-12 h-12 text-primary mx-auto mb-4" />
-                  <CardTitle className="font-montserrat text-foreground">{service.title}</CardTitle>
+                <CardHeader className="pb-2 sm:pb-4">
+                  <service.icon className="w-8 h-8 sm:w-12 sm:h-12 text-primary mx-auto mb-2 sm:mb-4" />
+                  <CardTitle className="font-montserrat text-foreground text-sm sm:text-base">{service.title}</CardTitle>
                 </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">{service.description}</p>
+                <CardContent className="pt-0">
+                  <p className="text-muted-foreground text-xs sm:text-base">{service.description}</p>
                 </CardContent>
               </Card>
             ))}
@@ -263,20 +240,20 @@ const Services = () => {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 bg-gradient-sunset">
+      <section className="py-12 sm:py-16 lg:py-20 bg-gradient-sunset">
         <div className="container mx-auto px-4 text-center">
-          <h2 className="text-4xl md:text-5xl font-montserrat font-bold text-white mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-montserrat font-bold text-white mb-4 sm:mb-6">
             Ready to Experience <span className="text-primary glow-effect">Sidai</span>?
           </h2>
-          <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
+          <p className="text-base sm:text-xl text-white/90 mb-6 sm:mb-8 max-w-2xl mx-auto">
             Contact our team to customize your perfect safari resort experience.
           </p>
-          <div className="space-y-4 sm:space-y-0 sm:space-x-4 sm:flex sm:justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link to="/contact">
               <Button 
                 size="lg" 
                 variant="secondary"
-                className="font-montserrat font-bold px-8 py-4 text-lg transform hover:scale-105 transition-all duration-300"
+                className="w-full sm:w-auto font-montserrat font-bold px-6 sm:px-8 py-4 text-base sm:text-lg transform hover:scale-105 transition-all duration-300"
               >
                 Contact Us Today
               </Button>
@@ -285,7 +262,7 @@ const Services = () => {
               <Button 
                 size="lg" 
                 variant="outline"
-                className="border-white text-white hover:bg-white hover:text-foreground font-montserrat font-semibold px-8 py-4 text-lg"
+                className="w-full sm:w-auto border-white text-white hover:bg-white hover:text-foreground font-montserrat font-semibold px-6 sm:px-8 py-4 text-base sm:text-lg"
               >
                 Return Home
               </Button>
