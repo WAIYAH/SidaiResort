@@ -47,7 +47,7 @@ const Contact = () => {
   };
 
   const contactInfo = [
-    { icon: MapPin, title: 'Visit Us', details: ['Maasai Mara National Reserve', 'Narok County, Kenya', 'P.O. Box 12345-00100'] },
+    { icon: MapPin, title: 'Visit Us', details: ['Naroosura, Narok County', 'Kenya', 'P.O. Box 12345-00100'] },
     { icon: Phone, title: 'Call Us', details: ['+254 700 123 456', '+254 733 987 654', 'Toll-free: 0800 SIDAI'] },
     { icon: Mail, title: 'Email Us', details: ['reservations@sidairesort.com', 'info@sidairesort.com', 'events@sidairesort.com'] },
     { icon: Clock, title: 'Hours', details: ['Reception: 24/7', 'Reservations: 8AM - 8PM EAT', 'Events: 9AM - 6PM EAT'] }
