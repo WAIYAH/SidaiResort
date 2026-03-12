@@ -47,7 +47,7 @@ const Contact = () => {
   };
 
   const contactInfo = [
-    { icon: MapPin, title: 'Visit Us', details: ['Maasai Mara National Reserve', 'Narok County, Kenya', 'P.O. Box 12345-00100'] },
+    { icon: MapPin, title: 'Visit Us', details: ['Naroosura, Narok County', 'Kenya', 'P.O. Box 12345-00100'] },
     { icon: Phone, title: 'Call Us', details: ['+254 700 123 456', '+254 733 987 654', 'Toll-free: 0800 SIDAI'] },
     { icon: Mail, title: 'Email Us', details: ['reservations@sidairesort.com', 'info@sidairesort.com', 'events@sidairesort.com'] },
     { icon: Clock, title: 'Hours', details: ['Reception: 24/7', 'Reservations: 8AM - 8PM EAT', 'Events: 9AM - 6PM EAT'] }
@@ -203,8 +203,8 @@ const Contact = () => {
                       <MapPin className="w-12 h-12 sm:w-16 sm:h-16 text-primary mx-auto mb-3 sm:mb-4 animate-float" />
                       <h3 className="text-lg sm:text-xl font-montserrat font-semibold mb-2">Find Us Here</h3>
                       <p className="text-muted-foreground text-sm sm:text-base">
-                        Maasai Mara National Reserve<br />
-                        Narok County, Kenya
+                        Naroosura, Narok County<br />
+                        Kenya
                       </p>
                     </div>
                   </div>
@@ -221,10 +221,10 @@ const Contact = () => {
                 <CardContent>
                   <ul className="space-y-2 sm:space-y-3 text-muted-foreground">
                     {[
-                      'Prime location in the heart of Maasai Mara',
+                      'Prime location in Naroosura, Narok County',
                       'Easy access to game drives and cultural experiences',
-                      '2-hour drive from Nairobi (helicopter transfers available)',
-                      'Stunning views of Mount Kilimanjaro',
+                      'Scenic drive from Nairobi (helicopter transfers available)',
+                      'Stunning views of the Great Rift Valley',
                       'Close to authentic Maasai villages'
                     ].map((item, i) => (
                       <li key={i} className="flex items-start">
