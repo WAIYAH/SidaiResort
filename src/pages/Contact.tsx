@@ -221,10 +221,10 @@ const Contact = () => {
                 <CardContent>
                   <ul className="space-y-2 sm:space-y-3 text-muted-foreground">
                     {[
-                      'Prime location in the heart of Maasai Mara',
+                      'Prime location in Naroosura, Narok County',
                       'Easy access to game drives and cultural experiences',
-                      '2-hour drive from Nairobi (helicopter transfers available)',
-                      'Stunning views of Mount Kilimanjaro',
+                      'Scenic drive from Nairobi (helicopter transfers available)',
+                      'Stunning views of the Great Rift Valley',
                       'Close to authentic Maasai villages'
                     ].map((item, i) => (
                       <li key={i} className="flex items-start">

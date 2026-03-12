@@ -41,13 +41,26 @@ const Footer = () => {
               {[
                 { to: '/', label: 'Home' },
                 { to: '/services', label: 'Our Services' },
+                { to: '/gallery', label: 'Gallery' },
                 { to: '/contact', label: 'Contact Us' },
               ].map(({ to, label }) => (
                 <li key={to}>
                   <Link to={to} className="hover:text-primary transition-colors duration-300">{label}</Link>
                 </li>
               ))}
-              <li><a href="#" className="hover:text-primary transition-colors duration-300">Gallery</a></li>
+            </ul>
+
+            <h3 className="text-lg sm:text-xl font-montserrat font-semibold mb-3 mt-6 text-primary">Legal</h3>
+            <ul className="space-y-2 text-sm sm:text-base">
+              {[
+                { to: '/privacy-policy', label: 'Privacy Policy' },
+                { to: '/terms-of-service', label: 'Terms of Service' },
+                { to: '/cookie-policy', label: 'Cookie Policy' },
+              ].map(({ to, label }) => (
+                <li key={to}>
+                  <Link to={to} className="hover:text-primary transition-colors duration-300">{label}</Link>
+                </li>
+              ))}
             </ul>
           </div>
 
@@ -57,7 +70,7 @@ const Footer = () => {
             <ul className="space-y-3 sm:space-y-4 text-sm sm:text-base">
               <li className="flex items-start space-x-2 sm:space-x-3">
                 <MapPin className="w-4 h-4 sm:w-5 sm:h-5 text-primary mt-1 flex-shrink-0" />
-                <span>Maasai Mara, Kenya<br />P.O. Box 12345</span>
+                <span>Naroosura, Narok County<br />Kenya &bull; P.O. Box 12345</span>
               </li>
               <li className="flex items-center space-x-2 sm:space-x-3">
                 <Phone className="w-4 h-4 sm:w-5 sm:h-5 text-primary flex-shrink-0" />
@@ -78,9 +91,9 @@ const Footer = () => {
               © {new Date().getFullYear()} Sidai Resort. All rights reserved.
             </p>
             <div className="flex flex-wrap justify-center gap-4 sm:gap-6 text-xs sm:text-sm text-white/80">
-              <a href="#" className="hover:text-primary transition-colors duration-300">Privacy Policy</a>
-              <a href="#" className="hover:text-primary transition-colors duration-300">Terms of Service</a>
-              <a href="#" className="hover:text-primary transition-colors duration-300">Cookie Policy</a>
+              <Link to="/privacy-policy" className="hover:text-primary transition-colors duration-300">Privacy Policy</Link>
+              <Link to="/terms-of-service" className="hover:text-primary transition-colors duration-300">Terms of Service</Link>
+              <Link to="/cookie-policy" className="hover:text-primary transition-colors duration-300">Cookie Policy</Link>
             </div>
           </div>
         </div>
