@@ -203,8 +203,8 @@ const Contact = () => {
                       <MapPin className="w-12 h-12 sm:w-16 sm:h-16 text-primary mx-auto mb-3 sm:mb-4 animate-float" />
                       <h3 className="text-lg sm:text-xl font-montserrat font-semibold mb-2">Find Us Here</h3>
                       <p className="text-muted-foreground text-sm sm:text-base">
-                        Maasai Mara National Reserve<br />
-                        Narok County, Kenya
+                        Naroosura, Narok County<br />
+                        Kenya
                       </p>
                     </div>
                   </div>
