@@ -115,9 +115,9 @@ const Home = () => {
             </Button>
             <Link to="/services">
               <Button 
-                variant="outline" 
+                variant="secondary"
                 size="lg" 
-                className="w-full border-white text-white hover:bg-white hover:text-foreground font-montserrat font-semibold px-6 sm:px-8 py-4 text-base sm:text-lg"
+                className="w-full h-full bg-white/95 text-foreground hover:bg-white hover:glow-effect font-montserrat font-semibold px-6 sm:px-8 py-4 text-base sm:text-lg transform hover:scale-105 transition-all duration-300 rounded-md"
               >
                 Explore Services
               </Button>
