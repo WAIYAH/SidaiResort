@@ -1,0 +1,17 @@
+{
+  "name": "Sidai Resort - Where Good Meets Luxury",
+  "short_name": "Sidai Resort",
+  "description": "Experience world-class hospitality at Sidai Resort in Naroosura, Kenya. Maasai-inspired luxury with safari experiences.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F5F0E0",
+  "theme_color": "#FFD700",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/favicon.ico",
+      "sizes": "64x64",
+      "type": "image/x-icon"
+    }
+  ]
+}
