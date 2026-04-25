@@ -95,3 +95,17 @@ This project was originally designed in React but has been completely converted 
 
 ---
 *Developed with a commitment to Nothing But the Best.*
+
+---
+
+## ▲ Vercel Static Deploy
+
+For temporary Vercel hosting without PHP execution:
+
+1. Generate static pages:
+   ```powershell
+   .\scripts\export-static.ps1 -AppUrl "https://your-vercel-domain.vercel.app"
+   ```
+   If PHP is in a different location, add `-PhpPath "C:\path\to\php.exe"`.
+2. Deploy the project root to Vercel.
+3. `vercel.json` is already configured to serve from `public-static` with clean URLs.
