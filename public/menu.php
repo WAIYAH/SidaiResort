@@ -60,7 +60,7 @@ $allItems = $itemModel->getAll();
                                                     <span class="text-xs bg-red-100 text-red-800 px-2 py-1 rounded ml-1">🌶️ Spicy</span>
                                                 <?php endif; ?>
                                             </div>
-                                            <span class="text-lg font-bold text-gold">KES <?php echo format_kes($item['price']); ?></span>
+                                            <span class="text-lg font-bold text-gold"><?php echo format_kes($item['price']); ?></span>
                                         </div>
                                         <?php if ($item['description']): ?>
                                             <p class="text-sm text-gray-600"><?php echo htmlspecialchars($item['description']); ?></p>
@@ -82,7 +82,7 @@ $allItems = $itemModel->getAll();
 
             <div class="mt-12 text-center">
                 <p class="text-gray-600 mb-4">Interested in our special dining packages?</p>
-                <a href="<?php echo WEB_ROOT; ?>/contact.php" class="inline-block bg-gold hover:bg-gold-dark text-white font-semibold py-3 px-8 rounded-lg transition">
+                <a href="<?php echo WEB_ROOT; ?>/about#contact" class="inline-block bg-gold hover:bg-gold-dark text-white font-semibold py-3 px-8 rounded-lg transition">
                     Contact Us for Reservations
                 </a>
             </div>
@@ -92,3 +92,4 @@ $allItems = $itemModel->getAll();
     <?php include APP_PATH . '/includes/footer.php'; ?>
 </body>
 </html>
+

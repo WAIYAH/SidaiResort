@@ -8,7 +8,7 @@ use App\Core\CSRF;
 use App\Core\Database;
 
 $pageTitle = 'Sidai Resort | Where Good Meets Luxury';
-$pageDescription = 'Sidai Resort in Naroosura, Narok County, Kenya. Luxury safari stays, event halls, pool sessions, fine dining, and unforgettable celebrations.';
+$pageDescription = 'Sidai Resort. Luxury safari stays, event halls, pool sessions, fine dining, and unforgettable celebrations.';
 $pageImage = APP_URL . '/assets/images/hero-sunset.jpg';
 
 $resolveImagePath = static function (?string $rawPath): string {
@@ -56,10 +56,10 @@ $galleryFallback = [
         'category' => 'dining',
     ],
     [
-        'title' => 'Spa and Wellness Escape',
-        'description' => 'A calming sanctuary for body and mind.',
-        'image_path' => '/assets/images/spa-wellness.jpg',
-        'category' => 'spa',
+        'title' => 'Serene Enkima Fire',
+        'description' => 'Experience our signature bonfire under the stars.',
+        'image_path' => '/assets/images/hero-section.jpg',
+        'category' => 'nature',
     ],
     [
         'title' => 'Celebration-Ready Spaces',
@@ -155,7 +155,7 @@ $eventHighlights = [
     [
         'title' => 'Graduations & Milestones',
         'description' => "Elegant event styling for life's big achievements.",
-        'image' => '/assets/images/spa-wellness.jpg',
+        'image' => '/assets/images/hero-section.jpg',
     ],
 ];
 
@@ -187,8 +187,8 @@ include dirname(__DIR__) . '/app/includes/header.php';
     <section id="hero" class="relative isolate flex min-h-[100dvh] items-center overflow-hidden">
         <div class="absolute inset-0">
             <img
-                src="/assets/images/hero-sunset.jpg"
-                alt="Golden sunset view at Sidai Resort in Naroosura"
+                src="/assets/images/hero-section.jpg"
+                alt="Sidai Resort view"
                 class="h-full w-full object-cover"
                 fetchpriority="high"
             >
@@ -198,7 +198,7 @@ include dirname(__DIR__) . '/app/includes/header.php';
 
         <div class="relative z-10 mx-auto grid w-full max-w-7xl gap-8 px-4 pb-10 pt-20 sm:px-6 lg:grid-cols-[1fr_auto] lg:px-8">
             <div class="max-w-3xl">
-                <p class="mb-4 inline-flex items-center rounded-full border border-gold/40 bg-night/50 px-4 py-1 text-xs font-semibold uppercase tracking-[0.25em] text-gold">Sidai Resort &bull; Naroosura</p>
+                <p class="mb-4 inline-flex items-center rounded-full border border-gold/40 bg-night/50 px-4 py-1 text-xs font-semibold uppercase tracking-[0.25em] text-gold">Sidai Resort</p>
                 <h1 class="font-display text-5xl leading-[0.92] text-white sm:text-6xl lg:text-8xl" data-aos="fade-up">
                     Where Good Meets Luxury
                 </h1>
@@ -318,11 +318,11 @@ include dirname(__DIR__) . '/app/includes/header.php';
                         <p class="mt-2 text-sm text-brown/80">Pre-order curated Kenyan, Maasai-inspired, and international dishes.</p>
                     </div>
                 </a>
-                <a href="/services#spa" class="group overflow-hidden rounded-2xl border border-brown/10 bg-cream/50 transition hover:-translate-y-1 hover:shadow-xl" data-aos="fade-up" data-aos-delay="180">
-                    <img src="/assets/images/spa-wellness.jpg" alt="Spa and wellness services" class="h-52 w-full object-cover transition duration-500 group-hover:scale-105" loading="lazy">
+                <a href="/services#activities" class="group overflow-hidden rounded-2xl border border-brown/10 bg-cream/50 transition hover:-translate-y-1 hover:shadow-xl" data-aos="fade-up" data-aos-delay="180">
+                    <img src="/assets/images/hero-section.jpg" alt="Playground and activities" class="h-52 w-full object-cover transition duration-500 group-hover:scale-105" loading="lazy">
                     <div class="p-5">
-                        <h3 class="font-display text-3xl text-brown">Spa & Wellness</h3>
-                        <p class="mt-2 text-sm text-brown/80">Recharge with therapeutic treatments and wellness rituals.</p>
+                        <h3 class="font-display text-3xl text-brown">Playground</h3>
+                        <p class="mt-2 text-sm text-brown/80">Engage in thrilling outdoor adventures and serene nature walks.</p>
                     </div>
                 </a>
                 <a href="/services#music-shoots" class="group overflow-hidden rounded-2xl border border-brown/10 bg-cream/50 transition hover:-translate-y-1 hover:shadow-xl" data-aos="fade-up" data-aos-delay="240">
@@ -394,7 +394,7 @@ include dirname(__DIR__) . '/app/includes/header.php';
                     <p class="text-sm font-semibold uppercase tracking-[0.25em] text-earth">Gallery</p>
                     <h2 class="mt-2 font-display text-4xl text-brown sm:text-5xl">A glimpse of Sidai</h2>
                 </div>
-                <a href="/gallery" class="text-sm font-semibold uppercase tracking-[0.2em] text-forest hover:text-gold">View Full Gallery &rarr;</a>
+                <a href="/about#gallery" class="text-sm font-semibold uppercase tracking-[0.2em] text-forest hover:text-gold">View Full Gallery &rarr;</a>
             </div>
 
             <div class="columns-1 gap-4 sm:columns-2 lg:columns-3">
@@ -444,7 +444,7 @@ include dirname(__DIR__) . '/app/includes/header.php';
                             <div class="p-5">
                                 <h3 class="font-display text-3xl text-gold"><?php echo safe_html($event['title']); ?></h3>
                                 <p class="mt-3 text-sm leading-7 text-cream/80"><?php echo safe_html($event['description']); ?></p>
-                                <a href="/contact?subject=<?php echo rawurlencode($event['title']); ?>" class="mt-5 inline-flex text-sm font-semibold uppercase tracking-[0.16em] text-gold hover:text-gold-light">Enquire &rarr;</a>
+                                <a href="/about#contact" class="mt-5 inline-flex text-sm font-semibold uppercase tracking-[0.16em] text-gold hover:text-gold-light">Enquire &rarr;</a>
                             </div>
                         </article>
                     <?php endforeach; ?>
@@ -480,6 +480,8 @@ include dirname(__DIR__) . '/app/includes/header.php';
             </div>
         </div>
     </section>
+
+    <?php include APP_PATH . '/includes/elements.php'; ?>
 
     <section id="testimonials" class="bg-gradient-to-br from-forest to-night py-20 text-cream">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
@@ -623,3 +625,4 @@ include dirname(__DIR__) . '/app/includes/header.php';
 </script>
 
 <?php include dirname(__DIR__) . '/app/includes/footer.php'; ?>
+

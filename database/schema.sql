@@ -67,7 +67,7 @@ CREATE TABLE IF NOT EXISTS bookings (
   id INT UNSIGNED AUTO_INCREMENT PRIMARY KEY,
   booking_ref VARCHAR(20) UNIQUE NOT NULL,
   guest_id INT UNSIGNED NOT NULL,
-  booking_type ENUM('room','pool','hall','dining','event','spa','music_shoot','conference') NOT NULL,
+  booking_type ENUM('room','pool','hall','dining','event','music_shoot','conference') NOT NULL,
   room_id INT UNSIGNED NULL,
   hall_id INT UNSIGNED NULL,
   check_in DATE NOT NULL,
@@ -196,7 +196,7 @@ CREATE TABLE IF NOT EXISTS gallery_items (
   description TEXT,
   image_path VARCHAR(255) NOT NULL,
   image_thumb VARCHAR(255),
-  category ENUM('pool','dining','events','rooms','nature','spa','weddings','parties','exterior','interior','conference') NOT NULL,
+  category ENUM('pool','dining','events','rooms','nature','weddings','parties','exterior','interior','conference') NOT NULL,
   sort_order INT DEFAULT 0,
   is_featured TINYINT(1) DEFAULT 0,
   is_active TINYINT(1) DEFAULT 1,
@@ -392,3 +392,16 @@ CREATE TABLE IF NOT EXISTS site_settings (
 
 -- Done!
 
+-- ?? INSERT MAASAI ROOMS (11 Rooms) ??
+INSERT IGNORE INTO rooms (room_number, name, type, capacity, price_per_night, description, amenities) VALUES
+('101', 'Elalai', 'suite', 4, 3200.00, 'Elalai is where nothing but the best stops being a promise and becomes a lived experience. Our most distinguished sanctuary.', '["Panoramic Forest View", "King Super Bed", "Private Seating Deck", "Premium Wi-Fi"]'),
+('102', 'Emirishoi', 'standard', 2, 2000.00, 'Step into Emirishoi and feel the morning claim you gently. This sanctuary wakes with the forest.', '["Forest View", "King Bed", "Wi-Fi"]'),
+('103', 'Enchipai', 'standard', 2, 1200.00, 'Enchipai wraps around you like the warmth of a fire you didn''t know you needed. Rich earth tones mirror the landscape.', '["Garden View", "Queen Bed", "Wi-Fi"]'),
+('104', 'Eserian', 'standard', 2, 1500.00, 'Eserian is grace made tangible. The room moves with a soft elegance - clean lines softened by warm textures.', '["Canopy View", "Double Bed", "Wi-Fi"]'),
+('105', 'Empiris', 'deluxe', 3, 2500.00, 'There is something deeply grounding about Empiris. Like the ancient trees that surround it, this sanctuary stands firm.', '["Forest View", "King Bed", "Wi-Fi"]'),
+('106', 'Ewangan', 'deluxe', 2, 1800.00, 'Ewangan is a homecoming for people who have never been here before. It holds the particular magic of a place that feels familiar.', '["Nature View", "Queen Bed", "Wi-Fi"]'),
+('107', 'Enkanasa', 'deluxe', 4, 1900.00, 'Enkanasa holds an energy that encourages lingering. Morning coffee takes twice as long here - in the best possible way.', '["Courtyard View", "Double Bed", "Wi-Fi"]'),
+('108', 'Esipil', 'standard', 2, 1400.00, 'Named for the cool and flowing, Esipil carries the energy of a mountain stream - fresh, clear, and endlessly renewing.', '["Garden View", "Twin Beds", "Wi-Fi"]'),
+('109', 'Enkipai', 'suite', 2, 2800.00, 'Enkipai is, in the truest sense, a blessed space. There is a quality of light here - warm even on overcast days.', '["Forest View", "King Bed", "Balcony Access"]'),
+('110', 'Eripoto', 'deluxe', 3, 1700.00, 'Eripoto rewards those who pay attention. The deeper you look at the handcrafted headboard, the more beauty you find.', '["Nature View", "Queen Bed", "Artisan Décor"]'),
+('111', 'Ereto', 'suite', 2, 3000.00, 'There are rooms you sleep in, and then there is Ereto - a sanctuary engineered for the kind of rest that changes you.', '["Forest View", "King Bed", "Blackout Curtains"]');

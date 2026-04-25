@@ -1,96 +1,60 @@
 # 🌅 Sidai Resort — Official Website
 
-> *Where 'Good' Meets Luxury* — A premium safari resort in **Naroosura, Narok County, Kenya**.
+> *Sidai Resort: Nothing But the Best* — A premium luxury safari resort website built for ultimate performance and an unforgettable digital experience.
 
-"Sidai" means "good" in the Maasai language. This website captures the warmth, beauty, and world-class hospitality of Sidai Resort through a modern, responsive, and performant web experience.
+"Sidai" means "good" in the Maasai language. This application captures the warmth, beauty, and world-class hospitality of Sidai Resort through a modern, responsive, and server-rendered web architecture.
 
 ---
 
 ## ✨ Features
 
-### Core Pages
-- **Home** — Full-screen hero, parallax about section, services teaser, testimonials, and CTA
-- **Services** — Tabbed interface for Conferencing, Pool, Dining, Spa & Classic Hospitality
-- **Gallery** — Masonry grid with category filtering and full-screen lightbox
-- **Contact** — Glassmorphism form with validation, Google Maps embed, and social links
-
-### Legal & Compliance
-- Privacy Policy (GDPR-aligned)
-- Terms of Service (booking & cancellation terms)
-- Cookie Policy (consent & usage details)
+### Core Experience
+- **Home** — Full-screen cinematic hero, parallax about section, visual room teasers, and direct calls to action.
+- **Services** — Dynamic Alpine.js tabbed interface for Conferencing, Outdoor Activities, Playground, and Music Video Location packages.
+- **Accommodation** — Filterable E-commerce style sanctuary listings (11 rooms) showing prices, amenities, and capacities.
+- **Menus** — Dynamic food and drink listings supporting ranges from standard to premium Mbuzi Choma.
+- **Booking & Contact** — Integrated forms and reservation flows to seamlessly connect guests with the resort staff.
 
 ### Design Highlights
-- 🎨 Maasai-inspired color palette & patterns
-- 📱 Mobile-first responsive design
-- ✨ Smooth animations (Framer Motion ready)
-- 🌓 Dark mode support
-- ♿ Accessible (ARIA labels, keyboard nav, semantic HTML)
-- 🔍 SEO optimized with JSON-LD, OG tags, sitemap
+- 🎨 Premium aesthetic with carefully tailored Maasai-inspired color palettes.
+- 📱 Mobile-first responsive layouts leveraging utility classes.
+- ✨ Smooth GSAP and Alpine.js animations.
+- ♿ Accessible and semantically rich HTML5.
+- 🔍 SEO optimized with dynamic meta tags, JSON-LD schema, and structured data.
 
 ---
 
 ## 🛠️ Tech Stack
 
+This project was originally designed in React but has been completely converted to a high-performance **PHP 8.2 / MySQL** architecture.
+
 | Technology | Purpose |
 |---|---|
-| [React 18](https://react.dev/) | UI framework |
-| [TypeScript](https://www.typescriptlang.org/) | Type safety |
-| [Vite](https://vitejs.dev/) | Build tool & dev server |
-| [Tailwind CSS](https://tailwindcss.com/) | Utility-first styling |
-| [shadcn/ui](https://ui.shadcn.com/) | UI component library |
-| [React Router](https://reactrouter.com/) | Client-side routing |
-| [Lucide React](https://lucide.dev/) | Icon library |
-| [Zod](https://zod.dev/) | Form validation |
-| [React Hook Form](https://react-hook-form.com/) | Form management |
-
----
-
-## 🎨 Design System
-
-| Token | HSL | Usage |
-|---|---|---|
-| Primary | `51 100% 50%` | Buttons, accents, highlights |
-| Secondary | `120 61% 34%` | Nature elements, eco-sections |
-| Accent | `16 100% 66%` | CTAs, warnings |
-| Safari Blue | `210 87% 56%` | Water/pool themes |
-| Background | `42 67% 95%` | Page backgrounds |
-
-**Typography:** Montserrat (headings) + Playfair Display (body)
+| **PHP 8.2** | Server-side rendering, routing, and backend logic |
+| **MySQL 8** | Database management for menus, bookings, and configuration |
+| **Alpine.js** | Lightweight, reactive frontend state management (Tabs, Filters) |
+| **GSAP** | High-performance, cinematic scroll and entry animations |
+| **Tailwind CSS** | Utility-first styling delivered via Play CDN for rapid iteration |
 
 ---
 
 ## 📁 Project Structure
 
 ```
+├── app/
+│   ├── config/              # Database credentials, constants, and global functions
+│   ├── core/                # Core classes (Database wrapper, CSRF protection, etc.)
+│   └── includes/            # Reusable partials (head, header, footer, elements)
 ├── public/
-│   ├── favicon.ico
-│   ├── manifest.json
-│   ├── robots.txt
-│   └── sitemap.xml
-├── src/
-│   ├── assets/              # Images (hero, services, etc.)
-│   ├── components/
-│   │   ├── ui/              # shadcn/ui base components
-│   │   ├── Navigation.tsx   # Sticky header with mobile menu
-│   │   └── Footer.tsx       # Newsletter, links, social
-│   ├── pages/
-│   │   ├── Home.tsx
-│   │   ├── Services.tsx
-│   │   ├── Gallery.tsx
-│   │   ├── Contact.tsx
-│   │   ├── PrivacyPolicy.tsx
-│   │   ├── TermsOfService.tsx
-│   │   ├── CookiePolicy.tsx
-│   │   └── NotFound.tsx
-│   ├── hooks/               # Custom React hooks
-│   ├── lib/                 # Utility functions
-│   ├── App.tsx              # Routes & layout
-│   ├── main.tsx             # Entry point
-│   └── index.css            # Design tokens & global styles
-├── index.html               # SEO meta, JSON-LD, fonts
-├── tailwind.config.ts
-├── vite.config.ts
-└── package.json
+│   ├── assets/              # Images, fonts, and static resources
+│   ├── about.php            # Our Story and Vision
+│   ├── booking.php          # Reservation portal
+│   ├── index.php            # Homepage
+│   ├── menu.php             # Culinary offerings
+│   ├── rooms.php            # Filterable e-commerce accommodation grid
+│   └── services.php         # Conference halls, pool, and activities
+├── .htaccess                # Apache routing rules
+└── README.md                # Project documentation
 ```
 
 ---
@@ -98,75 +62,36 @@
 ## 🚀 Getting Started
 
 ### Prerequisites
-- Node.js 18+
-- npm, yarn, or bun
+- PHP 8.2 or higher
+- MySQL 8.0 or MariaDB equivalent
+- Apache web server (e.g., XAMPP, WAMP, or Laravel Valet)
 
 ### Installation
 
-```bash
-# Clone the repository
-git clone <YOUR_GIT_URL>
-cd sidai-resort
+1. **Clone the repository:**
+   Ensure the project folder is placed inside your server's document root (e.g., `C:\xampp\htdocs\sidai-safari-dreams`).
 
-# Install dependencies
-npm install
+2. **Configure Environment:**
+   Copy `.env.example` to `.env` and fill out your database credentials:
+   ```env
+   DB_HOST=127.0.0.1
+   DB_NAME=sidai_resort
+   DB_USER=root
+   DB_PASS=
+   ```
 
-# Start dev server
-npm run dev
-```
+3. **Initialize Database:**
+   Run the provided seeding scripts (like `db_seed_menu.php` or `db_seed_rooms.php`) via your browser to populate the base data.
 
-Open [http://localhost:8080](http://localhost:8080) in your browser.
-
-### Scripts
-
-| Command | Description |
-|---|---|
-| `npm run dev` | Start development server |
-| `npm run build` | Production build |
-| `npm run preview` | Preview production build |
-| `npm run lint` | Lint with ESLint |
+4. **Launch:**
+   Navigate to `http://localhost/sidai-safari-dreams/public/` to view the live application.
 
 ---
 
-## 🌐 Deployment
+## 💼 Customization & Data
 
-### Via Lovable (Recommended)
-1. Open project in [Lovable](https://lovable.dev/projects/6a4bb6e9-8685-4710-868b-345ef7de4c05)
-2. Click **Share → Publish**
-
-### Custom Domain
-1. Go to **Project → Settings → Domains**
-2. Click **Connect Domain** and follow DNS instructions
-3. [Full guide](https://docs.lovable.dev/tips-tricks/custom-domain)
+- **Currency:** All financial outputs utilize the globally defined `format_kes()` helper located in `app/config/constants.php` which automatically formats prices to `Ksh`.
+- **Global Settings:** Modify `WEB_ROOT` or `APP_URL` in the `init.php` to adjust paths for subfolder vs. domain deployments.
 
 ---
-
-## 🔍 SEO & Performance
-
-- ✅ Open Graph & Twitter Card meta tags
-- ✅ JSON-LD structured data (LodgingBusiness schema)
-- ✅ `sitemap.xml` and `robots.txt`
-- ✅ `manifest.json` for PWA support
-- ✅ Lazy loading images
-- ✅ Semantic HTML5
-- ✅ Canonical URLs
-
----
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
----
-
-## 📄 License
-
-This project is proprietary to Sidai Resort. All rights reserved.
-
----
-
-**Sidai Resort** · Naroosura, Narok County, Kenya · [hello@sidairesort.com](mailto:hello@sidairesort.com)
+*Developed with a commitment to Nothing But the Best.*

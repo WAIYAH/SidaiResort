@@ -46,7 +46,7 @@ if (
                     );
 
                     $subject = APP_NAME . ' Newsletter Subscription';
-                    $body = "Thank you for subscribing to Sidai Resort updates.\n\nWe will share exclusive offers and experiences from Naroosura.";
+                    $body = "Thank you for subscribing to Sidai Resort updates.\n\nWe will share exclusive offers and experiences from our resort.";
                     $headers = 'From: ' . MAIL_FROM_NAME . ' <' . MAIL_FROM_ADDRESS . '>';
 
                     @mail($email, $subject, $body, $headers);
@@ -66,7 +66,7 @@ if (
         <div class="grid gap-10 sm:gap-12 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
             <!-- Brand Column -->
             <div class="sm:col-span-2 lg:col-span-1">
-                <a href="/" class="flex items-center gap-3">
+                <a href="<?php echo WEB_ROOT; ?>/" class="flex items-center gap-3">
                     <span class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-gold text-night font-bold">S</span>
                     <span class="font-display text-2xl text-gold">Sidai Resort</span>
                 </a>
@@ -86,13 +86,14 @@ if (
             <div>
                 <h3 class="footer-title">Quick Links</h3>
                 <ul class="footer-list">
-                    <li><a href="/">Home</a></li>
-                    <li><a href="/services">Services</a></li>
-                    <li><a href="/gallery">Gallery</a></li>
-                    <li><a href="/events">Events</a></li>
-                    <li><a href="/menu">Menu</a></li>
-                    <li><a href="/booking">Book Now</a></li>
-                    <li><a href="/contact">Contact</a></li>
+                    <li><a href="<?php echo WEB_ROOT; ?>/">Home</a></li>
+                    <li><a href="<?php echo WEB_ROOT; ?>/services">Services</a></li>
+                    <li><a href="<?php echo WEB_ROOT; ?>/rooms">Accommodation</a></li>
+                    <li><a href="<?php echo WEB_ROOT; ?>/menu">Menus</a></li>
+                    <li><a href="<?php echo WEB_ROOT; ?>/about">About Us</a></li>
+                    <li><a href="<?php echo WEB_ROOT; ?>/about#gallery">Gallery</a></li>
+                    <li><a href="<?php echo WEB_ROOT; ?>/about#contact">Contact</a></li>
+                    <li><a href="<?php echo WEB_ROOT; ?>/booking">Book Now</a></li>
                 </ul>
             </div>
 
@@ -103,7 +104,6 @@ if (
                     <li>Swimming Pool Sessions</li>
                     <li>Event Hall Celebrations</li>
                     <li>Fine Dining</li>
-                    <li>Spa and Wellness</li>
                     <li>Music and Film Shoots</li>
                     <li>Conference Facilities</li>
                 </ul>
@@ -155,9 +155,9 @@ if (
             <div class="flex flex-col gap-4 text-sm text-cream/70 sm:flex-row sm:items-center sm:justify-between">
                 <p>&copy; <?php echo date('Y'); ?> <?php echo safe_html(APP_NAME); ?>. All rights reserved.</p>
                 <div class="flex flex-wrap items-center gap-x-4 gap-y-2">
-                    <a href="/privacy-policy" class="hover:text-gold transition-colors">Privacy Policy</a>
-                    <a href="/terms-of-service" class="hover:text-gold transition-colors">Terms of Service</a>
-                    <a href="/cookie-policy" class="hover:text-gold transition-colors">Cookie Policy</a>
+                    <a href="<?php echo WEB_ROOT; ?>/privacy-policy" class="hover:text-gold transition-colors">Privacy Policy</a>
+                    <a href="<?php echo WEB_ROOT; ?>/terms-of-service" class="hover:text-gold transition-colors">Terms of Service</a>
+                    <a href="<?php echo WEB_ROOT; ?>/cookie-policy" class="hover:text-gold transition-colors">Cookie Policy</a>
                 </div>
                 <button id="back-to-top" type="button" class="hidden sm:inline-flex h-10 w-10 items-center justify-center rounded-full border border-gold/50 text-gold hover:bg-gold hover:text-night transition-colors" aria-label="Back to top">
                     <span aria-hidden="true">&uarr;</span>
@@ -172,6 +172,41 @@ if (
     <?php echo social_icon('whatsapp', 28); ?>
 </a>
 
+<!-- Cookie Consent Banner -->
+<div x-data="cookieConsent()" x-init="checkConsent()" x-show="showBanner" x-transition.opacity.duration.500ms class="fixed bottom-0 left-0 right-0 z-50 bg-night/95 backdrop-blur-md border-t border-gold/30 p-4 sm:p-6 shadow-2xl" style="display: none;">
+    <div class="mx-auto max-w-7xl flex flex-col sm:flex-row items-center justify-between gap-4">
+        <div class="text-cream text-sm sm:text-base flex-1">
+            <h4 class="text-gold font-display text-lg mb-1">We Value Your Privacy</h4>
+            <p>We use cookies to enhance your browsing experience, serve personalized content, and analyze our traffic. By clicking "Accept All", you consent to our use of cookies. <a href="<?php echo WEB_ROOT; ?>/cookie-policy" class="text-gold underline hover:text-gold-light">Read more</a>.</p>
+        </div>
+        <div class="flex items-center gap-3 w-full sm:w-auto shrink-0">
+            <button @click="declineCookies()" class="flex-1 sm:flex-none px-5 py-2 rounded-lg border border-cream/30 text-cream hover:bg-cream/10 transition-colors text-sm font-semibold uppercase tracking-wider">Decline</button>
+            <button @click="acceptCookies()" class="flex-1 sm:flex-none px-5 py-2 rounded-lg bg-gold text-night hover:bg-gold-dark transition-colors shadow-lg text-sm font-semibold uppercase tracking-wider">Accept All</button>
+        </div>
+    </div>
+</div>
+
+<script>
+document.addEventListener('alpine:init', () => {
+    Alpine.data('cookieConsent', () => ({
+        showBanner: false,
+        checkConsent() {
+            if (!localStorage.getItem('sidai_cookie_consent')) {
+                setTimeout(() => { this.showBanner = true; }, 1000);
+            }
+        },
+        acceptCookies() {
+            localStorage.setItem('sidai_cookie_consent', 'accepted');
+            this.showBanner = false;
+        },
+        declineCookies() {
+            localStorage.setItem('sidai_cookie_consent', 'declined');
+            this.showBanner = false;
+        }
+    }));
+});
+</script>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/TextPlugin.min.js" defer></script>
@@ -185,6 +220,6 @@ if (
 <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js" defer></script>
-<script src="/assets/js/app.js" defer></script>
+<script src="<?php echo WEB_ROOT; ?>/assets/js/app.js" defer></script>
 </body>
 </html>

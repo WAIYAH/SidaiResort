@@ -95,7 +95,7 @@ if (!function_exists('verify_csrf_token')) {
 if (!function_exists('format_kes')) {
     function format_kes(float|int|string $amount): string
     {
-        return 'KES ' . number_format((float)$amount, 2, '.', ',');
+        return 'Ksh ' . number_format((float)$amount, 2, '.', ',');
     }
 }
 
@@ -199,7 +199,7 @@ if (!function_exists('apply_security_headers')) {
         header('X-Content-Type-Options: nosniff');
         header('Referrer-Policy: strict-origin-when-cross-origin');
         header('Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=()');
-        header("Content-Security-Policy: default-src 'self'; base-uri 'self'; frame-ancestors 'none'; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com data:; style-src 'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net 'unsafe-inline'; script-src 'self' https://cdn.tailwindcss.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net 'unsafe-inline'; connect-src 'self' https://sandbox.safaricom.co.ke https://api.safaricom.co.ke;");
+        header("Content-Security-Policy: default-src 'self'; base-uri 'self'; frame-ancestors 'none'; img-src 'self' data: https:; font-src 'self' https://fonts.gstatic.com data:; style-src 'self' https://fonts.googleapis.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net 'unsafe-inline'; script-src 'self' https://cdn.tailwindcss.com https://cdnjs.cloudflare.com https://cdn.jsdelivr.net 'unsafe-inline' 'unsafe-eval'; connect-src 'self' https://sandbox.safaricom.co.ke https://api.safaricom.co.ke;");
     }
 }
 

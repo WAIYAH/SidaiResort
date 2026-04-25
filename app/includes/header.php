@@ -2,12 +2,11 @@
 
 $currentPath = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH) ?: '/';
 $navItems = [
-    ['label' => 'Home', 'href' => '/'],
-    ['label' => 'Services', 'href' => '/services'],
-    ['label' => 'Gallery', 'href' => '/gallery'],
-    ['label' => 'Events', 'href' => '/events'],
-    ['label' => 'Menu', 'href' => '/menu'],
-    ['label' => 'Contact', 'href' => '/contact'],
+    ['label' => 'Home', 'href' => WEB_ROOT . '/'],
+    ['label' => 'Services', 'href' => WEB_ROOT . '/services'],
+    ['label' => 'Accommodation', 'href' => WEB_ROOT . '/rooms'],
+    ['label' => 'Menus', 'href' => WEB_ROOT . '/menu'],
+    ['label' => 'About Us', 'href' => WEB_ROOT . '/about'],
 ];
 
 $isActive = static function (string $href) use ($currentPath): bool {
@@ -31,12 +30,10 @@ $isActive = static function (string $href) use ($currentPath): bool {
     <div class="mx-auto max-w-7xl px-3 sm:px-6 lg:px-8">
         <nav class="mt-3 sm:mt-4 rounded-2xl border border-gold/30 bg-cream/70 px-3 sm:px-4 py-2.5 sm:py-3 backdrop-blur-lg shadow-lg" aria-label="Primary">
             <div class="flex items-center justify-between gap-2 sm:gap-4">
-                <a href="/" class="flex items-center gap-2 sm:gap-3 min-w-0" aria-label="Sidai Resort Home">
+                <a href="<?php echo WEB_ROOT; ?>/" class="flex items-center gap-2 sm:gap-3 min-w-0" aria-label="Sidai Resort Home">
                     <span class="inline-flex h-9 w-9 sm:h-11 sm:w-11 items-center justify-center rounded-full bg-gradient-to-br from-gold to-gold-dark text-night font-bold text-lg sm:text-xl flex-shrink-0">S</span>
-                    <span class="leading-tight min-w-0">
                         <span class="block font-display text-xl sm:text-2xl text-brown truncate">Sidai Resort</span>
-                        <span class="block text-[10px] sm:text-xs uppercase tracking-[0.2em] sm:tracking-[0.3em] text-forest truncate">Naroosura, Kenya</span>
-                    </span>
+                        <span class="block text-[8px] sm:text-[10px] uppercase tracking-[0.2em] sm:tracking-[0.3em] text-forest truncate mt-1">Nothing But the Best</span>
                 </a>
 
                 <div class="hidden lg:flex items-center gap-1" id="desktop-nav-links">
@@ -51,10 +48,8 @@ $isActive = static function (string $href) use ($currentPath): bool {
                 </div>
 
                 <div class="hidden lg:flex items-center gap-2">
-                    <a href="<?php echo safe_html(SOCIAL_INSTAGRAM); ?>" target="_blank" rel="noopener noreferrer" class="social-pill" aria-label="Instagram"><?php echo social_icon('instagram', 18); ?></a>
-                    <a href="<?php echo safe_html(SOCIAL_FACEBOOK); ?>" target="_blank" rel="noopener noreferrer" class="social-pill" aria-label="Facebook"><?php echo social_icon('facebook', 18); ?></a>
-                    <a href="<?php echo safe_html(SOCIAL_WHATSAPP); ?>" target="_blank" rel="noopener noreferrer" class="social-pill social-pill--whatsapp" aria-label="WhatsApp"><?php echo social_icon('whatsapp', 18); ?></a>
-                    <a href="/booking" class="ml-1 inline-flex items-center rounded-full bg-gold px-5 py-2.5 text-sm font-semibold text-night hover:bg-gold-light transition-colors">Book Now</a>
+
+                    <a href="<?php echo WEB_ROOT; ?>/booking" class="ml-1 inline-flex items-center rounded-full bg-gold px-5 py-2.5 text-sm font-semibold text-night hover:bg-gold-light transition-colors">Book Now</a>
                 </div>
 
                 <button
@@ -84,14 +79,10 @@ $isActive = static function (string $href) use ($currentPath): bool {
                             <?php echo safe_html($item['label']); ?>
                         </a>
                     <?php endforeach; ?>
-                    <a href="/booking" class="flex items-center justify-center rounded-xl bg-gold px-4 py-3 text-sm font-semibold text-night hover:bg-gold-light transition-colors" @click="mobileOpen = false">
+                    <a href="<?php echo WEB_ROOT; ?>/booking" class="flex items-center justify-center rounded-xl bg-gold px-4 py-3 text-sm font-semibold text-night hover:bg-gold-light transition-colors" @click="mobileOpen = false">
                         Book Now
                     </a>
-                    <div class="flex items-center justify-center gap-3 pt-2 pb-1">
-                        <a href="<?php echo safe_html(SOCIAL_INSTAGRAM); ?>" target="_blank" rel="noopener noreferrer" class="social-pill" aria-label="Instagram"><?php echo social_icon('instagram', 18); ?></a>
-                        <a href="<?php echo safe_html(SOCIAL_FACEBOOK); ?>" target="_blank" rel="noopener noreferrer" class="social-pill" aria-label="Facebook"><?php echo social_icon('facebook', 18); ?></a>
-                        <a href="<?php echo safe_html(SOCIAL_WHATSAPP); ?>" target="_blank" rel="noopener noreferrer" class="social-pill social-pill--whatsapp" aria-label="WhatsApp"><?php echo social_icon('whatsapp', 18); ?></a>
-                    </div>
+
                 </div>
             </div>
         </nav>

@@ -1,14 +1,10 @@
-<?php declare(strict_types=1);
-
-ob_start();
-
-require_once dirname(__DIR__) . '/app/includes/init.php';
+<?php
 
 use App\Core\Database;
 
-$pageTitle = 'Sidai Resort Gallery | Luxury Moments in Naroosura';
-$pageDescription = 'Explore Sidai Resort gallery: pool, dining, events, rooms, nature, spa, weddings, and parties in a luxury safari setting.';
-$pageImage = APP_URL . '/assets/images/hero-sunset.jpg';
+
+
+
 
 $categories = [
     'all' => 'All',
@@ -17,7 +13,6 @@ $categories = [
     'events' => 'Events',
     'rooms' => 'Rooms',
     'nature' => 'Nature',
-    'spa' => 'Spa',
     'weddings' => 'Weddings',
     'parties' => 'Parties',
 ];
@@ -67,7 +62,7 @@ $defaultItems = [
     ['title' => 'Celebration Hall Setup', 'description' => 'Elegant space ready for premium events.', 'image_path' => '/assets/images/conferencing.jpg', 'category' => 'events', 'is_featured' => 1],
     ['title' => 'Luxury Room Ambience', 'description' => 'Comfort-focused spaces for restful stays.', 'image_path' => '/assets/images/conference-suite.jpg', 'category' => 'rooms', 'is_featured' => 0],
     ['title' => 'Golden Hour Landscape', 'description' => 'Naroosura skies and warm savanna tones.', 'image_path' => '/assets/images/hero-sunset.jpg', 'category' => 'nature', 'is_featured' => 1],
-    ['title' => 'Wellness Sanctuary', 'description' => 'Spa rituals designed for calm and recovery.', 'image_path' => '/assets/images/spa-wellness.jpg', 'category' => 'spa', 'is_featured' => 0],
+    ['title' => 'Enkima Bonfire', 'description' => 'Our signature evening experience under the stars.', 'image_path' => '/assets/images/hero-section.jpg', 'category' => 'nature', 'is_featured' => 0],
     ['title' => 'Wedding Reception Decor', 'description' => 'Refined wedding spaces with tailored styling.', 'image_path' => '/assets/images/hall-enkaji.jpg', 'category' => 'weddings', 'is_featured' => 0],
     ['title' => 'Evening Party Atmosphere', 'description' => 'Festive ambience for birthdays and milestones.', 'image_path' => '/assets/images/pool-lounge.jpg', 'category' => 'parties', 'is_featured' => 0],
 ];
@@ -166,10 +161,10 @@ $initialCategoryPayload = json_encode($initialCategory, JSON_HEX_TAG | JSON_HEX_
 
 $cardHeights = ['h-56', 'h-64', 'h-72', 'h-80', 'h-60'];
 
-include dirname(__DIR__) . '/app/includes/head.php';
-include dirname(__DIR__) . '/app/includes/header.php';
+
+
 ?>
-<main class="pt-28 lg:pt-32">
+<div id="gallery" class="pt-10">
     <section class="bg-night py-14">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="grid gap-4 md:grid-cols-3" id="gallery-hero-mosaic">
@@ -331,7 +326,7 @@ include dirname(__DIR__) . '/app/includes/header.php';
             </div>
         </section>
     <?php endif; ?>
-</main>
+</div>
 
 <script>
 const SIDAI_GALLERY_DATA = <?php echo $galleryPayload ?: '[]'; ?>;
@@ -491,4 +486,5 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 </script>
 
-<?php include dirname(__DIR__) . '/app/includes/footer.php'; ?>
+
+

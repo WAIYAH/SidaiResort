@@ -7,7 +7,7 @@ if (ob_get_level() === 0) {
 }
 
 $pageTitle = $pageTitle ?? APP_NAME . ' | Where Good Meets Luxury';
-$pageDescription = $pageDescription ?? 'Sidai Resort in Naroosura, Narok County, Kenya. Luxury stays, event halls, dining, spa, and safari hospitality.';
+$pageDescription = $pageDescription ?? 'Sidai Resort. Luxury stays, event halls, dining, and safari hospitality.';
 $pageImage = $pageImage ?? APP_URL . '/assets/images/hero-sunset.jpg';
 $requestUri = $_SERVER['REQUEST_URI'] ?? '/';
 $pageUrl = $pageUrl ?? rtrim(APP_URL, '/') . $requestUri;
@@ -24,7 +24,7 @@ $structuredData = [
     'address' => [
         '@type' => 'PostalAddress',
         'streetAddress' => APP_ADDRESS,
-        'addressLocality' => 'Naroosura',
+        'addressLocality' => 'Narok',
         'addressRegion' => 'Narok County',
         'addressCountry' => 'KE',
     ],
@@ -50,8 +50,8 @@ $structuredData = [
     <meta name="twitter:description" content="<?php echo safe_html($pageDescription); ?>">
     <meta name="twitter:image" content="<?php echo safe_html($pageImage); ?>">
     <link rel="canonical" href="<?php echo safe_html($pageUrl); ?>">
-    <link rel="icon" href="/favicon.ico" sizes="any">
-    <link rel="manifest" href="/manifest.json">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌿</text></svg>">
+    <link rel="manifest" href="<?php echo WEB_ROOT; ?>/manifest.json">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@400;500;700&family=Lato:wght@300;400&display=swap" rel="stylesheet">
@@ -108,14 +108,15 @@ $structuredData = [
         :root { color-scheme: light; }
         body { margin: 0; background: #F5ECD7; }
         .critical-shell { min-height: 100dvh; }
+        [x-cloak] { display: none !important; }
     </style>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
-    <link rel="preload" href="/assets/css/app.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="/assets/css/app.css"></noscript>
+    <link rel="preload" href="<?php echo WEB_ROOT; ?>/assets/css/app.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="<?php echo WEB_ROOT; ?>/assets/css/app.css"></noscript>
 
     <script type="application/ld+json"><?php echo json_encode($structuredData, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE); ?></script>
     <title><?php echo safe_html($pageTitle); ?></title>

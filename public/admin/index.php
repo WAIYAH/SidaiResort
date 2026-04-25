@@ -3,7 +3,7 @@
 require_once dirname(__DIR__, 2) . '/app/includes/init.php';
 
 if (!isset($_SESSION['staff'])) {
-    header('Location: ' . WEB_ROOT . '/admin/login.php');
+    header('Location: ' . WEB_ROOT . '/admin/login.php?bypass_cache=1');
     exit;
 }
 

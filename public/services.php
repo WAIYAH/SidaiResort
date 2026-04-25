@@ -6,8 +6,8 @@ require_once dirname(__DIR__) . '/app/includes/init.php';
 
 use App\Core\Database;
 
-$pageTitle = 'Sidai Resort Services | World-Class Experiences';
-$pageDescription = 'Explore Sidai Resort services: swimming pool sessions, event halls, fine dining, spa and wellness, music shoot locations, and conference packages.';
+$pageTitle = 'Services & Outdoor Experiences | Enkiu Lounge & Enkima Bonfire | Sidai Resort';
+$pageDescription = "Explore Sidai Resort services: swimming pool, fine dining, and outdoor experiences like Eoshet retreats, Enkiu lounge, and our signature Enkima bonfire under the stars. Nothing but the Best.";
 $pageImage = APP_URL . '/assets/images/conference-suite.jpg';
 
 $settings = [];
@@ -59,11 +59,15 @@ $settingAmount = static function (string $key, float $default) use ($settings): 
     return (float)$value;
 };
 
+/**
+ * Pool access details and rules.
+ * Handled via global DB setting or defaults.
+ */
 $poolDetails = [
-    'hours' => $settingText('pool_hours', '6:00 AM - 8:00 PM daily'),
-    'capacity' => (int)$settingAmount('pool_capacity', 120),
-    'adult_day_pass' => $settingAmount('pool_day_pass_adult', 2500),
-    'child_day_pass' => $settingAmount('pool_day_pass_child', 1500),
+    'hours' => $settingText('pool_hours', '8:00 AM - 6:00 PM daily'),
+    'capacity' => (int)$settingAmount('pool_capacity', 30),
+    'adult_day_pass' => $settingAmount('pool_day_pass_adult', 300),
+    'child_day_pass' => $settingAmount('pool_day_pass_child', 150),
     'rules' => [
         'Appropriate swimwear is required for all pool users.',
         'Children under 12 must be accompanied by a guardian.',
@@ -112,35 +116,42 @@ $diningDetails = [
         [
             'name' => 'Savanna Flame Platter',
             'description' => 'Grilled meats with seasonal vegetables and house sauces.',
-            'price' => $settingAmount('dining_signature_flame_platter', 4200),
+            'price' => $settingAmount('dining_signature_flame_platter', 1400),
             'image' => '/assets/images/dining-signature.jpg',
         ],
         [
             'name' => 'Maasai Herb Tilapia',
             'description' => 'Lake fish infused with local herbs and citrus glaze.',
-            'price' => $settingAmount('dining_signature_tilapia', 3600),
+            'price' => $settingAmount('dining_signature_tilapia', 800),
             'image' => '/assets/images/dining.jpg',
         ],
         [
             'name' => 'Sidai Royal Dessert Trio',
             'description' => 'Chef-crafted tasting board for premium celebrations.',
-            'price' => $settingAmount('dining_signature_dessert_trio', 1800),
+            'price' => $settingAmount('dining_signature_dessert_trio', 200),
             'image' => '/assets/images/hero-sunset.jpg',
         ],
     ],
 ];
 
-$spaServices = [
-    ['name' => 'Deep Tissue Massage (60 min)', 'price' => $settingAmount('spa_deep_tissue_60', 6500)],
-    ['name' => 'Aromatherapy Ritual (75 min)', 'price' => $settingAmount('spa_aromatherapy_75', 8000)],
-    ['name' => 'Couples Rejuvenation Package', 'price' => $settingAmount('spa_couples_package', 14500)],
-    ['name' => 'Express Recovery Therapy (30 min)', 'price' => $settingAmount('spa_express_recovery_30', 3800)],
+/**
+ * Playground activity options and day pass access.
+ * Ensured to be within the 8000 max price rule.
+ */
+$playgroundActivities = [
+    ['name' => 'Bouncing Castle Access', 'price' => $settingAmount('playground_bouncing_castle', 100)],
+    ['name' => 'Swinging & Slides', 'price' => $settingAmount('playground_swinging', 100)],
+    ['name' => 'Full Playground Access (Day Pass)', 'price' => $settingAmount('playground_full_access', 100)],
+    ['name' => 'Face Painting & Guided Activities', 'price' => $settingAmount('playground_activities', 100)],
 ];
 
+/**
+ * Location shooting packages for music videos or film production.
+ */
 $musicPackages = [
-    ['name' => 'Half Day Location Package', 'price' => $settingAmount('music_shoot_half_day', 85000)],
-    ['name' => 'Full Day Location Package', 'price' => $settingAmount('music_shoot_full_day', 150000)],
-    ['name' => 'Overnight Production Package', 'price' => $settingAmount('music_shoot_overnight', 220000)],
+    ['name' => 'Half Day Location Package', 'price' => $settingAmount('music_shoot_half_day', 1500)],
+    ['name' => 'Full Day Location Package', 'price' => $settingAmount('music_shoot_full_day', 4500)],
+    ['name' => 'Overnight Production Package', 'price' => $settingAmount('music_shoot_overnight', 6500)],
 ];
 
 $conferencePackages = [
@@ -152,7 +163,7 @@ $conferencePackages = [
 include dirname(__DIR__) . '/app/includes/head.php';
 include dirname(__DIR__) . '/app/includes/header.php';
 ?>
-<main class="pt-28 lg:pt-32">
+<main class="pt-28 lg:pt-32 pb-0" x-data="servicesTabs()" x-init="init()">
     <section class="relative overflow-hidden">
         <div class="absolute inset-0">
             <img
@@ -183,38 +194,38 @@ include dirname(__DIR__) . '/app/includes/header.php';
         </section>
     <?php endif; ?>
 
-    <section class="bg-cream py-14" x-data="servicesTabs()" x-init="init()">
+    <section class="bg-cream py-14">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
             <div class="overflow-x-auto">
-                <nav class="inline-flex min-w-full gap-2 rounded-2xl border border-gold/30 bg-white/80 p-2">
+                <nav class="inline-flex min-w-full gap-2 rounded-2xl border border-gold/30 bg-white/80 p-2 overflow-x-auto whitespace-nowrap scrollbar-hide">
+                    <button type="button" @click="setTab('conference-events')" class="group relative rounded-xl px-4 py-3 text-sm font-semibold uppercase tracking-[0.14em]" :class="activeTab === 'conference-events' ? 'text-gold bg-night/90' : 'text-brown hover:text-gold'">
+                        Conference & Events
+                        <span class="absolute inset-x-3 bottom-1 h-0.5 bg-gold transition-transform duration-300" :class="activeTab === 'conference-events' ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-75'"></span>
+                    </button>
                     <button type="button" @click="setTab('pool')" class="group relative rounded-xl px-4 py-3 text-sm font-semibold uppercase tracking-[0.14em]" :class="activeTab === 'pool' ? 'text-gold bg-night/90' : 'text-brown hover:text-gold'">
                         Swimming Pool
                         <span class="absolute inset-x-3 bottom-1 h-0.5 bg-gold transition-transform duration-300" :class="activeTab === 'pool' ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-75'"></span>
                     </button>
-                    <button type="button" @click="setTab('halls')" class="group relative rounded-xl px-4 py-3 text-sm font-semibold uppercase tracking-[0.14em]" :class="activeTab === 'halls' ? 'text-gold bg-night/90' : 'text-brown hover:text-gold'">
-                        Event Halls
-                        <span class="absolute inset-x-3 bottom-1 h-0.5 bg-gold transition-transform duration-300" :class="activeTab === 'halls' ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-75'"></span>
+                    <button type="button" @click="setTab('outdoor')" class="group relative rounded-xl px-4 py-3 text-sm font-semibold uppercase tracking-[0.14em]" :class="activeTab === 'outdoor' ? 'text-gold bg-night/90' : 'text-brown hover:text-gold'">
+                        Outdoor & Bonfire
+                        <span class="absolute inset-x-3 bottom-1 h-0.5 bg-gold transition-transform duration-300" :class="activeTab === 'outdoor' ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-75'"></span>
                     </button>
                     <button type="button" @click="setTab('dining')" class="group relative rounded-xl px-4 py-3 text-sm font-semibold uppercase tracking-[0.14em]" :class="activeTab === 'dining' ? 'text-gold bg-night/90' : 'text-brown hover:text-gold'">
                         Fine Dining
                         <span class="absolute inset-x-3 bottom-1 h-0.5 bg-gold transition-transform duration-300" :class="activeTab === 'dining' ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-75'"></span>
                     </button>
-                    <button type="button" @click="setTab('spa')" class="group relative rounded-xl px-4 py-3 text-sm font-semibold uppercase tracking-[0.14em]" :class="activeTab === 'spa' ? 'text-gold bg-night/90' : 'text-brown hover:text-gold'">
-                        Spa
-                        <span class="absolute inset-x-3 bottom-1 h-0.5 bg-gold transition-transform duration-300" :class="activeTab === 'spa' ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-75'"></span>
+                    <button type="button" @click="setTab('activities')" class="group relative rounded-xl px-4 py-3 text-sm font-semibold uppercase tracking-[0.14em]" :class="activeTab === 'activities' ? 'text-gold bg-night/90' : 'text-brown hover:text-gold'">
+                        Playground
+                        <span class="absolute inset-x-3 bottom-1 h-0.5 bg-gold transition-transform duration-300" :class="activeTab === 'activities' ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-75'"></span>
                     </button>
                     <button type="button" @click="setTab('music-shoots')" class="group relative rounded-xl px-4 py-3 text-sm font-semibold uppercase tracking-[0.14em]" :class="activeTab === 'music-shoots' ? 'text-gold bg-night/90' : 'text-brown hover:text-gold'">
                         Music Shoots
                         <span class="absolute inset-x-3 bottom-1 h-0.5 bg-gold transition-transform duration-300" :class="activeTab === 'music-shoots' ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-75'"></span>
                     </button>
-                    <button type="button" @click="setTab('conference')" class="group relative rounded-xl px-4 py-3 text-sm font-semibold uppercase tracking-[0.14em]" :class="activeTab === 'conference' ? 'text-gold bg-night/90' : 'text-brown hover:text-gold'">
-                        Conference
-                        <span class="absolute inset-x-3 bottom-1 h-0.5 bg-gold transition-transform duration-300" :class="activeTab === 'conference' ? 'scale-x-100' : 'scale-x-0 group-hover:scale-x-75'"></span>
-                    </button>
                 </nav>
             </div>
 
-            <section id="pool" data-tab-panel="pool" x-show="activeTab === 'pool'" x-transition.opacity.duration.250ms class="mt-10 space-y-8">
+            <section  data-tab-panel="pool" x-show="activeTab === 'pool'" x-transition.opacity.duration.250ms class="mt-10 space-y-8">
                 <div class="grid gap-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
                     <article class="rounded-3xl border border-brown/10 bg-white p-8 shadow-sm">
                         <h2 class="font-display text-4xl text-brown">Swimming Pool Experience</h2>
@@ -257,44 +268,103 @@ include dirname(__DIR__) . '/app/includes/header.php';
                 </div>
             </section>
 
-            <section id="halls" data-tab-panel="halls" x-show="activeTab === 'halls'" x-transition.opacity.duration.250ms class="mt-10 space-y-8">
-                <div class="grid gap-6 lg:grid-cols-2">
-                    <?php foreach ($hallPackages as $hall): ?>
-                        <article class="overflow-hidden rounded-3xl border border-brown/10 bg-white shadow-sm">
-                            <img src="<?php echo safe_html($hall['image']); ?>" alt="<?php echo safe_html($hall['name']); ?> event hall interior" class="h-56 w-full object-cover" loading="lazy">
-                            <div class="p-7">
-                                <h2 class="font-display text-4xl text-brown"><?php echo safe_html($hall['name']); ?></h2>
-                                <p class="mt-3 text-sm text-brown/80">Capacity: <?php echo safe_html((string)$hall['capacity']); ?> guests</p>
-                                <p class="mt-1 text-sm text-brown/80">Dimensions: <?php echo safe_html($hall['dimensions']); ?></p>
-                                <p class="mt-4 text-xs font-semibold uppercase tracking-[0.18em] text-earth">Available Setups</p>
-                                <div class="mt-2 flex flex-wrap gap-2">
-                                    <?php foreach ($hall['setups'] as $setup): ?>
-                                        <span class="rounded-full border border-gold/30 px-3 py-1 text-xs text-brown"><?php echo safe_html($setup); ?></span>
-                                    <?php endforeach; ?>
-                                </div>
+                        <section  data-tab-panel="conference-events" x-show="activeTab === 'conference-events'" x-transition.opacity.duration.250ms class="mt-10 space-y-8">
+                
+                <div class="relative bg-forest text-cream py-16 rounded-3xl overflow-hidden shadow-xl mb-12">
+                    <div class="absolute bottom-0 left-0 right-0 opacity-10 pointer-events-none">
+                        <svg viewBox="0 0 1440 320" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full h-auto">
+                            <path d="M0 320L48 298.7C96 277 192 235 288 213.3C384 192 480 192 576 208C672 224 768 256 864 256C960 256 1056 224 1152 213.3C1248 203 1344 213 1392 218.7L1440 224V320H1392C1344 320 1248 320 1152 320C1056 320 960 320 864 320C768 320 672 320 576 320C480 320 384 320 288 320C192 320 96 320 48 320H0Z" fill="#D4AF37"/>
+                            <path d="M0 320L60 288C120 256 240 192 360 176C480 160 600 192 720 208C840 224 960 224 1080 197.3C1200 171 1320 117 1380 90.7L1440 64V320H1380C1320 320 1200 320 1080 320C960 320 840 320 720 320C600 320 480 320 360 320C240 320 120 320 60 320H0Z" fill="#F5ECD7" fill-opacity="0.5"/>
+                        </svg>
+                    </div>
 
-                                <div class="mt-5 space-y-2 text-sm">
-                                    <p class="flex items-center justify-between rounded-xl border border-brown/10 bg-cream/50 px-4 py-3"><span>Full Day</span><strong><?php echo safe_html(format_kes($hall['full_day'])); ?></strong></p>
-                                    <p class="flex items-center justify-between rounded-xl border border-brown/10 bg-cream/50 px-4 py-3"><span>Half Day</span><strong><?php echo safe_html(format_kes($hall['half_day'])); ?></strong></p>
-                                    <p class="flex items-center justify-between rounded-xl border border-brown/10 bg-cream/50 px-4 py-3"><span>Evening Session</span><strong><?php echo safe_html(format_kes($hall['evening'])); ?></strong></p>
+                    <div class="relative z-10 mx-auto px-6 lg:px-12">
+                        <div class="text-center max-w-3xl mx-auto mb-16">
+                            <h1 class="font-display text-4xl text-gold sm:text-5xl mb-3">The Gathering</h1>
+                            <p class="font-playfair text-xl italic text-cream/90 mb-6">Where Big Ideas Meet Tranquility</p>
+                            <p class="text-sm leading-7 text-cream/80">
+                                The forest has always been the place where important things are decided — 
+                                where councils are held, where futures are shaped. Sidai Resort's 
+                                conference and social spaces carry that ancient wisdom into the modern era. 
+                                We offer <span class="font-playfair italic text-gold">Nothing but the Best</span> — for your people, your ideas, 
+                                and your most important gatherings.
+                            </p>
+                        </div>
+
+                        <div class="grid gap-8 lg:grid-cols-2">
+                            <article class="bg-cream rounded-2xl overflow-hidden shadow-2xl relative text-brown">
+                                <div class="h-48 relative overflow-hidden">
+                                    <img src="<?php echo WEB_ROOT; ?>/assets/images/hall-enkaji.jpg" alt="Enchula Conference Hall" class="w-full h-full object-cover">
                                 </div>
-                            </div>
-                        </article>
-                    <?php endforeach; ?>
+                                <div class="p-6 relative">
+                                    <div class="flex flex-wrap items-center justify-between gap-4 mb-4">
+                                        <h2 class="font-display text-3xl italic text-gold">Enchula</h2>
+                                        <span class="inline-flex items-center rounded-full bg-gold px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-night">
+                                            Up to 80 Guests
+                                        </span>
+                                    </div>
+                                    <p class="text-xs leading-6 text-forest/90 mb-6">
+                                        Enchula is the room where important conversations happen. Intimate enough to 
+                                        foster genuine connection, sophisticated enough to impress the most discerning delegates.
+                                    </p>
+                                    <a href="<?php echo WEB_ROOT; ?>/about#contact" class="inline-flex items-center justify-center rounded-xl border-2 border-forest bg-transparent px-4 py-2 text-xs font-semibold uppercase tracking-wider text-forest hover:bg-forest hover:text-cream transition-colors">
+                                        Enquire About Enchula &rarr;
+                                    </a>
+                                </div>
+                            </article>
+
+                            <article class="bg-cream rounded-2xl overflow-hidden shadow-2xl relative text-brown">
+                                <div class="h-48 relative overflow-hidden">
+                                    <img src="<?php echo WEB_ROOT; ?>/assets/images/hall-olkeri.jpg" alt="Entumo Events Hall" class="w-full h-full object-cover">
+                                </div>
+                                <div class="p-6 relative">
+                                    <div class="flex flex-wrap items-center justify-between gap-4 mb-4">
+                                        <h2 class="font-display text-3xl italic text-gold">Entumo</h2>
+                                        <span class="inline-flex items-center rounded-full bg-gold px-3 py-1 text-[10px] font-bold uppercase tracking-wider text-night">
+                                            Larger Gatherings Welcome
+                                        </span>
+                                    </div>
+                                    <p class="text-xs leading-6 text-forest/90 mb-6">
+                                        Where Enchula whispers, Entumo speaks with authority. A space that carries the dual gift 
+                                        of scale and warmth, built for the gatherings that matter most.
+                                    </p>
+                                    <a href="<?php echo WEB_ROOT; ?>/about#contact" class="inline-flex items-center justify-center rounded-xl border-2 border-forest bg-transparent px-4 py-2 text-xs font-semibold uppercase tracking-wider text-forest hover:bg-forest hover:text-cream transition-colors">
+                                        Enquire About Entumo &rarr;
+                                    </a>
+                                </div>
+                            </article>
+                        </div>
+                    </div>
                 </div>
 
-                <article class="rounded-3xl border border-gold/30 bg-night p-8 text-cream">
-                    <h3 class="font-display text-3xl text-gold">Hall Inclusions</h3>
-                    <ul class="services-bullets mt-5 grid gap-3 sm:grid-cols-2">
-                        <?php foreach ($hallInclusions as $inclusion): ?>
-                            <li class="rounded-xl border border-gold/25 bg-white/10 px-4 py-3 text-sm"><?php echo safe_html($inclusion); ?></li>
-                        <?php endforeach; ?>
-                    </ul>
-                    <a href="/contact?subject=Hall+Hire" class="mt-6 inline-flex rounded-full bg-gold px-6 py-3 text-sm font-semibold uppercase tracking-[0.12em] text-night transition hover:bg-gold-light">Request Quote</a>
-                </article>
+                <div class="grid gap-8 lg:grid-cols-[1fr_0.95fr]">
+                    <article class="rounded-3xl border border-brown/10 bg-white p-8 shadow-sm">
+                        <h2 class="font-display text-3xl text-brown mb-4">Conference and Business Facilities</h2>
+                        <ul class="services-bullets mt-3 space-y-3 text-sm text-brown/85">
+                            <li class="rounded-xl border border-brown/10 bg-cream/50 px-4 py-3">4K projection systems and presentation clickers</li>
+                            <li class="rounded-xl border border-brown/10 bg-cream/50 px-4 py-3">Wireless microphones and distributed room audio</li>
+                            <li class="rounded-xl border border-brown/10 bg-cream/50 px-4 py-3">High-speed Wi-Fi and dedicated support desk</li>
+                            <li class="rounded-xl border border-brown/10 bg-cream/50 px-4 py-3">Stage lighting and custom branding display points</li>
+                        </ul>
+                    </article>
+
+                    <aside class="rounded-3xl border border-gold/30 bg-night p-8 text-cream">
+                        <h3 class="font-display text-3xl text-gold">Corporate Packages</h3>
+                        <div class="mt-5 space-y-3 text-sm">
+                            <?php foreach ($conferencePackages as $package): ?>
+                                <p class="flex items-center justify-between rounded-xl border border-gold/20 px-4 py-3">
+                                    <span><?php echo safe_html($package['name']); ?></span>
+                                    <strong><?php echo safe_html(format_kes($package['price'])); ?></strong>
+                                </p>
+                            <?php endforeach; ?>
+                        </div>
+                        <a href="/about#contact" class="mt-6 inline-flex rounded-full bg-gold px-6 py-3 text-sm font-semibold uppercase tracking-[0.12em] text-night transition hover:bg-gold-light">Plan Conference</a>
+                    </aside>
+                </div>
             </section>
 
-            <section id="dining" data-tab-panel="dining" x-show="activeTab === 'dining'" x-transition.opacity.duration.250ms class="mt-10 space-y-8">
+
+            <section  data-tab-panel="dining" x-show="activeTab === 'dining'" x-transition.opacity.duration.250ms class="mt-10 space-y-8">
                 <div class="grid gap-8 lg:grid-cols-[1fr_0.95fr]">
                     <article class="rounded-3xl border border-brown/10 bg-white p-8 shadow-sm">
                         <h2 class="font-display text-4xl text-brown">Fine Dining at Sidai</h2>
@@ -331,40 +401,40 @@ include dirname(__DIR__) . '/app/includes/header.php';
                 </div>
             </section>
 
-            <section id="spa" data-tab-panel="spa" x-show="activeTab === 'spa'" x-transition.opacity.duration.250ms class="mt-10 space-y-8">
+            <section  data-tab-panel="activities" x-show="activeTab === 'activities'" x-transition.opacity.duration.250ms class="mt-10 space-y-8">
                 <div class="grid gap-8 lg:grid-cols-[1fr_0.95fr]">
                     <article class="rounded-3xl border border-brown/10 bg-white p-8 shadow-sm">
-                        <h2 class="font-display text-4xl text-brown">Spa and Wellness Sanctuary</h2>
+                        <h2 class="font-display text-4xl text-brown">Kids Playground & Activities</h2>
                         <p class="mt-4 text-base leading-8 text-brown/85">
-                            Rebalance with restorative treatments crafted for relaxation, recovery, and holistic well-being. Advance booking is recommended for all therapies.
+                            Keep the little ones entertained with our fully-equipped children's playground featuring safe bouncing castles, swinging sets, face painting, and guided activities.
                         </p>
                         <ul class="mt-6 space-y-3 text-sm">
-                            <?php foreach ($spaServices as $service): ?>
+                            <?php foreach ($playgroundActivities as $activity): ?>
                                 <li class="flex items-center justify-between rounded-xl border border-brown/10 bg-cream/50 px-4 py-3 text-brown/85">
-                                    <span><?php echo safe_html($service['name']); ?></span>
-                                    <strong><?php echo safe_html(format_kes($service['price'])); ?></strong>
+                                    <span><?php echo safe_html($activity['name']); ?></span>
+                                    <strong><?php echo safe_html(format_kes($activity['price'])); ?></strong>
                                 </li>
                             <?php endforeach; ?>
                         </ul>
                     </article>
 
                     <div class="grid gap-4 sm:grid-cols-2">
-                        <a href="/assets/images/spa-wellness.jpg" class="gallery-lightbox overflow-hidden rounded-2xl border border-brown/10" data-gallery="spa-gallery" data-title="Spa relaxation suite">
-                            <img src="/assets/images/spa-wellness.jpg" alt="Spa relaxation suite at Sidai Resort" class="h-56 w-full object-cover" loading="lazy">
+                        <a href="https://loremflickr.com/800/600/playground,kids?random=1" class="gallery-lightbox overflow-hidden rounded-2xl border border-brown/10" data-gallery="playground-gallery" data-title="Bouncing Castle">
+                            <img src="https://loremflickr.com/800/600/playground,kids?random=1" alt="Kids bouncing castle at Sidai Resort" class="h-56 w-full object-cover" loading="lazy">
                         </a>
-                        <a href="/assets/images/spa-ritual.jpg" class="gallery-lightbox overflow-hidden rounded-2xl border border-brown/10" data-gallery="spa-gallery" data-title="Wellness treatment room">
-                            <img src="/assets/images/spa-ritual.jpg" alt="Wellness treatment room at Sidai Resort" class="h-56 w-full object-cover" loading="lazy">
+                        <a href="https://loremflickr.com/800/600/swings,kids?random=2" class="gallery-lightbox overflow-hidden rounded-2xl border border-brown/10" data-gallery="playground-gallery" data-title="Swings and slides">
+                            <img src="https://loremflickr.com/800/600/swings,kids?random=2" alt="Kids swings and slides at Sidai Resort" class="h-56 w-full object-cover" loading="lazy">
                         </a>
-                        <a href="/assets/images/hero-sunset.jpg" class="gallery-lightbox overflow-hidden rounded-2xl border border-brown/10 sm:col-span-2" data-gallery="spa-gallery" data-title="Tranquil evening wellness atmosphere">
-                            <img src="/assets/images/hero-sunset.jpg" alt="Tranquil evening wellness atmosphere at the resort" class="h-56 w-full object-cover" loading="lazy">
+                        <a href="https://loremflickr.com/800/600/facepainting,kids?random=3" class="gallery-lightbox overflow-hidden rounded-2xl border border-brown/10 sm:col-span-2" data-gallery="playground-gallery" data-title="Face painting and activities">
+                            <img src="https://loremflickr.com/800/600/facepainting,kids?random=3" alt="Kids face painting activities at the resort" class="h-56 w-full object-cover" loading="lazy">
                         </a>
                     </div>
                 </div>
 
-                <a href="/booking?type=spa" class="inline-flex rounded-full bg-gold px-6 py-3 text-sm font-semibold uppercase tracking-[0.12em] text-night transition hover:bg-gold-light">Book Spa Experience</a>
+                <a href="/booking?type=activities" class="inline-flex rounded-full bg-gold px-6 py-3 text-sm font-semibold uppercase tracking-[0.12em] text-night transition hover:bg-gold-light">Book Activities Pass</a>
             </section>
 
-            <section id="music-shoots" data-tab-panel="music-shoots" x-show="activeTab === 'music-shoots'" x-transition.opacity.duration.250ms class="mt-10 space-y-8">
+            <section  data-tab-panel="music-shoots" x-show="activeTab === 'music-shoots'" x-transition.opacity.duration.250ms class="mt-10 space-y-8">
                 <div class="grid gap-8 lg:grid-cols-[1fr_0.95fr]">
                     <article class="rounded-3xl border border-brown/10 bg-white p-8 shadow-sm">
                         <h2 class="font-display text-4xl text-brown">Music Video and Film Location</h2>
@@ -393,7 +463,7 @@ include dirname(__DIR__) . '/app/includes/header.php';
                         <p class="mt-5 rounded-xl bg-white/10 px-4 py-3 text-sm text-cream/85">
                             Packages include location access, standard security coordination, and basic utility support.
                         </p>
-                        <a href="/contact?subject=Location+Shoot" class="mt-6 inline-flex rounded-full bg-gold px-6 py-3 text-sm font-semibold uppercase tracking-[0.12em] text-night transition hover:bg-gold-light">Book Location</a>
+                        <a href="/about#contact" class="mt-6 inline-flex rounded-full bg-gold px-6 py-3 text-sm font-semibold uppercase tracking-[0.12em] text-night transition hover:bg-gold-light">Book Location</a>
                     </aside>
                 </div>
 
@@ -410,67 +480,20 @@ include dirname(__DIR__) . '/app/includes/header.php';
                 </div>
             </section>
 
-            <section id="conference" data-tab-panel="conference" x-show="activeTab === 'conference'" x-transition.opacity.duration.250ms class="mt-10 space-y-8">
-                <div class="grid gap-8 lg:grid-cols-[1fr_0.95fr]">
-                    <article class="rounded-3xl border border-brown/10 bg-white p-8 shadow-sm">
-                        <h2 class="font-display text-4xl text-brown">Conference and Business Facilities</h2>
-                        <p class="mt-4 text-base leading-8 text-brown/85">
-                            Run productive offsites, board meetings, and corporate summits in settings designed for focus, hospitality, and seamless event delivery.
-                        </p>
-                        <p class="mt-5 text-xs font-semibold uppercase tracking-[0.2em] text-earth">AV Equipment</p>
-                        <ul class="services-bullets mt-3 space-y-3 text-sm text-brown/85">
-                            <li class="rounded-xl border border-brown/10 bg-cream/50 px-4 py-3">4K projection systems and presentation clickers</li>
-                            <li class="rounded-xl border border-brown/10 bg-cream/50 px-4 py-3">Wireless microphones and distributed room audio</li>
-                            <li class="rounded-xl border border-brown/10 bg-cream/50 px-4 py-3">High-speed Wi-Fi and dedicated support desk</li>
-                            <li class="rounded-xl border border-brown/10 bg-cream/50 px-4 py-3">Stage lighting and custom branding display points</li>
-                        </ul>
-
-                        <p class="mt-6 text-xs font-semibold uppercase tracking-[0.2em] text-earth">Catering Options</p>
-                        <ul class="mt-3 space-y-2 text-sm text-brown/85">
-                            <li class="rounded-xl border border-brown/10 bg-cream/50 px-4 py-3">Tea and coffee breaks</li>
-                            <li class="rounded-xl border border-brown/10 bg-cream/50 px-4 py-3">Executive working lunches</li>
-                            <li class="rounded-xl border border-brown/10 bg-cream/50 px-4 py-3">Buffet and plated dinner service</li>
-                        </ul>
-                    </article>
-
-                    <aside class="rounded-3xl border border-gold/30 bg-night p-8 text-cream">
-                        <h3 class="font-display text-3xl text-gold">Corporate Packages</h3>
-                        <div class="mt-5 space-y-3 text-sm">
-                            <?php foreach ($conferencePackages as $package): ?>
-                                <p class="flex items-center justify-between rounded-xl border border-gold/20 px-4 py-3">
-                                    <span><?php echo safe_html($package['name']); ?></span>
-                                    <strong><?php echo safe_html(format_kes($package['price'])); ?></strong>
-                                </p>
-                            <?php endforeach; ?>
-                        </div>
-                        <p class="mt-5 rounded-xl bg-white/10 px-4 py-3 text-sm text-cream/85">Pricing shown per delegate where applicable. Full package quotes are tailored to group size and duration.</p>
-                        <a href="/contact?subject=Conference+Package" class="mt-6 inline-flex rounded-full bg-gold px-6 py-3 text-sm font-semibold uppercase tracking-[0.12em] text-night transition hover:bg-gold-light">Plan Conference</a>
-                    </aside>
-                </div>
-
-                <div class="grid gap-4 sm:grid-cols-3">
-                    <a href="/assets/images/conference-suite.jpg" class="gallery-lightbox overflow-hidden rounded-2xl border border-brown/10" data-gallery="conference-gallery" data-title="Conference suite">
-                        <img src="/assets/images/conference-suite.jpg" alt="Conference suite setup at Sidai Resort" class="h-56 w-full object-cover" loading="lazy">
-                    </a>
-                    <a href="/assets/images/conferencing.jpg" class="gallery-lightbox overflow-hidden rounded-2xl border border-brown/10" data-gallery="conference-gallery" data-title="Main conference hall">
-                        <img src="/assets/images/conferencing.jpg" alt="Main conference hall with theatre setup" class="h-56 w-full object-cover" loading="lazy">
-                    </a>
-                    <a href="/assets/images/dining.jpg" class="gallery-lightbox overflow-hidden rounded-2xl border border-brown/10" data-gallery="conference-gallery" data-title="Conference catering service">
-                        <img src="/assets/images/dining.jpg" alt="Conference catering service display" class="h-56 w-full object-cover" loading="lazy">
-                    </a>
-                </div>
-            </section>
+            
         </div>
     </section>
-</main>
+
 
 <script>
 function servicesTabs() {
     return {
-        validTabs: ['pool', 'halls', 'dining', 'spa', 'music-shoots', 'conference'],
-        activeTab: 'pool',
+        validTabs: ['conference-events', 'pool', 'outdoor', 'dining', 'activities', 'music-shoots'],
+        activeTab: 'conference-events',
 
         init() {
+            window.scrollTo(0, 0);
+
             const hash = window.location.hash.replace('#', '');
             if (this.validTabs.includes(hash)) {
                 this.activeTab = hash;
@@ -523,7 +546,7 @@ function servicesTabs() {
 
 document.addEventListener('DOMContentLoaded', () => {
     if (!window.location.hash) {
-        history.replaceState(null, '', '#pool');
+        history.replaceState(null, '', '#conference-events');
     }
 
     if (window.gsap && window.ScrollTrigger) {
@@ -546,3 +569,9 @@ document.addEventListener('DOMContentLoaded', () => {
 </script>
 
 <?php include dirname(__DIR__) . '/app/includes/footer.php'; ?>
+
+
+
+
+
+

@@ -35,12 +35,12 @@ $roomTypes = [
 
         <div class="stat-grid">
             <div class="stat-card">
-                <div class="stat-icon">🛏️</div>
+                <div class="stat-icon">ðŸ›ï¸</div>
                 <div class="stat-label">Total Rooms</div>
                 <div class="stat-value"><?php echo count($rooms); ?></div>
             </div>
             <div class="stat-card">
-                <div class="stat-icon">✅</div>
+                <div class="stat-icon">âœ…</div>
                 <div class="stat-label">Available</div>
                 <div class="stat-value"><?php echo count(array_filter($rooms, fn($r) => (int)($r['is_available'] ?? 0) === 1)); ?></div>
             </div>
@@ -61,7 +61,7 @@ $roomTypes = [
                     </thead>
                     <tbody>
                         <?php if (empty($rooms)): ?>
-                            <tr><td colspan="6" class="admin-empty"><div class="empty-icon">🛏️</div><div class="empty-text">No rooms configured</div></td></tr>
+                            <tr><td colspan="6" class="admin-empty"><div class="empty-icon">ðŸ›ï¸</div><div class="empty-text">No rooms configured</div></td></tr>
                         <?php else: ?>
                             <?php foreach ($rooms as $room): ?>
                                 <tr>
