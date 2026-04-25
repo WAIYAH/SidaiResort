@@ -1,0 +1,45 @@
+<p class="greeting">Dear {{GUEST_NAME}},</p>
+
+<p>We have received your payment. Here is your receipt for your records.</p>
+
+<table class="detail-table" role="presentation" cellpadding="0" cellspacing="0" width="100%">
+    <tr>
+        <td class="label">Receipt Number</td>
+        <td class="value highlight">{{PAYMENT_REF}}</td>
+    </tr>
+    <tr>
+        <td class="label">Booking Reference</td>
+        <td class="value">{{BOOKING_REF}}</td>
+    </tr>
+    <tr>
+        <td class="label">Payment Method</td>
+        <td class="value">{{PAYMENT_METHOD}}</td>
+    </tr>
+    <tr>
+        <td class="label">Amount Paid</td>
+        <td class="value highlight">{{AMOUNT}}</td>
+    </tr>
+    <tr>
+        <td class="label">Payment Date</td>
+        <td class="value">{{PAID_AT}}</td>
+    </tr>
+    <tr>
+        <td class="label">Transaction ID</td>
+        <td class="value" style="font-family:monospace;">{{TRANSACTION_ID}}</td>
+    </tr>
+</table>
+
+<div class="info-box">
+    <h3>Payment Status</h3>
+    <p>Your payment has been <strong style="color:#065F46;">successfully processed</strong>. This receipt serves as proof of payment.</p>
+</div>
+
+<div class="cta-section">
+    <a href="{{RECEIPT_URL}}" class="cta-btn">Download Receipt</a>
+</div>
+
+<div class="divider"></div>
+
+<p>If you have any questions about this payment, please contact our finance team at <a href="mailto:finance@sidaisafari.com" style="color:#D4AF37;">finance@sidaisafari.com</a>.</p>
+
+<p style="margin-top:24px;">Thank you,<br><strong style="color:#1A4D2E;">The Sidai Safari Dreams Team</strong></p>

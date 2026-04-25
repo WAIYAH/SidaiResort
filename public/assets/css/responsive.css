@@ -1,0 +1,363 @@
+/* SIDAI RESORT — Responsive Design (Mobile-First) */
+
+/* ━━ BASE: Mobile Styles (320px+) ━━ */
+/* All base styles are already mobile-optimized in other CSS files */
+
+/* ━━ SMALL: Tablets in portrait (375px+) */
+@media (min-width: 375px) {
+    .container {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+
+    h1 { font-size: clamp(1.75rem, 6vw, 3rem); }
+    h2 { font-size: clamp(1.5rem, 5vw, 2.5rem); }
+}
+
+/* ━━ MEDIUM: Tablets landscape (640px+) */
+@media (min-width: 640px) {
+    .container {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+
+    .form-grid.cols-2 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .form-inline {
+        flex-direction: row;
+    }
+
+    .form-inline .form-group {
+        flex: auto;
+    }
+}
+
+/* ━━ LARGE: Desktop (768px+) */
+@media (min-width: 768px) {
+    .container {
+        padding-left: 0;
+        padding-right: 0;
+    }
+
+    /* Hide mobile nav button */
+    #mobile-menu-btn {
+        display: none !important;
+    }
+
+    #mobile-menu {
+        display: none !important;
+    }
+
+    /* Grid layouts */
+    .grid-cols-1 { grid-template-columns: 1fr; }
+    .grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+    .grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+    .grid-cols-4 { grid-template-columns: repeat(4, 1fr); }
+
+    .form-grid.cols-2 {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .form-grid.cols-3 {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    /* Flex layouts */
+    .flex-row { flex-direction: row; }
+    .flex-wrap { flex-wrap: wrap; }
+    .justify-start { justify-content: flex-start; }
+    .justify-center { justify-content: center; }
+    .justify-between { justify-content: space-between; }
+    .justify-end { justify-content: flex-end; }
+
+    /* Display utilities */
+    .hidden-md { display: none !important; }
+}
+
+/* ━━ EXTRA-LARGE: Large Desktop (1024px+) */
+@media (min-width: 1024px) {
+    h1 { font-size: 3.5rem; }
+    h2 { font-size: 2.5rem; }
+    h3 { font-size: 2rem; }
+
+    .space-x-4 > * + * {
+        margin-left: 1rem;
+    }
+
+    .space-y-4 > * + * {
+        margin-top: 1rem;
+    }
+
+    .gap-8 {
+        gap: 2rem;
+    }
+}
+
+/* ━━ XXL: Extra Large Desktop (1280px+) */
+@media (min-width: 1280px) {
+    .container {
+        max-width: 1280px;
+    }
+
+    .grid-cols-5 {
+        grid-template-columns: repeat(5, 1fr);
+    }
+
+    .grid-cols-6 {
+        grid-template-columns: repeat(6, 1fr);
+    }
+
+    .w-half { width: 50%; }
+    .w-third { width: calc(100% / 3); }
+    .w-quarter { width: 25%; }
+}
+
+/* ━━ 4K: Ultra-wide (1920px+) */
+@media (min-width: 1920px) {
+    .container {
+        max-width: 1400px;
+    }
+
+    h1 { font-size: 4rem; }
+    h2 { font-size: 3rem; }
+    
+    body {
+        font-size: 1.125rem;
+    }
+}
+
+/* ━━ PORTRAIT ORIENTATION ━━ */
+@media (orientation: portrait) {
+    .landscape-only {
+        display: none !important;
+    }
+}
+
+/* ━━ LANDSCAPE ORIENTATION ━━ */
+@media (orientation: landscape) {
+    .portrait-only {
+        display: none !important;
+    }
+
+    /* Reduce height for landscape */
+    nav {
+        height: 60px !important;
+    }
+
+    .hero-section {
+        min-height: 60vh;
+    }
+}
+
+/* ━━ RETINA DISPLAYS (High DPI) ━━ */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+    /* Images will automatically scale */
+    img {
+        image-rendering: crisp-edges;
+    }
+}
+
+/* ━━ TOUCH DEVICES ━━ */
+@media (hover: none) and (pointer: coarse) {
+    /* Increase tap targets for touch */
+    button, a, input, [role="button"] {
+        min-height: 44px;
+        min-width: 44px;
+    }
+
+    /* Disable hover effects */
+    .hover-lift:hover {
+        transform: none;
+        box-shadow: none;
+    }
+
+    .hover-scale:hover {
+        transform: none;
+    }
+}
+
+/* ━━ POINTER DEVICES (Mouse/trackpad) ━━ */
+@media (hover: hover) and (pointer: fine) {
+    /* Re-enable hover effects */
+    .hover-lift {
+        cursor: pointer;
+    }
+
+    button:hover {
+        transform: translateY(-2px);
+    }
+}
+
+/* ━━ LIGHT MODE ━━ */
+@media (prefers-color-scheme: light) {
+    body {
+        background: #F5ECD7;
+        color: #3D1C02;
+    }
+
+    input, textarea, select {
+        background: white;
+        color: #3D1C02;
+    }
+}
+
+/* ━━ DARK MODE ━━ */
+@media (prefers-color-scheme: dark) {
+    body {
+        background: #0A0A0A;
+        color: #F5ECD7;
+    }
+
+    input, textarea, select {
+        background: rgba(255, 255, 255, 0.1);
+        border-color: rgba(255, 255, 255, 0.2);
+        color: #F5ECD7;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+        color: rgba(245, 236, 215, 0.5);
+    }
+
+    .card {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .glass {
+        background: rgba(255, 255, 255, 0.05);
+    }
+}
+
+/* ━━ REDUCED MOTION ━━ */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* ━━ LOW BANDWIDTH ━━ */
+@media (prefers-reduced-data: reduce) {
+    /* Disable background images */
+    .parallax,
+    .hero-image {
+        background-attachment: scroll;
+    }
+
+    /* Reduce animations */
+    .fade-in,
+    .fade-up,
+    .scale-in,
+    .slide-in-left,
+    .slide-in-right {
+        animation: none;
+        opacity: 1;
+    }
+
+    /* Disable videos */
+    video {
+        display: none !important;
+    }
+}
+
+/* ━━ PRINT ━━ */
+@media print {
+    * {
+        background: white !important;
+        color: black !important;
+        box-shadow: none !important;
+    }
+
+    body {
+        padding: 0;
+        margin: 0;
+    }
+
+    .no-print,
+    nav,
+    footer,
+    aside,
+    .hidden-print {
+        display: none !important;
+    }
+
+    a {
+        text-decoration: underline;
+        color: black;
+    }
+
+    /* Page breaks */
+    .page-break {
+        page-break-after: always;
+    }
+
+    .avoid-break {
+        page-break-inside: avoid;
+    }
+
+    /* Optimize table printing */
+    table {
+        border-collapse: collapse;
+    }
+
+    th, td {
+        border: 1px solid black;
+        padding: 0.5rem;
+    }
+
+    /* Ensure readability */
+    h1, h2, h3, h4, h5, h6 {
+        page-break-after: avoid;
+    }
+
+    img {
+        max-width: 100%;
+        page-break-inside: avoid;
+    }
+}
+
+/* ━━ UTILITY CLASSES FOR RESPONSIVE DESIGN ━━ */
+
+/* Visibility utilities */
+.show-mobile { display: block; }
+.hide-mobile { display: none; }
+
+@media (min-width: 768px) {
+    .show-mobile { display: none; }
+    .hide-mobile { display: block; }
+    .show-desktop { display: block !important; }
+    .hide-desktop { display: none !important; }
+}
+
+/* Width utilities */
+.w-full { width: 100%; }
+.w-full-min-tablet { width: 100%; }
+
+@media (min-width: 768px) {
+    .w-full-min-tablet { width: calc(100% - 2rem); }
+}
+
+/* Padding utilities */
+.p-mobile { padding: 1rem; }
+.p-tablet { padding: 1.5rem; }
+.p-desktop { padding: 2rem; }
+
+@media (min-width: 640px) {
+    .p-mobile { padding: 1.5rem; }
+}
+
+@media (min-width: 768px) {
+    .p-mobile { padding: 2rem; }
+}
+
+/* Margin utilities */
+.m-mobile { margin: 1rem; }
+
+@media (min-width: 768px) {
+    .m-mobile { margin: 2rem; }
+}
