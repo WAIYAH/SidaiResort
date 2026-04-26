@@ -140,9 +140,8 @@
                             Services                        </a>
                                             <a
                             href="experiences.html"
-                            class="header-link rounded-full px-4 py-2 text-sm font-medium transition-colors text-brown hover:text-gold hover:bg-night/70"
-                        >
-                            Moments                        </a>
+                            class="header-link rounded-full px-4 py-2 text-sm font-medium transition-colors bg-night/70 text-gold"
+                        >Moments                        </a>
                                             <a
                             href="rooms.html"
                             class="header-link rounded-full px-4 py-2 text-sm font-medium transition-colors text-brown hover:text-gold hover:bg-night/70"
@@ -197,10 +196,9 @@
                             Services                        </a>
                                             <a
                             href="experiences.html"
-                            class="flex items-center rounded-xl px-4 py-3 text-sm font-medium transition-colors bg-white/60 text-brown hover:bg-white/80"
+                            class="flex items-center rounded-xl px-4 py-3 text-sm font-medium transition-colors bg-night/70 text-gold"
                             @click="mobileOpen = false"
-                        >
-                            Moments                        </a>
+                        >Moments                        </a>
                                             <a
                             href="rooms.html"
                             class="flex items-center rounded-xl px-4 py-3 text-sm font-medium transition-colors bg-white/60 text-brown hover:bg-white/80"
@@ -439,7 +437,7 @@ function experiencesPage() {
         },
         {
             id: 'fun-session',
-            title: 'Fun Session Highlights',
+            title: 'Music Video Shoot',
             caption: 'Movement, music, and joyful frames from the Sidai experience.',
             src: 'assets/images/1.%20Videos/songshoot.mp4',
             poster: 'assets/images/people-event.jpeg',
@@ -447,10 +445,10 @@ function experiencesPage() {
         },
         {
             id: 'night-view',
-            title: 'Night View At The Pool',
+            title: 'Night View at the Pool',
             caption: 'Evening lights and calm reflections around the poolside.',
             src: 'assets/images/1.%20Videos/night-view.mp4',
-            poster: 'assets/images/gentsswimming.jpeg',
+            poster: 'assets/images/moments/pool/nightview-entrance-to-swimming.jpeg',
             tag: 'Night'
         },
         {
@@ -463,7 +461,7 @@ function experiencesPage() {
         },
         {
             id: 'pool-side-song',
-            title: 'Poolside Singing',
+            title: 'Maasai Dances and Singing',
             caption: 'Live singing and good vibes by the pool.',
             src: 'assets/images/1.%20Videos/people-singing-at-pool-side.mp4',
             poster: 'assets/images/moments/pool/people-at-the-pool-side.jpeg',
@@ -471,35 +469,11 @@ function experiencesPage() {
         },
         {
             id: 'live-music',
-            title: 'People Singing',
+            title: 'Pool side Vibe and Singing',
             caption: 'A lively musical moment from a Sidai gathering.',
-            src: 'assets/images/1.%20Videos/people%20singing.mp4',
+            src: 'assets/images/1.%20Videos/people-singing.mp4',
             poster: 'assets/images/people-event.jpeg',
             tag: 'Events'
-        },
-        {
-            id: 'sitting-area-tour',
-            title: 'Walk Through The Sitting Areas',
-            caption: 'A guided look at our relaxing lounge spots and social corners.',
-            src: 'assets/images/1.%20Videos/walkinthesittingareas.mp4',
-            poster: 'assets/images/balconyview.jpeg',
-            tag: 'Tour'
-        },
-        {
-            id: 'inside-sidai-tour',
-            title: 'Inside Sidai Walkthrough',
-            caption: 'A moving walkthrough of the resort spaces and ambience.',
-            src: 'assets/images/1.%20Videos/walkinsidesidai.mp4',
-            poster: 'assets/images/beatifullightsnight.jpeg',
-            tag: 'Tour'
-        },
-        {
-            id: 'poolside-direction',
-            title: 'Poolside Walking Guide',
-            caption: 'Follow the path toward the pool and discover the resort flow.',
-            src: 'assets/images/1.%20Videos/directionwalkingguide%20to%20the%20poolside.mp4',
-            poster: 'assets/images/nightlights.jpeg',
-            tag: 'Pool'
         }
     ];
 
@@ -519,7 +493,7 @@ function experiencesPage() {
         { id: 'm33', title: 'Boy At The Pool', src: 'assets/images/moments/pool/a-boy-at-the-pool.jpeg', category: 'pool', label: 'Pool Fun' },
         { id: 'm34', title: 'Girl At The Pool', src: 'assets/images/moments/pool/agirl-at-the-pool.jpeg', category: 'pool', label: 'Pool Fun' },
         { id: 'm35', title: 'Children Swimming Session', src: 'assets/images/moments/pool/children-swimming.jpeg', category: 'pool', label: 'Family Fun' },
-        { id: 'm36', title: 'Night Pool Entrance', src: 'assets/images/gentsswimming.jpeg', category: 'pool', label: 'Nightlife' },
+        { id: 'm36', title: 'Night Pool Entrance', src: 'assets/images/moments/pool/nightview-entrance-to-swimming.jpeg', category: 'pool', label: 'Nightlife' },
         { id: 'm37', title: 'Poolside Group', src: 'assets/images/moments/pool/people-at-the-pool-side.jpeg', category: 'pool', label: 'Pool Fun' },
         { id: 'm38', title: 'Playing With Water', src: 'assets/images/moments/pool/playing-with-water.jpeg', category: 'pool', label: 'Family Fun' },
         { id: 'm39', title: 'Pool Party', src: 'assets/images/moments/pool/pool-party.jpeg', category: 'pool', label: 'Celebration' },
@@ -560,15 +534,7 @@ function experiencesPage() {
         { id: 'm43', title: 'People At Conference', src: 'assets/images/moments/events/people-at-conference.jpeg', category: 'events', label: 'Business' },
         { id: 'm44', title: 'Cars And Motobikes', src: 'assets/images/moments/events/cars-and-motobikes.jpeg', category: 'events', label: 'Arrival' },
         { id: 'm45', title: 'Parking Area', src: 'assets/images/moments/events/cars-at-the-parking.jpeg', category: 'events', label: 'Arrival' },
-        { id: 'm46', title: 'Guest Moments', src: 'assets/images/moments/events/whatsapp-image-2026-04-25-at-19-10-21.jpeg', category: 'events', label: 'Celebration' },
-        { id: 'm60', title: 'Love Heart Couple Shoot', src: 'assets/images/couples%20shootat%20LoveHeart.jpeg', category: 'events', label: 'Photo Shoot' },
-        { id: 'm61', title: 'Balcony View', src: 'assets/images/balconyview.jpeg', category: 'stays', label: 'Scenic View' },
-        { id: 'm62', title: 'Night Lights', src: 'assets/images/nightlights.jpeg', category: 'fun', label: 'Nightlife' },
-        { id: 'm63', title: 'Beautiful Night Lights', src: 'assets/images/beatifullightsnight.jpeg', category: 'fun', label: 'Nightlife' },
-        { id: 'm64', title: 'Cows Grazing', src: 'assets/images/Farm%20Visits/COWSGRAZING.jpeg', category: 'nature', label: 'Farm Visit' },
-        { id: 'm65', title: 'Farm Cattle One', src: 'assets/images/Farm%20Visits/COWS1.jpeg', category: 'nature', label: 'Farm Visit' },
-        { id: 'm66', title: 'Farm Cattle Two', src: 'assets/images/Farm%20Visits/COWS2.jpeg', category: 'nature', label: 'Farm Visit' },
-        { id: 'm67', title: 'Small Bull', src: 'assets/images/Farm%20Visits/asmallbull.jpeg', category: 'nature', label: 'Farm Visit' }
+        { id: 'm46', title: 'Guest Moments', src: 'assets/images/moments/events/whatsapp-image-2026-04-25-at-19-10-21.jpeg', category: 'events', label: 'Celebration' }
     ];
 
     return {
@@ -761,7 +727,6 @@ document.addEventListener('alpine:init', () => {
 <script src="assets/js/app.js" defer></script>
 </body>
 </html>
-
 
 
 
