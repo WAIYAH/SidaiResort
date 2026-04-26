@@ -9,8 +9,12 @@ if (ob_get_level() === 0) {
 $pageTitle = $pageTitle ?? APP_NAME . ' | Where Good Meets Luxury';
 $pageDescription = $pageDescription ?? 'Sidai Resort. Luxury stays, event halls, dining, and safari hospitality.';
 $pageImage = $pageImage ?? APP_URL . '/assets/images/hero-sunset.jpg';
-$requestUri = $_SERVER['REQUEST_URI'] ?? '/';
-$pageUrl = $pageUrl ?? rtrim(APP_URL, '/') . $requestUri;
+$requestPath = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH) ?: '/';
+$normalizedPath = '/' . ltrim($requestPath, '/');
+$pageUrl = $pageUrl ?? rtrim(APP_URL, '/') . ($normalizedPath === '/' ? '' : $normalizedPath);
+$pageKeywords = $pageKeywords ?? 'Sidai Resort, Narok resort, Loita Hills resort, Kenya accommodation, Maasai hospitality';
+$pageRobots = $pageRobots ?? 'index, follow';
+$pageImageAlt = $pageImageAlt ?? APP_NAME . ' scenic view';
 $csrfToken = class_exists(CSRF::class) ? CSRF::token() : '';
 
 $structuredData = [
@@ -37,20 +41,26 @@ $structuredData = [
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="<?php echo safe_html($pageDescription); ?>">
+    <meta name="keywords" content="<?php echo safe_html($pageKeywords); ?>">
+    <meta name="robots" content="<?php echo safe_html($pageRobots); ?>">
     <meta name="theme-color" content="#D4AF37">
     <meta name="csrf-token" content="<?php echo safe_html($csrfToken); ?>">
     <meta property="og:type" content="website">
+    <meta property="og:locale" content="en_KE">
     <meta property="og:site_name" content="<?php echo safe_html(APP_NAME); ?>">
     <meta property="og:title" content="<?php echo safe_html($pageTitle); ?>">
     <meta property="og:description" content="<?php echo safe_html($pageDescription); ?>">
     <meta property="og:url" content="<?php echo safe_html($pageUrl); ?>">
     <meta property="og:image" content="<?php echo safe_html($pageImage); ?>">
+    <meta property="og:image:alt" content="<?php echo safe_html($pageImageAlt); ?>">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="<?php echo safe_html($pageTitle); ?>">
     <meta name="twitter:description" content="<?php echo safe_html($pageDescription); ?>">
     <meta name="twitter:image" content="<?php echo safe_html($pageImage); ?>">
     <link rel="canonical" href="<?php echo safe_html($pageUrl); ?>">
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌿</text></svg>">
+    <link rel="icon" href="<?php echo WEB_ROOT; ?>/favicon.ico" sizes="any">
+    <link rel="shortcut icon" href="<?php echo WEB_ROOT; ?>/favicon.ico">
+    <link rel="apple-touch-icon" href="<?php echo WEB_ROOT; ?>/assets/images/sidai-logo.png">
     <link rel="manifest" href="<?php echo WEB_ROOT; ?>/manifest.json">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

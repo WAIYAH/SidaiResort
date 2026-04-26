@@ -7,19 +7,19 @@ $navItems = [
     ['label' => 'Rooms', 'href' => WEB_ROOT . '/rooms'],
     ['label' => 'Services', 'href' => WEB_ROOT . '/services'],
     ['label' => 'Gallery', 'href' => WEB_ROOT . '/about#gallery'],
-    ['label' => 'Events', 'href' => WEB_ROOT . '/events'],
     ['label' => 'Menu', 'href' => WEB_ROOT . '/menu'],
     ['label' => 'Contact', 'href' => WEB_ROOT . '/contact'],
 ];
 
 $isActive = static function (string $href) use ($currentPath): bool {
-    if ($href === '/') {
-        return $currentPath === '/';
+    $hrefPath = parse_url($href, PHP_URL_PATH) ?: $href;
+    if ($hrefPath === '/') {
+        return $currentPath === '/' || $currentPath === WEB_ROOT . '/';
     }
 
-    $normalizedHref = preg_replace('/\.php$/', '', $href) ?: $href;
+    $normalizedHref = preg_replace('/\.php$/', '', $hrefPath) ?: $hrefPath;
 
-    return $currentPath === $normalizedHref || $currentPath === $href;
+    return $currentPath === $normalizedHref || $currentPath === $hrefPath;
 };
 ?>
 <div id="page-loader" class="page-loader" role="status" aria-live="polite">
@@ -68,7 +68,9 @@ $isActive = static function (string $href) use ($currentPath): bool {
                 </div>
 
                 <div class="hidden lg:flex items-center gap-2">
-
+                    <a href="<?php echo WEB_ROOT; ?>/admin/login.php" class="inline-flex items-center rounded-full border border-gold/40 bg-night/70 px-4 py-2 text-xs font-semibold uppercase tracking-[0.14em] text-gold hover:bg-night transition-colors">
+                        Admin
+                    </a>
                     <a href="<?php echo WEB_ROOT; ?>/booking" class="ml-1 inline-flex items-center rounded-full bg-gold px-5 py-2.5 text-sm font-semibold text-night hover:bg-gold-light transition-colors">Book Now</a>
                 </div>
 
@@ -101,6 +103,9 @@ $isActive = static function (string $href) use ($currentPath): bool {
                     <?php endforeach; ?>
                     <a href="<?php echo WEB_ROOT; ?>/booking" class="flex items-center justify-center rounded-xl bg-gold px-4 py-3 text-sm font-semibold text-night hover:bg-gold-light transition-colors" @click="mobileOpen = false">
                         Book Now
+                    </a>
+                    <a href="<?php echo WEB_ROOT; ?>/admin/login.php" class="flex items-center justify-center rounded-xl border border-gold/30 bg-night/90 px-4 py-3 text-xs font-semibold uppercase tracking-[0.14em] text-gold transition-colors" @click="mobileOpen = false">
+                        Admin Portal
                     </a>
 
                 </div>

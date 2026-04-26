@@ -15,7 +15,8 @@ if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
 
 try {
     // Validate CSRF token
-    if (!verify_csrf_token($_POST['csrf_token'] ?? '')) {
+    $csrfToken = $_POST[CSRF_TOKEN_NAME] ?? ($_POST['csrf_token'] ?? '');
+    if (!verify_csrf_token(is_string($csrfToken) ? $csrfToken : null)) {
         throw new Exception('Invalid CSRF token');
     }
 
@@ -70,7 +71,7 @@ try {
 </html>
 HTML;
 
-    $mailer->send(RESORT_EMAIL, 'Sidai Safari Dreams', 'New Contact Message: ' . $subject, $adminBody);
+    $mailer->send(RESORT_EMAIL, APP_NAME, 'New Contact Message: ' . $subject, $adminBody);
 
     // Send confirmation to user
     $userBody = <<<HTML
@@ -78,8 +79,8 @@ HTML;
 <html>
 <body>
     <p>Dear {$fullName},</p>
-    <p>Thank you for contacting Sidai Safari Dreams. We have received your message and will respond within 24 hours.</p>
-    <p>Best regards,<br>Sidai Safari Dreams Team</p>
+    <p>Thank you for contacting Sidai Resort. We have received your message and will respond within 24 hours.</p>
+    <p>Best regards,<br>Sidai Resort Team</p>
 </body>
 </html>
 HTML;

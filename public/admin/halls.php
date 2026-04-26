@@ -16,16 +16,21 @@ $halls = $hallModel->getAll();
 // Handle form submissions
 $message = null;
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
-    $action = $_POST['action'];
-    $hallId = (int)($_POST['hall_id'] ?? 0);
+    $token = $_POST[CSRF_TOKEN_NAME] ?? null;
+    if (!\App\Core\CSRF::verify(is_string($token) ? $token : null)) {
+        $message = ['type' => 'error', 'text' => 'Security validation failed. Please refresh and retry.'];
+    } else {
+        $action = $_POST['action'];
+        $hallId = (int)($_POST['hall_id'] ?? 0);
 
-    if ($action === 'toggle_availability' && $hallId > 0) {
-        $hall = $hallModel->getById($hallId);
-        if ($hall) {
-            $newStatus = (int)$hall['is_available'] === 1 ? 0 : 1;
-            $hallModel->updateAvailability($hallId, $newStatus);
-            $message = ['type' => 'success', 'text' => 'Hall availability updated.'];
-            $halls = $hallModel->getAll(); // re-fetch
+        if ($action === 'toggle_availability' && $hallId > 0) {
+            $hall = $hallModel->getById($hallId);
+            if ($hall) {
+                $newStatus = (int)$hall['is_available'] === 1 ? 0 : 1;
+                $hallModel->updateAvailability($hallId, $newStatus);
+                $message = ['type' => 'success', 'text' => 'Hall availability updated.'];
+                $halls = $hallModel->getAll(); // re-fetch
+            }
         }
     }
 }
@@ -98,6 +103,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
                                     </td>
                                     <td>
                                         <form method="post" style="display:inline;">
+                                            <?php echo \App\Core\CSRF::field(); ?>
                                             <input type="hidden" name="action" value="toggle_availability">
                                             <input type="hidden" name="hall_id" value="<?php echo (int)$hall['id']; ?>">
                                             <button type="submit" class="btn btn-sm btn-outline">

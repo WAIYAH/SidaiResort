@@ -16,7 +16,10 @@ $orders = $orderModel->getAll(100);
 // Handle status update
 $message = null;
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
-    if ($_POST['action'] === 'update_status') {
+    $token = $_POST[CSRF_TOKEN_NAME] ?? null;
+    if (!\App\Core\CSRF::verify(is_string($token) ? $token : null)) {
+        $message = ['type' => 'error', 'text' => 'Security validation failed. Please refresh and retry.'];
+    } elseif ($_POST['action'] === 'update_status') {
         $orderId = (int)($_POST['order_id'] ?? 0);
         $newStatus = $_POST['new_status'] ?? '';
 
@@ -119,6 +122,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
                                     <td>
                                         <?php if ($order['status'] !== 'delivered' && $order['status'] !== 'cancelled'): ?>
                                             <form method="post" style="display:inline;">
+                                                <?php echo \App\Core\CSRF::field(); ?>
                                                 <input type="hidden" name="action" value="update_status">
                                                 <input type="hidden" name="order_id" value="<?php echo (int)$order['id']; ?>">
                                                 <?php

@@ -17,11 +17,16 @@ $categories = $galleryModel->getCategories();
 // Handle delete
 $message = null;
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'delete') {
-    $itemId = (int)($_POST['item_id'] ?? 0);
-    if ($itemId > 0) {
-        $galleryModel->delete($itemId);
-        $message = ['type' => 'success', 'text' => 'Gallery item removed.'];
-        $items = $galleryModel->getAll(200);
+    $token = $_POST[CSRF_TOKEN_NAME] ?? null;
+    if (!\App\Core\CSRF::verify(is_string($token) ? $token : null)) {
+        $message = ['type' => 'error', 'text' => 'Security validation failed. Please refresh and retry.'];
+    } else {
+        $itemId = (int)($_POST['item_id'] ?? 0);
+        if ($itemId > 0) {
+            $galleryModel->delete($itemId);
+            $message = ['type' => 'success', 'text' => 'Gallery item removed.'];
+            $items = $galleryModel->getAll(200);
+        }
     }
 }
 ?>
@@ -35,7 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'delet
     <main class="admin-main">
         <div class="admin-page-header">
             <h2 class="admin-page-title">Gallery Management</h2>
-            <a href="#" class="btn btn-gold">+ Upload Image</a>
+            <span class="btn btn-outline" aria-disabled="true">Upload via deployment assets</span>
         </div>
 
         <?php if ($message): ?>
@@ -100,6 +105,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && ($_POST['action'] ?? '') === 'delet
                                     </td>
                                     <td>
                                         <form method="post" style="display:inline;" onsubmit="return confirm('Remove this image?');">
+                                            <?php echo \App\Core\CSRF::field(); ?>
                                             <input type="hidden" name="action" value="delete">
                                             <input type="hidden" name="item_id" value="<?php echo (int)$item['id']; ?>">
                                             <button type="submit" class="btn btn-sm btn-danger">Remove</button>

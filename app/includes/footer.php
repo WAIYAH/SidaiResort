@@ -80,7 +80,6 @@ if (
                     <a href="https://instagram.com/SidaiResort" target="_blank" rel="noopener noreferrer" class="social-pill" aria-label="Instagram"><?php echo social_icon('instagram', 18); ?></a>
                     <a href="https://tiktok.com/@SidaiResort" target="_blank" rel="noopener noreferrer" class="social-pill" aria-label="TikTok"><?php echo social_icon('tiktok', 16); ?></a>
                     <a href="https://wa.me/254703761951" target="_blank" rel="noopener noreferrer" class="social-pill social-pill--whatsapp" aria-label="WhatsApp"><?php echo social_icon('whatsapp', 18); ?></a>
-                    <a href="#" target="_blank" rel="noopener noreferrer" class="social-pill" aria-label="YouTube"><?php echo social_icon('youtube', 18); ?></a>
                 </div>
             </div>
 
@@ -93,10 +92,10 @@ if (
                     <li><a href="<?php echo WEB_ROOT; ?>/rooms">Rooms</a></li>
                     <li><a href="<?php echo WEB_ROOT; ?>/services">Services</a></li>
                     <li><a href="<?php echo WEB_ROOT; ?>/about#gallery">Gallery</a></li>
-                    <li><a href="<?php echo WEB_ROOT; ?>/events">Events</a></li>
                     <li><a href="<?php echo WEB_ROOT; ?>/menu">Menu</a></li>
                     <li><a href="<?php echo WEB_ROOT; ?>/booking">Booking</a></li>
                     <li><a href="<?php echo WEB_ROOT; ?>/contact">Contact</a></li>
+                    <li><a href="<?php echo WEB_ROOT; ?>/admin/login.php">Admin Portal</a></li>
                 </ul>
             </div>
 
@@ -172,11 +171,12 @@ if (
 
         <div class="mt-10 sm:mt-12 border-t border-gold/20 pt-6">
             <div class="flex flex-col gap-4 text-sm text-cream/70 sm:flex-row sm:items-center sm:justify-between">
-                <p>&copy; 2025 Sidai Resort. All rights reserved.</p>
+                <p>&copy; <?php echo date('Y'); ?> Sidai Resort. All rights reserved.</p>
                 <p class="text-gold uppercase tracking-[0.2em] font-semibold text-center text-xs">Nothing but the Best — Always</p>
                 <div class="flex flex-wrap items-center gap-x-4 gap-y-2">
                     <a href="<?php echo WEB_ROOT; ?>/privacy-policy" class="hover:text-gold transition-colors">Privacy Policy</a>
                     <a href="<?php echo WEB_ROOT; ?>/terms-of-service" class="hover:text-gold transition-colors">Terms of Service</a>
+                    <a href="https://nakolaexpertsystems.vercel.app/" target="_blank" rel="noopener noreferrer" class="hover:text-gold transition-colors">Built by Nakola Expert Systems</a>
                 </div>
                 <button id="back-to-top" type="button" class="hidden sm:inline-flex h-10 w-10 items-center justify-center rounded-full border border-gold/50 text-gold hover:bg-gold hover:text-night transition-colors" aria-label="Back to top">
                     <span aria-hidden="true">&uarr;</span>

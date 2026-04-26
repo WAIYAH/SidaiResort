@@ -22,63 +22,68 @@ foreach ($categories as $cat) {
 // Handle actions
 $message = null;
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $action = $_POST['action'] ?? '';
+    $token = $_POST[CSRF_TOKEN_NAME] ?? null;
+    if (!\App\Core\CSRF::verify(is_string($token) ? $token : null)) {
+        $message = ['type' => 'error', 'text' => 'Security validation failed. Please refresh and retry.'];
+    } else {
+        $action = $_POST['action'] ?? '';
 
-    if ($action === 'toggle_item') {
-        $itemId = (int)($_POST['item_id'] ?? 0);
-        if ($itemId > 0) {
-            $item = $menuItemModel->getById($itemId);
-            if ($item) {
-                $menuItemModel->toggleAvailability($itemId);
-                $message = ['type' => 'success', 'text' => 'Item availability updated.'];
+        if ($action === 'toggle_item') {
+            $itemId = (int)($_POST['item_id'] ?? 0);
+            if ($itemId > 0) {
+                $item = $menuItemModel->getById($itemId);
+                if ($item) {
+                    $menuItemModel->toggleAvailability($itemId);
+                    $message = ['type' => 'success', 'text' => 'Item availability updated.'];
+                }
             }
-        }
-    } elseif ($action === 'create_item') {
-        $data = [
-            'category_id' => (int)($_POST['category_id'] ?? 0),
-            'name' => trim($_POST['name'] ?? ''),
-            'description' => trim($_POST['description'] ?? ''),
-            'price' => (float)($_POST['price'] ?? 0),
-            'is_vegetarian' => isset($_POST['is_vegetarian']) ? 1 : 0,
-            'is_spicy' => isset($_POST['is_spicy']) ? 1 : 0,
-            'is_available' => 1
-        ];
-        if ($data['category_id'] > 0 && !empty($data['name']) && $data['price'] >= 0) {
-            if ($menuItemModel->create($data)) {
-                $message = ['type' => 'success', 'text' => 'Menu item created successfully.'];
-            } else {
-                $message = ['type' => 'error', 'text' => 'Failed to create menu item.'];
-            }
-        } else {
-            $message = ['type' => 'error', 'text' => 'Please fill all required fields correctly.'];
-        }
-    } elseif ($action === 'update_item') {
-        $itemId = (int)($_POST['item_id'] ?? 0);
-        if ($itemId > 0) {
+        } elseif ($action === 'create_item') {
             $data = [
                 'category_id' => (int)($_POST['category_id'] ?? 0),
                 'name' => trim($_POST['name'] ?? ''),
                 'description' => trim($_POST['description'] ?? ''),
                 'price' => (float)($_POST['price'] ?? 0),
                 'is_vegetarian' => isset($_POST['is_vegetarian']) ? 1 : 0,
-                'is_spicy' => isset($_POST['is_spicy']) ? 1 : 0
+                'is_spicy' => isset($_POST['is_spicy']) ? 1 : 0,
+                'is_available' => 1
             ];
             if ($data['category_id'] > 0 && !empty($data['name']) && $data['price'] >= 0) {
-                if ($menuItemModel->update($itemId, $data)) {
-                    $message = ['type' => 'success', 'text' => 'Menu item updated successfully.'];
+                if ($menuItemModel->create($data)) {
+                    $message = ['type' => 'success', 'text' => 'Menu item created successfully.'];
                 } else {
-                    $message = ['type' => 'error', 'text' => 'Failed to update menu item.'];
+                    $message = ['type' => 'error', 'text' => 'Failed to create menu item.'];
                 }
             } else {
                 $message = ['type' => 'error', 'text' => 'Please fill all required fields correctly.'];
             }
-        }
-    } elseif ($action === 'delete_item') {
-        $itemId = (int)($_POST['item_id'] ?? 0);
-        if ($itemId > 0 && $menuItemModel->delete($itemId)) {
-            $message = ['type' => 'success', 'text' => 'Menu item deleted successfully.'];
-        } else {
-            $message = ['type' => 'error', 'text' => 'Failed to delete menu item.'];
+        } elseif ($action === 'update_item') {
+            $itemId = (int)($_POST['item_id'] ?? 0);
+            if ($itemId > 0) {
+                $data = [
+                    'category_id' => (int)($_POST['category_id'] ?? 0),
+                    'name' => trim($_POST['name'] ?? ''),
+                    'description' => trim($_POST['description'] ?? ''),
+                    'price' => (float)($_POST['price'] ?? 0),
+                    'is_vegetarian' => isset($_POST['is_vegetarian']) ? 1 : 0,
+                    'is_spicy' => isset($_POST['is_spicy']) ? 1 : 0
+                ];
+                if ($data['category_id'] > 0 && !empty($data['name']) && $data['price'] >= 0) {
+                    if ($menuItemModel->update($itemId, $data)) {
+                        $message = ['type' => 'success', 'text' => 'Menu item updated successfully.'];
+                    } else {
+                        $message = ['type' => 'error', 'text' => 'Failed to update menu item.'];
+                    }
+                } else {
+                    $message = ['type' => 'error', 'text' => 'Please fill all required fields correctly.'];
+                }
+            }
+        } elseif ($action === 'delete_item') {
+            $itemId = (int)($_POST['item_id'] ?? 0);
+            if ($itemId > 0 && $menuItemModel->delete($itemId)) {
+                $message = ['type' => 'success', 'text' => 'Menu item deleted successfully.'];
+            } else {
+                $message = ['type' => 'error', 'text' => 'Failed to delete menu item.'];
+            }
         }
     }
 
@@ -165,11 +170,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                             <div style="display:flex; gap:0.5rem; justify-content:flex-end;">
                                                 <button type="button" class="btn btn-sm btn-outline" onclick='openMenuModal(<?php echo json_encode($item); ?>)'>Edit</button>
                                                 <form method="post" style="display:inline;">
+                                                    <?php echo \App\Core\CSRF::field(); ?>
                                                     <input type="hidden" name="action" value="toggle_item">
                                                     <input type="hidden" name="item_id" value="<?php echo (int)$item['id']; ?>">
                                                     <button type="submit" class="btn btn-sm btn-outline">Toggle</button>
                                                 </form>
                                                 <form method="post" style="display:inline;" onsubmit="return confirm('Are you sure you want to delete this menu item?');">
+                                                    <?php echo \App\Core\CSRF::field(); ?>
                                                     <input type="hidden" name="action" value="delete_item">
                                                     <input type="hidden" name="item_id" value="<?php echo (int)$item['id']; ?>">
                                                     <button type="submit" class="btn btn-sm" style="background:#FEE2E2; color:#DC2626; border-color:#FEE2E2;">Delete</button>
@@ -194,6 +201,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         <button type="button" onclick="document.getElementById('menuModal').close()" style="background: none; border: none; font-size: 1.5rem; cursor: pointer; color: #6B7280;">&times;</button>
     </div>
     <form method="post" id="menuForm">
+        <?php echo \App\Core\CSRF::field(); ?>
         <input type="hidden" name="action" id="formAction" value="create_item">
         <input type="hidden" name="item_id" id="formItemId" value="">
 

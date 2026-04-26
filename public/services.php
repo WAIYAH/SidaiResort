@@ -363,6 +363,45 @@ include dirname(__DIR__) . '/app/includes/header.php';
                 </div>
             </section>
 
+            <section data-tab-panel="outdoor" x-show="activeTab === 'outdoor'" x-transition.opacity.duration.250ms class="mt-10 space-y-8">
+                <div class="grid gap-8 lg:grid-cols-[1fr_0.95fr]">
+                    <article class="rounded-3xl border border-brown/10 bg-white p-8 shadow-sm">
+                        <h2 class="font-display text-4xl text-brown">Outdoor Escapes & Bonfire Nights</h2>
+                        <p class="mt-4 text-base leading-8 text-brown/85">
+                            Step into our open-air experiences: sunset viewpoints, curated picnic lawns, and the signature Enkima bonfire atmosphere under Loita Hills skies.
+                        </p>
+                        <ul class="services-bullets mt-6 space-y-3 text-sm text-brown/85">
+                            <li class="rounded-xl border border-brown/10 bg-cream/50 px-4 py-3">Sunset balcony access with guided evening setup</li>
+                            <li class="rounded-xl border border-brown/10 bg-cream/50 px-4 py-3">Bonfire circles with private or shared seating zones</li>
+                            <li class="rounded-xl border border-brown/10 bg-cream/50 px-4 py-3">Optional nyama choma and beverage service add-ons</li>
+                            <li class="rounded-xl border border-brown/10 bg-cream/50 px-4 py-3">Nature walks and birdwatching around the resort grounds</li>
+                        </ul>
+                    </article>
+
+                    <aside class="rounded-3xl border border-gold/30 bg-night p-8 text-cream">
+                        <h3 class="font-display text-3xl text-gold">Outdoor Packages</h3>
+                        <div class="mt-5 space-y-3 text-sm">
+                            <p class="flex items-center justify-between rounded-xl border border-gold/20 px-4 py-3"><span>Sunset Lounge Access</span><strong><?php echo safe_html(format_kes($settingAmount('outdoor_sunset_lounge', 1500))); ?></strong></p>
+                            <p class="flex items-center justify-between rounded-xl border border-gold/20 px-4 py-3"><span>Bonfire Experience</span><strong><?php echo safe_html(format_kes($settingAmount('outdoor_bonfire', 2500))); ?></strong></p>
+                            <p class="flex items-center justify-between rounded-xl border border-gold/20 px-4 py-3"><span>Private Picnic Setup</span><strong><?php echo safe_html(format_kes($settingAmount('outdoor_private_picnic', 3500))); ?></strong></p>
+                        </div>
+                        <a href="/booking?type=event" class="mt-6 inline-flex rounded-full bg-gold px-6 py-3 text-sm font-semibold uppercase tracking-[0.12em] text-night transition hover:bg-gold-light">Reserve Outdoor Experience</a>
+                    </aside>
+                </div>
+
+                <div class="grid gap-4 sm:grid-cols-3">
+                    <a href="/assets/images/hero-sunset.jpg" class="gallery-lightbox overflow-hidden rounded-2xl border border-brown/10" data-gallery="outdoor-gallery" data-title="Loita Hills sunset">
+                        <img src="/assets/images/hero-sunset.jpg" alt="Loita Hills sunset view from Sidai Resort" class="h-56 w-full object-cover" loading="lazy">
+                    </a>
+                    <a href="/assets/images/hero-section.jpg" class="gallery-lightbox overflow-hidden rounded-2xl border border-brown/10" data-gallery="outdoor-gallery" data-title="Resort nature lawns">
+                        <img src="/assets/images/hero-section.jpg" alt="Outdoor lawn and nature grounds at Sidai Resort" class="h-56 w-full object-cover" loading="lazy">
+                    </a>
+                    <a href="/assets/images/dining.jpg" class="gallery-lightbox overflow-hidden rounded-2xl border border-brown/10" data-gallery="outdoor-gallery" data-title="Bonfire dining setup">
+                        <img src="/assets/images/dining.jpg" alt="Outdoor bonfire dining setup" class="h-56 w-full object-cover" loading="lazy">
+                    </a>
+                </div>
+            </section>
+
 
             <section  data-tab-panel="dining" x-show="activeTab === 'dining'" x-transition.opacity.duration.250ms class="mt-10 space-y-8">
                 <div class="grid gap-8 lg:grid-cols-[1fr_0.95fr]">
@@ -431,7 +470,7 @@ include dirname(__DIR__) . '/app/includes/header.php';
                     </div>
                 </div>
 
-                <a href="/booking?type=activities" class="inline-flex rounded-full bg-gold px-6 py-3 text-sm font-semibold uppercase tracking-[0.12em] text-night transition hover:bg-gold-light">Book Activities Pass</a>
+                <a href="/booking?type=event" class="inline-flex rounded-full bg-gold px-6 py-3 text-sm font-semibold uppercase tracking-[0.12em] text-night transition hover:bg-gold-light">Book Activities Pass</a>
             </section>
 
             <section  data-tab-panel="music-shoots" x-show="activeTab === 'music-shoots'" x-transition.opacity.duration.250ms class="mt-10 space-y-8">

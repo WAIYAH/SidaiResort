@@ -6,6 +6,18 @@
  */
 
 $staff = $_SESSION['staff'] ?? [];
+$unreadRequestsCount = 0;
+$pendingItemsCount = 0;
+
+try {
+    $db = \App\Core\Database::getInstance();
+    $unreadRequestsCount = (int)($db->queryOne('SELECT COUNT(*) AS count FROM contact_messages WHERE is_read = 0')['count'] ?? 0);
+    $pendingBookingsCount = (int)($db->queryOne("SELECT COUNT(*) AS count FROM bookings WHERE status = 'pending' AND deleted_at IS NULL")['count'] ?? 0);
+    $pendingOrdersCount = (int)($db->queryOne("SELECT COUNT(*) AS count FROM orders WHERE status IN ('pending','preparing')")['count'] ?? 0);
+    $pendingItemsCount = $pendingBookingsCount + $pendingOrdersCount;
+} catch (Throwable $exception) {
+    log_error('Failed to load admin header counters.', $exception);
+}
 ?>
 <header class="admin-header">
     <div style="display:flex;align-items:center;gap:0.75rem;">
@@ -26,16 +38,20 @@ $staff = $_SESSION['staff'] ?? [];
     <div class="user-section" style="display:flex; align-items:center; gap:1.5rem;">
         <div style="display:flex; align-items:center; gap:1rem;">
             <!-- Messages / SMS -->
-            <button type="button" class="admin-icon-btn" aria-label="Messages" style="position: relative; background: none; border: none; cursor: pointer; color: #4B5563;">
+            <a href="<?php echo WEB_ROOT; ?>/admin/requests.php" class="admin-icon-btn" aria-label="Messages" style="position: relative; background: none; border: none; cursor: pointer; color: #4B5563; display:inline-flex;">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
-                <span style="position: absolute; top: -5px; right: -5px; background: #EF4444; color: white; font-size: 0.6rem; font-weight: bold; padding: 0.1rem 0.3rem; border-radius: 999px;">3</span>
-            </button>
+                <?php if ($unreadRequestsCount > 0): ?>
+                    <span style="position: absolute; top: -5px; right: -5px; background: #EF4444; color: white; font-size: 0.6rem; font-weight: bold; padding: 0.1rem 0.3rem; border-radius: 999px;"><?php echo $unreadRequestsCount; ?></span>
+                <?php endif; ?>
+            </a>
             
             <!-- Notifications -->
-            <button type="button" class="admin-icon-btn" aria-label="Notifications" style="position: relative; background: none; border: none; cursor: pointer; color: #4B5563;">
+            <a href="<?php echo WEB_ROOT; ?>/admin/bookings.php" class="admin-icon-btn" aria-label="Notifications" style="position: relative; background: none; border: none; cursor: pointer; color: #4B5563; display:inline-flex;">
                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg>
-                <span style="position: absolute; top: -5px; right: -5px; background: #EAB308; color: white; font-size: 0.6rem; font-weight: bold; padding: 0.1rem 0.3rem; border-radius: 999px;">5</span>
-            </button>
+                <?php if ($pendingItemsCount > 0): ?>
+                    <span style="position: absolute; top: -5px; right: -5px; background: #EAB308; color: white; font-size: 0.6rem; font-weight: bold; padding: 0.1rem 0.3rem; border-radius: 999px;"><?php echo $pendingItemsCount; ?></span>
+                <?php endif; ?>
+            </a>
         </div>
         
         <div style="height: 24px; width: 1px; background: #E5E7EB;"></div>

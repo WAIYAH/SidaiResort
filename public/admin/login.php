@@ -11,6 +11,11 @@ $error = '';
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     try {
+        $token = $_POST[CSRF_TOKEN_NAME] ?? null;
+        if (!\App\Core\CSRF::verify(is_string($token) ? $token : null)) {
+            throw new Exception('Security validation failed. Please refresh and try again.');
+        }
+
         $email = trim($_POST['email'] ?? '');
         $password = trim($_POST['password'] ?? '');
 
@@ -53,6 +58,7 @@ $pageTitle = 'Admin Login';
             <?php endif; ?>
 
             <form method="POST" class="admin-form">
+                <?php echo \App\Core\CSRF::field(); ?>
                 <div class="form-group" style="margin-bottom:1rem;">
                     <label for="email">Email Address</label>
                     <input type="email" id="email" name="email" required autofocus
@@ -77,7 +83,7 @@ $pageTitle = 'Admin Login';
         </div>
 
         <p style="text-align:center;margin-top:1.5rem;font-size:0.8rem;color:rgba(255,255,255,0.5);">
-            &copy; <?php echo date('Y'); ?> Sidai Safari Dreams. All rights reserved.
+            &copy; <?php echo date('Y'); ?> Sidai Resort. All rights reserved.
         </p>
     </div>
 </div>

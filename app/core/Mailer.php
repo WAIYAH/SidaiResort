@@ -145,7 +145,7 @@ final class Mailer
             return false;
         }
 
-        $subject = "Welcome to Sidai Safari Dreams — {$booking['booking_ref']}";
+        $subject = "Welcome to Sidai Resort — {$booking['booking_ref']}";
         $body = $this->renderTemplate('checkin-welcome', [
             'TITLE' => 'Welcome',
             'SUBTITLE' => "We're glad you're here",
@@ -208,7 +208,7 @@ final class Mailer
         $defaults = [
             'YEAR' => date('Y'),
             'UNSUBSCRIBE_URL' => rtrim(APP_URL, '/') . '/unsubscribe.php',
-            'TITLE' => 'Sidai Safari Dreams',
+            'TITLE' => 'Sidai Resort',
             'SUBTITLE' => '',
         ];
 
@@ -225,4 +225,5 @@ final class Mailer
         return $html;
     }
 }
+
 

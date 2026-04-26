@@ -158,8 +158,9 @@ $recentPayments = $db->queryAll(
                 <h3 class="admin-card-title">Quick Actions</h3>
             </div>
             <div class="admin-card-body" style="display:flex;gap:1rem;flex-wrap:wrap;">
-                <a href="<?php echo WEB_ROOT; ?>/admin/bookings.php" class="btn btn-gold">📅 New Booking</a>
-                <a href="<?php echo WEB_ROOT; ?>/admin/guests.php" class="btn btn-gold">👥 Add Guest</a>
+                <a href="<?php echo WEB_ROOT; ?>/booking" class="btn btn-gold" target="_blank" rel="noopener noreferrer">📅 New Booking</a>
+                <a href="<?php echo WEB_ROOT; ?>/admin/guests.php" class="btn btn-gold">👥 View Guests</a>
+                <a href="<?php echo WEB_ROOT; ?>/admin/requests.php" class="btn btn-outline">✉️ User Requests</a>
                 <a href="<?php echo WEB_ROOT; ?>/admin/payments.php" class="btn btn-forest">💳 View Payments</a>
                 <a href="<?php echo WEB_ROOT; ?>/admin/reports.php" class="btn btn-forest">📈 Reports</a>
                 <a href="<?php echo WEB_ROOT; ?>/" class="btn btn-outline" target="_blank">🌐 View Website</a>

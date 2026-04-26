@@ -30,21 +30,25 @@ foreach ($allSettings as $setting) {
 
 // Handle save
 $message = null;
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'save_settings') {
-    $updates = $_POST['settings'] ?? [];
+if ($_SERVER['REQUEST_METHOD'] === 'POST' && (string)($_POST['action'] ?? '') === 'save_settings') {
+    $token = $_POST[CSRF_TOKEN_NAME] ?? null;
+    if (!\App\Core\CSRF::verify(is_string($token) ? $token : null)) {
+        $message = ['type' => 'error', 'text' => 'Security validation failed. Please refresh and retry.'];
+    } else {
+        $updates = $_POST['settings'] ?? [];
 
-    foreach ($updates as $key => $value) {
-        $existing = $settingsModel->get($key);
-        $settingsModel->set($key, $value);
-    }
+        foreach ($updates as $key => $value) {
+            $settingsModel->set($key, $value);
+        }
 
-    log_audit_action('settings.update', 'site_settings', null, ['keys' => array_keys($updates)]);
-    $message = ['type' => 'success', 'text' => 'Settings saved successfully.'];
-    $allSettings = $settingsModel->getAll();
-    $grouped = [];
-    foreach ($allSettings as $setting) {
-        $group = $setting['setting_group'] ?? 'general';
-        $grouped[$group][] = $setting;
+        log_audit_action('settings.update', 'site_settings', null, ['keys' => array_keys($updates)]);
+        $message = ['type' => 'success', 'text' => 'Settings saved successfully.'];
+        $allSettings = $settingsModel->getAll();
+        $grouped = [];
+        foreach ($allSettings as $setting) {
+            $group = $setting['setting_group'] ?? 'general';
+            $grouped[$group][] = $setting;
+        }
     }
 }
 ?>
@@ -85,6 +89,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'save_settings
                 <div class="admin-card-body">
                     <p style="font-size:0.875rem;color:#6B7280;margin-bottom:1rem;">Add common settings to the database:</p>
                     <form method="post">
+                        <?php echo \App\Core\CSRF::field(); ?>
                         <input type="hidden" name="action" value="save_settings">
                         <div class="admin-form">
                             <div class="form-row">
@@ -126,6 +131,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && $_POST['action'] === 'save_settings
             </div>
         <?php else: ?>
             <form method="post" class="admin-form">
+                <?php echo \App\Core\CSRF::field(); ?>
                 <input type="hidden" name="action" value="save_settings">
 
                 <?php foreach ($grouped as $group => $settings): ?>

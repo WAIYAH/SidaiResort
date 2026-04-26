@@ -86,16 +86,33 @@ class Booking
     public function update(int $id, array $data): bool
     {
         try {
+            $fields = [];
+            $params = [':id' => $id];
+
+            if (array_key_exists('status', $data) && $data['status'] !== null) {
+                $fields[] = 'status = :status';
+                $params[':status'] = $data['status'];
+            }
+
+            if (array_key_exists('payment_status', $data) && $data['payment_status'] !== null) {
+                $fields[] = 'payment_status = :payment_status';
+                $params[':payment_status'] = $data['payment_status'];
+            }
+
+            if (array_key_exists('notes', $data)) {
+                $fields[] = 'notes = :notes';
+                $params[':notes'] = $data['notes'];
+            }
+
+            if ($fields === []) {
+                return false;
+            }
+
+            $fields[] = 'updated_at = NOW()';
+
             $this->database->query(
-                'UPDATE bookings SET status = :status, payment_status = :payment_status, 
-                 notes = :notes, updated_at = NOW()
-                 WHERE id = :id',
-                [
-                    ':id' => $id,
-                    ':status' => $data['status'] ?? null,
-                    ':payment_status' => $data['payment_status'] ?? null,
-                    ':notes' => $data['notes'] ?? null,
-                ]
+                'UPDATE bookings SET ' . implode(', ', $fields) . ' WHERE id = :id',
+                $params
             );
 
             return true;

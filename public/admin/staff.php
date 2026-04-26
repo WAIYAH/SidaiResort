@@ -33,38 +33,43 @@ $roleLabels = [
 // Handle actions
 $message = null;
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $action = $_POST['action'] ?? '';
+    $token = $_POST[CSRF_TOKEN_NAME] ?? null;
+    if (!\App\Core\CSRF::verify(is_string($token) ? $token : null)) {
+        $message = ['type' => 'error', 'text' => 'Security validation failed. Please refresh and retry.'];
+    } else {
+        $action = $_POST['action'] ?? '';
 
-    if ($action === 'create') {
-        $data = [
-            'full_name' => trim($_POST['full_name'] ?? ''),
-            'email' => trim($_POST['email'] ?? ''),
-            'phone' => trim($_POST['phone'] ?? ''),
-            'role' => $_POST['role'] ?? 'receptionist',
-            'password' => $_POST['password'] ?? '',
-        ];
+        if ($action === 'create') {
+            $data = [
+                'full_name' => trim($_POST['full_name'] ?? ''),
+                'email' => trim($_POST['email'] ?? ''),
+                'phone' => trim($_POST['phone'] ?? ''),
+                'role' => $_POST['role'] ?? 'receptionist',
+                'password' => $_POST['password'] ?? '',
+            ];
 
-        if ($data['full_name'] && $data['email'] && $data['password']) {
-            $id = $staffModel->create($data);
-            if ($id) {
-                $message = ['type' => 'success', 'text' => 'Staff member created successfully.'];
-                log_audit_action('staff.create', 'staff', $id);
-                $staffMembers = $staffModel->getAll();
+            if ($data['full_name'] && $data['email'] && $data['password']) {
+                $id = $staffModel->create($data);
+                if ($id) {
+                    $message = ['type' => 'success', 'text' => 'Staff member created successfully.'];
+                    log_audit_action('staff.create', 'staff', $id);
+                    $staffMembers = $staffModel->getAll();
+                } else {
+                    $message = ['type' => 'error', 'text' => 'Failed to create staff member. Email may already exist.'];
+                }
             } else {
-                $message = ['type' => 'error', 'text' => 'Failed to create staff member. Email may already exist.'];
+                $message = ['type' => 'error', 'text' => 'Name, email, and password are required.'];
             }
-        } else {
-            $message = ['type' => 'error', 'text' => 'Name, email, and password are required.'];
         }
-    }
 
-    if ($action === 'deactivate') {
-        $id = (int)($_POST['staff_id'] ?? 0);
-        if ($id > 0 && $id !== $staff['id']) {
-            $staffModel->deactivate($id);
-            $message = ['type' => 'success', 'text' => 'Staff member deactivated.'];
-            log_audit_action('staff.deactivate', 'staff', $id);
-            $staffMembers = $staffModel->getAll();
+        if ($action === 'deactivate') {
+            $id = (int)($_POST['staff_id'] ?? 0);
+            if ($id > 0 && $id !== $staff['id']) {
+                $staffModel->deactivate($id);
+                $message = ['type' => 'success', 'text' => 'Staff member deactivated.'];
+                log_audit_action('staff.deactivate', 'staff', $id);
+                $staffMembers = $staffModel->getAll();
+            }
         }
     }
 }
@@ -120,6 +125,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                 <td>
                                     <?php if ((int)$member['id'] !== $staff['id']): ?>
                                         <form method="post" style="display:inline;" onsubmit="return confirm('Deactivate this staff member?');">
+                                            <?php echo \App\Core\CSRF::field(); ?>
                                             <input type="hidden" name="action" value="deactivate">
                                             <input type="hidden" name="staff_id" value="<?php echo (int)$member['id']; ?>">
                                             <button type="submit" class="btn btn-sm btn-danger">Deactivate</button>
@@ -145,6 +151,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <button class="admin-modal-close" data-modal-close>&times;</button>
         </div>
         <form method="post" class="admin-form">
+            <?php echo \App\Core\CSRF::field(); ?>
             <input type="hidden" name="action" value="create">
             <div class="admin-modal-body">
                 <div class="form-row">

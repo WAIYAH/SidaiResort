@@ -32,8 +32,8 @@ final class Receipt
             }
 
             $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_PAGE_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
-            $pdf->SetCreator('Sidai Safari Dreams');
-            $pdf->SetAuthor('Sidai Safari Dreams');
+            $pdf->SetCreator('Sidai Resort');
+            $pdf->SetAuthor('Sidai Resort');
             $pdf->SetTitle('Booking Receipt - ' . $booking['booking_ref']);
             $pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
             $pdf->SetMargins(15, 15, 15);
@@ -41,7 +41,7 @@ final class Receipt
 
             // Header
             $pdf->SetFont('helvetica', 'B', 20);
-            $pdf->Cell(0, 10, 'SIDAI SAFARI DREAMS', 0, 1, 'C');
+            $pdf->Cell(0, 10, 'Sidai Resort', 0, 1, 'C');
             $pdf->SetFont('helvetica', '', 10);
             $pdf->Cell(0, 5, 'Booking Receipt', 0, 1, 'C');
             $pdf->Ln(10);
@@ -150,3 +150,4 @@ final class Receipt
         readfile($filepath);
     }
 }
+

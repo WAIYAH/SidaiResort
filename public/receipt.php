@@ -1,156 +1,159 @@
 <?php declare(strict_types=1);
 
+ob_start();
+
 require_once dirname(__DIR__) . '/app/includes/init.php';
 
-use App\Core\Receipt;
+$pageTitle = 'Booking Receipt | Sidai Resort';
+$pageDescription = 'View your Sidai Resort booking receipt and payment summary.';
+$pageImage = APP_URL . '/assets/images/sidai-logo.png';
+$pageRobots = 'noindex, nofollow';
 
-$pageTitle = 'Booking Receipt';
-$pageDescription = 'Your booking receipt';
-
-$bookingRef = $_GET['ref'] ?? null;
+$bookingRef = trim((string)($_GET['ref'] ?? ''));
 $booking = null;
 
-if ($bookingRef) {
-    $bookingModel = new \App\Models\Booking();
-    $booking = $bookingModel->getByRef($bookingRef);
+if ($bookingRef !== '') {
+    try {
+        $bookingModel = new \App\Models\Booking();
+        $booking = $bookingModel->getByRef($bookingRef);
+    } catch (Throwable $exception) {
+        log_error('Receipt page failed to load booking.', $exception);
+    }
 }
 
+include APP_PATH . '/includes/head.php';
+include APP_PATH . '/includes/header.php';
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <?php include APP_PATH . '/includes/head.php'; ?>
-</head>
-<body>
-    <?php include APP_PATH . '/includes/header.php'; ?>
+<main class="pt-28 lg:pt-32 bg-cream min-h-screen pb-20">
+    <section class="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <?php if ($booking !== null): ?>
+            <?php
+                $subtotal = (float)($booking['subtotal'] ?? 0);
+                $discount = (float)($booking['discount_amount'] ?? 0);
+                $tax = (float)($booking['tax_amount'] ?? 0);
+                $total = (float)($booking['total_amount'] ?? 0);
+                $deposit = (float)($booking['deposit_amount'] ?? 0);
+                $balance = (float)($booking['balance_due'] ?? max(0, $total - $deposit));
+            ?>
+            <article class="rounded-3xl border border-brown/10 bg-white p-6 shadow-lg sm:p-8">
+                <div class="mb-8 border-b border-gold/30 pb-6 text-center">
+                    <img src="<?php echo WEB_ROOT; ?>/assets/images/sidai-logo.png" alt="Sidai Resort logo" class="mx-auto h-16 w-auto">
+                    <p class="mt-3 text-xs font-semibold uppercase tracking-[0.24em] text-earth">Official Receipt</p>
+                    <h1 class="mt-2 font-display text-4xl text-brown">Booking Receipt</h1>
+                </div>
 
-    <main class="min-h-screen bg-cream pt-20 pb-10">
-        <div class="container mx-auto px-4 max-w-3xl">
-            <?php if ($booking): ?>
-                <div class="bg-white rounded-lg shadow-lg p-8 mb-8">
-                    <div class="text-center mb-8 pb-8 border-b-2 border-gold flex flex-col items-center">
-                        <img src="<?php echo WEB_ROOT; ?>/assets/images/sidai-logo.png" alt="Sidai Resort" class="h-16 w-auto mb-4">
-                        <p class="text-lg text-gold font-semibold tracking-wider">Booking Receipt</p>
-                    </div>
-
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
-                        <div>
-                            <h3 class="text-sm font-semibold text-gray-600 mb-2">GUEST INFORMATION</h3>
-                            <p class="font-semibold text-forest-green"><?php echo htmlspecialchars($booking['full_name']); ?></p>
-                            <p class="text-gray-600"><?php echo htmlspecialchars($booking['email']); ?></p>
-                            <p class="text-gray-600"><?php echo htmlspecialchars($booking['phone']); ?></p>
-                        </div>
-
-                        <div>
-                            <h3 class="text-sm font-semibold text-gray-600 mb-2">BOOKING DETAILS</h3>
-                            <p class="text-gray-600"><span class="font-semibold">Reference:</span> <?php echo htmlspecialchars($booking['booking_ref']); ?></p>
-                            <p class="text-gray-600"><span class="font-semibold">Type:</span> <?php echo ucfirst(str_replace('_', ' ', $booking['booking_type'])); ?></p>
-                            <p class="text-gray-600"><span class="font-semibold">Status:</span> <span class="text-gold font-semibold"><?php echo ucfirst($booking['status']); ?></span></p>
-                        </div>
-                    </div>
-
-                    <div class="mb-8 pb-8 border-b-2 border-gold-light">
-                        <h3 class="text-lg font-semibold text-forest-green mb-4">BOOKING DETAILS</h3>
-
-                        <div class="grid grid-cols-2 gap-4">
-                            <?php if ($booking['check_in']): ?>
-                                <div>
-                                    <p class="text-sm text-gray-600">Check-in</p>
-                                    <p class="font-semibold"><?php echo format_eat_date($booking['check_in']); ?></p>
-                                </div>
-                            <?php endif; ?>
-
-                            <?php if ($booking['check_out']): ?>
-                                <div>
-                                    <p class="text-sm text-gray-600">Check-out</p>
-                                    <p class="font-semibold"><?php echo format_eat_date($booking['check_out']); ?></p>
-                                </div>
-                            <?php endif; ?>
-
+                <div class="grid gap-6 md:grid-cols-2">
+                    <div class="rounded-2xl border border-brown/10 bg-cream/45 p-5">
+                        <h2 class="font-display text-2xl text-brown">Guest Information</h2>
+                        <dl class="mt-4 space-y-2 text-sm text-brown/85">
                             <div>
-                                <p class="text-sm text-gray-600">Number of Guests</p>
-                                <p class="font-semibold"><?php echo $booking['num_guests']; ?></p>
+                                <dt class="font-semibold">Name</dt>
+                                <dd><?php echo safe_html((string)$booking['full_name']); ?></dd>
                             </div>
+                            <div>
+                                <dt class="font-semibold">Email</dt>
+                                <dd><?php echo safe_html((string)$booking['email']); ?></dd>
+                            </div>
+                            <div>
+                                <dt class="font-semibold">Phone</dt>
+                                <dd><?php echo safe_html((string)$booking['phone']); ?></dd>
+                            </div>
+                        </dl>
+                    </div>
 
-                            <?php if ($booking['num_nights']): ?>
+                    <div class="rounded-2xl border border-brown/10 bg-cream/45 p-5">
+                        <h2 class="font-display text-2xl text-brown">Booking Details</h2>
+                        <dl class="mt-4 space-y-2 text-sm text-brown/85">
+                            <div>
+                                <dt class="font-semibold">Reference</dt>
+                                <dd><?php echo safe_html((string)$booking['booking_ref']); ?></dd>
+                            </div>
+                            <div>
+                                <dt class="font-semibold">Type</dt>
+                                <dd><?php echo safe_html(ucfirst(str_replace('_', ' ', (string)$booking['booking_type']))); ?></dd>
+                            </div>
+                            <div>
+                                <dt class="font-semibold">Status</dt>
+                                <dd><?php echo safe_html(ucfirst(str_replace('_', ' ', (string)$booking['status']))); ?></dd>
+                            </div>
+                            <?php if (!empty($booking['check_in'])): ?>
                                 <div>
-                                    <p class="text-sm text-gray-600">Nights</p>
-                                    <p class="font-semibold"><?php echo $booking['num_nights']; ?></p>
+                                    <dt class="font-semibold">Check-in</dt>
+                                    <dd><?php echo safe_html(format_eat_date((string)$booking['check_in'])); ?></dd>
                                 </div>
                             <?php endif; ?>
-                        </div>
-                    </div>
-
-                    <div class="mb-8">
-                        <h3 class="text-lg font-semibold text-forest-green mb-4">AMOUNT DETAILS</h3>
-
-                        <div class="space-y-2">
-                            <div class="flex justify-between">
-                                <span class="text-gray-600">Subtotal:</span>
-                                <span>KES <?php echo format_kes($booking['subtotal']); ?></span>
+                            <?php if (!empty($booking['check_out'])): ?>
+                                <div>
+                                    <dt class="font-semibold">Check-out</dt>
+                                    <dd><?php echo safe_html(format_eat_date((string)$booking['check_out'])); ?></dd>
+                                </div>
+                            <?php endif; ?>
+                            <div>
+                                <dt class="font-semibold">Guests</dt>
+                                <dd><?php echo (int)($booking['num_guests'] ?? 1); ?></dd>
                             </div>
-
-                            <?php if ($booking['discount_amount'] > 0): ?>
-                                <div class="flex justify-between text-green-600">
-                                    <span>Discount:</span>
-                                    <span>-KES <?php echo format_kes($booking['discount_amount']); ?></span>
-                                </div>
-                            <?php endif; ?>
-
-                            <?php if ($booking['tax_amount'] > 0): ?>
-                                <div class="flex justify-between">
-                                    <span class="text-gray-600">Tax (16%):</span>
-                                    <span>KES <?php echo format_kes($booking['tax_amount']); ?></span>
-                                </div>
-                            <?php endif; ?>
-
-                            <div class="flex justify-between text-lg font-bold pt-2 border-t-2 border-gold">
-                                <span>Total Amount:</span>
-                                <span class="text-gold">KES <?php echo format_kes($booking['total_amount']); ?></span>
-                            </div>
-
-                            <?php if ($booking['deposit_amount'] > 0): ?>
-                                <div class="flex justify-between">
-                                    <span class="text-gray-600">Deposit Paid:</span>
-                                    <span>KES <?php echo format_kes($booking['deposit_amount']); ?></span>
-                                </div>
-                            <?php endif; ?>
-
-                            <?php if ($booking['balance_due'] > 0): ?>
-                                <div class="flex justify-between font-semibold pt-2 border-t-2 border-gold-light">
-                                    <span>Balance Due:</span>
-                                    <span class="text-forest-green">KES <?php echo format_kes($booking['balance_due']); ?></span>
-                                </div>
-                            <?php endif; ?>
-                        </div>
-                    </div>
-
-                    <div class="flex gap-4">
-                        <button onclick="window.print()" class="flex-1 bg-forest-green hover:bg-forest-green-dark text-white font-semibold py-3 rounded-lg transition">
-                            🖨️ Print Receipt
-                        </button>
-                        <a href="<?php echo WEB_ROOT; ?>" class="flex-1 bg-gold hover:bg-gold-dark text-white font-semibold py-3 rounded-lg text-center transition">
-                            Back to Home
-                        </a>
+                        </dl>
                     </div>
                 </div>
 
-                <div class="bg-blue-50 border-l-4 border-blue-500 p-4 rounded">
-                    <p class="text-sm text-gray-700">
-                        <strong>Confirmation:</strong> A detailed receipt has been sent to your email address. Please check your email for further instructions.
-                    </p>
+                <div class="mt-6 rounded-2xl border border-gold/30 bg-night p-5 text-cream">
+                    <h2 class="font-display text-2xl text-gold">Amount Summary</h2>
+                    <dl class="mt-4 space-y-2 text-sm">
+                        <div class="flex items-center justify-between gap-3">
+                            <dt>Subtotal</dt>
+                            <dd><?php echo safe_html(format_kes($subtotal)); ?></dd>
+                        </div>
+                        <?php if ($discount > 0): ?>
+                            <div class="flex items-center justify-between gap-3 text-green-300">
+                                <dt>Discount</dt>
+                                <dd>-<?php echo safe_html(format_kes($discount)); ?></dd>
+                            </div>
+                        <?php endif; ?>
+                        <?php if ($tax > 0): ?>
+                            <div class="flex items-center justify-between gap-3">
+                                <dt>Tax</dt>
+                                <dd><?php echo safe_html(format_kes($tax)); ?></dd>
+                            </div>
+                        <?php endif; ?>
+                        <div class="flex items-center justify-between gap-3 border-t border-gold/25 pt-2 text-base font-semibold text-white">
+                            <dt>Total</dt>
+                            <dd><?php echo safe_html(format_kes($total)); ?></dd>
+                        </div>
+                        <?php if ($deposit > 0): ?>
+                            <div class="flex items-center justify-between gap-3">
+                                <dt>Deposit Paid</dt>
+                                <dd><?php echo safe_html(format_kes($deposit)); ?></dd>
+                            </div>
+                        <?php endif; ?>
+                        <div class="flex items-center justify-between gap-3 border-t border-gold/25 pt-2 text-base font-semibold text-gold">
+                            <dt>Balance Due</dt>
+                            <dd><?php echo safe_html(format_kes($balance)); ?></dd>
+                        </div>
+                    </dl>
                 </div>
-            <?php else: ?>
-                <div class="bg-white rounded-lg shadow-lg p-8 text-center">
-                    <p class="text-gray-600 mb-4">Receipt not found. Please check your booking reference.</p>
-                    <a href="<?php echo WEB_ROOT; ?>" class="inline-block bg-gold hover:bg-gold-dark text-white font-semibold py-3 px-8 rounded-lg transition">
-                        Go to Home
+
+                <div class="mt-7 flex flex-col gap-3 sm:flex-row">
+                    <button type="button" onclick="window.print()" class="inline-flex w-full items-center justify-center rounded-full border border-brown/30 px-6 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-brown transition hover:border-gold hover:text-gold-dark sm:w-auto">
+                        Print
+                    </button>
+                    <a href="<?php echo WEB_ROOT; ?>/payment?ref=<?php echo rawurlencode((string)$booking['booking_ref']); ?>" class="inline-flex w-full items-center justify-center rounded-full bg-gold px-6 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-night transition hover:bg-gold-light sm:w-auto">
+                        Pay Balance
+                    </a>
+                    <a href="<?php echo WEB_ROOT; ?>/" class="inline-flex w-full items-center justify-center rounded-full bg-forest px-6 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-cream transition hover:bg-forest-light sm:w-auto">
+                        Back Home
                     </a>
                 </div>
-            <?php endif; ?>
-        </div>
-    </main>
+            </article>
+        <?php else: ?>
+            <div class="rounded-3xl border border-red-200 bg-red-50 p-8 text-center">
+                <h1 class="font-display text-4xl text-brown">Receipt Not Found</h1>
+                <p class="mt-3 text-sm text-red-700">We could not find that booking reference. Please verify and try again.</p>
+                <a href="<?php echo WEB_ROOT; ?>/booking" class="mt-5 inline-flex rounded-full bg-gold px-6 py-3 text-xs font-semibold uppercase tracking-[0.14em] text-night transition hover:bg-gold-light">
+                    Create New Booking
+                </a>
+            </div>
+        <?php endif; ?>
+    </section>
+</main>
 
-    <?php include APP_PATH . '/includes/footer.php'; ?>
-</body>
-</html>
+<?php include APP_PATH . '/includes/footer.php'; ?>

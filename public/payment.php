@@ -1,165 +1,175 @@
 <?php declare(strict_types=1);
 
+ob_start();
+
 require_once dirname(__DIR__) . '/app/includes/init.php';
 
-$pageTitle = 'Payment';
-$pageDescription = 'Complete your payment';
+$pageTitle = 'Complete Payment | Sidai Resort';
+$pageDescription = 'Secure M-Pesa payment for your Sidai Resort booking.';
+$pageImage = APP_URL . '/assets/images/hero-sunset.jpg';
+$pageRobots = 'noindex, nofollow';
 
-$bookingRef = $_GET['ref'] ?? null;
+$bookingRef = trim((string)($_GET['ref'] ?? ''));
 $booking = null;
 
-if ($bookingRef) {
-    $bookingModel = new \App\Models\Booking();
-    $booking = $bookingModel->getByRef($bookingRef);
+if ($bookingRef !== '') {
+    try {
+        $bookingModel = new \App\Models\Booking();
+        $booking = $bookingModel->getByRef($bookingRef);
+    } catch (Throwable $exception) {
+        log_error('Payment page failed to fetch booking.', $exception);
+    }
 }
 
-?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <?php include APP_PATH . '/includes/head.php'; ?>
-</head>
-<body>
-    <?php include APP_PATH . '/includes/header.php'; ?>
+$amountDue = 0.0;
+if ($booking !== null) {
+    $amountDue = (float)($booking['balance_due'] ?? ((float)($booking['total_amount'] ?? 0) - (float)($booking['deposit_amount'] ?? 0)));
+    if ($amountDue < 0) {
+        $amountDue = 0.0;
+    }
+}
 
-    <main class="min-h-screen bg-cream pt-20 pb-10">
-        <div class="container mx-auto px-4 max-w-2xl">
-            <div class="text-center mb-12">
-                <h1 class="text-4xl font-playfair font-bold text-forest-green mb-4">Complete Payment</h1>
-                <p class="text-lg text-gray-600">Secure payment through M-Pesa</p>
+include APP_PATH . '/includes/head.php';
+include APP_PATH . '/includes/header.php';
+?>
+<main class="pt-28 lg:pt-32 bg-cream min-h-screen pb-20">
+    <section class="mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+        <div class="rounded-3xl border border-brown/10 bg-white p-6 shadow-lg sm:p-8">
+            <div class="mb-8 text-center">
+                <p class="text-sm font-semibold uppercase tracking-[0.24em] text-earth">Payment</p>
+                <h1 class="mt-2 font-display text-4xl text-brown">Complete Your Booking Payment</h1>
+                <p class="mt-3 text-sm leading-7 text-brown/75">Secure mobile money payment powered by M-Pesa.</p>
             </div>
 
-            <?php if ($booking): ?>
-                <div class="bg-white rounded-lg shadow-lg p-8 mb-8">
-                    <h2 class="text-2xl font-bold text-forest-green mb-6">Booking Summary</h2>
-
-                    <div class="space-y-3 mb-6 pb-6 border-b-2 border-gold-light">
-                        <div class="flex justify-between">
-                            <span class="text-gray-600">Booking Reference:</span>
-                            <span class="font-semibold"><?php echo htmlspecialchars($booking['booking_ref']); ?></span>
+            <?php if ($booking !== null): ?>
+                <div class="rounded-2xl border border-gold/25 bg-cream/45 p-5">
+                    <h2 class="font-display text-2xl text-brown">Booking Summary</h2>
+                    <dl class="mt-4 space-y-3 text-sm text-brown/85">
+                        <div class="flex items-center justify-between gap-3">
+                            <dt>Booking Reference</dt>
+                            <dd class="font-semibold"><?php echo safe_html((string)$booking['booking_ref']); ?></dd>
                         </div>
-                        <div class="flex justify-between">
-                            <span class="text-gray-600">Guest Name:</span>
-                            <span class="font-semibold"><?php echo htmlspecialchars($booking['full_name']); ?></span>
+                        <div class="flex items-center justify-between gap-3">
+                            <dt>Guest Name</dt>
+                            <dd class="font-semibold"><?php echo safe_html((string)$booking['full_name']); ?></dd>
                         </div>
-                        <div class="flex justify-between">
-                            <span class="text-gray-600">Amount Due:</span>
-                            <span class="font-bold text-lg">KES <?php echo format_kes($booking['balance_due']); ?></span>
+                        <div class="flex items-center justify-between gap-3">
+                            <dt>Amount Due</dt>
+                            <dd class="text-base font-bold text-gold"><?php echo safe_html(format_kes($amountDue)); ?></dd>
                         </div>
-                    </div>
-
-                    <h3 class="text-xl font-bold text-forest-green mb-4">Payment Method</h3>
-
-                    <form id="paymentForm" class="space-y-4">
-                        <div>
-                            <label for="phone" class="block text-sm font-semibold text-forest-green mb-2">Phone Number</label>
-                            <input type="tel" id="phone" name="phone" placeholder="+254712345678" required
-                                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold"
-                                   value="<?php echo htmlspecialchars($booking['phone']); ?>">
-                        </div>
-
-                        <button type="submit" class="w-full bg-gold hover:bg-gold-dark text-white font-semibold py-3 rounded-lg transition">
-                            Pay via M-Pesa
-                        </button>
-
-                        <p class="text-sm text-gray-600 text-center mt-4">
-                            You will receive an M-Pesa STK prompt on your phone. Enter your M-Pesa PIN to complete the payment.
-                        </p>
-                    </form>
-
-                    <div id="paymentStatus" class="hidden mt-6 p-4 rounded-lg">
-                        <p id="statusMessage"></p>
-                    </div>
+                    </dl>
                 </div>
+
+                <form id="paymentForm" class="mt-6 space-y-4">
+                    <?php echo csrf_token_field(); ?>
+                    <input type="hidden" name="booking_ref" value="<?php echo safe_html((string)$booking['booking_ref']); ?>">
+                    <input type="hidden" name="amount" value="<?php echo safe_html((string)$amountDue); ?>">
+
+                    <div>
+                        <label for="phone" class="mb-2 block text-sm font-semibold text-brown">M-Pesa Phone Number</label>
+                        <input id="phone" name="phone" type="tel" required value="<?php echo safe_html((string)($booking['phone'] ?? '')); ?>" placeholder="2547xxxxxxxx" class="w-full rounded-xl border border-brown/20 bg-cream px-4 py-3 text-sm text-brown focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/40">
+                    </div>
+
+                    <button type="submit" class="inline-flex w-full items-center justify-center rounded-full bg-gold px-6 py-3 text-sm font-semibold uppercase tracking-[0.14em] text-night transition hover:bg-gold-light">
+                        Pay via M-Pesa
+                    </button>
+
+                    <p class="text-xs leading-6 text-brown/70">After you submit, check your phone for the STK push prompt and enter your M-Pesa PIN.</p>
+                </form>
+
+                <div id="paymentStatus" class="mt-5 hidden rounded-xl border px-4 py-3 text-sm font-medium"></div>
             <?php else: ?>
-                <div class="bg-white rounded-lg shadow-lg p-8 text-center">
-                    <p class="text-gray-600 mb-4">No booking found. Please check your booking reference.</p>
-                    <a href="<?php echo WEB_ROOT; ?>/booking.php" class="inline-block bg-gold hover:bg-gold-dark text-white font-semibold py-3 px-8 rounded-lg transition">
-                        Make a New Booking
-                    </a>
+                <div class="rounded-2xl border border-red-200 bg-red-50 p-5 text-center">
+                    <p class="text-sm text-red-700">Booking reference was not found. Please check your link and try again.</p>
+                    <a href="<?php echo WEB_ROOT; ?>/booking" class="mt-4 inline-flex rounded-full bg-gold px-6 py-3 text-xs font-semibold uppercase tracking-[0.14em] text-night transition hover:bg-gold-light">Create New Booking</a>
                 </div>
             <?php endif; ?>
         </div>
-    </main>
+    </section>
+</main>
 
-    <script>
-        document.getElementById('paymentForm')?.addEventListener('submit', async function(e) {
-            e.preventDefault();
+<script>
+(() => {
+    const form = document.getElementById('paymentForm');
+    const statusBox = document.getElementById('paymentStatus');
 
-            const phone = document.getElementById('phone').value;
-            const bookingRef = '<?php echo htmlspecialchars($booking['booking_ref']); ?>';
+    const renderStatus = (message, type) => {
+        if (!statusBox) {
+            return;
+        }
+        statusBox.classList.remove('hidden', 'border-red-300', 'bg-red-50', 'text-red-700', 'border-green-300', 'bg-green-50', 'text-green-700', 'border-blue-300', 'bg-blue-50', 'text-blue-700');
+        if (type === 'error') {
+            statusBox.classList.add('border-red-300', 'bg-red-50', 'text-red-700');
+        } else if (type === 'success') {
+            statusBox.classList.add('border-green-300', 'bg-green-50', 'text-green-700');
+        } else {
+            statusBox.classList.add('border-blue-300', 'bg-blue-50', 'text-blue-700');
+        }
+        statusBox.textContent = message;
+    };
 
+    const pollMpesaStatus = async (checkoutRequestId, bookingRef) => {
+        let attempts = 0;
+        const maxAttempts = 24;
+        const pollTimer = setInterval(async () => {
+            attempts += 1;
             try {
-                const response = await fetch('<?php echo WEB_ROOT; ?>/api/mpesa-initiate.php', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        phone: phone,
-                        booking_ref: bookingRef,
-                        amount: <?php echo $booking['balance_due']; ?>
-                    })
-                });
-
-                const data = await response.json();
-
-                if (data.success) {
-                    showStatus('Check your phone for M-Pesa STK prompt...', 'info');
-                    startPolling(data.checkout_request_id);
-                } else {
-                    showStatus('Failed to initiate payment: ' + data.message, 'error');
+                const response = await fetch(`<?php echo WEB_ROOT; ?>/api/mpesa-status.php?checkout_request_id=${encodeURIComponent(checkoutRequestId)}`);
+                const result = await response.json();
+                if (result.status === 'completed') {
+                    clearInterval(pollTimer);
+                    renderStatus('Payment confirmed. Redirecting to your receipt...', 'success');
+                    window.setTimeout(() => {
+                        window.location.href = `<?php echo WEB_ROOT; ?>/receipt?ref=${encodeURIComponent(bookingRef)}`;
+                    }, 1400);
+                    return;
                 }
-            } catch (error) {
-                showStatus('Error: ' + error.message, 'error');
-            }
-        });
-
-        function showStatus(message, type) {
-            const statusDiv = document.getElementById('paymentStatus');
-            const msgDiv = document.getElementById('statusMessage');
-            
-            statusDiv.classList.remove('hidden', 'bg-green-100', 'bg-red-100', 'text-green-800', 'text-red-800');
-            msgDiv.textContent = message;
-
-            if (type === 'info') {
-                statusDiv.classList.add('bg-blue-100', 'text-blue-800');
-            } else if (type === 'error') {
-                statusDiv.classList.add('bg-red-100', 'text-red-800');
-            } else if (type === 'success') {
-                statusDiv.classList.add('bg-green-100', 'text-green-800');
-            }
-        }
-
-        function startPolling(checkoutRequestId) {
-            const maxAttempts = 24; // 2 minutes with 5-second intervals
-            let attempts = 0;
-
-            const pollInterval = setInterval(async () => {
-                attempts++;
-
-                try {
-                    const response = await fetch(`<?php echo WEB_ROOT; ?>/api/mpesa-status.php?checkout_request_id=${checkoutRequestId}`);
-                    const data = await response.json();
-
-                    if (data.status === 'completed') {
-                        clearInterval(pollInterval);
-                        showStatus('Payment successful! Redirecting...', 'success');
-                        setTimeout(() => {
-                            window.location.href = `<?php echo WEB_ROOT; ?>/receipt.php?ref=<?php echo htmlspecialchars($booking['booking_ref']); ?>`;
-                        }, 2000);
-                    } else if (data.status === 'failed') {
-                        clearInterval(pollInterval);
-                        showStatus('Payment failed. Please try again.', 'error');
-                    } else if (attempts >= maxAttempts) {
-                        clearInterval(pollInterval);
-                        showStatus('Payment timeout. Please check your account and try again.', 'error');
-                    }
-                } catch (error) {
-                    console.error('Polling error:', error);
+                if (result.status === 'failed') {
+                    clearInterval(pollTimer);
+                    renderStatus('Payment failed or was cancelled. Please retry.', 'error');
+                    return;
                 }
-            }, 5000);
-        }
-    </script>
+                if (attempts >= maxAttempts) {
+                    clearInterval(pollTimer);
+                    renderStatus('Still waiting for payment confirmation. You can refresh this page shortly.', 'info');
+                }
+            } catch (_error) {
+                if (attempts >= maxAttempts) {
+                    clearInterval(pollTimer);
+                    renderStatus('Unable to confirm payment status right now. Please refresh shortly.', 'error');
+                }
+            }
+        }, 5000);
+    };
 
-    <?php include APP_PATH . '/includes/footer.php'; ?>
-</body>
-</html>
+    if (!form) {
+        return;
+    }
+
+    form.addEventListener('submit', async (event) => {
+        event.preventDefault();
+        renderStatus('Initiating M-Pesa prompt...', 'info');
+
+        const payload = new FormData(form);
+        try {
+            const response = await fetch('<?php echo WEB_ROOT; ?>/api/mpesa-initiate.php', {
+                method: 'POST',
+                body: payload,
+                headers: { 'X-Requested-With': 'XMLHttpRequest' },
+            });
+            const result = await response.json();
+
+            if (!response.ok || !result.success) {
+                throw new Error(result.message || 'Unable to start M-Pesa payment.');
+            }
+
+            renderStatus('STK push sent. Complete payment on your phone.', 'info');
+            pollMpesaStatus(result.checkout_request_id, payload.get('booking_ref') || '');
+        } catch (error) {
+            renderStatus(error && error.message ? error.message : 'Payment request failed.', 'error');
+        }
+    });
+})();
+</script>
+
+<?php include APP_PATH . '/includes/footer.php'; ?>

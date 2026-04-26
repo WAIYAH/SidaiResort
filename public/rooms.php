@@ -1,191 +1,205 @@
 <?php declare(strict_types=1);
 
+ob_start();
+
 require_once dirname(__DIR__) . '/app/includes/init.php';
 
-$pageTitle = 'Luxury Rooms | Emirishoi, Elalai & More | Sidai Resort';
-$pageDescription = 'Discover our 11 uniquely named Maasai sanctuaries at Sidai Resort Ã¢â‚¬â€ from Emirishoi to Elalai. Nothing but the Best in luxury forest accommodation.';
+use App\Core\Database;
 
-$db = \App\Core\Database::getInstance();
-$dbRooms = $db->query("SELECT * FROM rooms WHERE is_available = 1 ORDER BY price_per_night DESC");
+$pageTitle = 'Luxury Rooms | Sidai Resort';
+$pageDescription = 'Discover 11 uniquely named Maasai-inspired sanctuaries at Sidai Resort, with premium comfort and scenic Loita Hills ambience.';
+$pageImage = APP_URL . '/assets/images/hero-section.jpg';
+$pageKeywords = 'Sidai Resort rooms, Narok accommodation, Loita Hills stay, luxury room booking';
 
-$premiumRoom = null;
+$roomImageMap = [
+    'elalai' => '/assets/images/hero-sunset.jpg',
+    'emirishoi' => '/assets/images/hero-section.jpg',
+    'enchipai' => '/assets/images/swimming-pool.jpg',
+    'eserian' => '/assets/images/dining.jpg',
+    'empiris' => '/assets/images/conferencing.jpg',
+    'ewangan' => '/assets/images/pool-lounge.jpg',
+    'enkanasa' => '/assets/images/conference-suite.jpg',
+    'esipil' => '/assets/images/hero-section.jpg',
+    'enkipai' => '/assets/images/hero-sunset.jpg',
+    'eripoto' => '/assets/images/dining-signature.jpg',
+    'ereto' => '/assets/images/hero-sunset.jpg',
+];
+
+$fallbackRooms = [
+    ['name' => 'Elalai', 'description' => 'Our signature sanctuary with elevated comfort and premium views.', 'capacity' => 4, 'price_per_night' => 3200, 'type' => 'suite'],
+    ['name' => 'Emirishoi', 'description' => 'Bright and calming room with warm forest character.', 'capacity' => 2, 'price_per_night' => 2000, 'type' => 'standard'],
+    ['name' => 'Enchipai', 'description' => 'Earthy tones and cozy textures for restful nights.', 'capacity' => 2, 'price_per_night' => 1200, 'type' => 'standard'],
+];
+
 $rooms = [];
-$index = 1;
+$loadNotice = null;
 
-foreach ($dbRooms as $r) {
-    $formattedRoom = [
-        'id' => strtolower(str_replace(' ', '_', $r['name'])),
-        'name' => $r['name'],
-        'desc' => $r['description'],
-        'amenities' => json_decode($r['amenities'] ?? '[]', true) ?: [],
-        'image' => 'https://loremflickr.com/800/600/luxury,bedroom?random=' . $index++,
-        'price' => (float)$r['price_per_night'],
-        'capacity' => (int)$r['capacity'],
-        'isPremium' => ($r['name'] === 'Elalai')
-    ];
+try {
+    $database = Database::getInstance();
+    $rooms = $database->queryAll(
+        'SELECT id, name, description, capacity, price_per_night, type, amenities
+         FROM rooms
+         WHERE is_available = 1
+         ORDER BY price_per_night DESC, name ASC'
+    );
+} catch (Throwable $exception) {
+    log_error('Failed loading rooms list.', $exception);
+    $loadNotice = 'Live room inventory is currently unavailable. Showing curated room highlights.';
+}
 
-    if ($r['name'] === 'Elalai') {
-        $formattedRoom['image'] = 'https://loremflickr.com/1200/800/luxury,suite?random=100';
-        $premiumRoom = $formattedRoom;
-    } else {
-        $rooms[] = $formattedRoom;
+if ($rooms === []) {
+    $rooms = $fallbackRooms;
+}
+
+$normalizedRooms = [];
+$maxPrice = 0.0;
+$maxCapacity = 1;
+
+foreach ($rooms as $index => $room) {
+    $name = trim((string)($room['name'] ?? 'Sidai Room'));
+    $slug = strtolower(preg_replace('/[^a-z0-9]+/i', '-', $name) ?? 'room-' . $index);
+    $imageKey = strtolower(preg_replace('/[^a-z0-9]+/i', '', $name) ?? '');
+    $image = $roomImageMap[$imageKey] ?? '/assets/images/hero-section.jpg';
+    $price = (float)($room['price_per_night'] ?? 0);
+    $capacity = max(1, (int)($room['capacity'] ?? 1));
+    $amenitiesRaw = $room['amenities'] ?? '[]';
+    $amenities = is_string($amenitiesRaw) ? (json_decode($amenitiesRaw, true) ?: []) : [];
+    if (!is_array($amenities)) {
+        $amenities = [];
     }
+
+    $maxPrice = max($maxPrice, $price);
+    $maxCapacity = max($maxCapacity, $capacity);
+
+    $normalizedRooms[] = [
+        'id' => $slug,
+        'name' => $name,
+        'description' => trim((string)($room['description'] ?? 'Comfortable, elegant and designed for restful stays.')),
+        'capacity' => $capacity,
+        'price' => $price,
+        'type' => (string)($room['type'] ?? 'standard'),
+        'image' => $image,
+        'amenities' => array_values(array_slice($amenities, 0, 4)),
+    ];
 }
 
-// Fallback if Elalai is not found for some reason
-if (!$premiumRoom && count($rooms) > 0) {
-    $premiumRoom = array_shift($rooms);
-    $premiumRoom['isPremium'] = true;
-}
-
-$allRoomsJson = json_encode(array_merge([$premiumRoom], $rooms));
-
+include APP_PATH . '/includes/head.php';
+include APP_PATH . '/includes/header.php';
 ?>
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <?php include APP_PATH . '/includes/head.php'; ?>
-    <style>
-        .sanctuary-card {
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .sanctuary-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 10px 25px -5px rgba(212, 175, 55, 0.3), 0 8px 10px -6px rgba(212, 175, 55, 0.1);
-            border-color: rgba(212, 175, 55, 0.5);
-        }
-        [x-cloak] { display: none !important; }
-    </style>
-</head>
-<body class="bg-cream">
-    <?php include APP_PATH . '/includes/header.php'; ?>
+<main class="pt-28 lg:pt-32 bg-cream pb-20">
+    <section class="relative overflow-hidden">
+        <div class="absolute inset-0">
+            <img src="<?php echo WEB_ROOT; ?>/assets/images/hero-section.jpg" alt="Sidai Resort rooms hero" class="h-full w-full object-cover">
+            <div class="absolute inset-0 bg-night/60"></div>
+        </div>
+        <div class="relative mx-auto max-w-7xl px-4 py-16 text-center sm:px-6 lg:px-8 lg:py-20">
+            <p class="text-sm font-semibold uppercase tracking-[0.22em] text-gold">Accommodation</p>
+            <h1 class="mt-3 font-display text-5xl text-white sm:text-6xl">Our Sanctuaries</h1>
+            <p class="mx-auto mt-4 max-w-3xl text-base leading-8 text-cream/90">Where comfort meets Maasai-inspired elegance. Choose your ideal room and reserve instantly.</p>
+        </div>
+    </section>
 
-    <main class="pt-28 lg:pt-32 pb-20 overflow-hidden" x-data="roomsECommerce()" x-init="init()">
-        
-        <section class="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center mb-12">
-            <h1 class="font-display text-5xl text-brown sm:text-6xl" data-aos="fade-up">The Sanctuaries</h1>
-            <p class="mt-3 text-lg font-playfair italic text-gold" data-aos="fade-up" data-aos-delay="100">Where Comfort Meets Tradition</p>
-        </section>
+    <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 -mt-10 relative z-10">
+        <div class="rounded-2xl border border-gold/30 bg-white p-5 shadow-lg sm:p-6">
+            <?php if ($loadNotice !== null): ?>
+                <p class="mb-5 rounded-xl border border-amber-300 bg-amber-50 px-4 py-3 text-sm text-amber-800"><?php echo safe_html($loadNotice); ?></p>
+            <?php endif; ?>
 
-        <!-- Filters Section for Room Price and Capacity -->
-        <!-- Controlled by Alpine.js x-model directives binding to maxPrice and minCapacity -->
-        <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mb-10" data-aos="fade-up" data-aos-delay="200">
-            <div class="bg-white rounded-2xl border border-gold/30 p-6 shadow-sm flex flex-col sm:flex-row gap-6 items-center justify-between">
-                
-                <div class="flex-1 w-full">
-                    <label class="block text-xs font-bold uppercase tracking-widest text-brown mb-2">Max Price per Night: Ksh <span x-text="maxPrice"></span></label>
-                    <input type="range" min="1000" max="3500" step="100" x-model="maxPrice" class="w-full accent-gold h-2 bg-cream rounded-lg appearance-none cursor-pointer">
+            <div class="grid gap-6 md:grid-cols-3">
+                <div class="md:col-span-2">
+                    <label for="maxPrice" class="mb-2 block text-xs font-bold uppercase tracking-[0.16em] text-brown">Max Price Per Night: <span id="maxPriceLabel"><?php echo number_format($maxPrice, 0); ?></span></label>
+                    <input id="maxPrice" type="range" min="1000" max="<?php echo (int)max(3500, ceil($maxPrice / 100) * 100); ?>" step="100" value="<?php echo (int)max(3500, ceil($maxPrice / 100) * 100); ?>" class="h-2 w-full cursor-pointer appearance-none rounded-lg bg-cream accent-gold">
                 </div>
-
-                <div class="flex-1 w-full">
-                    <label class="block text-xs font-bold uppercase tracking-widest text-brown mb-2">Minimum Capacity</label>
-                    <select x-model="minCapacity" class="w-full bg-cream border border-brown/20 text-brown rounded-xl px-4 py-2 focus:outline-none focus:border-gold">
-                        <option value="1">Any Capacity</option>
-                        <option value="2">2+ People</option>
-                        <option value="3">3+ People</option>
-                        <option value="4">4+ People</option>
+                <div>
+                    <label for="minCapacity" class="mb-2 block text-xs font-bold uppercase tracking-[0.16em] text-brown">Minimum Capacity</label>
+                    <select id="minCapacity" class="w-full rounded-xl border border-brown/20 bg-cream px-4 py-2.5 text-sm text-brown focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/40">
+                        <option value="1">Any capacity</option>
+                        <?php for ($i = 2; $i <= max(4, $maxCapacity); $i++): ?>
+                            <option value="<?php echo $i; ?>"><?php echo $i; ?>+ guests</option>
+                        <?php endfor; ?>
                     </select>
                 </div>
-                
-                <div class="w-full sm:w-auto text-right text-sm font-semibold text-brown/80 mt-4 sm:mt-0">
-                    Showing <span x-text="filteredRooms.length" class="text-gold font-bold"></span> of 11 Rooms
-                </div>
-
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Room Grid: Dynamically renders items from the filteredRooms array -->
-        <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" id="sanctuaries-grid">
-            <div class="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
-                
-                <template x-for="room in filteredRooms" :key="room.id">
-                    <article 
-                        class="sanctuary-card relative flex flex-col overflow-hidden rounded-2xl border bg-white group"
-                        :class="room.isPremium ? 'border-gold/50 sm:col-span-2 lg:col-span-2' : 'border-brown/10'"
-                    >
-                        <div x-show="room.isPremium" class="absolute top-4 right-4 z-10 rounded-full bg-gradient-to-r from-gold to-gold-dark px-4 py-1.5 text-xs font-bold uppercase tracking-widest text-night shadow-lg">
-                            Our Finest
+    <section class="mx-auto mt-8 max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div id="roomsGrid" class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            <?php foreach ($normalizedRooms as $room): ?>
+                <article class="room-card overflow-hidden rounded-3xl border border-brown/10 bg-white shadow-sm" data-price="<?php echo (int)$room['price']; ?>" data-capacity="<?php echo (int)$room['capacity']; ?>">
+                    <div class="relative h-56 overflow-hidden">
+                        <img src="<?php echo WEB_ROOT . safe_html($room['image']); ?>" alt="<?php echo safe_html($room['name']); ?>" class="h-full w-full object-cover">
+                        <div class="absolute inset-0 bg-gradient-to-t from-night/75 via-night/20 to-transparent"></div>
+                        <div class="absolute bottom-4 left-4 right-4 flex items-end justify-between gap-3">
+                            <h2 class="font-display text-3xl text-gold"><?php echo safe_html($room['name']); ?></h2>
+                            <p class="rounded-full bg-night/80 px-3 py-1 text-xs font-semibold uppercase tracking-[0.08em] text-cream"><?php echo safe_html(ucfirst(str_replace('_', ' ', $room['type']))); ?></p>
                         </div>
-                        
-                        <div class="relative w-full overflow-hidden" :class="room.isPremium ? 'h-72 sm:h-96' : 'h-56'">
-                            <img :src="room.image" :alt="room.name" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
-                            <div class="absolute inset-0 bg-gradient-to-t from-night/90 via-night/30 to-transparent"></div>
-                            
-                            <h2 class="absolute bottom-6 left-6 font-display italic text-gold group-hover:scale-105 transition-transform duration-500 origin-left"
-                                :class="room.isPremium ? 'text-4xl' : 'text-3xl'">
-                                <span x-text="room.name"></span>
-                            </h2>
-                            <div class="absolute bottom-6 right-6 text-right">
-                                <span class="block text-sm text-cream/80">From</span>
-                                <span class="block text-xl font-bold text-white">Ksh <span x-text="room.price.toLocaleString()"></span></span>
-                            </div>
+                    </div>
+                    <div class="flex min-h-[190px] flex-col p-5">
+                        <p class="text-sm leading-6 text-brown/85"><?php echo safe_html($room['description']); ?></p>
+                        <div class="mt-4 flex flex-wrap gap-2">
+                            <span class="rounded-md border border-gold/30 bg-gold/10 px-2.5 py-1 text-[11px] font-semibold uppercase tracking-[0.08em] text-brown">Sleeps <?php echo (int)$room['capacity']; ?></span>
+                            <?php foreach ($room['amenities'] as $amenity): ?>
+                                <span class="rounded-md bg-cream px-2.5 py-1 text-[11px] text-brown/80"><?php echo safe_html((string)$amenity); ?></span>
+                            <?php endforeach; ?>
                         </div>
-                        
-                        <div class="flex flex-col justify-between flex-grow p-6">
-                            <div>
-                                <p class="text-sm leading-relaxed text-brown/85 mb-5 line-clamp-3">
-                                    <span x-text="room.desc"></span>
-                                </p>
-                                
-                                <div class="flex flex-wrap gap-2 mb-6">
-                                    <span class="inline-flex items-center gap-1.5 rounded-md border border-gold/30 bg-gold/5 px-2 py-1 text-[11px] font-bold uppercase tracking-wider text-brown">
-                                        <svg class="w-3.5 h-3.5 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
-                                        Sleeps <span x-text="room.capacity"></span>
-                                    </span>
-                                    <template x-for="amenity in room.amenities">
-                                        <span class="inline-flex items-center gap-1 rounded bg-cream/60 px-2 py-1 text-[11px] font-medium text-brown/80" x-text="amenity"></span>
-                                    </template>
-                                </div>
-                            </div>
-                            
-                            <div class="mt-auto flex items-center justify-between gap-4">
-                                <a :href="'<?php echo WEB_ROOT; ?>/booking?type=room&room=' + encodeURIComponent(room.name)" 
-                                   class="inline-flex w-full items-center justify-center rounded-xl px-4 py-2.5 text-xs font-semibold uppercase tracking-wider transition-colors"
-                                   :class="room.isPremium ? 'bg-gold text-night hover:bg-gold-light' : 'border border-gold/50 bg-transparent text-brown hover:bg-gold hover:text-night hover:border-gold'">
-                                    Reserve <span x-text="room.name" class="ml-1"></span> &rarr;
-                                </a>
-                            </div>
+                        <div class="mt-5 flex items-center justify-between gap-3">
+                            <p class="text-base font-bold text-gold">KSh <?php echo number_format((float)$room['price'], 0); ?>/night</p>
+                            <a href="<?php echo WEB_ROOT; ?>/booking?type=room&room=<?php echo rawurlencode($room['name']); ?>" class="inline-flex items-center rounded-full border border-gold/45 px-4 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-brown transition hover:bg-gold hover:text-night">Reserve</a>
                         </div>
-                    </article>
-                </template>
+                    </div>
+                </article>
+            <?php endforeach; ?>
+        </div>
 
-                <div x-show="filteredRooms.length === 0" class="col-span-full py-20 text-center" x-cloak>
-                    <svg class="mx-auto h-12 w-12 text-gold/50 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.172 16.172a4 4 0 015.656 0M9 10h.01M15 10h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                    </svg>
-                    <h3 class="text-xl font-display text-brown mb-2">No Sanctuaries Available</h3>
-                    <p class="text-brown/70">Try adjusting your filters to see more rooms.</p>
-                </div>
-            </div>
-        </section>
+        <div id="emptyState" class="hidden py-16 text-center">
+            <h3 class="font-display text-3xl text-brown">No Rooms Match This Filter</h3>
+            <p class="mt-2 text-sm text-brown/70">Adjust price or capacity filters to view available options.</p>
+        </div>
+    </section>
+</main>
 
-    </main>
+<script>
+(() => {
+    const maxPriceInput = document.getElementById('maxPrice');
+    const minCapacityInput = document.getElementById('minCapacity');
+    const maxPriceLabel = document.getElementById('maxPriceLabel');
+    const cards = Array.from(document.querySelectorAll('.room-card'));
+    const emptyState = document.getElementById('emptyState');
 
-    <script>
-        /**
-         * Alpine.js Component Logic for E-commerce Room Filtering
-         * Dynamically filters the list of rooms based on user-selected max price and min capacity.
-         */
-        function roomsECommerce() {
-            return {
-                allRooms: <?php echo $allRoomsJson; ?>,
-                maxPrice: 3500,
-                minCapacity: 1,
-                
-                get filteredRooms() {
-                    return this.allRooms.filter(room => {
-                        return room.price <= this.maxPrice && room.capacity >= this.minCapacity;
-                    });
-                },
-                
-                init() {
-                    // Initialization logic if necessary
-                }
-            }
+    const applyFilters = () => {
+        const maxPrice = Number(maxPriceInput ? maxPriceInput.value : 0);
+        const minCapacity = Number(minCapacityInput ? minCapacityInput.value : 1);
+
+        if (maxPriceLabel) {
+            maxPriceLabel.textContent = maxPrice.toLocaleString();
         }
-    </script>
 
-    <?php include APP_PATH . '/includes/footer.php'; ?>
-</body>
-</html>
+        let visibleCount = 0;
+        cards.forEach((card) => {
+            const price = Number(card.dataset.price || 0);
+            const capacity = Number(card.dataset.capacity || 1);
+            const visible = price <= maxPrice && capacity >= minCapacity;
+            card.classList.toggle('hidden', !visible);
+            if (visible) {
+                visibleCount += 1;
+            }
+        });
 
+        if (emptyState) {
+            emptyState.classList.toggle('hidden', visibleCount !== 0);
+        }
+    };
+
+    if (maxPriceInput) {
+        maxPriceInput.addEventListener('input', applyFilters);
+    }
+    if (minCapacityInput) {
+        minCapacityInput.addEventListener('change', applyFilters);
+    }
+
+    applyFilters();
+})();
+</script>
+
+<?php include APP_PATH . '/includes/footer.php'; ?>

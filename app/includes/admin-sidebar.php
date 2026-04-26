@@ -12,6 +12,7 @@ $navSections = [
         ['page' => 'index',    'icon' => '📊', 'label' => 'Dashboard'],
         ['page' => 'bookings', 'icon' => '📅', 'label' => 'Bookings'],
         ['page' => 'guests',   'icon' => '👥', 'label' => 'Guests'],
+        ['page' => 'requests', 'icon' => '✉️', 'label' => 'Requests'],
     ],
     'Operations' => [
         ['page' => 'rooms',    'icon' => '🛏️', 'label' => 'Rooms'],

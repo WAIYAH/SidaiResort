@@ -103,16 +103,17 @@
     const initTableSearch = () => {
         qsa('[data-table-search]').forEach((input) => {
             const tableId = input.dataset.tableSearch;
-            const table = qs(`#${tableId}`);
-            if (!table) return;
+            const tables = qsa(`[id="${tableId}"]`);
+            if (!tables.length) return;
 
             input.addEventListener('input', () => {
                 const query = input.value.toLowerCase();
-                const rows = qsa('tbody tr', table);
-
-                rows.forEach((row) => {
-                    const text = row.textContent.toLowerCase();
-                    row.style.display = text.includes(query) ? '' : 'none';
+                tables.forEach((table) => {
+                    const rows = qsa('tbody tr', table);
+                    rows.forEach((row) => {
+                        const text = row.textContent.toLowerCase();
+                        row.style.display = text.includes(query) ? '' : 'none';
+                    });
                 });
             });
         });
@@ -122,24 +123,26 @@
     const initStatusFilter = () => {
         qsa('[data-status-filter]').forEach((select) => {
             const tableId = select.dataset.statusFilter;
-            const table = qs(`#${tableId}`);
-            if (!table) return;
+            const tables = qsa(`[id="${tableId}"]`);
+            if (!tables.length) return;
 
             select.addEventListener('change', () => {
                 const status = select.value.toLowerCase();
-                const rows = qsa('tbody tr', table);
+                tables.forEach((table) => {
+                    const rows = qsa('tbody tr', table);
 
-                rows.forEach((row) => {
-                    if (!status) {
-                        row.style.display = '';
-                        return;
-                    }
+                    rows.forEach((row) => {
+                        if (!status) {
+                            row.style.display = '';
+                            return;
+                        }
 
-                    const badges = qsa('.badge', row);
-                    const match = badges.some((badge) =>
-                        badge.textContent.trim().toLowerCase() === status
-                    );
-                    row.style.display = match ? '' : 'none';
+                        const badges = qsa('.badge', row);
+                        const match = badges.some((badge) =>
+                            badge.textContent.trim().toLowerCase() === status
+                        );
+                        row.style.display = match ? '' : 'none';
+                    });
                 });
             });
         });
