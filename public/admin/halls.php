@@ -31,6 +31,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
                 $message = ['type' => 'success', 'text' => 'Hall availability updated.'];
                 $halls = $hallModel->getAll(); // re-fetch
             }
+        } elseif ($action === 'seed_defaults') {
+            $inserted = $hallModel->seedDefaults();
+            $halls = $hallModel->getAll(); // re-fetch
+            if ($inserted > 0) {
+                $message = ['type' => 'success', 'text' => 'Default halls loaded successfully.'];
+            } else {
+                $message = ['type' => 'error', 'text' => 'Default halls already exist or could not be created.'];
+            }
         }
     }
 }
@@ -45,6 +53,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['action'])) {
     <main class="admin-main">
         <div class="admin-page-header">
             <h2 class="admin-page-title">Hall Management</h2>
+            <?php if (empty($halls)): ?>
+                <form method="post" style="display:inline-flex;">
+                    <?php echo \App\Core\CSRF::field(); ?>
+                    <input type="hidden" name="action" value="seed_defaults">
+                    <button type="submit" class="btn btn-gold">+ Load Default Halls</button>
+                </form>
+            <?php endif; ?>
         </div>
 
         <?php if ($message): ?>

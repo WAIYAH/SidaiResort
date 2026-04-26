@@ -100,7 +100,7 @@ final class Auth
     public function requireAuth(): void
     {
         if ($this->check() === false) {
-            header('Location: /admin/login.php');
+            header('Location: ' . WEB_ROOT . '/admin/login.php');
             exit;
         }
     }

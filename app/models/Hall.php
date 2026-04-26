@@ -61,5 +61,36 @@ class Hall
             return false;
         }
     }
+
+    public function seedDefaults(): int
+    {
+        try {
+            $statement = $this->database->query(
+                'INSERT IGNORE INTO halls (
+                    hall_number,
+                    name,
+                    capacity,
+                    price_full_day,
+                    price_half_day,
+                    price_evening,
+                    description,
+                    is_available
+                ) VALUES
+                (1, :name_1, 80, 75000.00, 48000.00, 42000.00, :description_1, 1),
+                (2, :name_2, 220, 130000.00, 80000.00, 70000.00, :description_2, 1)',
+                [
+                    ':name_1' => 'Enchula',
+                    ':description_1' => 'Premium meeting hall for conferences and executive gatherings.',
+                    ':name_2' => 'Entumo',
+                    ':description_2' => 'Large event hall for celebrations, summits, and social functions.',
+                ]
+            );
+
+            return $statement->rowCount();
+        } catch (\Throwable $exception) {
+            log_error('Failed to seed default halls', $exception);
+            return 0;
+        }
+    }
 }
 
