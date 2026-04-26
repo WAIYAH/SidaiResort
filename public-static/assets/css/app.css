@@ -138,6 +138,47 @@ img {
     line-height: 1.05;
 }
 
+/* ── Home hero ──────────────────────────────────────────────── */
+#hero .hero-swiper,
+#hero .hero-swiper .swiper-wrapper,
+#hero .hero-swiper .hero-slide {
+    height: 100%;
+}
+
+#hero .hero-content {
+    padding-top: clamp(4.5rem, 10vh, 6.5rem);
+    padding-bottom: clamp(3.5rem, 9vh, 5.5rem);
+}
+
+#hero .hero-actions {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+#hero .hero-action {
+    justify-content: center;
+}
+
+#hero .swiper-pagination {
+    bottom: 1rem !important;
+}
+
+#hero .swiper-pagination-bullet {
+    width: 0.55rem;
+    height: 0.55rem;
+    opacity: 1;
+    background: rgba(212, 175, 55, 0.55);
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+#hero .swiper-pagination-bullet-active {
+    background: var(--gold);
+    transform: scale(1.12);
+}
+
 /* ── Social Media Pills with SVG Icons ──────────────────────── */
 .social-pill {
     display: inline-flex;
@@ -296,8 +337,9 @@ img {
         -webkit-overflow-scrolling: touch;
     }
 
-    /* Swiper slides */
-    .swiper-slide {
+    /* Card swipers */
+    .events-swiper .swiper-slide,
+    .testimonials-swiper .swiper-slide {
         width: 85vw !important;
     }
     
@@ -355,22 +397,57 @@ img {
 
     /* Home hero controls + content stack for phones */
     #hero {
-        min-height: 92dvh !important;
+        min-height: clamp(30rem, calc(100svh - 4.75rem), 44rem) !important;
     }
 
-    #hero .swiper-slide h1 {
-        font-size: clamp(2rem, 9vw, 2.8rem) !important;
+    @supports (height: 100dvh) {
+        #hero {
+            min-height: clamp(30rem, calc(100dvh - 4.75rem), 44rem) !important;
+        }
     }
 
-    #hero .swiper-slide .mt-8.flex.justify-center.gap-4 {
-        max-width: 18rem;
+    #hero .hero-content {
+        padding-top: clamp(5.25rem, 17vw, 6.75rem);
+        padding-bottom: 4.75rem;
+    }
+
+    #hero .hero-eyebrow {
+        max-width: 100%;
+        padding-left: 0.9rem;
+        padding-right: 0.9rem;
+        font-size: 0.66rem;
+        letter-spacing: 0.18em;
+    }
+
+    #hero .hero-title {
+        font-size: clamp(1.95rem, 9.2vw, 2.85rem) !important;
+        line-height: 1.06;
+        text-wrap: balance;
+    }
+
+    #hero .hero-subtitle {
+        max-width: 32ch;
+        font-size: clamp(0.95rem, 4vw, 1.08rem);
+        line-height: 1.6;
+    }
+
+    #hero .hero-actions {
+        width: 100%;
+        max-width: 20rem;
         margin-left: auto;
         margin-right: auto;
     }
 
-    #hero .swiper-slide .mt-8.flex.justify-center.gap-4 > a {
+    #hero .hero-actions .hero-action {
         width: 100%;
+        min-height: 44px;
+        padding: 0.8rem 1.15rem;
+        letter-spacing: 0.12em;
         justify-content: center;
+    }
+
+    #hero .swiper-pagination {
+        bottom: 0.8rem !important;
     }
 }
 
