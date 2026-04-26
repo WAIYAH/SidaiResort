@@ -24,6 +24,7 @@ html,
 body {
     margin: 0;
     padding: 0;
+    overflow-x: hidden;
 }
 
 body {
@@ -393,6 +394,17 @@ img {
 
     #site-header #mobile-menu a {
         min-height: 44px;
+    }
+
+    #site-header .home-brand-link {
+        flex: 1 1 auto;
+        max-width: calc(100% - 3.25rem);
+        overflow: hidden;
+        padding-right: 0.25rem;
+    }
+
+    #site-header .home-menu-toggle {
+        margin-left: 0.25rem;
     }
 
     /* Home hero controls + content stack for phones */
