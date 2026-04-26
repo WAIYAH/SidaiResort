@@ -228,47 +228,96 @@
 })();
 </script>
 <main class="pt-28 lg:pt-32">
-    <section id="hero" class="relative isolate flex min-h-[100dvh] items-center overflow-hidden">
-        <div class="absolute inset-0">
-            <img
-                src="assets/images/hero-section.jpg"
-                alt="Sidai Resort view"
-                class="h-full w-full object-cover"
-                fetchpriority="high"
-            >
-            <div class="absolute inset-0 bg-gradient-to-br from-night/80 via-night/45 to-earth/50"></div>
-            <div id="hero-particles" class="particles-canvas" aria-hidden="true"></div>
-        </div>
-
-        <div class="relative z-10 mx-auto grid w-full max-w-7xl gap-8 px-4 pb-10 pt-20 sm:px-6 lg:grid-cols-[1fr_auto] lg:px-8">
-            <div class="max-w-3xl">
-                <p class="mb-4 inline-flex items-center rounded-full border border-gold/40 bg-night/50 px-4 py-1 text-xs font-semibold uppercase tracking-[0.25em] text-gold">Sidai Resort</p>
-                <h1 class="font-display text-5xl leading-[0.92] text-white sm:text-6xl lg:text-8xl" data-aos="fade-up">
-                    Where Good Meets Luxury
-                </h1>
-                <p class="mt-5 max-w-2xl text-base text-cream sm:text-lg" data-aos="fade-up" data-aos-delay="120">
-                    Experience warm Maasai hospitality, premium event halls, serene pool sessions, and timeless safari elegance in the heart of Narok County.
-                </p>
-
-                <div class="mt-6 flex flex-wrap items-center gap-3 text-sm text-cream" data-aos="fade-up" data-aos-delay="180">
-                    <span class="font-medium text-gold">Now Featuring:</span>
-                    <span class="relative inline-flex min-h-[1.8rem] items-center rounded-full border border-gold/40 bg-night/60 px-4 py-1 font-semibold text-gold">
-                        <span id="hero-typewriter">Weddings</span>
-                    </span>
+    
+    <section id="hero" class="relative overflow-hidden min-h-[100dvh]">
+        <div class="swiper hero-swiper h-full w-full absolute inset-0">
+            <div class="swiper-wrapper">
+                <!-- Slide 1 -->
+                <div class="swiper-slide relative flex items-center justify-center">
+                    <img src="assets/images/african-sunset.avif" alt="African Sunset" class="absolute inset-0 h-full w-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-br from-night/80 via-night/45 to-earth/50"></div>
+                    <div class="relative z-10 mx-auto w-full max-w-7xl px-4 text-center sm:px-6 lg:px-8 pt-20">
+                        <p class="mb-4 inline-flex items-center rounded-full border border-gold/40 bg-night/50 px-4 py-1 text-xs font-semibold uppercase tracking-[0.25em] text-gold" data-swiper-parallax="-100">Sidai Resort</p>
+                        <h1 class="font-display text-5xl leading-tight text-white sm:text-6xl lg:text-7xl drop-shadow-lg" data-swiper-parallax="-300">Where Good Meets Luxury</h1>
+                        <p class="mt-4 max-w-2xl mx-auto text-base text-cream sm:text-lg" data-swiper-parallax="-200">Experience timeless safari elegance in the heart of Narok County.</p>
+                        <div class="mt-8 flex justify-center gap-4" data-swiper-parallax="-100">
+                            <a href="booking.html" class="inline-flex items-center rounded-full bg-gold px-7 py-3 text-sm font-semibold uppercase tracking-[0.15em] text-night transition hover:bg-gold-light">Book Stay</a>
+                            <a href="#about" class="inline-flex items-center rounded-full border border-gold/60 bg-night/30 px-7 py-3 text-sm font-semibold uppercase tracking-[0.15em] text-gold transition hover:bg-gold hover:text-night backdrop-blur-sm">Explore</a>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="mt-10 flex flex-wrap gap-4" data-aos="fade-up" data-aos-delay="240">
-                    <a href="booking.html" class="inline-flex items-center rounded-full bg-gold px-7 py-3 text-sm font-semibold uppercase tracking-[0.15em] text-night transition hover:bg-gold-light">Book Your Stay</a>
-                    <a href="#about" class="inline-flex items-center rounded-full border border-gold/60 bg-transparent px-7 py-3 text-sm font-semibold uppercase tracking-[0.15em] text-gold transition hover:bg-gold hover:text-night">Explore Resort</a>
+                <!-- Slide 2 -->
+                <div class="swiper-slide relative flex items-center justify-center">
+                    <img src="assets/images/swimming-pool.jpeg" alt="Swimming Pool" class="absolute inset-0 h-full w-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-br from-night/80 via-night/45 to-safari/50"></div>
+                    <div class="relative z-10 mx-auto w-full max-w-7xl px-4 text-center sm:px-6 lg:px-8 pt-20">
+                        <p class="mb-4 inline-flex items-center rounded-full border border-gold/40 bg-night/50 px-4 py-1 text-xs font-semibold uppercase tracking-[0.25em] text-gold" data-swiper-parallax="-100">Relax & Unwind</p>
+                        <h1 class="font-display text-5xl leading-tight text-white sm:text-6xl lg:text-7xl drop-shadow-lg" data-swiper-parallax="-300">Dive Into Serenity</h1>
+                        <p class="mt-4 max-w-2xl mx-auto text-base text-cream sm:text-lg" data-swiper-parallax="-200">Relax by our pristine pool surrounded by the lush Loita Hills forest.</p>
+                        <div class="mt-8 flex justify-center gap-4" data-swiper-parallax="-100">
+                            <a href="services.html#swimming" class="inline-flex items-center rounded-full bg-gold px-7 py-3 text-sm font-semibold uppercase tracking-[0.15em] text-night transition hover:bg-gold-light">Discover More</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 3 -->
+                <div class="swiper-slide relative flex items-center justify-center">
+                    <img src="assets/images/symboloflove-photo-area.jpeg" alt="Weddings and Events" class="absolute inset-0 h-full w-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-br from-night/80 via-night/45 to-forest/50"></div>
+                    <div class="relative z-10 mx-auto w-full max-w-7xl px-4 text-center sm:px-6 lg:px-8 pt-20">
+                        <p class="mb-4 inline-flex items-center rounded-full border border-gold/40 bg-night/50 px-4 py-1 text-xs font-semibold uppercase tracking-[0.25em] text-gold" data-swiper-parallax="-100">Celebrate With Us</p>
+                        <h1 class="font-display text-5xl leading-tight text-white sm:text-6xl lg:text-7xl drop-shadow-lg" data-swiper-parallax="-300">Unforgettable Moments</h1>
+                        <p class="mt-4 max-w-2xl mx-auto text-base text-cream sm:text-lg" data-swiper-parallax="-200">From grand weddings to intimate bonfires, we bring your dreams to life.</p>
+                        <div class="mt-8 flex justify-center gap-4" data-swiper-parallax="-100">
+                            <a href="services.html" class="inline-flex items-center rounded-full bg-gold px-7 py-3 text-sm font-semibold uppercase tracking-[0.15em] text-night transition hover:bg-gold-light">View Experiences</a>
+                        </div>
+                    </div>
                 </div>
             </div>
-
-            <a href="#stats" class="group mt-auto hidden items-center gap-2 self-end justify-self-end rounded-full border border-gold/40 bg-night/40 px-4 py-2 text-xs uppercase tracking-[0.25em] text-gold lg:inline-flex" aria-label="Scroll to statistics">
-                Scroll
-                <span class="inline-block animate-bounce">&darr;</span>
-            </a>
+            
+            <!-- Navigation -->
+            <div class="swiper-button-next text-gold after:text-2xl hidden md:flex"></div>
+            <div class="swiper-button-prev text-gold after:text-2xl hidden md:flex"></div>
+            <!-- Pagination -->
+            <div class="swiper-pagination"></div>
         </div>
+        
+        <a href="#stats" class="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 hidden flex-col items-center gap-2 rounded-full px-4 py-2 text-xs uppercase tracking-[0.25em] text-gold lg:flex transition hover:text-white" aria-label="Scroll to statistics">
+            Scroll
+            <span class="inline-block animate-bounce">&darr;</span>
+        </a>
     </section>
+
+    <!-- Swiper Initialization Script -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if(window.Swiper) {
+                new Swiper('.hero-swiper', {
+                    speed: 1200,
+                    parallax: true,
+                    loop: true,
+                    autoplay: {
+                        delay: 6000,
+                        disableOnInteraction: false,
+                    },
+                    pagination: {
+                        el: '.swiper-pagination',
+                        clickable: true,
+                    },
+                    navigation: {
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev',
+                    },
+                    effect: 'fade',
+                    fadeEffect: {
+                        crossFade: true
+                    }
+                });
+            }
+        });
+    </script>
+
 
     
     <section id="stats" class="bg-night py-10">
@@ -307,10 +356,7 @@
                 <p class="text-sm font-semibold uppercase tracking-[0.25em] text-earth">The Sidai Story</p>
                 <h2 class="mt-3 font-display text-4xl text-brown sm:text-5xl">Luxury rooted in culture, crafted for celebration.</h2>
                 <p class="mt-5 text-base leading-8 text-brown/90 sm:text-lg">
-                    Sidai Resort is a destination where guests can relax, connect, and celebrate in style. From sunrise nature walks to evening bonfires, every experience reflects the warmth of Narok and the richness of Maasai identity.
-                </p>
-                <p class="mt-4 text-base leading-8 text-brown/90 sm:text-lg">
-                    Whether you are planning a quiet escape, a high-profile corporate event, or a cinematic music shoot, Sidai welcomes you with premium spaces, thoughtful service, and unforgettable atmosphere.
+                    Relax, connect, and celebrate in style. We blend premium spaces with the warmth of Maasai hospitality to create unforgettable moments—whether for a quiet escape, a grand wedding, or a corporate retreat.
                 </p>
                 <div class="mt-8 rounded-2xl border border-gold/40 bg-white p-6 shadow-sm">
                     <p class="text-sm uppercase tracking-[0.2em] text-earth">Maasai Meaning</p>
@@ -333,42 +379,42 @@
 
             <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 <a href="services.html#pool" class="group overflow-hidden rounded-2xl border border-brown/10 bg-cream/50 transition hover:-translate-y-1 hover:shadow-xl" data-aos="fade-up">
-                    <img src="assets/images/serene-places.jpeg" alt="Swimming pool sessions at Sidai Resort" class="h-52 w-full object-cover transition duration-500 group-hover:scale-105" loading="lazy">
+                    <img src="assets/images/cool-swimimng.jpeg" alt="Swimming pool sessions at Sidai Resort" class="h-52 w-full object-cover transition duration-500 group-hover:scale-105" loading="lazy">
                     <div class="p-5">
                         <h3 class="font-display text-3xl text-brown">Swimming Pool</h3>
                         <p class="mt-2 text-sm text-brown/80">Book serene pool sessions with optional lounge and beverage service.</p>
                     </div>
                 </a>
                 <a href="services.html#halls" class="group overflow-hidden rounded-2xl border border-brown/10 bg-cream/50 transition hover:-translate-y-1 hover:shadow-xl" data-aos="fade-up" data-aos-delay="60">
-                    <img src="assets/images/nightview-swimmingpool.jpeg" alt="Event hall setup at Sidai Resort" class="h-52 w-full object-cover transition duration-500 group-hover:scale-105" loading="lazy">
+                    <img src="assets/images/conference-setting.jpeg" alt="Event hall setup at Sidai Resort" class="h-52 w-full object-cover transition duration-500 group-hover:scale-105" loading="lazy">
                     <div class="p-5">
                         <h3 class="font-display text-3xl text-brown">Event Halls</h3>
                         <p class="mt-2 text-sm text-brown/80">Two spacious halls for weddings, graduations, parties, and corporate functions.</p>
                     </div>
                 </a>
                 <a href="services.html#dining" class="group overflow-hidden rounded-2xl border border-brown/10 bg-cream/50 transition hover:-translate-y-1 hover:shadow-xl" data-aos="fade-up" data-aos-delay="120">
-                    <img src="assets/images/outdoor-congreagation.jpeg" alt="Fine dining setup at Sidai Resort" class="h-52 w-full object-cover transition duration-500 group-hover:scale-105" loading="lazy">
+                    <img src="assets/images/goat-soup.jpeg" alt="Fine dining setup at Sidai Resort" class="h-52 w-full object-cover transition duration-500 group-hover:scale-105" loading="lazy">
                     <div class="p-5">
                         <h3 class="font-display text-3xl text-brown">Fine Dining</h3>
                         <p class="mt-2 text-sm text-brown/80">Pre-order curated Kenyan, Maasai-inspired, and international dishes.</p>
                     </div>
                 </a>
                 <a href="services.html#activities" class="group overflow-hidden rounded-2xl border border-brown/10 bg-cream/50 transition hover:-translate-y-1 hover:shadow-xl" data-aos="fade-up" data-aos-delay="180">
-                    <img src="assets/images/hero-section.jpg" alt="Playground and activities" class="h-52 w-full object-cover transition duration-500 group-hover:scale-105" loading="lazy">
+                    <img src="assets/images/farm-eden-entrance.jpeg" alt="Nature and activities" class="h-52 w-full object-cover transition duration-500 group-hover:scale-105" loading="lazy">
                     <div class="p-5">
                         <h3 class="font-display text-3xl text-brown">Playground</h3>
                         <p class="mt-2 text-sm text-brown/80">Engage in thrilling outdoor adventures and serene nature walks.</p>
                     </div>
                 </a>
                 <a href="services.html#music-shoots" class="group overflow-hidden rounded-2xl border border-brown/10 bg-cream/50 transition hover:-translate-y-1 hover:shadow-xl" data-aos="fade-up" data-aos-delay="240">
-                    <img src="assets/images/outdoor-meetings.jpeg" alt="Music and film shoot location" class="h-52 w-full object-cover transition duration-500 group-hover:scale-105" loading="lazy">
+                    <img src="assets/images/symboloflove-photo-area.jpeg" alt="Music and film shoot location" class="h-52 w-full object-cover transition duration-500 group-hover:scale-105" loading="lazy">
                     <div class="p-5">
                         <h3 class="font-display text-3xl text-brown">Music Shoots</h3>
                         <p class="mt-2 text-sm text-brown/80">Premium indoor and outdoor locations for creative productions.</p>
                     </div>
                 </a>
                 <a href="services.html#conference" class="group overflow-hidden rounded-2xl border border-brown/10 bg-cream/50 transition hover:-translate-y-1 hover:shadow-xl" data-aos="fade-up" data-aos-delay="300">
-                    <img src="assets/images/nightview-swimmingpool.jpeg" alt="Conference and business facilities" class="h-52 w-full object-cover transition duration-500 group-hover:scale-105" loading="lazy">
+                    <img src="assets/images/conference-hall.jpeg" alt="Conference and business facilities" class="h-52 w-full object-cover transition duration-500 group-hover:scale-105" loading="lazy">
                     <div class="p-5">
                         <h3 class="font-display text-3xl text-brown">Conference</h3>
                         <p class="mt-2 text-sm text-brown/80">Professional packages for meetings, launches, and strategy sessions.</p>
@@ -389,40 +435,38 @@
                 <span class="text-sm font-bold uppercase tracking-[0.2em] text-gold mb-2 block">✅ Why Choose Sidai Resort?</span>
                 <h2 class="font-display text-4xl sm:text-5xl text-white">The Sidai Standard</h2>
             </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="bg-night/40 backdrop-blur-sm border border-gold/30 p-8 rounded-3xl shadow-lg hover:bg-night/60 transition" data-aos="fade-up" data-aos-delay="0">
-                    <div class="text-4xl mb-4">🌿</div>
-                    <h3 class="font-display text-2xl text-gold mb-3">1. Breathtaking Loita Hills Setting</h3>
-                    <p class="text-cream/80 text-sm leading-relaxed">Perched on the slopes of the Loita Hills in Naroosura, Narok County, Sidai Resort offers landscapes so stunning they feel unreal — rolling hills, ancient forests, and skies so wide they humble you.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <div class="bg-night/40 backdrop-blur-sm border border-gold/30 p-6 rounded-3xl shadow-lg hover:bg-gold/10 transition" data-aos="fade-up" data-aos-delay="0">
+                    <div class="text-3xl mb-3">🌿</div>
+                    <h3 class="font-display text-xl text-gold mb-2 font-bold">1. Breathtaking Setting</h3>
+                    <p class="text-cream/80 text-sm">Perched on the stunning slopes of the Loita Hills with unbelievable sunsets.</p>
                 </div>
-                <div class="bg-night/40 backdrop-blur-sm border border-gold/30 p-8 rounded-3xl shadow-lg hover:bg-night/60 transition" data-aos="fade-up" data-aos-delay="100">
-                    <div class="text-4xl mb-4">🎯</div>
-                    <h3 class="font-display text-2xl text-gold mb-3">2. Excellence Is Our Minimum Standard</h3>
-                    <p class="text-cream/80 text-sm leading-relaxed">"Sidai" means excellence in Maasai. We don't aim for it — we guarantee it. Every guest, every visit, every service is delivered with exceptional care. Nothing but the best, always.</p>
+                <div class="bg-night/40 backdrop-blur-sm border border-gold/30 p-6 rounded-3xl shadow-lg hover:bg-gold/10 transition" data-aos="fade-up" data-aos-delay="50">
+                    <div class="text-3xl mb-3">🎯</div>
+                    <h3 class="font-display text-xl text-gold mb-2 font-bold">2. Absolute Excellence</h3>
+                    <p class="text-cream/80 text-sm">"Sidai" means excellence. We guarantee nothing but the absolute best.</p>
                 </div>
-                <div class="bg-night/40 backdrop-blur-sm border border-gold/30 p-8 rounded-3xl shadow-lg hover:bg-night/60 transition" data-aos="fade-up" data-aos-delay="200">
-                    <div class="text-4xl mb-4">🔥</div>
-                    <h3 class="font-display text-2xl text-gold mb-3">3. Experiences for Every Occasion</h3>
-                    <p class="text-cream/80 text-sm leading-relaxed">Picnics, weddings, birthday sherehe, goat eating, bonfires, conferences, sundowners — Sidai is built for every mood, every milestone, and every kind of gathering. One resort, infinite memories.</p>
+                <div class="bg-night/40 backdrop-blur-sm border border-gold/30 p-6 rounded-3xl shadow-lg hover:bg-gold/10 transition" data-aos="fade-up" data-aos-delay="100">
+                    <div class="text-3xl mb-3">🔥</div>
+                    <h3 class="font-display text-xl text-gold mb-2 font-bold">3. Every Occasion</h3>
+                    <p class="text-cream/80 text-sm">Built for every mood: grand weddings, large conferences, or intimate bonfires.</p>
                 </div>
-                <div class="bg-night/40 backdrop-blur-sm border border-gold/30 p-8 rounded-3xl shadow-lg hover:bg-night/60 transition" data-aos="fade-up" data-aos-delay="300">
-                    <div class="text-4xl mb-4">🐦</div>
-                    <h3 class="font-display text-2xl text-gold mb-3">4. Nature, Wildlife & Birdwatching</h3>
-                    <p class="text-cream/80 text-sm leading-relaxed">The Loita Hills ecosystem is alive with over 300 bird species, native wildlife, and ancient trees. For nature lovers, birdwatchers, and farm visitors, Sidai is a living paradise.</p>
+                <div class="bg-night/40 backdrop-blur-sm border border-gold/30 p-6 rounded-3xl shadow-lg hover:bg-gold/10 transition" data-aos="fade-up" data-aos-delay="150">
+                    <div class="text-3xl mb-3">🐦</div>
+                    <h3 class="font-display text-xl text-gold mb-2 font-bold">4. Living Nature</h3>
+                    <p class="text-cream/80 text-sm">A natural paradise teeming with over 300 bird species and ancient forests.</p>
                 </div>
-                <div class="bg-night/40 backdrop-blur-sm border border-gold/30 p-8 rounded-3xl shadow-lg hover:bg-night/60 transition" data-aos="fade-up" data-aos-delay="400">
-                    <div class="text-4xl mb-4">🌅</div>
-                    <h3 class="font-display text-2xl text-gold mb-3">5. Sundowners Like Nowhere Else</h3>
-                    <p class="text-cream/80 text-sm leading-relaxed">Watch the sun sink behind the hills from our balcony, drink in hand, as the sky turns amber and gold. It is the kind of moment you will describe to people for years.</p>
+                <div class="bg-night/40 backdrop-blur-sm border border-gold/30 p-6 rounded-3xl shadow-lg hover:bg-gold/10 transition" data-aos="fade-up" data-aos-delay="200">
+                    <div class="text-3xl mb-3">🌅</div>
+                    <h3 class="font-display text-xl text-gold mb-2 font-bold">5. Golden Sundowners</h3>
+                    <p class="text-cream/80 text-sm">Unmatched evening views and cocktails from our elevated outdoor balcony.</p>
                 </div>
-                <div class="bg-night/40 backdrop-blur-sm border border-gold/30 p-8 rounded-3xl shadow-lg hover:bg-night/60 transition" data-aos="fade-up" data-aos-delay="500">
-                    <div class="text-4xl mb-4">📍</div>
-                    <h3 class="font-display text-2xl text-gold mb-3">6. Your Home Away From Home</h3>
-                    <p class="text-cream/80 text-sm leading-relaxed">With warm accommodation, authentic Maasai-inspired hospitality, outdoor and indoor meeting spaces, and a team that treats every guest like family — Sidai Resort is not just a destination. It is a feeling.</p>
+                <div class="bg-night/40 backdrop-blur-sm border border-gold/30 p-6 rounded-3xl shadow-lg hover:bg-gold/10 transition" data-aos="fade-up" data-aos-delay="250">
+                    <div class="text-3xl mb-3">📍</div>
+                    <h3 class="font-display text-xl text-gold mb-2 font-bold">6. Home Away From Home</h3>
+                    <p class="text-cream/80 text-sm">Authentic Maasai-inspired hospitality that treats every guest like family.</p>
                 </div>
             </div>
-            
             <div class="mt-16 text-center text-sm text-cream/70 border-t border-gold/20 pt-8" data-aos="fade-up">
                 <p>P.O Box 617 – 20500, Narok, Kenya | Tel: 0703 761 951 / 0721 940 823 | sidairesort21@gmail.com</p>
                 <p class="mt-2">Follow us on Facebook, Instagram, TikTok & WhatsApp — <strong>@Sidai Resort</strong></p>
