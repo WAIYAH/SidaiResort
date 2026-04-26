@@ -269,20 +269,6 @@
 
                 <!-- Slide 2 -->
                 <div class="swiper-slide hero-slide relative flex items-center justify-center">
-                    <img src="assets/images/Enkanasa.jpeg" alt="Enkanasa accommodation at Sidai Resort" class="absolute inset-0 h-full w-full object-cover">
-                    <div class="absolute inset-0 bg-gradient-to-br from-night/80 via-night/45 to-safari/50"></div>
-                    <div class="hero-content relative z-10 mx-auto w-full max-w-7xl px-4 text-center sm:px-6 lg:px-8 pt-20">
-                        <p class="hero-eyebrow mb-4 inline-flex items-center rounded-full border border-gold/40 bg-night/50 px-4 py-1 text-xs font-semibold uppercase tracking-[0.25em] text-gold" data-swiper-parallax="-100">Enkanasa</p>
-                        <h1 class="hero-title font-display text-5xl leading-tight text-white sm:text-6xl lg:text-7xl drop-shadow-lg" data-swiper-parallax="-300">Stay In Comfort</h1>
-                        <p class="hero-subtitle mt-4 max-w-2xl mx-auto text-base text-cream sm:text-lg" data-swiper-parallax="-200">Experience restful accommodation with authentic Sidai hospitality.</p>
-                        <div class="hero-actions mt-8 flex justify-center gap-4" data-swiper-parallax="-100">
-                            <a href="rooms.html" class="hero-action inline-flex items-center rounded-full bg-gold px-7 py-3 text-sm font-semibold uppercase tracking-[0.15em] text-night transition hover:bg-gold-light">View Rooms</a>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Slide 3 -->
-                <div class="swiper-slide hero-slide relative flex items-center justify-center">
                     <img src="assets/images/Karibu.jpeg" alt="Karibu welcome at Sidai Resort" class="absolute inset-0 h-full w-full object-cover">
                     <div class="absolute inset-0 bg-gradient-to-br from-night/80 via-night/45 to-forest/50"></div>
                     <div class="hero-content relative z-10 mx-auto w-full max-w-7xl px-4 text-center sm:px-6 lg:px-8 pt-20">
@@ -291,6 +277,20 @@
                         <p class="hero-subtitle mt-4 max-w-2xl mx-auto text-base text-cream sm:text-lg" data-swiper-parallax="-200">Feel at home from the first moment you arrive.</p>
                         <div class="hero-actions mt-8 flex justify-center gap-4" data-swiper-parallax="-100">
                             <a href="services.html" class="hero-action inline-flex items-center rounded-full bg-gold px-7 py-3 text-sm font-semibold uppercase tracking-[0.15em] text-night transition hover:bg-gold-light">View Experiences</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Slide 3 -->
+                <div class="swiper-slide hero-slide relative flex items-center justify-center">
+                    <img src="assets/images/Enkanasa.jpeg" alt="Enkanasa accommodation at Sidai Resort" class="absolute inset-0 h-full w-full object-cover">
+                    <div class="absolute inset-0 bg-gradient-to-br from-night/80 via-night/45 to-safari/50"></div>
+                    <div class="hero-content relative z-10 mx-auto w-full max-w-7xl px-4 text-center sm:px-6 lg:px-8 pt-20">
+                        <p class="hero-eyebrow mb-4 inline-flex items-center rounded-full border border-gold/40 bg-night/50 px-4 py-1 text-xs font-semibold uppercase tracking-[0.25em] text-gold" data-swiper-parallax="-100">Enkanasa</p>
+                        <h1 class="hero-title font-display text-5xl leading-tight text-white sm:text-6xl lg:text-7xl drop-shadow-lg" data-swiper-parallax="-300">Stay In Comfort</h1>
+                        <p class="hero-subtitle mt-4 max-w-2xl mx-auto text-base text-cream sm:text-lg" data-swiper-parallax="-200">Experience restful accommodation with authentic Sidai hospitality.</p>
+                        <div class="hero-actions mt-8 flex justify-center gap-4" data-swiper-parallax="-100">
+                            <a href="rooms.html" class="hero-action inline-flex items-center rounded-full bg-gold px-7 py-3 text-sm font-semibold uppercase tracking-[0.15em] text-night transition hover:bg-gold-light">View Rooms</a>
                         </div>
                     </div>
                 </div>
@@ -342,6 +342,7 @@
         document.addEventListener('DOMContentLoaded', () => {
             if(window.Swiper) {
                 new Swiper('.hero-swiper', {
+                    initialSlide: 0,
                     speed: 1200,
                     parallax: true,
                     loop: true,
@@ -1428,8 +1429,6 @@ document.addEventListener('alpine:init', () => {
 <script src="assets/js/app.js" defer></script>
 </body>
 </html>
-
-
 
 
 
