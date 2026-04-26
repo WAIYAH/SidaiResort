@@ -72,10 +72,383 @@
     </script>
 
     <style>
-        :root { color-scheme: light; }
-        body { margin: 0; background: #F5ECD7; }
+        :root {
+            color-scheme: light;
+            --menu-green: #123524;
+            --menu-green-soft: #1A4D2E;
+            --menu-green-deep: #0A2518;
+            --menu-gold: #D4AF37;
+            --menu-gold-soft: #F0D060;
+            --menu-cream: #F5ECD7;
+        }
+        body {
+            margin: 0;
+            background: #F5ECD7;
+        }
         .critical-shell { min-height: 100dvh; }
         [x-cloak] { display: none !important; }
+        .menu-main {
+            background:
+                radial-gradient(circle at 85% 5%, rgba(212, 175, 55, 0.12), transparent 45%),
+                radial-gradient(circle at 12% 35%, rgba(26, 77, 46, 0.1), transparent 35%),
+                var(--menu-cream);
+        }
+        .menu-hero {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--menu-green-deep), var(--menu-green-soft) 55%, var(--menu-green));
+            color: #fff;
+            padding: 9rem 1rem 5.5rem;
+        }
+        .menu-hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            opacity: 0.22;
+            background:
+                repeating-linear-gradient(
+                    45deg,
+                    transparent 0 12px,
+                    rgba(212, 175, 55, 0.92) 12px 14px,
+                    transparent 14px 26px
+                ),
+                repeating-linear-gradient(
+                    -45deg,
+                    transparent 0 12px,
+                    rgba(212, 175, 55, 0.55) 12px 14px,
+                    transparent 14px 26px
+                );
+            pointer-events: none;
+        }
+        .menu-hero::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(10, 37, 24, 0.18), rgba(10, 37, 24, 0.48));
+            pointer-events: none;
+        }
+        .menu-hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 68rem;
+            margin: 0 auto;
+            text-align: center;
+        }
+        .menu-hero h1 {
+            margin: 0;
+            font-family: "Cormorant Garamond", serif;
+            font-weight: 700;
+            letter-spacing: 0.02em;
+            color: var(--menu-gold-soft);
+            text-shadow: 0 0 24px rgba(212, 175, 55, 0.2);
+            font-size: clamp(2.6rem, 7vw, 5rem);
+        }
+        .menu-hero p {
+            margin: 1rem auto 0;
+            max-width: 48rem;
+            font-family: "Playfair Display", serif;
+            font-size: clamp(1rem, 2.7vw, 1.5rem);
+            color: rgba(245, 236, 215, 0.96);
+            font-style: italic;
+            line-height: 1.7;
+        }
+        .menu-content-wrap {
+            max-width: 78rem;
+            margin: -2.25rem auto 0;
+            padding: 0 1rem 4rem;
+        }
+        .menu-tabs-shell {
+            position: sticky;
+            top: 5.15rem;
+            z-index: 40;
+            border: 1px solid rgba(212, 175, 55, 0.45);
+            border-radius: 999px;
+            padding: 0.55rem 0.7rem;
+            background: rgba(10, 37, 24, 0.95);
+            box-shadow: 0 18px 36px rgba(10, 37, 24, 0.28);
+            margin-bottom: 1.25rem;
+        }
+        .menu-tabs-track {
+            display: flex;
+            gap: 0.55rem;
+            overflow-x: auto;
+            white-space: nowrap;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(212, 175, 55, 0.7) rgba(245, 236, 215, 0.1);
+            padding-bottom: 0.1rem;
+        }
+        .menu-tabs-track::-webkit-scrollbar {
+            height: 6px;
+        }
+        .menu-tabs-track::-webkit-scrollbar-thumb {
+            background: rgba(212, 175, 55, 0.72);
+            border-radius: 999px;
+        }
+        .menu-tab {
+            border: 1px solid rgba(212, 175, 55, 0.48);
+            border-radius: 999px;
+            padding: 0.56rem 0.95rem;
+            font-family: "Montserrat", sans-serif;
+            font-weight: 600;
+            font-size: 0.86rem;
+            color: #F5ECD7;
+            background: rgba(26, 77, 46, 0.24);
+            text-decoration: none;
+            transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
+            flex-shrink: 0;
+        }
+        .menu-tab:focus-visible {
+            outline: 2px solid var(--menu-gold-soft);
+            outline-offset: 2px;
+        }
+        .menu-tab.is-active {
+            color: #102B1F;
+            border-color: rgba(212, 175, 55, 0.95);
+            background: linear-gradient(135deg, var(--menu-gold-soft), var(--menu-gold));
+        }
+        .menu-section {
+            border: 1px solid rgba(212, 175, 55, 0.28);
+            border-radius: 1.2rem;
+            padding: 1.1rem;
+            background: linear-gradient(160deg, rgba(255, 255, 255, 0.93), rgba(245, 236, 215, 0.93));
+            box-shadow: 0 16px 34px rgba(23, 47, 35, 0.1);
+            margin-top: 1.3rem;
+        }
+        .menu-section-header {
+            margin: 0 0 0.9rem;
+            padding: 0.5rem 0.55rem 0.7rem;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.35);
+        }
+        .menu-section-eyebrow {
+            display: inline-block;
+            margin: 0 0 0.35rem;
+            font-family: "Montserrat", sans-serif;
+            font-size: 0.73rem;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+            color: #1A4D2E;
+            opacity: 0.86;
+        }
+        .menu-section h2 {
+            margin: 0;
+            font-family: "Cormorant Garamond", serif;
+            font-size: clamp(1.8rem, 4vw, 2.7rem);
+            line-height: 1.15;
+            color: #123524;
+        }
+        .menu-section-subtitle {
+            margin: 0.45rem 0 0;
+            color: #234232;
+            font-family: "Playfair Display", serif;
+            font-size: 0.98rem;
+        }
+        .menu-card-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 1rem;
+        }
+        .menu-card {
+            border: 1px solid rgba(212, 175, 55, 0.33);
+            border-radius: 1rem;
+            overflow: hidden;
+            background: #FFFDF8;
+            box-shadow: 0 12px 22px rgba(10, 37, 24, 0.09);
+            display: flex;
+            flex-direction: column;
+            min-height: 100%;
+            will-change: transform, box-shadow;
+        }
+        .menu-card-media {
+            background: var(--menu-green);
+            aspect-ratio: 16 / 10;
+            overflow: hidden;
+        }
+        .menu-card-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .menu-card-body {
+            padding: 0.95rem 0.95rem 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            flex: 1;
+        }
+        .menu-card-title {
+            margin: 0;
+            font-family: "Cormorant Garamond", serif;
+            font-size: 1.5rem;
+            line-height: 1.2;
+            color: var(--menu-gold);
+            font-weight: 700;
+        }
+        .menu-card-desc {
+            margin: 0;
+            font-family: "Playfair Display", serif;
+            color: #244634;
+            font-size: 0.95rem;
+            line-height: 1.5;
+            flex: 1;
+        }
+        .menu-card-price {
+            margin: 0;
+            font-family: "Montserrat", sans-serif;
+            font-weight: 700;
+            font-size: 1rem;
+            letter-spacing: 0.03em;
+            color: var(--menu-gold);
+        }
+        .menu-preorder {
+            margin-top: 2.15rem;
+            border: 1px solid rgba(212, 175, 55, 0.4);
+            border-radius: 1.2rem;
+            background: linear-gradient(145deg, rgba(10, 37, 24, 0.95), rgba(20, 60, 40, 0.95));
+            color: #F5ECD7;
+            box-shadow: 0 20px 35px rgba(10, 37, 24, 0.24);
+            padding: 1.2rem;
+        }
+        .menu-preorder h2 {
+            margin: 0;
+            color: var(--menu-gold-soft);
+            font-family: "Cormorant Garamond", serif;
+            font-size: clamp(2rem, 4vw, 2.8rem);
+        }
+        .menu-preorder-subtitle {
+            margin: 0.5rem 0 0;
+            font-family: "Playfair Display", serif;
+            line-height: 1.6;
+            color: rgba(245, 236, 215, 0.93);
+        }
+        .menu-order-grid {
+            margin-top: 1.1rem;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 0.9rem;
+        }
+        .menu-order-field {
+            display: flex;
+            flex-direction: column;
+            gap: 0.35rem;
+        }
+        .menu-order-field--full {
+            grid-column: 1 / -1;
+        }
+        .menu-order-label {
+            font-family: "Montserrat", sans-serif;
+            font-weight: 600;
+            font-size: 0.83rem;
+            letter-spacing: 0.03em;
+            color: rgba(245, 236, 215, 0.97);
+        }
+        .menu-order-input {
+            width: 100%;
+            border-radius: 0.75rem;
+            border: 1px solid rgba(212, 175, 55, 0.44);
+            background: rgba(245, 236, 215, 0.08);
+            color: #F5ECD7;
+            font-family: "Montserrat", sans-serif;
+            font-size: 0.93rem;
+            line-height: 1.4;
+            padding: 0.72rem 0.85rem;
+            min-height: 2.8rem;
+        }
+        .menu-order-input::placeholder {
+            color: rgba(245, 236, 215, 0.66);
+        }
+        .menu-order-input:focus-visible {
+            outline: 2px solid var(--menu-gold-soft);
+            outline-offset: 1px;
+        }
+        textarea.menu-order-input {
+            resize: vertical;
+            min-height: 6.4rem;
+        }
+        .menu-order-actions {
+            margin-top: 0.95rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            align-items: center;
+        }
+        .menu-submit-btn {
+            border: 0;
+            border-radius: 999px;
+            background: linear-gradient(135deg, var(--menu-gold-soft), var(--menu-gold));
+            color: #0A2518;
+            font-family: "Montserrat", sans-serif;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+            padding: 0.72rem 1.3rem;
+            cursor: pointer;
+        }
+        .menu-whatsapp-fallback {
+            border-radius: 999px;
+            border: 1px solid rgba(212, 175, 55, 0.65);
+            color: #F5ECD7;
+            text-decoration: none;
+            font-family: "Montserrat", sans-serif;
+            font-weight: 600;
+            padding: 0.64rem 1.1rem;
+        }
+        .menu-order-feedback {
+            margin-top: 0.35rem;
+            font-family: "Montserrat", sans-serif;
+            font-size: 0.9rem;
+            color: rgba(245, 236, 215, 0.94);
+        }
+        .menu-order-feedback.is-error {
+            color: #FFD2D2;
+        }
+        .menu-order-feedback.is-success {
+            color: #D3F7BF;
+        }
+        @media (max-width: 1024px) {
+            .menu-card-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+        @media (max-width: 768px) {
+            .menu-hero {
+                padding-top: 7.3rem;
+                padding-bottom: 4.25rem;
+            }
+            .menu-content-wrap {
+                padding-left: 0.7rem;
+                padding-right: 0.7rem;
+            }
+            .menu-tabs-shell {
+                top: 4.9rem;
+                border-radius: 1.15rem;
+                padding: 0.5rem 0.55rem;
+            }
+            .menu-tab {
+                font-size: 0.8rem;
+                padding: 0.52rem 0.8rem;
+            }
+            .menu-section {
+                padding: 0.8rem;
+            }
+            .menu-card-grid {
+                grid-template-columns: 1fr;
+            }
+            .menu-card {
+                width: 100%;
+            }
+            .menu-order-grid {
+                grid-template-columns: 1fr;
+            }
+            .menu-order-actions {
+                flex-direction: column;
+                align-items: stretch;
+            }
+            .menu-submit-btn,
+            .menu-whatsapp-fallback {
+                text-align: center;
+                width: 100%;
+            }
+        }
     </style>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
@@ -90,8 +463,6 @@
 </head>
 <body class="critical-shell font-sans text-brown antialiased" data-page-transition>
     <div id="page-transition-overlay" class="page-transition-overlay" aria-hidden="true"></div>
-</head>
-<body>
     <div id="page-loader" class="page-loader" role="status" aria-live="polite">
     <div class="loader-mark text-center">
         <p class="loader-logo font-display text-5xl text-gold">SIDAI</p>
@@ -230,113 +601,76 @@
 })();
 </script>
 
-    <main class="min-h-screen bg-cream pt-20 pb-10">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-12">
-                <h1 class="text-4xl font-playfair font-bold text-forest-green mb-4">Our Menu</h1>
-                <p class="text-lg text-gray-600">Exquisite dining experiences crafted for you</p>
+    <main class="menu-main">
+        <section class="menu-hero menu-animate-section" id="menu-hero">
+            <div class="menu-hero-content">
+                <h1>Our Menu</h1>
+                <p>Nothing but the Best — from our kitchen to your table.</p>
+            </div>
+        </section>
+
+        <section class="menu-content-wrap">
+            <div id="menu-tabs-shell" class="menu-tabs-shell menu-animate-section" aria-label="Menu Categories">
+                <div class="menu-tabs-track" id="menu-tabs">
+                    <a class="menu-tab is-active" href="#breakfast" data-tab-target="breakfast">🌅 Breakfast</a>
+                    <a class="menu-tab" href="#local" data-tab-target="local">🍛 Local</a>
+                    <a class="menu-tab" href="#nyama-choma" data-tab-target="nyama-choma">🔥 Nyama Choma</a>
+                    <a class="menu-tab" href="#snacks" data-tab-target="snacks">🥪 Snacks</a>
+                    <a class="menu-tab" href="#desserts" data-tab-target="desserts">🍰 Desserts</a>
+                    <a class="menu-tab" href="#drinks" data-tab-target="drinks">🥤 Drinks</a>
+                    <a class="menu-tab" href="#hot" data-tab-target="hot">☕ Hot</a>
+                    <a class="menu-tab" href="#traditional" data-tab-target="traditional">🌿 Traditional</a>
+                    <a class="menu-tab" href="#beers" data-tab-target="beers">🍺 Beers</a>
+                </div>
             </div>
 
-                            <div class="grid grid-cols-1 gap-12">
-                                            <section class="bg-white rounded-lg shadow-lg p-8">
-                            <h2 class="text-2xl font-playfair font-bold text-forest-green mb-6">
-                                Breakfast                            </h2>
+            <div id="menu-sections"></div>
 
-                                                            <p class="text-gray-600 mb-6">Morning delights</p>
-                            
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                                            </div>
-                        </section>
-                                            <section class="bg-white rounded-lg shadow-lg p-8">
-                            <h2 class="text-2xl font-playfair font-bold text-forest-green mb-6">
-                                Lunch                            </h2>
+            <section id="pre-order" class="menu-preorder menu-animate-section">
+                <p class="menu-section-eyebrow">Pre-Order</p>
+                <h2>Pre-Order Your Meal</h2>
+                <p class="menu-preorder-subtitle">Share your order details and our team will follow up quickly. We'll confirm via WhatsApp after review.</p>
 
-                                                            <p class="text-gray-600 mb-6">Midday specials</p>
-                            
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                                            </div>
-                        </section>
-                                            <section class="bg-white rounded-lg shadow-lg p-8">
-                            <h2 class="text-2xl font-playfair font-bold text-forest-green mb-6">
-                                Dinner                            </h2>
+                <form id="menu-order-form" action="#" method="post" novalidate>
+                    <input type="hidden" name="csrf_token" id="menu-csrf-token" value="">
+                    <div class="menu-order-grid">
+                        <div class="menu-order-field">
+                            <label for="order-name" class="menu-order-label">Name</label>
+                            <input id="order-name" name="name" type="text" class="menu-order-input" placeholder="Your full name" required>
+                        </div>
+                        <div class="menu-order-field">
+                            <label for="order-phone" class="menu-order-label">Phone</label>
+                            <input id="order-phone" name="phone" type="tel" class="menu-order-input" placeholder="07XX XXX XXX" required>
+                        </div>
+                        <div class="menu-order-field">
+                            <label for="order-room-table" class="menu-order-label">Room/Table</label>
+                            <input id="order-room-table" name="room_table" type="text" class="menu-order-input" placeholder="Room 4 / Garden Table 3" required>
+                        </div>
+                        <div class="menu-order-field">
+                            <label for="order-date-time" class="menu-order-label">Date/Time</label>
+                            <input id="order-date-time" name="date_time" type="datetime-local" class="menu-order-input" required>
+                        </div>
+                        <div class="menu-order-field menu-order-field--full">
+                            <label for="order-items" class="menu-order-label">Items</label>
+                            <textarea id="order-items" name="items" class="menu-order-input" placeholder="Example: Goat Choma 500g x2, Mango Juice x2, Fruit Salad x1" required></textarea>
+                        </div>
+                        <div class="menu-order-field menu-order-field--full">
+                            <label for="order-special" class="menu-order-label">Special Instructions</label>
+                            <textarea id="order-special" name="special_instructions" class="menu-order-input" placeholder="Allergies, less spice, serving notes..."></textarea>
+                        </div>
+                    </div>
+                    <div class="menu-order-actions">
+                        <button type="submit" class="menu-submit-btn">Send Pre-Order</button>
+                        <a id="order-whatsapp-fallback" class="menu-whatsapp-fallback" href="https://wa.me/254703761951" target="_blank" rel="noopener noreferrer" hidden>Continue on WhatsApp</a>
+                    </div>
+                    <p id="menu-order-feedback" class="menu-order-feedback" aria-live="polite"></p>
+                </form>
 
-                                                            <p class="text-gray-600 mb-6">Evening cuisine</p>
-                            
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                                            </div>
-                        </section>
-                                            <section class="bg-white rounded-lg shadow-lg p-8">
-                            <h2 class="text-2xl font-playfair font-bold text-forest-green mb-6">
-                                Appetizers                            </h2>
-
-                                                            <p class="text-gray-600 mb-6">Starters and small bites</p>
-                            
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                                            </div>
-                        </section>
-                                            <section class="bg-white rounded-lg shadow-lg p-8">
-                            <h2 class="text-2xl font-playfair font-bold text-forest-green mb-6">
-                                Main Courses                            </h2>
-
-                                                            <p class="text-gray-600 mb-6">Signature dishes</p>
-                            
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                                            </div>
-                        </section>
-                                            <section class="bg-white rounded-lg shadow-lg p-8">
-                            <h2 class="text-2xl font-playfair font-bold text-forest-green mb-6">
-                                Desserts                            </h2>
-
-                                                            <p class="text-gray-600 mb-6">Sweet endings</p>
-                            
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                                            </div>
-                        </section>
-                                            <section class="bg-white rounded-lg shadow-lg p-8">
-                            <h2 class="text-2xl font-playfair font-bold text-forest-green mb-6">
-                                Beverages                            </h2>
-
-                                                            <p class="text-gray-600 mb-6">Drinks and refreshments</p>
-                            
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                                            </div>
-                        </section>
-                                            <section class="bg-white rounded-lg shadow-lg p-8">
-                            <h2 class="text-2xl font-playfair font-bold text-forest-green mb-6">
-                                Cocktails                            </h2>
-
-                                                            <p class="text-gray-600 mb-6">Alcoholic cocktails</p>
-                            
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                                            </div>
-                        </section>
-                                            <section class="bg-white rounded-lg shadow-lg p-8">
-                            <h2 class="text-2xl font-playfair font-bold text-forest-green mb-6">
-                                Wines                            </h2>
-
-                                                            <p class="text-gray-600 mb-6">Wine selection</p>
-                            
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                                            </div>
-                        </section>
-                                            <section class="bg-white rounded-lg shadow-lg p-8">
-                            <h2 class="text-2xl font-playfair font-bold text-forest-green mb-6">
-                                Juices                            </h2>
-
-                                                            <p class="text-gray-600 mb-6">Fresh juices</p>
-                            
-                            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                                            </div>
-                        </section>
-                                    </div>
-            
-            <div class="mt-12 text-center">
-                <p class="text-gray-600 mb-4">Interested in our special dining packages?</p>
-                <a href="about.html#contact" class="inline-block bg-gold hover:bg-gold-dark text-white font-semibold py-3 px-8 rounded-lg transition">
-                    Contact Us for Reservations
-                </a>
-            </div>
-        </div>
+                <noscript>
+                    <p class="menu-order-feedback">JavaScript is required for online pre-order. Please use <a href="https://wa.me/254703761951" class="underline">wa.me/254703761951</a>.</p>
+                </noscript>
+            </section>
+        </section>
     </main>
 
     <footer class="mt-12 sm:mt-20 bg-night text-cream">
@@ -492,5 +826,522 @@ document.addEventListener('alpine:init', () => {
 <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js" defer></script>
 <script src="assets/js/app.js" defer></script>
+<script>
+window.menuImageFallback = (imageElement) => {
+    if (!imageElement) {
+        return;
+    }
+
+    imageElement.onerror = null;
+    const fallbackSvg = `
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 220">
+            <rect width="320" height="220" fill="#123524"/>
+            <g fill="none" stroke="#D4AF37" stroke-linecap="round" stroke-linejoin="round" stroke-width="10">
+                <path d="M116 52v56"/>
+                <path d="M100 52v24"/>
+                <path d="M132 52v24"/>
+                <path d="M116 108v60"/>
+                <path d="M198 52c-18 10-30 34-30 60v56"/>
+                <path d="M198 52v116"/>
+            </g>
+        </svg>
+    `;
+    imageElement.src = `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(fallbackSvg)}`;
+};
+
+document.addEventListener('DOMContentLoaded', () => {
+    const sectionsRoot = document.getElementById('menu-sections');
+    const tabsShell = document.getElementById('menu-tabs-shell');
+    const tabs = Array.from(document.querySelectorAll('.menu-tab'));
+    const orderForm = document.getElementById('menu-order-form');
+    const orderFeedback = document.getElementById('menu-order-feedback');
+    const whatsappFallback = document.getElementById('order-whatsapp-fallback');
+    const csrfMeta = document.querySelector('meta[name="csrf-token"]');
+    const csrfField = document.getElementById('menu-csrf-token');
+    const fallbackWhatsappBase = 'https://wa.me/254703761951';
+    const hostname = window.location.hostname || '';
+    const useStaticFallback = /(^|\\.)vercel\\.app$/i.test(hostname) || !/sidairesort\\.com$/i.test(hostname);
+
+    if (csrfField && csrfMeta) {
+        csrfField.value = csrfMeta.getAttribute('content') || '';
+    }
+
+    if (!sectionsRoot) {
+        return;
+    }
+
+    const menuCatalog = [
+        {
+            id: 'breakfast',
+            title: 'Breakfast',
+            subtitle: 'Sunrise plates to start your day right.',
+            note: 'Freshly made breakfast comfort with local produce.',
+            items: [
+                { name: 'Full English', price: 750 },
+                { name: 'Mandazi & Chai', price: 200 },
+                { name: 'Ugali & Eggs', price: 300 },
+                { name: 'Pancakes & Honey', price: 450 },
+                { name: 'Avocado Toast', price: 400 },
+                { name: 'Boiled Eggs & Bread', price: 250 },
+                { name: 'Sidai Platter(2pax)', price: 1200 },
+                { name: 'Uji wa Wimbi', price: 150 }
+            ]
+        },
+        {
+            id: 'local',
+            title: 'Local Dishes',
+            subtitle: 'Authentic Kenyan classics from our kitchen.',
+            note: 'Hearty flavors rooted in local traditions.',
+            items: [
+                { name: 'Nyama Stew & Ugali', price: 650 },
+                { name: 'Sukuma & Ugali', price: 350 },
+                { name: 'Pilau Rice', price: 500 },
+                { name: 'Githeri', price: 300 },
+                { name: 'Matoke', price: 350 },
+                { name: 'Chapati & Beans', price: 300 },
+                { name: 'Mukimo', price: 400 },
+                { name: 'Veg Stew & Rice', price: 400 }
+            ]
+        },
+        {
+            id: 'nyama-choma',
+            title: 'Nyama Choma',
+            subtitle: 'Fire-grilled favorites done the Sidai way.',
+            note: 'Char-grilled and served hot off the flame.',
+            items: [
+                { name: 'Goat Choma 500g', price: 900 },
+                { name: 'Beef Choma 500g', price: 850 },
+                { name: 'Chicken Choma Half', price: 750 },
+                { name: 'Pork Ribs 400g', price: 950 },
+                { name: 'Mixed Grill Platter(2pax)', price: 1400 },
+                { name: 'Tilapia Grilled', price: 800 },
+                { name: 'Sausages & Chips', price: 550 }
+            ]
+        },
+        {
+            id: 'snacks',
+            title: 'Snacks',
+            subtitle: 'Quick bites for sharing or solo cravings.',
+            note: 'Crispy and satisfying light bites.',
+            items: [
+                { name: 'Samosa(3pc)', price: 150 },
+                { name: 'Chips Large', price: 250 },
+                { name: 'Bhajia', price: 200 },
+                { name: 'Smokies', price: 200 },
+                { name: 'Chicken Sandwich', price: 450 },
+                { name: 'Boiled Maize', price: 100 },
+                { name: 'Spring Rolls(4pc)', price: 300 },
+                { name: 'Groundnuts', price: 100 }
+            ]
+        },
+        {
+            id: 'desserts',
+            title: 'Desserts',
+            subtitle: 'Sweet endings and tropical comfort.',
+            note: 'Light, sweet, and freshly served.',
+            items: [
+                { name: 'Mahamri & Coconut', price: 250 },
+                { name: 'Fruit Salad', price: 300 },
+                { name: 'Chocolate Cake', price: 350 },
+                { name: 'Yoghurt & Honey', price: 250 },
+                { name: 'Banana Fritters', price: 200 },
+                { name: 'Ice Cream 2 Scoops', price: 300 }
+            ]
+        },
+        {
+            id: 'drinks',
+            title: 'Soft Drinks',
+            subtitle: 'Refreshing chilled pours and juices.',
+            note: 'Cold refreshment for every meal.',
+            items: [
+                { name: 'Soda(300ml)', price: 100 },
+                { name: 'Mango Juice', price: 250 },
+                { name: 'Passion Juice', price: 250 },
+                { name: 'Orange Juice', price: 250 },
+                { name: 'Watermelon Juice', price: 200 },
+                { name: 'Alvaro', price: 150 },
+                { name: 'Water', price: 100 },
+                { name: 'Delmonte', price: 150 }
+            ]
+        },
+        {
+            id: 'hot',
+            title: 'Hot Drinks',
+            subtitle: 'Warm classics for anytime comfort.',
+            note: 'Steaming hot cups made to order.',
+            items: [
+                { name: 'Kenyan Chai', price: 100 },
+                { name: 'Black Coffee', price: 150 },
+                { name: 'White Coffee', price: 200 },
+                { name: 'Hot Chocolate', price: 200 },
+                { name: 'Ginger Lemon Tea', price: 150 },
+                { name: 'Milo', price: 150 }
+            ]
+        },
+        {
+            id: 'traditional',
+            title: 'Traditional',
+            subtitle: 'Heritage drinks and local specialties.',
+            note: 'Traditional tastes from the region.',
+            items: [
+                { name: 'Muratina', price: 300 },
+                { name: 'Uji wa Wimbi', price: 150 },
+                { name: 'Sugarcane Juice', price: 150 },
+                { name: 'Tamarind Water', price: 150 },
+                { name: 'Hibiscus Tea', price: 200 }
+            ]
+        },
+        {
+            id: 'beers',
+            title: 'Beers',
+            subtitle: 'Popular local and premium picks.',
+            note: 'Served chilled and ready for your table.',
+            items: [
+                { name: 'Tusker Lager', price: 350 },
+                { name: 'Tusker Malt', price: 350 },
+                { name: 'White Cap', price: 350 },
+                { name: 'Pilsner', price: 350 },
+                { name: 'Savanna Cider', price: 400 }
+            ]
+        }
+    ];
+
+    const imagePools = {
+        breakfast: [
+            'assets/images/menu-breakfast.png',
+            'assets/images/breakfast.jpeg',
+            'assets/images/mandazis.webp',
+            'assets/images/tea.webp'
+        ],
+        local: [
+            'assets/images/ugali beef.avif',
+            'assets/images/chapati beef.jpg',
+            'assets/images/rice&beef.jpg',
+            'assets/images/goat-soup.jpeg'
+        ],
+        'nyama-choma': [
+            'assets/images/mbuzi-choma.jpg',
+            'assets/images/nyama-choma-and-soup.jpeg',
+            'assets/images/goat-soup.jpeg'
+        ],
+        snacks: [
+            'assets/images/plain-chips.jpeg',
+            'assets/images/potatoes.jpg',
+            'assets/images/chapati beef.jpg'
+        ],
+        desserts: [
+            'assets/images/Farm Visits/Passion Fruits.jpeg',
+            'assets/images/mandazis.webp',
+            'assets/images/milk.webp'
+        ],
+        drinks: [
+            'assets/images/menu-beverages.png',
+            'assets/images/Soft_Drinks_Image.webp',
+            'assets/images/sodas drinks.webp'
+        ],
+        hot: [
+            'assets/images/tea.webp',
+            'assets/images/black coffee.png',
+            'assets/images/milk.webp'
+        ],
+        traditional: [
+            'assets/images/Farm Visits/Sugarcane.jpeg',
+            'assets/images/tea.webp',
+            'assets/images/goat-soup.jpeg'
+        ],
+        beers: [
+            'assets/images/Wines.jpeg',
+            'assets/images/menu-beverages.png',
+            'assets/images/at-the-fireside.jpeg'
+        ]
+    };
+
+    const renderCatalog = () => {
+        const fragment = document.createDocumentFragment();
+
+        menuCatalog.forEach((sectionData) => {
+            const section = document.createElement('section');
+            section.id = sectionData.id;
+            section.className = 'menu-section menu-animate-section';
+            section.setAttribute('data-menu-section', sectionData.id);
+            section.innerHTML = `
+                <div class="menu-section-header">
+                    <p class="menu-section-eyebrow">Sidai Resort Menu</p>
+                    <h2>${sectionData.title}</h2>
+                    <p class="menu-section-subtitle">${sectionData.subtitle}</p>
+                </div>
+            `;
+
+            const grid = document.createElement('div');
+            grid.className = 'menu-card-grid';
+
+            sectionData.items.forEach((item, index) => {
+                const itemImages = imagePools[sectionData.id] || [];
+                const imagePath = itemImages[index % itemImages.length];
+
+                const card = document.createElement('article');
+                card.className = 'menu-card';
+                card.setAttribute('data-menu-card', '');
+                card.innerHTML = `
+                    <div class="menu-card-media">
+                        <img loading="lazy" alt="${item.name} at Sidai Resort" onerror="menuImageFallback(this)">
+                    </div>
+                    <div class="menu-card-body">
+                        <h3 class="menu-card-title">${item.name}</h3>
+                        <p class="menu-card-desc">${sectionData.note}</p>
+                        <p class="menu-card-price">KSh ${item.price}</p>
+                    </div>
+                `;
+
+                const image = card.querySelector('img');
+                if (image && imagePath) {
+                    image.src = encodeURI(imagePath);
+                }
+
+                grid.appendChild(card);
+            });
+
+            section.appendChild(grid);
+            fragment.appendChild(section);
+        });
+
+        sectionsRoot.innerHTML = '';
+        sectionsRoot.appendChild(fragment);
+    };
+
+    const setActiveTab = (sectionId) => {
+        tabs.forEach((tab) => {
+            const isCurrent = tab.dataset.tabTarget === sectionId;
+            tab.classList.toggle('is-active', isCurrent);
+            if (isCurrent) {
+                tab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+            }
+        });
+    };
+
+    const getScrollOffset = () => {
+        const headerHeight = document.getElementById('site-header')?.offsetHeight || 84;
+        const tabsHeight = tabsShell?.offsetHeight || 54;
+        return headerHeight + tabsHeight + 10;
+    };
+
+    const bindTabScroll = () => {
+        tabs.forEach((tab) => {
+            tab.addEventListener('click', (event) => {
+                event.preventDefault();
+
+                const targetId = tab.dataset.tabTarget || '';
+                const target = document.getElementById(targetId);
+
+                if (!target) {
+                    return;
+                }
+
+                setActiveTab(targetId);
+                const targetY = target.getBoundingClientRect().top + window.pageYOffset - getScrollOffset();
+
+                if (window.gsap && window.ScrollToPlugin) {
+                    window.gsap.to(window, {
+                        duration: 0.82,
+                        ease: 'power2.out',
+                        scrollTo: { y: targetY, autoKill: true }
+                    });
+                    return;
+                }
+
+                window.scrollTo({ top: targetY, behavior: 'smooth' });
+            });
+        });
+    };
+
+    const bindSectionTracking = () => {
+        const sections = menuCatalog
+            .map((sectionData) => document.getElementById(sectionData.id))
+            .filter(Boolean);
+
+        if (window.gsap && window.ScrollTrigger) {
+            if (window.ScrollToPlugin) {
+                window.gsap.registerPlugin(window.ScrollTrigger, window.ScrollToPlugin);
+            } else {
+                window.gsap.registerPlugin(window.ScrollTrigger);
+            }
+
+            sections.forEach((section) => {
+                window.ScrollTrigger.create({
+                    trigger: section,
+                    start: 'top center',
+                    end: 'bottom center',
+                    onToggle: (self) => {
+                        if (self.isActive) {
+                            setActiveTab(section.id);
+                        }
+                    }
+                });
+            });
+            return;
+        }
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    setActiveTab(entry.target.id);
+                }
+            });
+        }, { threshold: 0.45 });
+
+        sections.forEach((section) => observer.observe(section));
+    };
+
+    const initGsapAnimations = () => {
+        if (!window.gsap || !window.ScrollTrigger) {
+            return;
+        }
+
+        const { gsap } = window;
+        const animatedSections = gsap.utils.toArray('.menu-animate-section');
+        animatedSections.forEach((section) => {
+            gsap.from(section, {
+                opacity: 0,
+                y: 32,
+                duration: 0.8,
+                ease: 'power2.out',
+                scrollTrigger: {
+                    trigger: section,
+                    start: 'top 84%'
+                }
+            });
+        });
+
+        gsap.utils.toArray('.menu-section').forEach((section) => {
+            const cards = section.querySelectorAll('[data-menu-card]');
+            gsap.from(cards, {
+                opacity: 0,
+                y: 38,
+                duration: 0.56,
+                stagger: 0.08,
+                ease: 'power2.out',
+                scrollTrigger: {
+                    trigger: section,
+                    start: 'top 78%'
+                }
+            });
+        });
+
+        gsap.utils.toArray('[data-menu-card]').forEach((card) => {
+            card.addEventListener('mouseenter', () => {
+                gsap.to(card, {
+                    y: -10,
+                    boxShadow: '0 24px 38px rgba(212, 175, 55, 0.34)',
+                    duration: 0.24,
+                    ease: 'power2.out'
+                });
+            });
+            card.addEventListener('mouseleave', () => {
+                gsap.to(card, {
+                    y: 0,
+                    boxShadow: '0 12px 22px rgba(10, 37, 24, 0.09)',
+                    duration: 0.24,
+                    ease: 'power2.out'
+                });
+            });
+        });
+    };
+
+    const buildWhatsAppMessage = (formData) => {
+        const lines = [
+            'Hello Sidai Resort, I would like to place a menu pre-order.',
+            `Name: ${formData.get('name') || ''}`,
+            `Phone: ${formData.get('phone') || ''}`,
+            `Room/Table: ${formData.get('room_table') || ''}`,
+            `Date/Time: ${formData.get('date_time') || ''}`,
+            `Items: ${formData.get('items') || ''}`,
+            `Special Instructions: ${formData.get('special_instructions') || 'None'}`
+        ];
+        return encodeURIComponent(lines.join('\n'));
+    };
+
+    const initOrderForm = () => {
+        if (!orderForm || !orderFeedback || !whatsappFallback) {
+            return;
+        }
+
+        orderForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            const formData = new FormData(orderForm);
+            const required = ['name', 'phone', 'room_table', 'date_time', 'items'];
+            const missingField = required.find((field) => !String(formData.get(field) || '').trim());
+
+            if (missingField) {
+                orderFeedback.textContent = 'Please complete all required fields before submitting.';
+                orderFeedback.className = 'menu-order-feedback is-error';
+                return;
+            }
+
+            orderFeedback.textContent = 'Sending your pre-order...';
+            orderFeedback.className = 'menu-order-feedback';
+            whatsappFallback.hidden = true;
+
+            const whatsappMessage = buildWhatsAppMessage(formData);
+            whatsappFallback.href = `${fallbackWhatsappBase}?text=${whatsappMessage}`;
+
+            if (useStaticFallback) {
+                orderFeedback.textContent = "We'll confirm via WhatsApp.";
+                orderFeedback.className = 'menu-order-feedback is-success';
+                whatsappFallback.hidden = false;
+                return;
+            }
+
+            const payload = new FormData();
+            payload.append('csrf_token', String(csrfField?.value || csrfMeta?.getAttribute('content') || ''));
+            payload.append('guest_id', '1');
+            payload.append('delivery_type', 'dine_in');
+            payload.append('special_instructions', String(formData.get('special_instructions') || ''));
+            payload.append('items[0][id]', '1');
+            payload.append('items[0][quantity]', '1');
+            payload.append('name', String(formData.get('name') || ''));
+            payload.append('phone', String(formData.get('phone') || ''));
+            payload.append('room_table', String(formData.get('room_table') || ''));
+            payload.append('date_time', String(formData.get('date_time') || ''));
+            payload.append('requested_items', String(formData.get('items') || ''));
+
+            try {
+                const response = await fetch('app/api/menu-order.php', {
+                    method: 'POST',
+                    body: payload,
+                    headers: {
+                        'X-Requested-With': 'XMLHttpRequest'
+                    }
+                });
+
+                let data = null;
+                try {
+                    data = await response.json();
+                } catch (parseError) {
+                    data = null;
+                }
+
+                if (!response.ok || !data || data.success !== true) {
+                    throw new Error((data && data.message) ? data.message : 'Online pre-order failed.');
+                }
+
+                orderFeedback.textContent = "We'll confirm via WhatsApp.";
+                orderFeedback.className = 'menu-order-feedback is-success';
+                orderForm.reset();
+            } catch (error) {
+                orderFeedback.textContent = 'Online pre-order is unavailable right now. Please continue on WhatsApp.';
+                orderFeedback.className = 'menu-order-feedback is-error';
+                whatsappFallback.hidden = false;
+            }
+        });
+    };
+
+    renderCatalog();
+    bindTabScroll();
+    bindSectionTracking();
+    initGsapAnimations();
+    initOrderForm();
+});
+</script>
 </body>
 </html>
