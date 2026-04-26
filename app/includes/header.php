@@ -3,10 +3,13 @@
 $currentPath = parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH) ?: '/';
 $navItems = [
     ['label' => 'Home', 'href' => WEB_ROOT . '/'],
+    ['label' => 'About', 'href' => WEB_ROOT . '/about'],
+    ['label' => 'Rooms', 'href' => WEB_ROOT . '/rooms'],
     ['label' => 'Services', 'href' => WEB_ROOT . '/services'],
-    ['label' => 'Accommodation', 'href' => WEB_ROOT . '/rooms'],
-    ['label' => 'Menus', 'href' => WEB_ROOT . '/menu'],
-    ['label' => 'About Us', 'href' => WEB_ROOT . '/about'],
+    ['label' => 'Gallery', 'href' => WEB_ROOT . '/about#gallery'],
+    ['label' => 'Events', 'href' => WEB_ROOT . '/events'],
+    ['label' => 'Menu', 'href' => WEB_ROOT . '/menu'],
+    ['label' => 'Contact', 'href' => WEB_ROOT . '/contact'],
 ];
 
 $isActive = static function (string $href) use ($currentPath): bool {
@@ -27,13 +30,30 @@ $isActive = static function (string $href) use ($currentPath): bool {
 </div>
 
 <header id="site-header" x-data="{ mobileOpen: false }" class="fixed top-0 inset-x-0 z-50 transition-all duration-300">
+    <!-- Top Contact Bar -->
+    <div class="hidden md:block bg-night text-cream py-1.5 px-4 sm:px-6 lg:px-8 text-xs font-medium tracking-wide">
+        <div class="mx-auto max-w-7xl flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <span>📞 0703 761 951 / 0721 940 823</span>
+                <span>✉ sidairesort21@gmail.com</span>
+            </div>
+            <div class="flex items-center gap-3">
+                <a href="https://facebook.com/SidaiResort" target="_blank" rel="noopener noreferrer" class="hover:text-gold transition-colors">Facebook</a>
+                <a href="https://instagram.com/SidaiResort" target="_blank" rel="noopener noreferrer" class="hover:text-gold transition-colors">Instagram</a>
+                <a href="https://wa.me/254703761951" target="_blank" rel="noopener noreferrer" class="hover:text-gold transition-colors">WhatsApp</a>
+                <a href="https://tiktok.com/@SidaiResort" target="_blank" rel="noopener noreferrer" class="hover:text-gold transition-colors">TikTok</a>
+            </div>
+        </div>
+    </div>
+
     <div class="mx-auto max-w-7xl px-3 sm:px-6 lg:px-8">
         <nav class="mt-3 sm:mt-4 rounded-2xl border border-gold/30 bg-cream/70 px-3 sm:px-4 py-2.5 sm:py-3 backdrop-blur-lg shadow-lg" aria-label="Primary">
             <div class="flex items-center justify-between gap-2 sm:gap-4">
-                <a href="<?php echo WEB_ROOT; ?>/" class="flex items-center gap-2 sm:gap-3 min-w-0" aria-label="Sidai Resort Home">
-                    <span class="inline-flex h-9 w-9 sm:h-11 sm:w-11 items-center justify-center rounded-full bg-gradient-to-br from-gold to-gold-dark text-night font-bold text-lg sm:text-xl flex-shrink-0">S</span>
-                        <span class="block font-display text-xl sm:text-2xl text-brown truncate">Sidai Resort</span>
-                        <span class="block text-[8px] sm:text-[10px] uppercase tracking-[0.2em] sm:tracking-[0.3em] text-forest truncate mt-1">Nothing But the Best</span>
+                <a href="<?php echo WEB_ROOT; ?>/" class="site-logo flex items-center gap-2 sm:gap-3 min-w-0" aria-label="Sidai Resort Home">
+                    <picture>
+                        <source media="(prefers-color-scheme: dark)" srcset="<?php echo WEB_ROOT; ?>/assets/images/sidai-logo-white.png">
+                        <img src="<?php echo WEB_ROOT; ?>/assets/images/sidai-logo.png" alt="Sidai Resort — Where your needs are our goals" class="h-12 md:h-16 w-auto object-contain">
+                    </picture>
                 </a>
 
                 <div class="hidden lg:flex items-center gap-1" id="desktop-nav-links">
@@ -110,8 +130,8 @@ $isActive = static function (string $href) use ($currentPath): bool {
         if (window.gsap) {
             const timeline = window.gsap.timeline({ defaults: { ease: 'power3.out' } });
             timeline
-                .from('#site-header nav', { y: -30, opacity: 0, duration: 0.7 })
-                .from('.header-link', { y: -12, opacity: 0, stagger: 0.05, duration: 0.35 }, '-=0.35');
+                .from('.site-logo', { x: -50, opacity: 0, duration: 0.8 })
+                .from('.header-link', { y: -20, opacity: 0, stagger: 0.1, duration: 0.5 }, '-=0.5');
         }
     });
 

@@ -67,18 +67,20 @@ if (
             <!-- Brand Column -->
             <div class="sm:col-span-2 lg:col-span-1">
                 <a href="<?php echo WEB_ROOT; ?>/" class="flex items-center gap-3">
-                    <span class="inline-flex h-10 w-10 items-center justify-center rounded-full bg-gold text-night font-bold">S</span>
-                    <span class="font-display text-2xl text-gold">Sidai Resort</span>
+                    <img src="<?php echo WEB_ROOT; ?>/assets/images/sidai-logo.png" alt="Sidai Resort" class="h-14 w-auto">
                 </a>
-                <p class="mt-4 text-sm leading-7 text-cream/80">
-                    Warm luxury rooted in Maasai heritage. Sidai means good, and every stay is crafted to feel exceptional.
+                <p class="mt-4 text-sm font-semibold text-gold">
+                    Where your needs are our goals
+                </p>
+                <p class="mt-2 text-sm leading-7 text-cream/80">
+                    Sidai — Excellence in Maasai
                 </p>
                 <div class="mt-5 flex items-center gap-3">
-                    <a href="<?php echo safe_html(SOCIAL_INSTAGRAM); ?>" target="_blank" rel="noopener noreferrer" class="social-pill" aria-label="Instagram"><?php echo social_icon('instagram', 18); ?></a>
-                    <a href="<?php echo safe_html(SOCIAL_FACEBOOK); ?>" target="_blank" rel="noopener noreferrer" class="social-pill" aria-label="Facebook"><?php echo social_icon('facebook', 18); ?></a>
-                    <a href="<?php echo safe_html(SOCIAL_WHATSAPP); ?>" target="_blank" rel="noopener noreferrer" class="social-pill social-pill--whatsapp" aria-label="WhatsApp"><?php echo social_icon('whatsapp', 18); ?></a>
-                    <a href="https://twitter.com/sidairesort" target="_blank" rel="noopener noreferrer" class="social-pill" aria-label="Twitter / X"><?php echo social_icon('twitter', 16); ?></a>
-                    <a href="https://tiktok.com/@sidairesort" target="_blank" rel="noopener noreferrer" class="social-pill" aria-label="TikTok"><?php echo social_icon('tiktok', 16); ?></a>
+                    <a href="https://facebook.com/SidaiResort" target="_blank" rel="noopener noreferrer" class="social-pill" aria-label="Facebook"><?php echo social_icon('facebook', 18); ?></a>
+                    <a href="https://instagram.com/SidaiResort" target="_blank" rel="noopener noreferrer" class="social-pill" aria-label="Instagram"><?php echo social_icon('instagram', 18); ?></a>
+                    <a href="https://tiktok.com/@SidaiResort" target="_blank" rel="noopener noreferrer" class="social-pill" aria-label="TikTok"><?php echo social_icon('tiktok', 16); ?></a>
+                    <a href="https://wa.me/254703761951" target="_blank" rel="noopener noreferrer" class="social-pill social-pill--whatsapp" aria-label="WhatsApp"><?php echo social_icon('whatsapp', 18); ?></a>
+                    <a href="#" target="_blank" rel="noopener noreferrer" class="social-pill" aria-label="YouTube"><?php echo social_icon('youtube', 18); ?></a>
                 </div>
             </div>
 
@@ -87,43 +89,60 @@ if (
                 <h3 class="footer-title">Quick Links</h3>
                 <ul class="footer-list">
                     <li><a href="<?php echo WEB_ROOT; ?>/">Home</a></li>
+                    <li><a href="<?php echo WEB_ROOT; ?>/about">About</a></li>
+                    <li><a href="<?php echo WEB_ROOT; ?>/rooms">Rooms</a></li>
                     <li><a href="<?php echo WEB_ROOT; ?>/services">Services</a></li>
-                    <li><a href="<?php echo WEB_ROOT; ?>/rooms">Accommodation</a></li>
-                    <li><a href="<?php echo WEB_ROOT; ?>/menu">Menus</a></li>
-                    <li><a href="<?php echo WEB_ROOT; ?>/about">About Us</a></li>
                     <li><a href="<?php echo WEB_ROOT; ?>/about#gallery">Gallery</a></li>
-                    <li><a href="<?php echo WEB_ROOT; ?>/about#contact">Contact</a></li>
-                    <li><a href="<?php echo WEB_ROOT; ?>/booking">Book Now</a></li>
+                    <li><a href="<?php echo WEB_ROOT; ?>/events">Events</a></li>
+                    <li><a href="<?php echo WEB_ROOT; ?>/menu">Menu</a></li>
+                    <li><a href="<?php echo WEB_ROOT; ?>/booking">Booking</a></li>
+                    <li><a href="<?php echo WEB_ROOT; ?>/contact">Contact</a></li>
                 </ul>
             </div>
 
             <!-- Experiences Column -->
             <div>
-                <h3 class="footer-title">Experiences</h3>
+                <h3 class="footer-title">Our Experiences</h3>
                 <ul class="footer-list">
-                    <li>Swimming Pool Sessions</li>
-                    <li>Event Hall Celebrations</li>
-                    <li>Fine Dining</li>
-                    <li>Music and Film Shoots</li>
-                    <li>Conference Facilities</li>
+                    <li>Swimming Pool</li>
+                    <li>Events & Weddings</li>
+                    <li>Conferences</li>
+                    <li>Accommodation</li>
+                    <li>Goat Eating</li>
+                    <li>Bonfires & Sundowners</li>
+                    <li>Birdwatching</li>
+                    <li>Farm Visits</li>
+                    <li>Picnics</li>
                 </ul>
             </div>
 
-            <!-- Contact + Newsletter Column -->
+            <!-- Contact Column -->
             <div>
-                <h3 class="footer-title">Contact</h3>
+                <h3 class="footer-title">Contact Us</h3>
                 <div class="space-y-3 text-sm text-cream/85">
                     <p class="flex items-start gap-2">
-                        <span class="flex-shrink-0 mt-0.5 text-gold/70"><?php echo social_icon('email', 16); ?></span>
-                        <a href="mailto:<?php echo safe_html(APP_EMAIL); ?>"><?php echo safe_html(APP_EMAIL); ?></a>
+                        <span class="flex-shrink-0 mt-0.5 text-gold/70">📍</span>
+                        <span>Naroosura, Loita Hills, Narok County, Kenya</span>
                     </p>
                     <p class="flex items-start gap-2">
-                        <span class="flex-shrink-0 mt-0.5 text-gold/70"><?php echo social_icon('phone', 16); ?></span>
-                        <a href="tel:<?php echo safe_html(APP_PHONE); ?>"><?php echo safe_html(APP_PHONE); ?></a>
+                        <span class="flex-shrink-0 mt-0.5 text-gold/70">📮</span>
+                        <span>P.O Box 617 – 20500, Narok</span>
                     </p>
                     <p class="flex items-start gap-2">
-                        <span class="flex-shrink-0 mt-0.5 text-gold/70"><?php echo social_icon('map', 16); ?></span>
-                        <span><?php echo safe_html(APP_ADDRESS); ?></span>
+                        <span class="flex-shrink-0 mt-0.5 text-gold/70">📞</span>
+                        <a href="tel:0703761951">0703 761 951</a>
+                    </p>
+                    <p class="flex items-start gap-2">
+                        <span class="flex-shrink-0 mt-0.5 text-gold/70">📞</span>
+                        <a href="tel:0721940823">0721 940 823</a>
+                    </p>
+                    <p class="flex items-start gap-2">
+                        <span class="flex-shrink-0 mt-0.5 text-gold/70">✉️</span>
+                        <a href="mailto:sidairesort21@gmail.com">sidairesort21@gmail.com</a>
+                    </p>
+                    <p class="flex items-start gap-2">
+                        <span class="flex-shrink-0 mt-0.5 text-gold/70">💬</span>
+                        <a href="https://wa.me/254703761951">WhatsApp: 0703 761 951</a>
                     </p>
                 </div>
 
@@ -153,11 +172,11 @@ if (
 
         <div class="mt-10 sm:mt-12 border-t border-gold/20 pt-6">
             <div class="flex flex-col gap-4 text-sm text-cream/70 sm:flex-row sm:items-center sm:justify-between">
-                <p>&copy; <?php echo date('Y'); ?> <?php echo safe_html(APP_NAME); ?>. All rights reserved.</p>
+                <p>&copy; 2025 Sidai Resort. All rights reserved.</p>
+                <p class="text-gold uppercase tracking-[0.2em] font-semibold text-center text-xs">Nothing but the Best — Always</p>
                 <div class="flex flex-wrap items-center gap-x-4 gap-y-2">
                     <a href="<?php echo WEB_ROOT; ?>/privacy-policy" class="hover:text-gold transition-colors">Privacy Policy</a>
                     <a href="<?php echo WEB_ROOT; ?>/terms-of-service" class="hover:text-gold transition-colors">Terms of Service</a>
-                    <a href="<?php echo WEB_ROOT; ?>/cookie-policy" class="hover:text-gold transition-colors">Cookie Policy</a>
                 </div>
                 <button id="back-to-top" type="button" class="hidden sm:inline-flex h-10 w-10 items-center justify-center rounded-full border border-gold/50 text-gold hover:bg-gold hover:text-night transition-colors" aria-label="Back to top">
                     <span aria-hidden="true">&uarr;</span>

@@ -6,9 +6,9 @@ require_once dirname(__DIR__) . '/app/includes/init.php';
 
 use App\Core\Database;
 
-$pageTitle = 'Services & Outdoor Experiences | Enkiu Lounge & Enkima Bonfire | Sidai Resort';
+$pageTitle = 'Our Services | Swimming, Events, Conferences, Birdwatching & More | Sidai Resort';
 $pageDescription = "Explore Sidai Resort services: swimming pool, fine dining, and outdoor experiences like Eoshet retreats, Enkiu lounge, and our signature Enkima bonfire under the stars. Nothing but the Best.";
-$pageImage = APP_URL . '/assets/images/conference-suite.jpg';
+$pageImage = APP_URL . '/assets/images/sidai-logo.png';
 
 $settings = [];
 $dbNotice = null;

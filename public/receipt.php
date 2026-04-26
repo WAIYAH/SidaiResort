@@ -28,9 +28,9 @@ if ($bookingRef) {
         <div class="container mx-auto px-4 max-w-3xl">
             <?php if ($booking): ?>
                 <div class="bg-white rounded-lg shadow-lg p-8 mb-8">
-                    <div class="text-center mb-8 pb-8 border-b-2 border-gold">
-                        <h1 class="text-4xl font-playfair font-bold text-forest-green mb-2">Sidai Safari Dreams</h1>
-                        <p class="text-lg text-gold font-semibold">Booking Receipt</p>
+                    <div class="text-center mb-8 pb-8 border-b-2 border-gold flex flex-col items-center">
+                        <img src="<?php echo WEB_ROOT; ?>/assets/images/sidai-logo.png" alt="Sidai Resort" class="h-16 w-auto mb-4">
+                        <p class="text-lg text-gold font-semibold tracking-wider">Booking Receipt</p>
                     </div>
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
