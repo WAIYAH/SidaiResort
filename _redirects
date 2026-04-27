@@ -1,33 +1,3 @@
-# Cloudflare Pages Redirects Configuration
-# Clean URL redirects - remove .html extensions
-
-# HTML file redirects (clean URLs)
-/about.html              /about                301
-/booking.html            /booking              301
-/services.html           /services             301
-/rooms.html              /rooms                301
-/menu.html               /menu                 301
-/experiences.html        /experiences          301
-/gallery.html            /gallery              301
-/events.html             /events               301
-/contact.html            /contact              301
-/privacy-policy.html     /privacy-policy       301
-/cookie-policy.html      /cookie-policy        301
-/terms-of-service.html   /terms-of-service     301
-
-# Route all traffic without extensions to .html files
-/about                   /about.html           200
-/booking                 /booking.html         200
-/services                /services.html        200
-/rooms                   /rooms.html           200
-/menu                    /menu.html            200
-/experiences             /experiences.html     200
-/gallery                 /gallery.html         200
-/events                  /events.html          200
-/contact                 /contact.html         200
-/privacy-policy          /privacy-policy.html  200
-/cookie-policy           /cookie-policy.html   200
-/terms-of-service        /terms-of-service.html 200
-
-# Default 404 handling
-/*                       /404.html             404
+/home           /index.html         301
+/booking        /index.html         301
+/*              /index.html         200
