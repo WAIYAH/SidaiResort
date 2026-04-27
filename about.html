@@ -30,9 +30,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@400;500;700&family=Lato:wght@300;400&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com" defer></script>
     <script>
-        tailwind.config = {
+        window.tailwind = window.tailwind || {};
+        window.tailwind.config = {
             theme: {
                 extend: {
                     colors: {
@@ -92,6 +93,10 @@
 
     <title>About Sidai Resort | Our Story, Gallery and Contact</title>
     <link rel="stylesheet" href="assets/css/sidai.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <meta http-equiv="Cache-Control" content="max-age=31536000">
 </head>
 <body class="critical-shell font-sans text-brown antialiased" data-page-transition>
     <div id="page-transition-overlay" class="page-transition-overlay" aria-hidden="true"></div>
@@ -107,7 +112,7 @@
         <nav class="mt-3 sm:mt-4 rounded-2xl border border-gold/30 bg-cream/70 px-3 sm:px-4 py-2.5 sm:py-3 backdrop-blur-lg shadow-lg" aria-label="Primary">
             <div class="flex items-center justify-between gap-2 sm:gap-4">
                 <a href="index.html" class="flex items-center gap-2 sm:gap-3 min-w-0" aria-label="Sidai Resort Home">
-                    <img src="assets/images/branding/sidai-logo.png" alt="Sidai Resort Logo" class="brand-logo h-10 w-10 sm:h-12 sm:w-12 object-cover flex-shrink-0 rounded-full border border-gold/40 bg-cream/80 p-0.5 shadow-sm" loading="lazy">
+                    <img src="assets/images/branding/sidai-logo.png" alt="Sidai Resort Logo" class="brand-logo h-10 w-10 sm:h-12 sm:w-12 object-cover flex-shrink-0 rounded-full border border-gold/40 bg-cream/80 p-0.5 shadow-sm" loading="lazy" width="445" height="440">
                     <span class="brand-identity min-w-0">
                         <span class="brand-name block font-display text-xl sm:text-2xl text-brown truncate">Sidai Resort</span>
                         <span class="brand-tagline block text-[8px] sm:text-[10px] uppercase tracking-[0.2em] sm:tracking-[0.3em] text-forest truncate mt-1">Nothing But the Best</span>
@@ -226,7 +231,7 @@
                 src="assets/images/hero/african-sunset.avif" alt="Sidai Resort About Us Hero"
                 class="h-full w-full object-cover"
                 data-parallax-speed="0.15"
-             loading="lazy">
+             loading="eager" fetchpriority="high" width="626" height="470">
             <div class="absolute inset-0 bg-gradient-to-t from-night via-night/50 to-transparent"></div>
         </div>
         <div class="relative mx-auto max-w-7xl px-4 h-full flex flex-col justify-center sm:px-6 lg:px-8 text-center">
@@ -261,14 +266,14 @@
                 </div>
                 <div class="relative" data-aos="fade-left">
                     <div class="absolute -inset-4 rounded-3xl border border-gold/30 transform rotate-3"></div>
-                    <img src="assets/images/hero/sunset.jpeg" alt="Sidai Resort Sunset" class="relative rounded-2xl shadow-2xl w-full h-[500px] object-cover" loading="lazy">
+                    <img src="assets/images/hero/sunset.jpeg" alt="Sidai Resort Sunset" class="relative rounded-2xl shadow-2xl w-full h-[500px] object-cover" loading="lazy" width="1600" height="1200">
                 </div>
             </div>
 
             <div class="grid lg:grid-cols-2 gap-12 items-center mb-20">
                 <div class="relative" data-aos="fade-right">
                     <div class="absolute -inset-4 rounded-3xl border border-gold/30 transform -rotate-2"></div>
-                    <img src="assets/images/facility/before-at-2017.jpeg" alt="Sidai land before transformation in 2017" class="relative rounded-2xl shadow-2xl w-full h-[460px] object-cover" loading="lazy">
+                    <img src="assets/images/facility/before-at-2017.jpeg" alt="Sidai land before transformation in 2017" class="relative rounded-2xl shadow-2xl w-full h-[460px] object-cover" loading="lazy" width="1280" height="959">
                 </div>
                 <article class="bg-white rounded-3xl border border-brown/10 p-8 sm:p-10 shadow-xl" data-aos="fade-left">
                     <p class="text-sm font-semibold uppercase tracking-[0.2em] text-gold mb-3">Where Sidai Started</p>
@@ -371,7 +376,7 @@
     <!-- Why Choose Us Section (Green Grid Replacement) -->
     <section class="bg-forest py-24 text-cream relative overflow-hidden" id="why-choose-us">
         <div class="absolute inset-0 z-0 opacity-10">
-            <img src="assets/images/events/outdoor-meetings.jpeg" alt="Background Texture" class="w-full h-full object-cover" loading="lazy">
+            <img src="assets/images/events/outdoor-meetings.jpeg" alt="Background Texture" class="w-full h-full object-cover" loading="lazy" width="1280" height="960">
         </div>
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
             <div class="text-center mb-16" data-aos="fade-up">
@@ -428,21 +433,21 @@
                             src="assets/images/nature/serene-places.jpeg"
                             alt="Infinity Pool Retreat in Sidai Resort gallery"
                             class="h-full min-h-[220px] w-full object-cover"
-                            fetchpriority="high"                         loading="lazy">
+                            fetchpriority="high"                         loading="lazy" width="1280" height="960">
                     </article>
                                     <article class="overflow-hidden rounded-2xl border border-gold/20 ">
                         <img
                             src="assets/images/events/outdoor-congregation.jpeg"
                             alt="Fine Dining Evenings in Sidai Resort gallery"
                             class="h-full min-h-[220px] w-full object-cover"
-                            loading="lazy"                        >
+                            loading="lazy"                         width="1280" height="853">
                     </article>
                                     <article class="overflow-hidden rounded-2xl border border-gold/20 ">
                         <img
                             src="assets/images/experiences/nightview-swimming-pool.jpeg"
                             alt="Celebration Hall Setup in Sidai Resort gallery"
                             class="h-full min-h-[220px] w-full object-cover"
-                            loading="lazy"                        >
+                            loading="lazy"                         width="1040" height="780">
                     </article>
                             </div>
             <div class="mt-8 max-w-3xl">
@@ -535,13 +540,13 @@
                                 alt="Infinity Pool Retreat - Pool at Sidai Resort"
                                 class="lazy-gallery-image h-56 w-full object-cover transition duration-500 group-hover:scale-[1.03]"
                                 loading="lazy"
-                            >
+                             width="1200" height="1200">
                             <noscript>
                                 <img
                                     src="assets/images/nature/serene-places.jpeg"
                                     alt="Infinity Pool Retreat - Pool at Sidai Resort"
                                     class="h-56 w-full object-cover"
-                                 loading="lazy">
+                                 loading="lazy" width="1280" height="960">
                             </noscript>
                             <span class="absolute inset-0 bg-gradient-to-t from-night/75 via-night/20 to-transparent opacity-0 transition duration-300 group-hover:opacity-100"></span>
                             <span class="absolute bottom-0 left-0 right-0 p-4 opacity-0 transition duration-300 group-hover:opacity-100">
@@ -567,13 +572,13 @@
                                 alt="Fine Dining Evenings - Dining at Sidai Resort"
                                 class="lazy-gallery-image h-64 w-full object-cover transition duration-500 group-hover:scale-[1.03]"
                                 loading="lazy"
-                            >
+                             width="1200" height="1200">
                             <noscript>
                                 <img
                                     src="assets/images/events/outdoor-congregation.jpeg"
                                     alt="Fine Dining Evenings - Dining at Sidai Resort"
                                     class="h-64 w-full object-cover"
-                                 loading="lazy">
+                                 loading="lazy" width="1280" height="853">
                             </noscript>
                             <span class="absolute inset-0 bg-gradient-to-t from-night/75 via-night/20 to-transparent opacity-0 transition duration-300 group-hover:opacity-100"></span>
                             <span class="absolute bottom-0 left-0 right-0 p-4 opacity-0 transition duration-300 group-hover:opacity-100">
@@ -599,13 +604,13 @@
                                 alt="Celebration Hall Setup - Events at Sidai Resort"
                                 class="lazy-gallery-image h-72 w-full object-cover transition duration-500 group-hover:scale-[1.03]"
                                 loading="lazy"
-                            >
+                             width="1200" height="1200">
                             <noscript>
                                 <img
                                     src="assets/images/experiences/nightview-swimming-pool.jpeg"
                                     alt="Celebration Hall Setup - Events at Sidai Resort"
                                     class="h-72 w-full object-cover"
-                                 loading="lazy">
+                                 loading="lazy" width="1040" height="780">
                             </noscript>
                             <span class="absolute inset-0 bg-gradient-to-t from-night/75 via-night/20 to-transparent opacity-0 transition duration-300 group-hover:opacity-100"></span>
                             <span class="absolute bottom-0 left-0 right-0 p-4 opacity-0 transition duration-300 group-hover:opacity-100">
@@ -631,13 +636,13 @@
                                 alt="Luxury Room Ambience - Rooms at Sidai Resort"
                                 class="lazy-gallery-image h-80 w-full object-cover transition duration-500 group-hover:scale-[1.03]"
                                 loading="lazy"
-                            >
+                             width="1200" height="1200">
                             <noscript>
                                 <img
                                     src="assets/images/hero/sunset.jpeg"
                                     alt="Luxury Room Ambience - Rooms at Sidai Resort"
                                     class="h-80 w-full object-cover"
-                                 loading="lazy">
+                                 loading="lazy" width="1600" height="1200">
                             </noscript>
                             <span class="absolute inset-0 bg-gradient-to-t from-night/75 via-night/20 to-transparent opacity-0 transition duration-300 group-hover:opacity-100"></span>
                             <span class="absolute bottom-0 left-0 right-0 p-4 opacity-0 transition duration-300 group-hover:opacity-100">
@@ -663,13 +668,13 @@
                                 alt="Golden Hour Landscape - Nature at Sidai Resort"
                                 class="lazy-gallery-image h-60 w-full object-cover transition duration-500 group-hover:scale-[1.03]"
                                 loading="lazy"
-                            >
+                             width="1200" height="1200">
                             <noscript>
                                 <img
                                     src="assets/images/events/outdoor-meetings.jpeg"
                                     alt="Golden Hour Landscape - Nature at Sidai Resort"
                                     class="h-60 w-full object-cover"
-                                 loading="lazy">
+                                 loading="lazy" width="1280" height="960">
                             </noscript>
                             <span class="absolute inset-0 bg-gradient-to-t from-night/75 via-night/20 to-transparent opacity-0 transition duration-300 group-hover:opacity-100"></span>
                             <span class="absolute bottom-0 left-0 right-0 p-4 opacity-0 transition duration-300 group-hover:opacity-100">
@@ -695,13 +700,13 @@
                                 alt="Enkima Bonfire - Nature at Sidai Resort"
                                 class="lazy-gallery-image h-56 w-full object-cover transition duration-500 group-hover:scale-[1.03]"
                                 loading="lazy"
-                            >
+                             width="1200" height="1200">
                             <noscript>
                                 <img
                                     src="assets/images/hero/hero-section.jpg"
                                     alt="Enkima Bonfire - Nature at Sidai Resort"
                                     class="h-56 w-full object-cover"
-                                 loading="lazy">
+                                 loading="lazy" width="1007" height="666">
                             </noscript>
                             <span class="absolute inset-0 bg-gradient-to-t from-night/75 via-night/20 to-transparent opacity-0 transition duration-300 group-hover:opacity-100"></span>
                             <span class="absolute bottom-0 left-0 right-0 p-4 opacity-0 transition duration-300 group-hover:opacity-100">
@@ -727,13 +732,13 @@
                                 alt="Wedding Reception Decor - Weddings at Sidai Resort"
                                 class="lazy-gallery-image h-64 w-full object-cover transition duration-500 group-hover:scale-[1.03]"
                                 loading="lazy"
-                            >
+                             width="1200" height="1200">
                             <noscript>
                                 <img
                                     src="assets/images/experiences/cool-swimming.jpeg"
                                     alt="Wedding Reception Decor - Weddings at Sidai Resort"
                                     class="h-64 w-full object-cover"
-                                 loading="lazy">
+                                 loading="lazy" width="1040" height="780">
                             </noscript>
                             <span class="absolute inset-0 bg-gradient-to-t from-night/75 via-night/20 to-transparent opacity-0 transition duration-300 group-hover:opacity-100"></span>
                             <span class="absolute bottom-0 left-0 right-0 p-4 opacity-0 transition duration-300 group-hover:opacity-100">
@@ -759,13 +764,13 @@
                                 alt="Evening Party Atmosphere - Parties at Sidai Resort"
                                 class="lazy-gallery-image h-72 w-full object-cover transition duration-500 group-hover:scale-[1.03]"
                                 loading="lazy"
-                            >
+                             width="1200" height="1200">
                             <noscript>
                                 <img
                                     src="assets/images/dining/menu-beverages.png"
                                     alt="Evening Party Atmosphere - Parties at Sidai Resort"
                                     class="h-72 w-full object-cover"
-                                 loading="lazy">
+                                 loading="lazy" width="1024" height="1024">
                             </noscript>
                             <span class="absolute inset-0 bg-gradient-to-t from-night/75 via-night/20 to-transparent opacity-0 transition duration-300 group-hover:opacity-100"></span>
                             <span class="absolute bottom-0 left-0 right-0 p-4 opacity-0 transition duration-300 group-hover:opacity-100">
@@ -805,7 +810,7 @@
                                 alt="Infinity Pool Retreat featured at Sidai Resort"
                                 class="h-72 w-full object-cover"
                                 loading="lazy"
-                            >
+                             width="1280" height="960">
                             <div class="p-5">
                                 <p class="text-xs uppercase tracking-[0.18em] text-gold">Pool</p>
                                 <h3 class="mt-2 font-display text-3xl">Infinity Pool Retreat</h3>
@@ -826,7 +831,7 @@
                                 alt="Celebration Hall Setup featured at Sidai Resort"
                                 class="h-72 w-full object-cover"
                                 loading="lazy"
-                            >
+                             width="1040" height="780">
                             <div class="p-5">
                                 <p class="text-xs uppercase tracking-[0.18em] text-gold">Events</p>
                                 <h3 class="mt-2 font-display text-3xl">Celebration Hall Setup</h3>
@@ -847,7 +852,7 @@
                                 alt="Golden Hour Landscape featured at Sidai Resort"
                                 class="h-72 w-full object-cover"
                                 loading="lazy"
-                            >
+                             width="1280" height="960">
                             <div class="p-5">
                                 <p class="text-xs uppercase tracking-[0.18em] text-gold">Nature</p>
                                 <h3 class="mt-2 font-display text-3xl">Golden Hour Landscape</h3>
@@ -1090,7 +1095,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <!-- Brand Column -->
             <div class="sm:col-span-2 lg:col-span-1">
                 <a href="index.html" class="flex items-center gap-3">
-                    <img src="assets/images/branding/sidai-logo.png" alt="Sidai Resort Logo" class="brand-logo h-10 w-10 sm:h-12 sm:w-12 object-cover flex-shrink-0 rounded-full border border-gold/40 bg-cream/80 p-0.5 shadow-sm" loading="lazy">
+                    <img src="assets/images/branding/sidai-logo.png" alt="Sidai Resort Logo" class="brand-logo h-10 w-10 sm:h-12 sm:w-12 object-cover flex-shrink-0 rounded-full border border-gold/40 bg-cream/80 p-0.5 shadow-sm" loading="lazy" width="445" height="440">
                     <span class="font-display text-2xl text-gold">Sidai Resort</span>
                 </a>
                 <p class="mt-4 text-sm leading-7 text-cream/80">
@@ -1286,7 +1291,6 @@ document.addEventListener('alpine:init', () => {
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"LodgingBusiness","name":"Sidai Resort","description":"Learn the story behind Sidai Resort, explore our gallery, and connect with us to plan your next stay, event, or celebration.","url":"https://sidairesort.com","telephone":"0703 761 951 / 0705 800 802","email":"sidairesort21@gmail.com","address":{"@type":"PostalAddress","streetAddress":"FRCX+PP4 Narosura, Narok County, Kenya","addressLocality":"Narok","addressRegion":"Narok County","addressCountry":"KE"},"sameAs":["https://instagram.com/sidairesort","https://facebook.com/sidairesort"],"currenciesAccepted":"KES"}</script>
 </body>
 </html>
-
 
 
 

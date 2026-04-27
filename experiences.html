@@ -30,9 +30,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@400;500;700&family=Lato:wght@300;400&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com" defer></script>
     <script>
-        tailwind.config = {
+        window.tailwind = window.tailwind || {};
+        window.tailwind.config = {
             theme: {
                 extend: {
                     colors: {
@@ -92,6 +93,10 @@
 
     <title>Experiences | Videos, Moments and Memories | Sidai Resort</title>
     <link rel="stylesheet" href="assets/css/sidai.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <meta http-equiv="Cache-Control" content="max-age=31536000">
 </head>
 <body class="critical-shell font-sans text-brown antialiased bg-cream" data-page-transition>
     <div id="page-transition-overlay" class="page-transition-overlay" aria-hidden="true"></div>
@@ -118,7 +123,7 @@
         <nav class="mt-3 sm:mt-4 rounded-2xl border border-gold/30 bg-cream/70 px-3 sm:px-4 py-2.5 sm:py-3 backdrop-blur-lg shadow-lg" aria-label="Primary">
             <div class="flex items-center justify-between gap-2 sm:gap-4">
                 <a href="index.html" class="flex items-center gap-2 sm:gap-3 min-w-0" aria-label="Sidai Resort Home">
-                    <img src="assets/images/branding/sidai-logo.png" alt="Sidai Resort Logo" class="brand-logo h-10 w-10 sm:h-12 sm:w-12 object-cover flex-shrink-0 rounded-full border border-gold/40 bg-cream/80 p-0.5 shadow-sm" loading="lazy">
+                    <img src="assets/images/branding/sidai-logo.png" alt="Sidai Resort Logo" class="brand-logo h-10 w-10 sm:h-12 sm:w-12 object-cover flex-shrink-0 rounded-full border border-gold/40 bg-cream/80 p-0.5 shadow-sm" loading="lazy" width="445" height="440">
                     <span class="brand-identity min-w-0">
                         <span class="brand-name block font-display text-xl sm:text-2xl text-brown truncate">Sidai Resort</span>
                         <span class="brand-tagline block text-[8px] sm:text-[10px] uppercase tracking-[0.2em] sm:tracking-[0.3em] text-forest truncate mt-1">Nothing But the Best</span>
@@ -331,7 +336,7 @@
                     :aria-label="'Open photo: ' + moment.title"
                 >
                     <div class="relative">
-                        <img :src="moment.src" :alt="moment.title" loading="lazy" class="w-full object-cover transition-transform duration-500 hover:scale-105" data-reveal-image>
+                        <img :src="moment.src" :alt="moment.title" :width="moment.width" :height="moment.height" loading="lazy" class="w-full object-cover transition-transform duration-500 hover:scale-105" data-reveal-image>
                         <div class="absolute inset-x-0 bottom-0 bg-gradient-to-t from-night/80 via-night/20 to-transparent p-4">
                             <p class="text-sm font-semibold text-cream" x-text="moment.title"></p>
                             <p class="text-[11px] uppercase tracking-[0.14em] text-gold" x-text="moment.label"></p>
@@ -355,10 +360,10 @@
                     <h3 class="mt-1 font-display text-3xl">Night Moments</h3>
                 </div>
                 <div class="grid grid-cols-2 gap-3 p-6">
-                    <img src="assets/images/experiences/at-the-fireside.jpeg" alt="Fireside at Sidai" class="h-36 w-full rounded-xl object-cover" loading="lazy">
-                    <img src="assets/images/experiences/bonfire-2.jpeg" alt="Bonfire gathering" class="h-36 w-full rounded-xl object-cover" loading="lazy">
-                    <img src="assets/images/experiences/bonfire.jpeg" alt="Bonfire celebration" class="h-36 w-full rounded-xl object-cover" loading="lazy">
-                    <img src="assets/images/nature/night-view-flowers.jpeg" alt="Night flowers" class="h-36 w-full rounded-xl object-cover" loading="lazy">
+                    <img src="assets/images/experiences/at-the-fireside.jpeg" alt="Fireside at Sidai" class="h-36 w-full rounded-xl object-cover" loading="lazy" width="1280" height="960">
+                    <img src="assets/images/experiences/bonfire-2.jpeg" alt="Bonfire gathering" class="h-36 w-full rounded-xl object-cover" loading="lazy" width="960" height="1280">
+                    <img src="assets/images/experiences/bonfire.jpeg" alt="Bonfire celebration" class="h-36 w-full rounded-xl object-cover" loading="lazy" width="960" height="1280">
+                    <img src="assets/images/nature/night-view-flowers.jpeg" alt="Night flowers" class="h-36 w-full rounded-xl object-cover" loading="lazy" width="1600" height="1200">
                 </div>
             </article>
 
@@ -507,9 +512,71 @@ function experiencesPage() {
         { id: 'm46', title: 'Guest Moments', src: 'assets/images/events/guest-moments-2026-04-25-19-10-21.jpeg', category: 'events', label: 'Celebration' }
     ];
 
+    const momentImageDimensions = {
+        'assets/images/dining/breakfast.jpeg': { width: 1280, height: 960 },
+        'assets/images/dining/fresh-fruits.jpeg': { width: 1200, height: 1600 },
+        'assets/images/dining/goat-soup.jpeg': { width: 960, height: 1280 },
+        'assets/images/dining/mbuzi-choma.jpg': { width: 585, height: 450 },
+        'assets/images/dining/nyama-choma-and-soup.jpeg': { width: 1280, height: 960 },
+        'assets/images/dining/people-drinking-tea.jpeg': { width: 1600, height: 1200 },
+        'assets/images/events/cars-and-motorbikes.jpeg': { width: 1600, height: 1200 },
+        'assets/images/events/cars-at-the-parking.jpeg': { width: 1600, height: 1200 },
+        'assets/images/events/conference-hall.jpeg': { width: 720, height: 539 },
+        'assets/images/events/conference-setting.jpeg': { width: 1600, height: 1200 },
+        'assets/images/events/guest-moments-2026-04-25-19-10-21.jpeg': { width: 1600, height: 1200 },
+        'assets/images/events/outdoor-meetings.jpeg': { width: 1280, height: 960 },
+        'assets/images/events/people-at-conference.jpeg': { width: 1600, height: 1200 },
+        'assets/images/events/people-event.jpeg': { width: 1280, height: 853 },
+        'assets/images/events/some-congregation.jpeg': { width: 1600, height: 1200 },
+        'assets/images/experiences/a-boy-at-the-pool.jpeg': { width: 1200, height: 1600 },
+        'assets/images/experiences/a-girl-at-the-pool.jpeg': { width: 1200, height: 1600 },
+        'assets/images/experiences/at-the-fireside.jpeg': { width: 1280, height: 960 },
+        'assets/images/experiences/bonfire-2.jpeg': { width: 960, height: 1280 },
+        'assets/images/experiences/children-at-bouncing-castle.jpeg': { width: 1600, height: 1200 },
+        'assets/images/experiences/children-enjoying.jpeg': { width: 1600, height: 1200 },
+        'assets/images/experiences/children-swimming.jpeg': { width: 1600, height: 1200 },
+        'assets/images/experiences/chilling-at-sidai.jpeg': { width: 1600, height: 1200 },
+        'assets/images/experiences/chilling-at-the-fireside.jpeg': { width: 1600, height: 1200 },
+        'assets/images/experiences/cool-swimming.jpeg': { width: 1040, height: 780 },
+        'assets/images/experiences/fireside-talks.jpeg': { width: 1600, height: 1200 },
+        'assets/images/experiences/nightview-swimming-pool.jpeg': { width: 1040, height: 780 },
+        'assets/images/experiences/people-at-the-pool-side.jpeg': { width: 1600, height: 1200 },
+        'assets/images/experiences/people-watching-tv.jpeg': { width: 1600, height: 1200 },
+        'assets/images/experiences/playing-with-water.jpeg': { width: 1600, height: 1200 },
+        'assets/images/experiences/pool-area.jpeg': { width: 1600, height: 1200 },
+        'assets/images/experiences/pool-children-swimming.jpeg': { width: 1600, height: 1200 },
+        'assets/images/experiences/pool-party.jpeg': { width: 1600, height: 1200 },
+        'assets/images/experiences/pool-swimming.jpeg': { width: 1600, height: 1200 },
+        'assets/images/experiences/pool-water-splash.jpeg': { width: 585, height: 1040 },
+        'assets/images/experiences/pool-water-splashing.jpeg': { width: 585, height: 1040 },
+        'assets/images/experiences/swimming-pool.jpeg': { width: 1280, height: 960 },
+        'assets/images/experiences/vibes-at-the-pool.jpeg': { width: 1600, height: 1200 },
+        'assets/images/facility/farm-eden-entrance.jpeg': { width: 1200, height: 1600 },
+        'assets/images/hero/african-sunset.avif': { width: 626, height: 470 },
+        'assets/images/hero/sunset.jpeg': { width: 1600, height: 1200 },
+        'assets/images/nature/before-2017-flat-bare-land.jpeg': { width: 1280, height: 959 },
+        'assets/images/nature/birds-2.jpeg': { width: 1200, height: 1600 },
+        'assets/images/nature/birds.jpeg': { width: 1200, height: 1600 },
+        'assets/images/nature/emirishoi.jpeg': { width: 1600, height: 717 },
+        'assets/images/nature/enkanasa.jpeg': { width: 1200, height: 1600 },
+        'assets/images/nature/enkipai.jpeg': { width: 1600, height: 1200 },
+        'assets/images/nature/ereto.jpeg': { width: 1600, height: 1200 },
+        'assets/images/nature/red-flowers.jpeg': { width: 1200, height: 1600 },
+        'assets/images/nature/serene-places.jpeg': { width: 1280, height: 960 },
+        'assets/images/nature/symbol-of-love-photo-area.jpeg': { width: 1200, height: 1600 },
+        'assets/images/nature/walkway-trail.jpeg': { width: 1200, height: 1600 },
+        'assets/images/nature/walkways.jpeg': { width: 1600, height: 1200 },
+        'assets/images/rooms/bedsetting.jpeg': { width: 960, height: 1280 },
+        'assets/images/rooms/rooms-side.jpeg': { width: 1600, height: 1200 },
+        'assets/images/rooms/rooms.jpeg': { width: 1280, height: 960 }
+    };
+
     return {
         featuredVideos: videos,
-        moments,
+        moments: moments.map((moment) => ({
+            ...moment,
+            ...(momentImageDimensions[moment.src] || { width: 1600, height: 1200 })
+        })),
         activeCategory: 'all',
         get categories() {
             const base = [
@@ -544,7 +611,7 @@ function experiencesPage() {
             <!-- Brand Column -->
             <div class="sm:col-span-2 lg:col-span-1">
                 <a href="index.html" class="flex items-center gap-3">
-                    <img src="assets/images/branding/sidai-logo.png" alt="Sidai Resort Logo" class="brand-logo h-10 w-10 sm:h-12 sm:w-12 object-cover flex-shrink-0 rounded-full border border-gold/40 bg-cream/80 p-0.5 shadow-sm" loading="lazy">
+                    <img src="assets/images/branding/sidai-logo.png" alt="Sidai Resort Logo" class="brand-logo h-10 w-10 sm:h-12 sm:w-12 object-cover flex-shrink-0 rounded-full border border-gold/40 bg-cream/80 p-0.5 shadow-sm" loading="lazy" width="445" height="440">
                     <span class="font-display text-2xl text-gold">Sidai Resort</span>
                 </a>
                 <p class="mt-4 text-sm leading-7 text-cream/80">
@@ -729,7 +796,6 @@ document.addEventListener('alpine:init', () => {
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"LodgingBusiness","name":"Sidai Resort","description":"Watch and relive Sidai Resort experiences through videos, celebrations, pool moments, and unforgettable memories in Narok County.","url":"https://sidairesort.com","telephone":"0703 761 951 / 0705 800 802","email":"sidairesort21@gmail.com","address":{"@type":"PostalAddress","streetAddress":"FRCX+PP4 Narosura, Narok County, Kenya","addressLocality":"Narok","addressRegion":"Narok County","addressCountry":"KE"},"sameAs":["https://instagram.com/sidairesort","https://facebook.com/sidairesort"],"currenciesAccepted":"KES"}</script>
 </body>
 </html>
-
 
 
 

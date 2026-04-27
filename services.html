@@ -30,9 +30,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@400;500;700&family=Lato:wght@300;400&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com" defer></script>
     <script>
-        tailwind.config = {
+        window.tailwind = window.tailwind || {};
+        window.tailwind.config = {
             theme: {
                 extend: {
                     colors: {
@@ -93,6 +94,10 @@
     <title>Services | Pool, Dining, Events and Outdoor Experiences | Sidai Resort</title>
 <style>html { scroll-behavior: smooth; } .custom-scrollbar::-webkit-scrollbar { width: 4px; } .custom-scrollbar::-webkit-scrollbar-thumb { background: #D4AF37; border-radius: 4px; }</style>
     <link rel="stylesheet" href="assets/css/sidai.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <meta http-equiv="Cache-Control" content="max-age=31536000">
 </head>
 <body class="critical-shell font-sans text-brown antialiased" data-page-transition>
     <div id="page-transition-overlay" class="page-transition-overlay" aria-hidden="true"></div>
@@ -108,7 +113,7 @@
         <nav class="mt-3 sm:mt-4 rounded-2xl border border-gold/30 bg-cream/70 px-3 sm:px-4 py-2.5 sm:py-3 backdrop-blur-lg shadow-lg" aria-label="Primary">
             <div class="flex items-center justify-between gap-2 sm:gap-4">
                 <a href="index.html" class="flex items-center gap-2 sm:gap-3 min-w-0" aria-label="Sidai Resort Home">
-                    <img src="assets/images/branding/sidai-logo.png" alt="Sidai Resort Logo" class="brand-logo h-10 w-10 sm:h-12 sm:w-12 object-cover flex-shrink-0 rounded-full border border-gold/40 bg-cream/80 p-0.5 shadow-sm" loading="lazy">
+                    <img src="assets/images/branding/sidai-logo.png" alt="Sidai Resort Logo" class="brand-logo h-10 w-10 sm:h-12 sm:w-12 object-cover flex-shrink-0 rounded-full border border-gold/40 bg-cream/80 p-0.5 shadow-sm" loading="lazy" width="445" height="440">
                         <span class="brand-identity min-w-0">
                             <span class="brand-name block font-display text-xl sm:text-2xl text-brown truncate">Sidai Resort</span>
                             <span class="brand-tagline block text-[8px] sm:text-[10px] uppercase tracking-[0.2em] sm:tracking-[0.3em] text-forest truncate mt-1">Nothing But the Best</span>
@@ -223,7 +228,7 @@
     <!-- Hero Section -->
     <section class="relative overflow-hidden">
         <div class="absolute inset-0">
-            <img src="assets/images/hero/african-sunset.avif" alt="Sidai Resort Services" class="h-full w-full object-cover" fetchpriority="high" loading="lazy">
+            <img src="assets/images/hero/african-sunset.avif" alt="Sidai Resort Services" class="h-full w-full object-cover" fetchpriority="high" loading="eager" width="626" height="470">
             <div class="absolute inset-0 bg-gradient-to-r from-night/90 via-night/70 to-forest/60"></div>
         </div>
         <div class="relative mx-auto max-w-7xl px-4 py-16 sm:py-24 lg:py-28 sm:px-6 lg:px-8 lg:py-36 text-center">
@@ -338,27 +343,27 @@
             <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 
                 <article class="overflow-hidden rounded-2xl border border-brown/10 shadow-sm h-48 sm:h-64">
-                    <img src="assets/images/experiences/swimming-pool.jpeg" alt="Swimming" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy">
+                    <img src="assets/images/experiences/swimming-pool.jpeg" alt="Swimming" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" width="1280" height="960">
                 </article>
             
                 <article class="overflow-hidden rounded-2xl border border-brown/10 shadow-sm h-48 sm:h-64">
-                    <img src="assets/images/experiences/cool-swimming.jpeg" alt="Swimming" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy">
+                    <img src="assets/images/experiences/cool-swimming.jpeg" alt="Swimming" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" width="1040" height="780">
                 </article>
             
                 <article class="overflow-hidden rounded-2xl border border-brown/10 shadow-sm h-48 sm:h-64">
-                    <img src="assets/images/experiences/deep-side-pool.jpeg" alt="Swimming" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy">
+                    <img src="assets/images/experiences/deep-side-pool.jpeg" alt="Swimming" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" width="780" height="754">
                 </article>
             
                 <article class="overflow-hidden rounded-2xl border border-brown/10 shadow-sm h-48 sm:h-64">
-                    <img src="assets/images/experiences/swimming.jpeg" alt="Swimming" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy">
+                    <img src="assets/images/experiences/swimming.jpeg" alt="Swimming" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" width="1040" height="780">
                 </article>
             
                 <article class="overflow-hidden rounded-2xl border border-brown/10 shadow-sm h-48 sm:h-64">
-                    <img src="assets/images/experiences/pool-area.jpeg" alt="Swimming" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy">
+                    <img src="assets/images/experiences/pool-area.jpeg" alt="Swimming" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" width="1600" height="1200">
                 </article>
             
                 <article class="overflow-hidden rounded-2xl border border-brown/10 shadow-sm h-48 sm:h-64">
-                    <img src="assets/images/experiences/nightview-swimming-pool.jpeg" alt="Swimming" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy">
+                    <img src="assets/images/experiences/nightview-swimming-pool.jpeg" alt="Swimming" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" width="1040" height="780">
                 </article>
             
             </div>
@@ -400,7 +405,7 @@
                 </article>
             
                 <article class="overflow-hidden rounded-2xl border border-brown/10 shadow-sm h-48 sm:h-64">
-                    <img src="assets/images/events/people-event.jpeg" alt="Birthday Parties & Sherehe" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy">
+                    <img src="assets/images/events/people-event.jpeg" alt="Birthday Parties & Sherehe" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" width="1280" height="853">
                 </article>
             
             </div>
@@ -442,11 +447,11 @@
                 </article>
             
                 <article class="overflow-hidden rounded-2xl border border-brown/10 shadow-sm h-48 sm:h-64">
-                    <img src="assets/images/nature/symbol-of-love-photo-area.jpeg" alt="Weddings & Receptions" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy">
+                    <img src="assets/images/nature/symbol-of-love-photo-area.jpeg" alt="Weddings & Receptions" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" width="1200" height="1600">
                 </article>
             
                 <article class="overflow-hidden rounded-2xl border border-brown/10 shadow-sm h-48 sm:h-64">
-                    <img src="assets/images/events/congregation.jpeg" alt="Weddings & Receptions" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy">
+                    <img src="assets/images/events/congregation.jpeg" alt="Weddings & Receptions" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" width="1280" height="853">
                 </article>
             
             </div>
@@ -484,15 +489,15 @@
             <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 
                 <article class="overflow-hidden rounded-2xl border border-brown/10 shadow-sm h-48 sm:h-64">
-                    <img src="assets/images/events/conference-hall.jpeg" alt="Conferences & Meetings" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy">
+                    <img src="assets/images/events/conference-hall.jpeg" alt="Conferences & Meetings" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" width="720" height="539">
                 </article>
             
                 <article class="overflow-hidden rounded-2xl border border-brown/10 shadow-sm h-48 sm:h-64">
-                    <img src="assets/images/events/conference-setting.jpeg" alt="Conferences & Meetings" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy">
+                    <img src="assets/images/events/conference-setting.jpeg" alt="Conferences & Meetings" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" width="1600" height="1200">
                 </article>
             
                 <article class="overflow-hidden rounded-2xl border border-brown/10 shadow-sm h-48 sm:h-64">
-                    <img src="assets/images/events/conference.jpeg" alt="Conferences & Meetings" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy">
+                    <img src="assets/images/events/conference.jpeg" alt="Conferences & Meetings" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" width="577" height="422">
                 </article>
             
             </div>
@@ -530,15 +535,15 @@
             <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 
                 <article class="overflow-hidden rounded-2xl border border-brown/10 shadow-sm h-48 sm:h-64">
-                    <img src="assets/images/dining/mbuzi-choma.jpg" alt="Goat Eating" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy">
+                    <img src="assets/images/dining/mbuzi-choma.jpg" alt="Goat Eating" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" width="585" height="450">
                 </article>
             
                 <article class="overflow-hidden rounded-2xl border border-brown/10 shadow-sm h-48 sm:h-64">
-                    <img src="assets/images/dining/goat-soup.jpeg" alt="Goat Eating" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy">
+                    <img src="assets/images/dining/goat-soup.jpeg" alt="Goat Eating" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" width="960" height="1280">
                 </article>
             
                 <article class="overflow-hidden rounded-2xl border border-brown/10 shadow-sm h-48 sm:h-64">
-                    <img src="assets/images/dining/nyama-choma-and-soup.jpeg" alt="Goat Eating" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy">
+                    <img src="assets/images/dining/nyama-choma-and-soup.jpeg" alt="Goat Eating" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" width="1280" height="960">
                 </article>
             
             </div>
@@ -576,15 +581,15 @@
             <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 
                 <article class="overflow-hidden rounded-2xl border border-brown/10 shadow-sm h-48 sm:h-64">
-                    <img src="assets/images/experiences/bonfire-2.jpeg" alt="Bonfires" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy">
+                    <img src="assets/images/experiences/bonfire-2.jpeg" alt="Bonfires" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" width="960" height="1280">
                 </article>
             
                 <article class="overflow-hidden rounded-2xl border border-brown/10 shadow-sm h-48 sm:h-64">
-                    <img src="assets/images/experiences/bonfire.jpeg" alt="Bonfires" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy">
+                    <img src="assets/images/experiences/bonfire.jpeg" alt="Bonfires" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" width="960" height="1280">
                 </article>
             
                 <article class="overflow-hidden rounded-2xl border border-brown/10 shadow-sm h-48 sm:h-64">
-                    <img src="assets/images/experiences/at-the-fireside.jpeg" alt="Bonfires" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy">
+                    <img src="assets/images/experiences/at-the-fireside.jpeg" alt="Bonfires" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" width="1280" height="960">
                 </article>
             
             </div>
@@ -622,15 +627,15 @@
             <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 
                 <article class="overflow-hidden rounded-2xl border border-brown/10 shadow-sm h-48 sm:h-64">
-                    <img src="assets/images/rooms/rooms.jpeg" alt="Accommodation" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy">
+                    <img src="assets/images/rooms/rooms.jpeg" alt="Accommodation" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" width="1280" height="960">
                 </article>
             
                 <article class="overflow-hidden rounded-2xl border border-brown/10 shadow-sm h-48 sm:h-64">
-                    <img src="assets/images/rooms/rooms-side.jpeg" alt="Accommodation" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy">
+                    <img src="assets/images/rooms/rooms-side.jpeg" alt="Accommodation" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" width="1600" height="1200">
                 </article>
             
                 <article class="overflow-hidden rounded-2xl border border-brown/10 shadow-sm h-48 sm:h-64">
-                    <img src="assets/images/rooms/bedsetting.jpeg" alt="Accommodation" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy">
+                    <img src="assets/images/rooms/bedsetting.jpeg" alt="Accommodation" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" width="960" height="1280">
                 </article>
             
             </div>
@@ -663,15 +668,15 @@
             <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 
                 <article class="overflow-hidden rounded-2xl border border-brown/10 shadow-sm h-48 sm:h-64">
-                    <img src="assets/images/nature/bird.jpg" alt="Birdwatching" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy">
+                    <img src="assets/images/nature/bird.jpg" alt="Birdwatching" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" width="612" height="406">
                 </article>
             
                 <article class="overflow-hidden rounded-2xl border border-brown/10 shadow-sm h-48 sm:h-64">
-                    <img src="assets/images/nature/birds.jpeg" alt="Birdwatching" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy">
+                    <img src="assets/images/nature/birds.jpeg" alt="Birdwatching" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" width="1200" height="1600">
                 </article>
             
                 <article class="overflow-hidden rounded-2xl border border-brown/10 shadow-sm h-48 sm:h-64">
-                    <img src="assets/images/nature/birds-2.jpeg" alt="Birdwatching" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy">
+                    <img src="assets/images/nature/birds-2.jpeg" alt="Birdwatching" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" width="1200" height="1600">
                 </article>
             
             </div>
@@ -704,27 +709,27 @@
             <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 
                 <article class="overflow-hidden rounded-2xl border border-brown/10 shadow-sm h-48 sm:h-64">
-                    <img src="assets/images/facility/farm-eden-entrance.jpeg" alt="Farm Visits" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy">
+                    <img src="assets/images/facility/farm-eden-entrance.jpeg" alt="Farm Visits" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" width="1200" height="1600">
                 </article>
             
                 <article class="overflow-hidden rounded-2xl border border-brown/10 shadow-sm h-48 sm:h-64">
-                    <img src="assets/images/nature/walkways.jpeg" alt="Farm Visits" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy">
+                    <img src="assets/images/nature/walkways.jpeg" alt="Farm Visits" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" width="1600" height="1200">
                 </article>
 
                 <article class="overflow-hidden rounded-2xl border border-brown/10 shadow-sm h-48 sm:h-64">
-                    <img src="assets/images/experiences/cows-grazing.jpeg" alt="Cows grazing during farm visit" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy">
+                    <img src="assets/images/experiences/cows-grazing.jpeg" alt="Cows grazing during farm visit" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" width="717" height="1600">
                 </article>
 
                 <article class="overflow-hidden rounded-2xl border border-brown/10 shadow-sm h-48 sm:h-64">
-                    <img src="assets/images/experiences/cows-1.jpeg" alt="Farm cattle at Sidai farm visits" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy">
+                    <img src="assets/images/experiences/cows-1.jpeg" alt="Farm cattle at Sidai farm visits" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" width="717" height="1600">
                 </article>
 
                 <article class="overflow-hidden rounded-2xl border border-brown/10 shadow-sm h-48 sm:h-64">
-                    <img src="assets/images/experiences/cows-2.jpeg" alt="Farm cattle during experience tour" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy">
+                    <img src="assets/images/experiences/cows-2.jpeg" alt="Farm cattle during experience tour" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" width="717" height="1600">
                 </article>
 
                 <article class="overflow-hidden rounded-2xl border border-brown/10 shadow-sm h-48 sm:h-64">
-                    <img src="assets/images/experiences/a-small-bull.jpeg" alt="Small bull on farm visit trail" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy">
+                    <img src="assets/images/experiences/a-small-bull.jpeg" alt="Small bull on farm visit trail" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" width="717" height="1600">
                 </article>
             
             </div>
@@ -757,11 +762,11 @@
             <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 
                 <article class="overflow-hidden rounded-2xl border border-brown/10 shadow-sm h-48 sm:h-64">
-                    <img src="assets/images/hero/sunset.jpeg" alt="Sundowners" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy">
+                    <img src="assets/images/hero/sunset.jpeg" alt="Sundowners" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" width="1600" height="1200">
                 </article>
             
                 <article class="overflow-hidden rounded-2xl border border-brown/10 shadow-sm h-48 sm:h-64">
-                    <img src="assets/images/hero/african-sunset.avif" alt="Sundowners" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy">
+                    <img src="assets/images/hero/african-sunset.avif" alt="Sundowners" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" width="626" height="470">
                 </article>
             
             </div>
@@ -794,15 +799,15 @@
             <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 
                 <article class="overflow-hidden rounded-2xl border border-brown/10 shadow-sm h-48 sm:h-64">
-                    <img src="assets/images/events/outdoor-meetings.jpeg" alt="Outdoor Meetings" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy">
+                    <img src="assets/images/events/outdoor-meetings.jpeg" alt="Outdoor Meetings" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" width="1280" height="960">
                 </article>
             
                 <article class="overflow-hidden rounded-2xl border border-brown/10 shadow-sm h-48 sm:h-64">
-                    <img src="assets/images/events/green-outdoor.jpeg" alt="Outdoor Meetings" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy">
+                    <img src="assets/images/events/green-outdoor.jpeg" alt="Outdoor Meetings" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" width="1600" height="1200">
                 </article>
             
                 <article class="overflow-hidden rounded-2xl border border-brown/10 shadow-sm h-48 sm:h-64">
-                    <img src="assets/images/events/outdoor-congregation.jpeg" alt="Outdoor Meetings" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy">
+                    <img src="assets/images/events/outdoor-congregation.jpeg" alt="Outdoor Meetings" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" width="1280" height="853">
                 </article>
             
             </div>
@@ -840,15 +845,15 @@
             <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 
                 <article class="overflow-hidden rounded-2xl border border-brown/10 shadow-sm h-48 sm:h-64">
-                    <img src="assets/images/dining/breakfast.jpeg" alt="Picnics" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy">
+                    <img src="assets/images/dining/breakfast.jpeg" alt="Picnics" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" width="1280" height="960">
                 </article>
             
                 <article class="overflow-hidden rounded-2xl border border-brown/10 shadow-sm h-48 sm:h-64">
-                    <img src="assets/images/nature/beautiful-shades.jpeg" alt="Picnics" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy">
+                    <img src="assets/images/nature/beautiful-shades.jpeg" alt="Picnics" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" width="1600" height="1200">
                 </article>
             
                 <article class="overflow-hidden rounded-2xl border border-brown/10 shadow-sm h-48 sm:h-64">
-                    <img src="assets/images/nature/serene-places.jpeg" alt="Picnics" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy">
+                    <img src="assets/images/nature/serene-places.jpeg" alt="Picnics" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" width="1280" height="960">
                 </article>
             
             </div>
@@ -862,14 +867,32 @@
     <script>
     function servicesTabs() {
         const tabIds = ['swimming', 'birthdays', 'weddings', 'conferences', 'goat-eating', 'bonfires', 'accommodation', 'birdwatching', 'farm-visits', 'sundowners', 'outdoor-meetings', 'picnics'];
+        const hashAliases = {
+            pool: 'swimming',
+            halls: 'weddings',
+            dining: 'goat-eating',
+            activities: 'birdwatching',
+            'music-shoots': 'bonfires',
+            conference: 'conferences',
+            'events-highlight': 'birthdays',
+            events: 'birthdays'
+        };
+
+        const resolveTabFromHash = (hashValue) => {
+            if (!hashValue) return null;
+            if (tabIds.includes(hashValue)) return hashValue;
+            return hashAliases[hashValue] || null;
+        };
+
         return {
             validTabs: tabIds,
             activeTab: 'swimming',
 
             init() {
                 const hash = window.location.hash.replace('#', '');
-                if (this.validTabs.includes(hash)) {
-                    this.activeTab = hash;
+                const resolved = resolveTabFromHash(hash);
+                if (resolved) {
+                    this.activeTab = resolved;
                 } else {
                     this.activeTab = tabIds[0];
                 }
@@ -883,8 +906,8 @@
                 });
 
                 window.addEventListener('hashchange', () => {
-                    const next = window.location.hash.replace('#', '');
-                    if (this.validTabs.includes(next)) {
+                    const next = resolveTabFromHash(window.location.hash.replace('#', ''));
+                    if (next) {
                         this.activeTab = next;
                     }
                 });
@@ -926,7 +949,7 @@
             <!-- Brand Column -->
             <div class="sm:col-span-2 lg:col-span-1">
                 <a href="index.html" class="flex items-center gap-3">
-                    <img src="assets/images/branding/sidai-logo.png" alt="Sidai Resort Logo" class="brand-logo h-10 w-10 sm:h-12 sm:w-12 object-cover flex-shrink-0 rounded-full border border-gold/40 bg-cream/80 p-0.5 shadow-sm" loading="lazy">
+                    <img src="assets/images/branding/sidai-logo.png" alt="Sidai Resort Logo" class="brand-logo h-10 w-10 sm:h-12 sm:w-12 object-cover flex-shrink-0 rounded-full border border-gold/40 bg-cream/80 p-0.5 shadow-sm" loading="lazy" width="445" height="440">
                     <span class="font-display text-2xl text-gold">Sidai Resort</span>
                 </a>
                 <p class="mt-4 text-sm leading-7 text-cream/80">
@@ -1111,8 +1134,6 @@ document.addEventListener('alpine:init', () => {
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"LodgingBusiness","name":"Sidai Resort","description":"Explore Sidai Resort services including swimming pool sessions, fine dining, event halls, conference facilities, and curated outdoor experiences.","url":"https://sidairesort.com","telephone":"0703 761 951 / 0705 800 802","email":"sidairesort21@gmail.com","address":{"@type":"PostalAddress","streetAddress":"FRCX+PP4 Narosura, Narok County, Kenya","addressLocality":"Narok","addressRegion":"Narok County","addressCountry":"KE"},"sameAs":["https://instagram.com/sidairesort","https://facebook.com/sidairesort"],"currenciesAccepted":"KES"}</script>
 </body>
 </html>
-
-
 
 
 

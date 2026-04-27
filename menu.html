@@ -30,9 +30,10 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=Montserrat:wght@400;500;600;700&family=Playfair+Display:wght@400;500;700&family=Lato:wght@300;400&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 
-    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.tailwindcss.com" defer></script>
     <script>
-        tailwind.config = {
+        window.tailwind = window.tailwind || {};
+        window.tailwind.config = {
             theme: {
                 extend: {
                     colors: {
@@ -465,6 +466,10 @@
 
     <title>Menu | Breakfast, Local Dishes, Nyama Choma and Drinks | Sidai Resort</title>
     <link rel="stylesheet" href="assets/css/sidai.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+    <meta http-equiv="Cache-Control" content="max-age=31536000">
 </head>
 <body class="critical-shell font-sans text-brown antialiased" data-page-transition>
     <div id="page-transition-overlay" class="page-transition-overlay" aria-hidden="true"></div>
@@ -480,7 +485,7 @@
         <nav class="mt-3 sm:mt-4 rounded-2xl border border-gold/30 bg-cream/70 px-3 sm:px-4 py-2.5 sm:py-3 backdrop-blur-lg shadow-lg" aria-label="Primary">
             <div class="flex items-center justify-between gap-2 sm:gap-4">
                 <a href="index.html" class="flex items-center gap-2 sm:gap-3 min-w-0" aria-label="Sidai Resort Home">
-                    <img src="assets/images/branding/sidai-logo.png" alt="Sidai Resort Logo" class="brand-logo h-10 w-10 sm:h-12 sm:w-12 object-cover flex-shrink-0 rounded-full border border-gold/40 bg-cream/80 p-0.5 shadow-sm" loading="lazy">
+                    <img src="assets/images/branding/sidai-logo.png" alt="Sidai Resort Logo" class="brand-logo h-10 w-10 sm:h-12 sm:w-12 object-cover flex-shrink-0 rounded-full border border-gold/40 bg-cream/80 p-0.5 shadow-sm" loading="lazy" width="445" height="440">
                     <span class="brand-identity min-w-0">
                         <span class="brand-name block font-display text-xl sm:text-2xl text-brown truncate">Sidai Resort</span>
                         <span class="brand-tagline block text-[8px] sm:text-[10px] uppercase tracking-[0.2em] sm:tracking-[0.3em] text-forest truncate mt-1">Nothing But the Best</span>
@@ -669,7 +674,7 @@
             <!-- Brand Column -->
             <div class="sm:col-span-2 lg:col-span-1">
                 <a href="index.html" class="flex items-center gap-3">
-                    <img src="assets/images/branding/sidai-logo.png" alt="Sidai Resort Logo" class="brand-logo h-10 w-10 sm:h-12 sm:w-12 object-cover flex-shrink-0 rounded-full border border-gold/40 bg-cream/80 p-0.5 shadow-sm" loading="lazy">
+                    <img src="assets/images/branding/sidai-logo.png" alt="Sidai Resort Logo" class="brand-logo h-10 w-10 sm:h-12 sm:w-12 object-cover flex-shrink-0 rounded-full border border-gold/40 bg-cream/80 p-0.5 shadow-sm" loading="lazy" width="445" height="440">
                     <span class="font-display text-2xl text-gold">Sidai Resort</span>
                 </a>
                 <p class="mt-4 text-sm leading-7 text-cream/80">
@@ -1050,6 +1055,30 @@ document.addEventListener('DOMContentLoaded', () => {
         ]
     };
 
+    const imageDimensions = {
+        'assets/images/dining/black-coffee.png': { width: 360, height: 360 },
+        'assets/images/dining/breakfast.jpeg': { width: 1280, height: 960 },
+        'assets/images/dining/chapati-beef.jpg': { width: 216, height: 233 },
+        'assets/images/dining/goat-soup.jpeg': { width: 960, height: 1280 },
+        'assets/images/dining/mandazis.webp': { width: 980, height: 980 },
+        'assets/images/dining/mbuzi-choma.jpg': { width: 585, height: 450 },
+        'assets/images/dining/menu-beverages.png': { width: 1024, height: 1024 },
+        'assets/images/dining/menu-breakfast.png': { width: 1024, height: 566 },
+        'assets/images/dining/milk.webp': { width: 350, height: 350 },
+        'assets/images/dining/nyama-choma-and-soup.jpeg': { width: 1280, height: 960 },
+        'assets/images/dining/passion-fruits.jpeg': { width: 960, height: 1280 },
+        'assets/images/dining/plain-chips.jpeg': { width: 660, height: 440 },
+        'assets/images/dining/potatoes.jpg': { width: 612, height: 418 },
+        'assets/images/dining/rice-beef.jpg': { width: 275, height: 183 },
+        'assets/images/dining/sodas-drinks.webp': { width: 600, height: 381 },
+        'assets/images/dining/soft-drinks-image.webp': { width: 1080, height: 1350 },
+        'assets/images/dining/sugarcane.jpeg': { width: 1600, height: 1200 },
+        'assets/images/dining/tea.webp': { width: 1365, height: 2048 },
+        'assets/images/dining/ugali-beef.avif': { width: 626, height: 417 },
+        'assets/images/dining/wines.jpeg': { width: 750, height: 600 },
+        'assets/images/experiences/at-the-fireside.jpeg': { width: 1280, height: 960 }
+    };
+
     const renderCatalog = () => {
         const fragment = document.createDocumentFragment();
 
@@ -1072,13 +1101,14 @@ document.addEventListener('DOMContentLoaded', () => {
             sectionData.items.forEach((item, index) => {
                 const itemImages = imagePools[sectionData.id] || [];
                 const imagePath = itemImages[index % itemImages.length];
+                const dimensions = imageDimensions[imagePath] || { width: 1600, height: 1200 };
 
                 const card = document.createElement('article');
                 card.className = 'menu-card';
                 card.setAttribute('data-menu-card', '');
                 card.innerHTML = `
                     <div class="menu-card-media">
-                        <img loading="lazy" alt="${item.name} at Sidai Resort" onerror="menuImageFallback(this)">
+                        <img loading="lazy" width="${dimensions.width}" height="${dimensions.height}" alt="${item.name} at Sidai Resort" onerror="menuImageFallback(this)">
                     </div>
                     <div class="menu-card-body">
                         <h3 class="menu-card-title">${item.name}</h3>
@@ -1371,7 +1401,6 @@ document.addEventListener('DOMContentLoaded', () => {
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"LodgingBusiness","name":"Sidai Resort","description":"Browse the Sidai Resort menu with breakfast, local Kenyan dishes, nyama choma, snacks, desserts, soft drinks, and traditional favorites.","url":"https://sidairesort.com","telephone":"0703 761 951 / 0705 800 802","email":"sidairesort21@gmail.com","address":{"@type":"PostalAddress","streetAddress":"FRCX+PP4 Narosura, Narok County, Kenya","addressLocality":"Narok","addressRegion":"Narok County","addressCountry":"KE"},"sameAs":["https://instagram.com/sidairesort","https://facebook.com/sidairesort"],"currenciesAccepted":"KES"}</script>
 </body>
 </html>
-
 
 
 
