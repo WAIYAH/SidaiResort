@@ -98,7 +98,7 @@
     <link rel="dns-prefetch" href="https://fonts.googleapis.com">
     <meta http-equiv="Cache-Control" content="max-age=31536000">
 </head>
-<body class="critical-shell font-sans text-brown antialiased" data-page-transition>
+<body class="critical-shell bg-cream font-sans text-brown antialiased" data-page-transition>
     <div id="page-transition-overlay" class="page-transition-overlay" aria-hidden="true"></div>
     <div id="page-loader" class="page-loader" role="status" aria-live="polite">
     <div class="loader-mark text-center">
@@ -230,19 +230,24 @@
                 <p class="text-lg text-gray-600">Choose your perfect getaway at Sidai Resort</p>
             </div>
 
-            <form id="bookingForm" method="POST" action="#" data-static-disabled="true" class="bg-white rounded-lg shadow-lg p-8">
+            <form id="booking-form" class="bg-white rounded-lg shadow-lg p-8">
                 <input type="hidden" name="_csrf" value="8b3649fcd641b24ffe1fe4b217ca6948d54846cd0691571681ea3df6ae9f2e95">
                 <!-- Booking Type -->
                 <div class="mb-6">
-                    <label for="booking_type" class="block text-sm font-semibold text-forest-green mb-2">What are you booking?</label>
-                    <select id="booking_type" name="booking_type" required
+                    <label for="booking-type" class="block text-sm font-semibold text-forest-green mb-2">What are you booking?</label>
+                    <select id="booking-type" name="booking_type" required
                             class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold">
-                        <option value="">Select booking type</option>
-                        <option value="room">Room/Accommodation</option>
-                        <option value="hall">Hall/Event Space</option>
-                        <option value="pool">Pool Party</option>
-                        <option value="dining">Dining Experience</option>
-                        <option value="event">Event Planning</option>
+                        <option value="Select booking type">Select booking type</option>
+                        <option value="Room/Accommodation">Room/Accommodation</option>
+                        <option value="Hall/Event Space">Hall/Event Space</option>
+                        <option value="Pool Party">Pool Party</option>
+                        <option value="Dining Experience">Dining Experience</option>
+                        <option value="Event Planning">Event Planning</option>
+                        <option value="Nyama Choma">Nyama Choma</option>
+                        <option value="Bonfire/Sundowner">Bonfire/Sundowner</option>
+                        <option value="Birdwatching">Birdwatching</option>
+                        <option value="Farm Visit">Farm Visit</option>
+                        <option value="Picnic">Picnic</option>
                     </select>
                 </div>
 
@@ -252,8 +257,8 @@
 
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
-                            <label for="full_name" class="block text-sm font-semibold text-forest-green mb-2">Full Name</label>
-                            <input type="text" id="full_name" name="full_name" required
+                            <label for="full-name" class="block text-sm font-semibold text-forest-green mb-2">Full Name</label>
+                            <input type="text" id="full-name" name="full_name" required
                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold">
                         </div>
 
@@ -270,8 +275,14 @@
                         </div>
 
                         <div>
-                            <label for="num_guests" class="block text-sm font-semibold text-forest-green mb-2">Number of Guests</label>
-                            <input type="number" id="num_guests" name="num_guests" min="1" value="1" required
+                            <label for="num-guests" class="block text-sm font-semibold text-forest-green mb-2">Number of Guests</label>
+                            <input type="number" id="num-guests" name="num_guests" min="1" value="1" required
+                                   class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold">
+                        </div>
+
+                        <div>
+                            <label for="booking-date" class="block text-sm font-semibold text-forest-green mb-2">Date</label>
+                            <input type="date" id="booking-date" name="booking_date"
                                    class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold">
                         </div>
                     </div>
@@ -383,8 +394,8 @@
 
                 <!-- Special Requests -->
                 <div class="mb-6">
-                    <label for="special_requests" class="block text-sm font-semibold text-forest-green mb-2">Special Requests (Optional)</label>
-                    <textarea id="special_requests" name="special_requests" rows="4"
+                    <label for="special-requests" class="block text-sm font-semibold text-forest-green mb-2">Special Requests (Optional)</label>
+                    <textarea id="special-requests" name="special_requests" rows="4"
                               class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold"
                               placeholder="Any special requests or dietary requirements?"></textarea>
                 </div>
@@ -402,20 +413,22 @@
     </main>
 
     <script>
-        const bookingTypeSelect = document.getElementById('booking_type');
+        const bookingTypeSelect = document.getElementById('booking-type');
         const roomSection = document.getElementById('roomSection');
         const hallSection = document.getElementById('hallSection');
 
-        bookingTypeSelect.addEventListener('change', function() {
-            roomSection.classList.add('hidden');
-            hallSection.classList.add('hidden');
+        if (bookingTypeSelect && roomSection && hallSection) {
+            bookingTypeSelect.addEventListener('change', function() {
+                roomSection.classList.add('hidden');
+                hallSection.classList.add('hidden');
 
-            if (this.value === 'room') {
-                roomSection.classList.remove('hidden');
-            } else if (this.value === 'hall') {
-                hallSection.classList.remove('hidden');
-            }
-        });
+                if (this.value === 'Room/Accommodation') {
+                    roomSection.classList.remove('hidden');
+                } else if (this.value === 'Hall/Event Space') {
+                    hallSection.classList.remove('hidden');
+                }
+            });
+        }
     </script>
 
     <footer class="mt-12 sm:mt-20 bg-night text-cream">
@@ -576,15 +589,88 @@ document.addEventListener('alpine:init', () => {
 <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js" defer></script>
 <script src="assets/js/app.min.js" defer></script>
 <script>
-(() => {
-    const forms = document.querySelectorAll('form[data-static-disabled="true"]');
-    forms.forEach((form) => {
-        form.addEventListener('submit', (event) => {
-            event.preventDefault();
-            alert('Form submissions are disabled on this temporary static deployment.');
-        });
+document.querySelector('#booking-form').addEventListener('submit', async function(e) {
+  e.preventDefault();
+
+  const btn = this.querySelector('button[type="submit"]');
+  btn.disabled = true;
+  btn.textContent = 'Sending...';
+
+  const name    = document.querySelector('#full-name')?.value.trim() || '';
+  const email   = document.querySelector('#email')?.value.trim() || '';
+  const phone   = document.querySelector('#phone')?.value.trim() || '';
+  const type    = document.querySelector('#booking-type')?.value || '';
+  const guests  = document.querySelector('#num-guests')?.value || '1';
+  const date    = document.querySelector('#booking-date')?.value || '';
+  const special = document.querySelector('#special-requests')?.value.trim() || 'None';
+
+  // Validate required fields
+  if (!name || !phone || !type || type === 'Select booking type') {
+    alert('Please fill in all required fields: Name, Phone, and Booking Type.');
+    btn.disabled = false;
+    btn.textContent = 'Continue to Payment';
+    return;
+  }
+
+  // FORMSPREE — send email to manager
+  try {
+    const response = await fetch('https://formspree.io/f/xjgjdaav', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify({
+        booking_type: type,
+        full_name: name,
+        email: email,
+        phone: phone,
+        num_guests: guests,
+        booking_date: date,
+        special_requests: special,
+        _subject: 'New Booking Request — Sidai Resort'
+      })
     });
-})();
+
+    if (!response.ok) {
+      throw new Error('Formspree submission failed');
+    }
+  } catch (err) {
+    console.error('Email notification failed:', err);
+  }
+
+  // WHATSAPP — open chat with booking summary
+  const message =
+`🌿 *NEW SIDAI RESORT BOOKING*
+━━━━━━━━━━━━━━━━━━━━
+📋 *Booking Type:* ${type}
+👤 *Name:* ${name}
+📞 *Phone:* ${phone}
+📧 *Email:* ${email || 'Not provided'}
+👥 *Guests:* ${guests}
+📅 *Date:* ${date || 'To be confirmed'}
+📝 *Special Requests:* ${special}
+━━━━━━━━━━━━━━━━━━━━
+_Sent from Sidai Resort Website_`;
+
+  const waURL = 'https://wa.me/254703761951?text=' + encodeURIComponent(message);
+  window.open(waURL, '_blank');
+
+  // SUCCESS — show confirmation and reset
+  btn.textContent = 'Booking Sent!';
+  btn.style.background = '#1A4D2E';
+
+  setTimeout(() => {
+    alert('✅ Booking received!\n\nWe will confirm your reservation within 2 hours via WhatsApp or Email.\n\nThank you for choosing Sidai Resort — Nothing but the Best!');
+    document.querySelector('#booking-form').reset();
+    btn.disabled = false;
+    btn.textContent = 'Continue to Payment';
+    btn.style.background = '';
+    // Close modal if one exists
+    const modal = document.querySelector('#booking-modal') || document.querySelector('.modal');
+    if (modal) modal.style.display = 'none';
+  }, 800);
+});
 </script>
 
 <script>
@@ -620,7 +706,6 @@ document.addEventListener('alpine:init', () => {
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"LodgingBusiness","name":"Sidai Resort","description":"Send your booking request for rooms, events, dining, and experiences at Sidai Resort. Our team will confirm your reservation details.","url":"https://sidairesort.com","telephone":"0703 761 951 / 0705 800 802","email":"sidairesort21@gmail.com","address":{"@type":"PostalAddress","streetAddress":"FRCX+PP4 Narosura, Narok County, Kenya","addressLocality":"Narok","addressRegion":"Narok County","addressCountry":"KE"},"sameAs":["https://instagram.com/sidairesort","https://facebook.com/sidairesort"],"currenciesAccepted":"KES"}</script>
 </body>
 </html>
-
 
 
 

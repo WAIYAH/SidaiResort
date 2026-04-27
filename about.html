@@ -81,8 +81,14 @@
 
     <style>
         :root { color-scheme: light; }
-        body { margin: 0; background: #F5ECD7; }
+        body { margin: 0; background: #F5ECD7; color: #3D1C02; }
         .critical-shell { min-height: 100dvh; }
+        @media (prefers-color-scheme: dark) {
+            body.critical-shell.bg-cream {
+                background: #F5ECD7 !important;
+                color: #3D1C02 !important;
+            }
+        }
         [x-cloak] { display: none !important; }
     </style>
 
@@ -98,7 +104,7 @@
     <link rel="dns-prefetch" href="https://fonts.googleapis.com">
     <meta http-equiv="Cache-Control" content="max-age=31536000">
 </head>
-<body class="critical-shell font-sans text-brown antialiased" data-page-transition>
+<body class="critical-shell bg-cream font-sans text-brown antialiased" data-page-transition>
     <div id="page-transition-overlay" class="page-transition-overlay" aria-hidden="true"></div>
 <div id="page-loader" class="page-loader" role="status" aria-live="polite">
     <div class="loader-mark text-center">
@@ -159,7 +165,7 @@
 
                 <button
                     type="button"
-                    class="lg:hidden inline-flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-full border border-gold/40 bg-night/80 text-gold flex-shrink-0"
+                    class="lg:hidden inline-flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-full border border-brown/25 bg-cream/90 text-brown flex-shrink-0"
                     aria-label="Toggle mobile menu"
                     @click="mobileOpen = !mobileOpen"
                     :aria-expanded="mobileOpen.toString()"
@@ -225,24 +231,24 @@
 
 <main class="pt-28 lg:pt-32">
     <!-- Hero Section -->
-    <section class="relative overflow-hidden h-[60vh] min-h-[500px]">
+    <section class="relative overflow-hidden h-[60vh] min-h-[500px] bg-cream">
         <div class="absolute inset-0">
             <img
                 src="assets/images/hero/african-sunset.avif" alt="Sidai Resort About Us Hero"
                 class="h-full w-full object-cover"
                 data-parallax-speed="0.15"
              loading="eager" fetchpriority="high" width="626" height="470">
-            <div class="absolute inset-0 bg-gradient-to-t from-night via-night/50 to-transparent"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-cream/90 via-cream/75 to-cream/20"></div>
         </div>
         <div class="relative mx-auto max-w-7xl px-4 h-full flex flex-col justify-center sm:px-6 lg:px-8 text-center">
             <p class="text-sm font-semibold uppercase tracking-[0.3em] text-gold mb-4" data-aos="fade-down">Discover Our Roots</p>
-            <h1 class="font-display text-5xl text-white sm:text-6xl lg:text-7xl mb-8" data-aos="fade-up" data-aos-delay="100">About Sidai Resort</h1>
+            <h1 class="font-display text-5xl text-brown sm:text-6xl lg:text-7xl mb-8" data-aos="fade-up" data-aos-delay="100">About Sidai Resort</h1>
             
             <!-- Page Sub-Navigation -->
             <div class="flex flex-wrap justify-center gap-4" data-aos="fade-up" data-aos-delay="200">
-                <a href="#our-story" class="rounded-full border border-gold/50 bg-night/50 px-6 py-2.5 text-sm font-semibold uppercase tracking-wider text-cream backdrop-blur-sm transition-colors hover:bg-gold hover:text-night">Our Story</a>
-                <a href="#gallery" class="rounded-full border border-gold/50 bg-night/50 px-6 py-2.5 text-sm font-semibold uppercase tracking-wider text-cream backdrop-blur-sm transition-colors hover:bg-gold hover:text-night">Gallery</a>
-                <a href="#contact" class="rounded-full border border-gold/50 bg-night/50 px-6 py-2.5 text-sm font-semibold uppercase tracking-wider text-cream backdrop-blur-sm transition-colors hover:bg-gold hover:text-night">Contact Us</a>
+                <a href="#our-story" class="rounded-full border border-brown/20 bg-cream/90 px-6 py-2.5 text-sm font-semibold uppercase tracking-wider text-brown backdrop-blur-sm transition-colors hover:bg-gold hover:text-night">Our Story</a>
+                <a href="#gallery" class="rounded-full border border-brown/20 bg-cream/90 px-6 py-2.5 text-sm font-semibold uppercase tracking-wider text-brown backdrop-blur-sm transition-colors hover:bg-gold hover:text-night">Gallery</a>
+                <a href="#contact" class="rounded-full border border-brown/20 bg-cream/90 px-6 py-2.5 text-sm font-semibold uppercase tracking-wider text-brown backdrop-blur-sm transition-colors hover:bg-gold hover:text-night">Contact Us</a>
             </div>
         </div>
     </section>
@@ -1291,8 +1297,6 @@ document.addEventListener('alpine:init', () => {
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"LodgingBusiness","name":"Sidai Resort","description":"Learn the story behind Sidai Resort, explore our gallery, and connect with us to plan your next stay, event, or celebration.","url":"https://sidairesort.com","telephone":"0703 761 951 / 0705 800 802","email":"sidairesort21@gmail.com","address":{"@type":"PostalAddress","streetAddress":"FRCX+PP4 Narosura, Narok County, Kenya","addressLocality":"Narok","addressRegion":"Narok County","addressCountry":"KE"},"sameAs":["https://instagram.com/sidairesort","https://facebook.com/sidairesort"],"currenciesAccepted":"KES"}</script>
 </body>
 </html>
-
-
 
 
 

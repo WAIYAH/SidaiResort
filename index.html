@@ -81,8 +81,14 @@
 
     <style>
         :root { color-scheme: light; }
-        body { margin: 0; background: #F5ECD7; }
+        body { margin: 0; background: #F5ECD7; color: #3D1C02; }
         .critical-shell { min-height: 100dvh; }
+        @media (prefers-color-scheme: dark) {
+            body.critical-shell.bg-cream {
+                background: #F5ECD7 !important;
+                color: #3D1C02 !important;
+            }
+        }
         [x-cloak] { display: none !important; }
     </style>
 
@@ -98,7 +104,7 @@
     <link rel="dns-prefetch" href="https://fonts.googleapis.com">
     <meta http-equiv="Cache-Control" content="max-age=31536000">
 </head>
-<body class="critical-shell font-sans text-brown antialiased" data-page-transition>
+<body class="critical-shell bg-cream font-sans text-brown antialiased" data-page-transition>
     <div id="page-transition-overlay" class="page-transition-overlay" aria-hidden="true"></div>
 <div id="page-loader" class="page-loader" role="status" aria-live="polite">
     <div class="loader-mark text-center">
@@ -159,7 +165,7 @@
 
                 <button
                     type="button"
-                    class="home-menu-toggle lg:hidden inline-flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-full border border-gold/40 bg-night/80 text-gold flex-shrink-0"
+                    class="home-menu-toggle lg:hidden inline-flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-full border border-brown/25 bg-cream/90 text-brown flex-shrink-0"
                     aria-label="Toggle mobile menu"
                     @click="mobileOpen = !mobileOpen"
                     :aria-expanded="mobileOpen.toString()"
@@ -230,14 +236,14 @@
                 <!-- Slide 1 -->
                 <div class="swiper-slide hero-slide relative flex items-center justify-center">
                     <img src="assets/images/facility/entrance-sidai.jpeg" alt="Entrance to Sidai Resort" class="absolute inset-0 h-full w-full object-cover" loading="eager" fetchpriority="high" width="576" height="403">
-                    <div class="absolute inset-0 bg-gradient-to-br from-night/80 via-night/45 to-earth/50"></div>
+                    <div class="absolute inset-0 bg-gradient-to-br from-cream/90 via-cream/70 to-gold/25"></div>
                     <div class="hero-content relative z-10 mx-auto w-full max-w-7xl px-4 text-center sm:px-6 lg:px-8 pt-20">
-                        <p class="hero-eyebrow mb-4 inline-flex items-center rounded-full border border-gold/40 bg-night/50 px-4 py-1 text-xs font-semibold uppercase tracking-[0.25em] text-gold" data-swiper-parallax="-100">Welcome Entrance</p>
-                        <h1 class="hero-title font-display text-5xl leading-tight text-white sm:text-6xl lg:text-7xl drop-shadow-lg" data-swiper-parallax="-300">Where Good Meets Luxury</h1>
-                        <p class="hero-subtitle mt-4 max-w-2xl mx-auto text-base text-cream sm:text-lg" data-swiper-parallax="-200">Begin your Sidai experience with a warm and beautiful arrival.</p>
+                        <p class="hero-eyebrow mb-4 inline-flex items-center rounded-full border border-gold/40 bg-cream/90 px-4 py-1 text-xs font-semibold uppercase tracking-[0.25em] text-brown" data-swiper-parallax="-100">Welcome Entrance</p>
+                        <h1 class="hero-title font-display text-5xl leading-tight text-brown sm:text-6xl lg:text-7xl drop-shadow-lg" data-swiper-parallax="-300">Where Good Meets Luxury</h1>
+                        <p class="hero-subtitle mt-4 max-w-2xl mx-auto text-base text-brown/90 sm:text-lg" data-swiper-parallax="-200">Begin your Sidai experience with a warm and beautiful arrival.</p>
                         <div class="hero-actions mt-8 flex justify-center gap-4" data-swiper-parallax="-100">
                             <a href="booking.html" class="hero-action inline-flex items-center rounded-full bg-gold px-7 py-3 text-sm font-semibold uppercase tracking-[0.15em] text-night transition hover:bg-gold-light">Book Stay</a>
-                            <a href="#about" class="hero-action inline-flex items-center rounded-full border border-gold/60 bg-night/30 px-7 py-3 text-sm font-semibold uppercase tracking-[0.15em] text-gold transition hover:bg-gold hover:text-night backdrop-blur-sm">Explore</a>
+                            <a href="#about" class="hero-action inline-flex items-center rounded-full border border-brown/25 bg-cream/85 px-7 py-3 text-sm font-semibold uppercase tracking-[0.15em] text-brown transition hover:bg-gold hover:text-night backdrop-blur-sm">Explore</a>
                         </div>
                     </div>
                 </div>
@@ -245,11 +251,11 @@
                 <!-- Slide 2 -->
                 <div class="swiper-slide hero-slide relative flex items-center justify-center">
                     <img src="assets/images/nature/karibu.jpeg" alt="Karibu welcome at Sidai Resort" class="absolute inset-0 h-full w-full object-cover" loading="eager" width="576" height="396">
-                    <div class="absolute inset-0 bg-gradient-to-br from-night/80 via-night/45 to-forest/50"></div>
+                    <div class="absolute inset-0 bg-gradient-to-br from-cream/90 via-cream/70 to-gold/25"></div>
                     <div class="hero-content relative z-10 mx-auto w-full max-w-7xl px-4 text-center sm:px-6 lg:px-8 pt-20">
-                        <p class="hero-eyebrow mb-4 inline-flex items-center rounded-full border border-gold/40 bg-night/50 px-4 py-1 text-xs font-semibold uppercase tracking-[0.25em] text-gold" data-swiper-parallax="-100">Karibu</p>
-                        <h2 class="hero-title font-display text-5xl leading-tight text-white sm:text-6xl lg:text-7xl drop-shadow-lg" data-swiper-parallax="-300">Welcome to Sidai</h2>
-                        <p class="hero-subtitle mt-4 max-w-2xl mx-auto text-base text-cream sm:text-lg" data-swiper-parallax="-200">Feel at home from the first moment you arrive.</p>
+                        <p class="hero-eyebrow mb-4 inline-flex items-center rounded-full border border-gold/40 bg-cream/90 px-4 py-1 text-xs font-semibold uppercase tracking-[0.25em] text-brown" data-swiper-parallax="-100">Karibu</p>
+                        <h2 class="hero-title font-display text-5xl leading-tight text-brown sm:text-6xl lg:text-7xl drop-shadow-lg" data-swiper-parallax="-300">Welcome to Sidai</h2>
+                        <p class="hero-subtitle mt-4 max-w-2xl mx-auto text-base text-brown/90 sm:text-lg" data-swiper-parallax="-200">Feel at home from the first moment you arrive.</p>
                         <div class="hero-actions mt-8 flex justify-center gap-4" data-swiper-parallax="-100">
                             <a href="services.html" class="hero-action inline-flex items-center rounded-full bg-gold px-7 py-3 text-sm font-semibold uppercase tracking-[0.15em] text-night transition hover:bg-gold-light">View Experiences</a>
                         </div>
@@ -259,11 +265,11 @@
                 <!-- Slide 3 -->
                 <div class="swiper-slide hero-slide relative flex items-center justify-center">
                     <img src="assets/images/nature/enkanasa.jpeg" alt="Enkanasa accommodation at Sidai Resort" class="absolute inset-0 h-full w-full object-cover" loading="eager" width="1200" height="1600">
-                    <div class="absolute inset-0 bg-gradient-to-br from-night/80 via-night/45 to-safari/50"></div>
+                    <div class="absolute inset-0 bg-gradient-to-br from-cream/90 via-cream/70 to-gold/25"></div>
                     <div class="hero-content relative z-10 mx-auto w-full max-w-7xl px-4 text-center sm:px-6 lg:px-8 pt-20">
-                        <p class="hero-eyebrow mb-4 inline-flex items-center rounded-full border border-gold/40 bg-night/50 px-4 py-1 text-xs font-semibold uppercase tracking-[0.25em] text-gold" data-swiper-parallax="-100">Enkanasa</p>
-                        <h2 class="hero-title font-display text-5xl leading-tight text-white sm:text-6xl lg:text-7xl drop-shadow-lg" data-swiper-parallax="-300">Stay in Comfort</h2>
-                        <p class="hero-subtitle mt-4 max-w-2xl mx-auto text-base text-cream sm:text-lg" data-swiper-parallax="-200">Experience restful accommodation with authentic Sidai hospitality.</p>
+                        <p class="hero-eyebrow mb-4 inline-flex items-center rounded-full border border-gold/40 bg-cream/90 px-4 py-1 text-xs font-semibold uppercase tracking-[0.25em] text-brown" data-swiper-parallax="-100">Enkanasa</p>
+                        <h2 class="hero-title font-display text-5xl leading-tight text-brown sm:text-6xl lg:text-7xl drop-shadow-lg" data-swiper-parallax="-300">Stay in Comfort</h2>
+                        <p class="hero-subtitle mt-4 max-w-2xl mx-auto text-base text-brown/90 sm:text-lg" data-swiper-parallax="-200">Experience restful accommodation with authentic Sidai hospitality.</p>
                         <div class="hero-actions mt-8 flex justify-center gap-4" data-swiper-parallax="-100">
                             <a href="rooms.html" class="hero-action inline-flex items-center rounded-full bg-gold px-7 py-3 text-sm font-semibold uppercase tracking-[0.15em] text-night transition hover:bg-gold-light">View Rooms</a>
                         </div>
@@ -273,11 +279,11 @@
                 <!-- Slide 4 -->
                 <div class="swiper-slide hero-slide relative flex items-center justify-center">
                     <img src="assets/images/experiences/swimming-pool.jpeg" alt="Swimming pool at Sidai Resort" class="absolute inset-0 h-full w-full object-cover" loading="eager" width="1280" height="960">
-                    <div class="absolute inset-0 bg-gradient-to-br from-night/80 via-night/45 to-safari/50"></div>
+                    <div class="absolute inset-0 bg-gradient-to-br from-cream/90 via-cream/70 to-gold/25"></div>
                     <div class="hero-content relative z-10 mx-auto w-full max-w-7xl px-4 text-center sm:px-6 lg:px-8 pt-20">
-                        <p class="hero-eyebrow mb-4 inline-flex items-center rounded-full border border-gold/40 bg-night/50 px-4 py-1 text-xs font-semibold uppercase tracking-[0.25em] text-gold" data-swiper-parallax="-100">Pool Experience</p>
-                        <h2 class="hero-title font-display text-5xl leading-tight text-white sm:text-6xl lg:text-7xl drop-shadow-lg" data-swiper-parallax="-300">Dive into Serenity</h2>
-                        <p class="hero-subtitle mt-4 max-w-2xl mx-auto text-base text-cream sm:text-lg" data-swiper-parallax="-200">Enjoy our poolside moments with clear Sidai identity and style.</p>
+                        <p class="hero-eyebrow mb-4 inline-flex items-center rounded-full border border-gold/40 bg-cream/90 px-4 py-1 text-xs font-semibold uppercase tracking-[0.25em] text-brown" data-swiper-parallax="-100">Pool Experience</p>
+                        <h2 class="hero-title font-display text-5xl leading-tight text-brown sm:text-6xl lg:text-7xl drop-shadow-lg" data-swiper-parallax="-300">Dive into Serenity</h2>
+                        <p class="hero-subtitle mt-4 max-w-2xl mx-auto text-base text-brown/90 sm:text-lg" data-swiper-parallax="-200">Enjoy our poolside moments with clear Sidai identity and style.</p>
                         <div class="hero-actions mt-8 flex justify-center gap-4" data-swiper-parallax="-100">
                             <a href="services.html#swimming" class="hero-action inline-flex items-center rounded-full bg-gold px-7 py-3 text-sm font-semibold uppercase tracking-[0.15em] text-night transition hover:bg-gold-light">Discover More</a>
                         </div>
@@ -287,11 +293,11 @@
                 <!-- Slide 5 -->
                 <div class="swiper-slide hero-slide relative flex items-center justify-center">
                     <img src="assets/images/experiences/a-boy-at-the-pool.jpeg" alt="A boy at the pool at Sidai Resort" class="absolute inset-0 h-full w-full object-cover" loading="eager" width="1200" height="1600">
-                    <div class="absolute inset-0 bg-gradient-to-br from-night/80 via-night/45 to-safari/50"></div>
+                    <div class="absolute inset-0 bg-gradient-to-br from-cream/90 via-cream/70 to-gold/25"></div>
                     <div class="hero-content relative z-10 mx-auto w-full max-w-7xl px-4 text-center sm:px-6 lg:px-8 pt-20">
-                        <p class="hero-eyebrow mb-4 inline-flex items-center rounded-full border border-gold/40 bg-night/50 px-4 py-1 text-xs font-semibold uppercase tracking-[0.25em] text-gold" data-swiper-parallax="-100">Pool Moments</p>
-                        <h2 class="hero-title font-display text-5xl leading-tight text-white sm:text-6xl lg:text-7xl drop-shadow-lg" data-swiper-parallax="-300">Refresh & Relax</h2>
-                        <p class="hero-subtitle mt-4 max-w-2xl mx-auto text-base text-cream sm:text-lg" data-swiper-parallax="-200">Make every sunny day a memory at the Sidai poolside.</p>
+                        <p class="hero-eyebrow mb-4 inline-flex items-center rounded-full border border-gold/40 bg-cream/90 px-4 py-1 text-xs font-semibold uppercase tracking-[0.25em] text-brown" data-swiper-parallax="-100">Pool Moments</p>
+                        <h2 class="hero-title font-display text-5xl leading-tight text-brown sm:text-6xl lg:text-7xl drop-shadow-lg" data-swiper-parallax="-300">Refresh & Relax</h2>
+                        <p class="hero-subtitle mt-4 max-w-2xl mx-auto text-base text-brown/90 sm:text-lg" data-swiper-parallax="-200">Make every sunny day a memory at the Sidai poolside.</p>
                         <div class="hero-actions mt-8 flex justify-center gap-4" data-swiper-parallax="-100">
                             <a href="services.html#swimming" class="hero-action inline-flex items-center rounded-full bg-gold px-7 py-3 text-sm font-semibold uppercase tracking-[0.15em] text-night transition hover:bg-gold-light">Discover More</a>
                         </div>
@@ -301,11 +307,11 @@
                 <!-- Slide 6 -->
                 <div class="swiper-slide hero-slide relative flex items-center justify-center">
                     <img src="assets/images/events/magical-garden.jpeg" alt="Magical garden setting at Sidai Resort" class="absolute inset-0 h-full w-full object-cover" loading="eager" width="1600" height="1200">
-                    <div class="absolute inset-0 bg-gradient-to-br from-night/80 via-night/45 to-forest/55"></div>
+                    <div class="absolute inset-0 bg-gradient-to-br from-cream/90 via-cream/70 to-gold/25"></div>
                     <div class="hero-content relative z-10 mx-auto w-full max-w-7xl px-4 text-center sm:px-6 lg:px-8 pt-20">
-                        <p class="hero-eyebrow mb-4 inline-flex items-center rounded-full border border-gold/40 bg-night/50 px-4 py-1 text-xs font-semibold uppercase tracking-[0.25em] text-gold" data-swiper-parallax="-100">Garden Views</p>
-                        <h2 class="hero-title font-display text-5xl leading-tight text-white sm:text-6xl lg:text-7xl drop-shadow-lg" data-swiper-parallax="-300">Nature in Full Bloom</h2>
-                        <p class="hero-subtitle mt-4 max-w-2xl mx-auto text-base text-cream sm:text-lg" data-swiper-parallax="-200">Discover the newest garden moment now featured in our hero showcase.</p>
+                        <p class="hero-eyebrow mb-4 inline-flex items-center rounded-full border border-gold/40 bg-cream/90 px-4 py-1 text-xs font-semibold uppercase tracking-[0.25em] text-brown" data-swiper-parallax="-100">Garden Views</p>
+                        <h2 class="hero-title font-display text-5xl leading-tight text-brown sm:text-6xl lg:text-7xl drop-shadow-lg" data-swiper-parallax="-300">Nature in Full Bloom</h2>
+                        <p class="hero-subtitle mt-4 max-w-2xl mx-auto text-base text-brown/90 sm:text-lg" data-swiper-parallax="-200">Discover the newest garden moment now featured in our hero showcase.</p>
                         <div class="hero-actions mt-8 flex justify-center gap-4" data-swiper-parallax="-100">
                             <a href="experiences.html" class="hero-action inline-flex items-center rounded-full bg-gold px-7 py-3 text-sm font-semibold uppercase tracking-[0.15em] text-night transition hover:bg-gold-light">View Moments</a>
                         </div>
@@ -320,7 +326,7 @@
             <div class="swiper-pagination"></div>
         </div>
         
-        <a href="#stats" class="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 hidden flex-col items-center gap-2 rounded-full px-4 py-2 text-xs uppercase tracking-[0.25em] text-gold lg:flex transition hover:text-white" aria-label="Scroll to statistics">
+        <a href="#stats" class="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 hidden flex-col items-center gap-2 rounded-full px-4 py-2 text-xs uppercase tracking-[0.25em] text-brown lg:flex transition hover:text-gold" aria-label="Scroll to statistics">
             Scroll
             <span class="inline-block animate-bounce">&darr;</span>
         </a>
@@ -1452,7 +1458,5 @@ document.addEventListener('alpine:init', () => {
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"LodgingBusiness","name":"Sidai Resort","description":"Discover Sidai Resort in Narosura, Narok County for luxury stays, dining, pool experiences, and memorable events inspired by Maasai hospitality.","url":"https://sidairesort.com","telephone":"0703 761 951 / 0705 800 802","email":"sidairesort21@gmail.com","address":{"@type":"PostalAddress","streetAddress":"FRCX+PP4 Narosura, Narok County, Kenya","addressLocality":"Narok","addressRegion":"Narok County","addressCountry":"KE"},"sameAs":["https://instagram.com/sidairesort","https://facebook.com/sidairesort"],"currenciesAccepted":"KES"}</script>
 </body>
 </html>
-
-
 
 
