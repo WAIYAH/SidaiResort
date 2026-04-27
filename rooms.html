@@ -89,7 +89,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" media="print" onload="this.media='all'">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css" media="print" onload="this.media='all'">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css" media="print" onload="this.media='all'">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"LodgingBusiness","name":"Sidai Resort","description":"Stay in Maasai-inspired rooms at Sidai Resort in Naroosura, Narok County with comfort, privacy, and signature luxury experiences.","url":"https://sidairesort.com","telephone":"0703 761 951 / 0705 800 802","email":"sidairesort21@gmail.com","address":{"@type":"PostalAddress","streetAddress":"FRCX+PP4 Narosura, Narok County, Kenya","addressLocality":"Narok","addressRegion":"Narok County","addressCountry":"KE"},"sameAs":["https://instagram.com/sidairesort","https://facebook.com/sidairesort"],"currenciesAccepted":"KES"}</script>
+
     <title>Rooms and Suites | Maasai-Inspired Accommodation | Sidai Resort</title>
     <link rel="stylesheet" href="assets/css/sidai.min.css">
 </head>
@@ -227,35 +227,7 @@
     </div>
 </header>
 
-<script>
-(() => {
-    const header = document.getElementById('site-header');
-    if (!header) {
-        return;
-    }
 
-    const updateHeaderState = () => {
-        if (window.scrollY > 20) {
-            header.classList.add('is-scrolled');
-        } else {
-            header.classList.remove('is-scrolled');
-        }
-    };
-
-    document.addEventListener('DOMContentLoaded', () => {
-        updateHeaderState();
-
-        if (window.gsap) {
-            const timeline = window.gsap.timeline({ defaults: { ease: 'power3.out' } });
-            timeline
-                .from('#site-header nav', { y: -30, opacity: 0, duration: 0.7 })
-                .from('.header-link', { y: -12, opacity: 0, stagger: 0.05, duration: 0.35 }, '-=0.35');
-        }
-    });
-
-    window.addEventListener('scroll', updateHeaderState, { passive: true });
-})();
-</script>
 
     <main class="pt-28 lg:pt-32 pb-20 overflow-hidden" x-data="roomsECommerce()" x-init="init()">
         
@@ -538,9 +510,42 @@ document.addEventListener('alpine:init', () => {
 <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.min.js" defer></script>
-<script src="assets/js/app.js" defer></script>
+<script src="assets/js/app.min.js" defer></script>
+
+<script>
+(() => {
+    const header = document.getElementById('site-header');
+    if (!header) {
+        return;
+    }
+
+    const updateHeaderState = () => {
+        if (window.scrollY > 20) {
+            header.classList.add('is-scrolled');
+        } else {
+            header.classList.remove('is-scrolled');
+        }
+    };
+
+    document.addEventListener('DOMContentLoaded', () => {
+        updateHeaderState();
+
+        if (window.gsap) {
+            const timeline = window.gsap.timeline({ defaults: { ease: 'power3.out' } });
+            timeline
+                .from('#site-header nav', { y: -30, opacity: 0, duration: 0.7 })
+                .from('.header-link', { y: -12, opacity: 0, stagger: 0.05, duration: 0.35 }, '-=0.35');
+        }
+    });
+
+    window.addEventListener('scroll', updateHeaderState, { passive: true });
+})();
+</script>
+
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"LodgingBusiness","name":"Sidai Resort","description":"Stay in Maasai-inspired rooms at Sidai Resort in Naroosura, Narok County with comfort, privacy, and signature luxury experiences.","url":"https://sidairesort.com","telephone":"0703 761 951 / 0705 800 802","email":"sidairesort21@gmail.com","address":{"@type":"PostalAddress","streetAddress":"FRCX+PP4 Narosura, Narok County, Kenya","addressLocality":"Narok","addressRegion":"Narok County","addressCountry":"KE"},"sameAs":["https://instagram.com/sidairesort","https://facebook.com/sidairesort"],"currenciesAccepted":"KES"}</script>
 </body>
 </html>
+
 
 
 

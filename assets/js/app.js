@@ -439,8 +439,16 @@
             return false;
         }
 
+        if (link.classList.contains('gallery-lightbox') || link.hasAttribute('data-no-transition')) {
+            return false;
+        }
+
         const href = link.getAttribute('href') || '';
         if (href === '' || href.startsWith('#') || href.startsWith('mailto:') || href.startsWith('tel:')) {
+            return false;
+        }
+
+        if (/\.(?:avif|gif|jpe?g|png|svg|webp|mp4|webm|mov)(?:[?#].*)?$/i.test(href)) {
             return false;
         }
 
