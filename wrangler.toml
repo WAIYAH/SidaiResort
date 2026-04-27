@@ -1,0 +1,16 @@
+name = "sidai-resort"
+type = "javascript"
+account_id = ""
+workers_dev = true
+route = ""
+zone_id = ""
+
+[env.production]
+name = "sidai-resort-production"
+route = "sidairesort.com/*"
+zone_id = ""
+
+[build]
+command = ""
+cwd = ""
+watch_paths = []

@@ -1,0 +1,122 @@
+# Netlify configuration (alternative to Vercel/Cloudflare)
+# Includes redirect rules and build settings
+
+[build]
+publish = "."
+command = ""
+
+[[redirects]]
+from = "/about.html"
+to = "/about"
+status = 301
+
+[[redirects]]
+from = "/booking.html"
+to = "/booking"
+status = 301
+
+[[redirects]]
+from = "/services.html"
+to = "/services"
+status = 301
+
+[[redirects]]
+from = "/rooms.html"
+to = "/rooms"
+status = 301
+
+[[redirects]]
+from = "/menu.html"
+to = "/menu"
+status = 301
+
+[[redirects]]
+from = "/experiences.html"
+to = "/experiences"
+status = 301
+
+[[redirects]]
+from = "/privacy-policy.html"
+to = "/privacy-policy"
+status = 301
+
+[[redirects]]
+from = "/cookie-policy.html"
+to = "/cookie-policy"
+status = 301
+
+[[redirects]]
+from = "/terms-of-service.html"
+to = "/terms-of-service"
+status = 301
+
+# Clean URL routes
+[[redirects]]
+from = "/about"
+to = "/about.html"
+status = 200
+
+[[redirects]]
+from = "/booking"
+to = "/booking.html"
+status = 200
+
+[[redirects]]
+from = "/services"
+to = "/services.html"
+status = 200
+
+[[redirects]]
+from = "/rooms"
+to = "/rooms.html"
+status = 200
+
+[[redirects]]
+from = "/menu"
+to = "/menu.html"
+status = 200
+
+[[redirects]]
+from = "/experiences"
+to = "/experiences.html"
+status = 200
+
+[[redirects]]
+from = "/privacy-policy"
+to = "/privacy-policy.html"
+status = 200
+
+[[redirects]]
+from = "/cookie-policy"
+to = "/cookie-policy.html"
+status = 200
+
+[[redirects]]
+from = "/terms-of-service"
+to = "/terms-of-service.html"
+status = 200
+
+# 404 handling
+[[redirects]]
+from = "/*"
+to = "/404.html"
+status = 404
+
+# HTTP headers for security and performance
+[[headers]]
+for = "/*"
+[headers.values]
+X-Content-Type-Options = "nosniff"
+X-Frame-Options = "SAMEORIGIN"
+X-XSS-Protection = "1; mode=block"
+Referrer-Policy = "strict-origin-when-cross-origin"
+
+[[headers]]
+for = "/assets/*"
+[headers.values]
+Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+for = "/*.html"
+[headers.values]
+Cache-Control = "public, max-age=3600"

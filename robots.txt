@@ -1,0 +1,16 @@
+# Robots.txt for Sidai Resort — sidairesort.com
+
+User-agent: *
+Allow: /
+
+# Disallow internal paths
+Disallow: /admin/
+Disallow: /api/
+Disallow: /.env
+Disallow: /.git/
+
+# Crawl delay (reduce server load)
+Crawl-delay: 2
+
+# XML Sitemaps
+Sitemap: https://sidairesort.com/sitemap.xml

@@ -1,0 +1,26 @@
+# Jekyll/Build configuration for Cloudflare Pages
+# This ensures proper static file serving
+
+markdown: kramdown
+exclude:
+  - .env
+  - .git
+  - .gitignore
+  - node_modules
+  - router.php
+  - vercel.json
+  - wrangler.toml
+  - README.md
+  - "*.local.json"
+
+# Keep folder structure intact
+keep_files:
+  - assets
+  - .well-known
+
+# Set future date posts to be published
+future: true
+
+# Include dotfiles
+include:
+  - .well-known
