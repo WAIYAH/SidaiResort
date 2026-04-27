@@ -10,17 +10,17 @@
   "orientation": "portrait-primary",
   "icons": [
     {
-      "src": "/assets/images/sidai-icon-192.png",
+      "src": "/assets/images/branding/sidai-icon-192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "/assets/images/sidai-icon-512.png",
+      "src": "/assets/images/branding/sidai-icon-512.png",
       "sizes": "512x512",
       "type": "image/png"
     },
     {
-      "src": "/assets/images/sidai-icon-512.png",
+      "src": "/assets/images/branding/sidai-icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "maskable"
@@ -32,3 +32,4 @@
     }
   ]
 }
+

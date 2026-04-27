@@ -14,17 +14,17 @@
     <meta property="og:title" content="Rooms and Suites | Maasai-Inspired Accommodation | Sidai Resort">
     <meta property="og:description" content="Stay in Maasai-inspired rooms at Sidai Resort in Naroosura, Narok County with comfort, privacy, and signature luxury experiences.">
     <meta property="og:url" content="https://sidairesort.com/rooms">
-    <meta property="og:image" content="https://sidairesort.com/assets/images/rooms.jpeg">
+    <meta property="og:image" content="https://sidairesort.com/assets/images/rooms/rooms.jpeg">
     <meta property="og:image:alt" content="Luxury room accommodation at Sidai Resort">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:site" content="@sidairesort">
     <meta name="twitter:title" content="Rooms and Suites | Maasai-Inspired Accommodation | Sidai Resort">
     <meta name="twitter:description" content="Stay in Maasai-inspired rooms at Sidai Resort in Naroosura, Narok County with comfort, privacy, and signature luxury experiences.">
-    <meta name="twitter:image" content="https://sidairesort.com/assets/images/rooms.jpeg">
+    <meta name="twitter:image" content="https://sidairesort.com/assets/images/rooms/rooms.jpeg">
     <link rel="canonical" href="https://sidairesort.com/rooms">
     <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/sidai-icon-32.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/images/branding/sidai-icon-32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/images/branding/apple-touch-icon.png">
     <link rel="manifest" href="manifest.json">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -120,7 +120,7 @@
         <nav class="mt-3 sm:mt-4 rounded-2xl border border-gold/30 bg-cream/70 px-3 sm:px-4 py-2.5 sm:py-3 backdrop-blur-lg shadow-lg" aria-label="Primary">
             <div class="flex items-center justify-between gap-2 sm:gap-4">
                 <a href="index.html" class="flex items-center gap-2 sm:gap-3 min-w-0" aria-label="Sidai Resort Home">
-                    <img src="assets/images/sidai-logo.png" alt="Sidai Resort Logo" class="brand-logo h-10 w-10 sm:h-12 sm:w-12 object-cover flex-shrink-0 rounded-full border border-gold/40 bg-cream/80 p-0.5 shadow-sm">
+                    <img src="assets/images/branding/sidai-logo.png" alt="Sidai Resort Logo" class="brand-logo h-10 w-10 sm:h-12 sm:w-12 object-cover flex-shrink-0 rounded-full border border-gold/40 bg-cream/80 p-0.5 shadow-sm" loading="lazy">
                     <span class="brand-identity min-w-0">
                         <span class="brand-name block font-display text-xl sm:text-2xl text-brown truncate">Sidai Resort</span>
                         <span class="brand-tagline block text-[8px] sm:text-[10px] uppercase tracking-[0.2em] sm:tracking-[0.3em] text-forest truncate mt-1">Nothing But the Best</span>
@@ -307,7 +307,7 @@
                         </div>
                         
                         <div class="relative w-full overflow-hidden" :class="room.isPremium ? 'h-72 sm:h-96' : 'h-56'">
-                            <img :src="room.image" :alt="room.name" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105">
+                            <img :src="room.image" :alt="room.name" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy">
                             <div class="absolute inset-0 bg-gradient-to-t from-night/90 via-night/30 to-transparent"></div>
                             
                             <h2 class="absolute bottom-6 left-6 font-display italic text-gold group-hover:scale-105 transition-transform duration-500 origin-left"
@@ -367,7 +367,7 @@
          */
         function roomsECommerce() {
             return {
-                allRooms: [{"id":"elalai","name":"Elalai","desc":"Elalai is where nothing but the best stops being a promise and becomes a lived experience. Our most distinguished sanctuary.","amenities":["Panoramic Forest View","King Super Bed","Private Seating Deck","Premium Wi-Fi"],"image":"assets/images/rooms.jpeg","price":3200,"capacity":4,"isPremium":true},{"id":"ereto","name":"Ereto","desc":"There are rooms you sleep in, and then there is Ereto - a sanctuary engineered for the kind of rest that changes you.","amenities":["Forest View","King Bed","Blackout Curtains"],"image":"assets/images/Ereto.jpeg","price":3000,"capacity":2,"isPremium":false},{"id":"enkipai","name":"Enkipai","desc":"Enkipai is, in the truest sense, a blessed space. There is a quality of light here - warm even on overcast days.","amenities":["Forest View","King Bed","Balcony Access"],"image":"assets/images/Enkipai.jpeg","price":2800,"capacity":2,"isPremium":false},{"id":"empiris","name":"Empiris","desc":"There is something deeply grounding about Empiris. Like the ancient trees that surround it, this sanctuary stands firm.","amenities":["Forest View","King Bed","Wi-Fi"],"image":"assets/images/rooms.jpeg","price":2500,"capacity":3,"isPremium":false},{"id":"emirishoi","name":"Emirishoi","desc":"Step into Emirishoi and feel the morning claim you gently. This sanctuary wakes with the forest.","amenities":["Forest View","King Bed","Wi-Fi"],"image":"assets/images/Emirishoi.jpeg","price":2000,"capacity":2,"isPremium":false},{"id":"enkanasa","name":"Enkanasa","desc":"Enkanasa holds an energy that encourages lingering. Morning coffee takes twice as long here - in the best possible way.","amenities":["Courtyard View","Double Bed","Wi-Fi"],"image":"assets/images/Enkanasa.jpeg","price":1900,"capacity":4,"isPremium":false},{"id":"ewangan","name":"Ewangan","desc":"Ewangan is a homecoming for people who have never been here before. It holds the particular magic of a place that feels familiar.","amenities":["Nature View","Queen Bed","Wi-Fi"],"image":"assets/images/Enkanasa.jpeg","price":1800,"capacity":2,"isPremium":false},{"id":"eripoto","name":"Eripoto","desc":"Eripoto rewards those who pay attention. The deeper you look at the handcrafted headboard, the more beauty you find.","amenities":["Nature View","Queen Bed","Artisan Decor"],"image":"assets/images/Ereto.jpeg","price":1700,"capacity":3,"isPremium":false},{"id":"eserian","name":"Eserian","desc":"Eserian is grace made tangible. The room moves with a soft elegance - clean lines softened by warm textures.","amenities":["Canopy View","Double Bed","Wi-Fi"],"image":"assets/images/rooms.jpeg","price":1500,"capacity":2,"isPremium":false},{"id":"esipil","name":"Esipil","desc":"Named for the cool and flowing, Esipil carries the energy of a mountain stream - fresh, clear, and endlessly renewing.","amenities":["Garden View","Twin Beds","Wi-Fi"],"image":"assets/images/rooms-side.jpeg","price":1400,"capacity":2,"isPremium":false},{"id":"enchipai","name":"Enchipai","desc":"Enchipai wraps around you like the warmth of a fire you didn't know you needed. Rich earth tones mirror the landscape.","amenities":["Garden View","Queen Bed","Wi-Fi"],"image":"assets/images/bedsetting.jpeg","price":1200,"capacity":2,"isPremium":false}],
+                allRooms: [{"id":"elalai","name":"Elalai","desc":"Elalai is where nothing but the best stops being a promise and becomes a lived experience. Our most distinguished sanctuary.","amenities":["Panoramic Forest View","King Super Bed","Private Seating Deck","Premium Wi-Fi"],"image":"assets/images/rooms/rooms.jpeg","price":3200,"capacity":4,"isPremium":true},{"id":"ereto","name":"Ereto","desc":"There are rooms you sleep in, and then there is Ereto - a sanctuary engineered for the kind of rest that changes you.","amenities":["Forest View","King Bed","Blackout Curtains"],"image":"assets/images/nature/ereto.jpeg","price":3000,"capacity":2,"isPremium":false},{"id":"enkipai","name":"Enkipai","desc":"Enkipai is, in the truest sense, a blessed space. There is a quality of light here - warm even on overcast days.","amenities":["Forest View","King Bed","Balcony Access"],"image":"assets/images/nature/enkipai.jpeg","price":2800,"capacity":2,"isPremium":false},{"id":"empiris","name":"Empiris","desc":"There is something deeply grounding about Empiris. Like the ancient trees that surround it, this sanctuary stands firm.","amenities":["Forest View","King Bed","Wi-Fi"],"image":"assets/images/rooms/rooms.jpeg","price":2500,"capacity":3,"isPremium":false},{"id":"emirishoi","name":"Emirishoi","desc":"Step into Emirishoi and feel the morning claim you gently. This sanctuary wakes with the forest.","amenities":["Forest View","King Bed","Wi-Fi"],"image":"assets/images/nature/emirishoi.jpeg","price":2000,"capacity":2,"isPremium":false},{"id":"enkanasa","name":"Enkanasa","desc":"Enkanasa holds an energy that encourages lingering. Morning coffee takes twice as long here - in the best possible way.","amenities":["Courtyard View","Double Bed","Wi-Fi"],"image":"assets/images/nature/enkanasa.jpeg","price":1900,"capacity":4,"isPremium":false},{"id":"ewangan","name":"Ewangan","desc":"Ewangan is a homecoming for people who have never been here before. It holds the particular magic of a place that feels familiar.","amenities":["Nature View","Queen Bed","Wi-Fi"],"image":"assets/images/nature/enkanasa.jpeg","price":1800,"capacity":2,"isPremium":false},{"id":"eripoto","name":"Eripoto","desc":"Eripoto rewards those who pay attention. The deeper you look at the handcrafted headboard, the more beauty you find.","amenities":["Nature View","Queen Bed","Artisan Decor"],"image":"assets/images/nature/ereto.jpeg","price":1700,"capacity":3,"isPremium":false},{"id":"eserian","name":"Eserian","desc":"Eserian is grace made tangible. The room moves with a soft elegance - clean lines softened by warm textures.","amenities":["Canopy View","Double Bed","Wi-Fi"],"image":"assets/images/rooms/rooms.jpeg","price":1500,"capacity":2,"isPremium":false},{"id":"esipil","name":"Esipil","desc":"Named for the cool and flowing, Esipil carries the energy of a mountain stream - fresh, clear, and endlessly renewing.","amenities":["Garden View","Twin Beds","Wi-Fi"],"image":"assets/images/rooms/rooms-side.jpeg","price":1400,"capacity":2,"isPremium":false},{"id":"enchipai","name":"Enchipai","desc":"Enchipai wraps around you like the warmth of a fire you didn't know you needed. Rich earth tones mirror the landscape.","amenities":["Garden View","Queen Bed","Wi-Fi"],"image":"assets/images/rooms/bedsetting.jpeg","price":1200,"capacity":2,"isPremium":false}],
                 maxPrice: 3500,
                 minCapacity: 1,
                 
@@ -390,7 +390,7 @@
             <!-- Brand Column -->
             <div class="sm:col-span-2 lg:col-span-1">
                 <a href="index.html" class="flex items-center gap-3">
-                    <img src="assets/images/sidai-logo.png" alt="Sidai Resort Logo" class="brand-logo h-10 w-10 sm:h-12 sm:w-12 object-cover flex-shrink-0 rounded-full border border-gold/40 bg-cream/80 p-0.5 shadow-sm">
+                    <img src="assets/images/branding/sidai-logo.png" alt="Sidai Resort Logo" class="brand-logo h-10 w-10 sm:h-12 sm:w-12 object-cover flex-shrink-0 rounded-full border border-gold/40 bg-cream/80 p-0.5 shadow-sm" loading="lazy">
                     <span class="font-display text-2xl text-gold">Sidai Resort</span>
                 </a>
                 <p class="mt-4 text-sm leading-7 text-cream/80">
@@ -543,6 +543,7 @@ document.addEventListener('alpine:init', () => {
 <script src="assets/js/app.js" defer></script>
 </body>
 </html>
+
 
 
 
