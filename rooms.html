@@ -241,24 +241,21 @@
             <p class="mt-3 text-lg font-playfair italic text-gold" data-aos="fade-up" data-aos-delay="100">Where Comfort Meets Tradition</p>
         </section>
 
-        <!-- Filters Section for Room Price and Capacity -->
-        <!-- Controlled by Alpine.js x-model directives binding to maxPrice and minCapacity -->
+        <!-- Filters Section -->
+        <!-- Controlled by Alpine.js x-model directive binding to maxPrice -->
         <section class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 mb-10" data-aos="fade-up" data-aos-delay="200">
             <div class="bg-white rounded-2xl border border-gold/30 p-6 shadow-sm flex flex-col sm:flex-row gap-6 items-center justify-between">
                 
                 <div class="flex-1 w-full">
                     <label class="block text-xs font-bold uppercase tracking-widest text-brown mb-2">Max Price per Night: Ksh <span x-text="maxPrice"></span></label>
-                    <input type="range" min="1000" max="3500" step="100" x-model="maxPrice" class="w-full accent-gold h-2 bg-cream rounded-lg appearance-none cursor-pointer">
+                    <input type="range" min="1000" max="2500" step="100" x-model="maxPrice" class="w-full accent-gold h-2 bg-cream rounded-lg appearance-none cursor-pointer">
                 </div>
 
                 <div class="flex-1 w-full">
-                    <label class="block text-xs font-bold uppercase tracking-widest text-brown mb-2">Minimum Capacity</label>
-                    <select x-model="minCapacity" class="w-full bg-cream border border-brown/20 text-brown rounded-xl px-4 py-2 focus:outline-none focus:border-gold">
-                        <option value="1">Any Capacity</option>
-                        <option value="2">2+ People</option>
-                        <option value="3">3+ People</option>
-                        <option value="4">4+ People</option>
-                    </select>
+                    <label class="block text-xs font-bold uppercase tracking-widest text-brown mb-2">Stay Package</label>
+                    <div class="w-full bg-cream border border-brown/20 text-brown rounded-xl px-4 py-2 font-semibold">
+                        Inclusive Bed and BreakFast
+                    </div>
                 </div>
                 
                 <div class="w-full sm:w-auto text-right text-sm font-semibold text-brown/80 mt-4 sm:mt-0">
@@ -290,8 +287,8 @@
                                 <span x-text="room.name"></span>
                             </h2>
                             <div class="absolute bottom-6 right-6 text-right">
-                                <span class="block text-sm text-cream/80">From</span>
-                                <span class="block text-xl font-bold text-white">Ksh <span x-text="room.price.toLocaleString()"></span></span>
+                                <span class="block text-sm text-cream/80">Inclusive Bed and BreakFast</span>
+                                <span class="block text-xl font-bold text-white">Ksh <span x-text="room.price.toLocaleString()"></span> / night</span>
                             </div>
                         </div>
                         
@@ -304,7 +301,7 @@
                                 <div class="flex flex-wrap gap-2 mb-6">
                                     <span class="inline-flex items-center gap-1.5 rounded-md border border-gold/30 bg-gold/5 px-2 py-1 text-[11px] font-bold uppercase tracking-wider text-brown">
                                         <svg class="w-3.5 h-3.5 text-gold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
-                                        Sleeps <span x-text="room.capacity"></span>
+                                        Inclusive Bed and BreakFast
                                     </span>
                                     <template x-for="amenity in room.amenities">
                                         <span class="inline-flex items-center gap-1 rounded bg-cream/60 px-2 py-1 text-[11px] font-medium text-brown/80" x-text="amenity"></span>
@@ -338,7 +335,7 @@
     <script>
         /**
          * Alpine.js Component Logic for E-commerce Room Filtering
-         * Dynamically filters the list of rooms based on user-selected max price and min capacity.
+         * Dynamically filters the list of rooms based on user-selected max price.
          */
         function roomsECommerce() {
             const roomImageDimensions = {
@@ -352,13 +349,27 @@
             };
 
             return {
-                allRooms: [{"id":"elalai","name":"Elalai","desc":"Elalai is where nothing but the best stops being a promise and becomes a lived experience. Our most distinguished sanctuary.","amenities":["Panoramic Forest View","King Super Bed","Private Seating Deck","Premium Wi-Fi"],"image":"assets/images/rooms/rooms.jpeg","price":3200,"capacity":4,"isPremium":true},{"id":"ereto","name":"Ereto","desc":"There are rooms you sleep in, and then there is Ereto - a sanctuary engineered for the kind of rest that changes you.","amenities":["Forest View","King Bed","Blackout Curtains"],"image":"assets/images/nature/ereto.jpeg","price":3000,"capacity":2,"isPremium":false},{"id":"enkipai","name":"Enkipai","desc":"Enkipai is, in the truest sense, a blessed space. There is a quality of light here - warm even on overcast days.","amenities":["Forest View","King Bed","Balcony Access"],"image":"assets/images/nature/enkipai.jpeg","price":2800,"capacity":2,"isPremium":false},{"id":"empiris","name":"Empiris","desc":"There is something deeply grounding about Empiris. Like the ancient trees that surround it, this sanctuary stands firm.","amenities":["Forest View","King Bed","Wi-Fi"],"image":"assets/images/rooms/rooms.jpeg","price":2500,"capacity":3,"isPremium":false},{"id":"emirishoi","name":"Emirishoi","desc":"Step into Emirishoi and feel the morning claim you gently. This sanctuary wakes with the forest.","amenities":["Forest View","King Bed","Wi-Fi"],"image":"assets/images/nature/emirishoi.jpeg","price":2000,"capacity":2,"isPremium":false},{"id":"enkanasa","name":"Enkanasa","desc":"Enkanasa holds an energy that encourages lingering. Morning coffee takes twice as long here - in the best possible way.","amenities":["Courtyard View","Double Bed","Wi-Fi"],"image":"assets/images/nature/enkanasa.jpeg","price":1900,"capacity":4,"isPremium":false},{"id":"ewangan","name":"Ewangan","desc":"Ewangan is a homecoming for people who have never been here before. It holds the particular magic of a place that feels familiar.","amenities":["Nature View","Queen Bed","Wi-Fi"],"image":"assets/images/nature/enkanasa.jpeg","price":1800,"capacity":2,"isPremium":false},{"id":"eripoto","name":"Eripoto","desc":"Eripoto rewards those who pay attention. The deeper you look at the handcrafted headboard, the more beauty you find.","amenities":["Nature View","Queen Bed","Artisan Decor"],"image":"assets/images/nature/ereto.jpeg","price":1700,"capacity":3,"isPremium":false},{"id":"eserian","name":"Eserian","desc":"Eserian is grace made tangible. The room moves with a soft elegance - clean lines softened by warm textures.","amenities":["Canopy View","Double Bed","Wi-Fi"],"image":"assets/images/rooms/rooms.jpeg","price":1500,"capacity":2,"isPremium":false},{"id":"esipil","name":"Esipil","desc":"Named for the cool and flowing, Esipil carries the energy of a mountain stream - fresh, clear, and endlessly renewing.","amenities":["Garden View","Twin Beds","Wi-Fi"],"image":"assets/images/rooms/rooms-side.jpeg","price":1400,"capacity":2,"isPremium":false},{"id":"enchipai","name":"Enchipai","desc":"Enchipai wraps around you like the warmth of a fire you didn't know you needed. Rich earth tones mirror the landscape.","amenities":["Garden View","Queen Bed","Wi-Fi"],"image":"assets/images/rooms/bedsetting.jpeg","price":1200,"capacity":2,"isPremium":false}].map((room) => ({ ...room, ...(roomImageDimensions[room.image] || { width: 1600, height: 1200 }) })),
-                maxPrice: 3500,
-                minCapacity: 1,
+                allRooms: [{"id":"elalai","name":"Elalai","desc":"Elalai is where nothing but the best stops being a promise and becomes a lived experience. Our most distinguished sanctuary.","amenities":["Panoramic Forest View","King Super Bed","Private Seating Deck","Premium Wi-Fi"],"image":"assets/images/rooms/rooms.jpeg","price":3200,"capacity":4,"isPremium":true},{"id":"ereto","name":"Ereto","desc":"There are rooms you sleep in, and then there is Ereto - a sanctuary engineered for the kind of rest that changes you.","amenities":["Forest View","King Bed","Blackout Curtains"],"image":"assets/images/nature/ereto.jpeg","price":3000,"capacity":2,"isPremium":false},{"id":"enkipai","name":"Enkipai","desc":"Enkipai is, in the truest sense, a blessed space. There is a quality of light here - warm even on overcast days.","amenities":["Forest View","King Bed","Balcony Access"],"image":"assets/images/nature/enkipai.jpeg","price":2800,"capacity":2,"isPremium":false},{"id":"empiris","name":"Empiris","desc":"There is something deeply grounding about Empiris. Like the ancient trees that surround it, this sanctuary stands firm.","amenities":["Forest View","King Bed","Wi-Fi"],"image":"assets/images/rooms/rooms.jpeg","price":2500,"capacity":3,"isPremium":false},{"id":"emirishoi","name":"Emirishoi","desc":"Step into Emirishoi and feel the morning claim you gently. This sanctuary wakes with the forest.","amenities":["Forest View","King Bed","Wi-Fi"],"image":"assets/images/nature/emirishoi.jpeg","price":2000,"capacity":2,"isPremium":false},{"id":"enkanasa","name":"Enkanasa","desc":"Enkanasa holds an energy that encourages lingering. Morning coffee takes twice as long here - in the best possible way.","amenities":["Courtyard View","Double Bed","Wi-Fi"],"image":"assets/images/nature/enkanasa.jpeg","price":1900,"capacity":4,"isPremium":false},{"id":"ewangan","name":"Ewangan","desc":"Ewangan is a homecoming for people who have never been here before. It holds the particular magic of a place that feels familiar.","amenities":["Nature View","Queen Bed","Wi-Fi"],"image":"assets/images/nature/enkanasa.jpeg","price":1800,"capacity":2,"isPremium":false},{"id":"eripoto","name":"Eripoto","desc":"Eripoto rewards those who pay attention. The deeper you look at the handcrafted headboard, the more beauty you find.","amenities":["Nature View","Queen Bed","Artisan Decor"],"image":"assets/images/nature/ereto.jpeg","price":1700,"capacity":3,"isPremium":false},{"id":"eserian","name":"Eserian","desc":"Eserian is grace made tangible. The room moves with a soft elegance - clean lines softened by warm textures.","amenities":["Canopy View","Double Bed","Wi-Fi"],"image":"assets/images/rooms/rooms.jpeg","price":1500,"capacity":2,"isPremium":false},{"id":"esipil","name":"Esipil","desc":"Named for the cool and flowing, Esipil carries the energy of a mountain stream - fresh, clear, and endlessly renewing.","amenities":["Garden View","Twin Beds","Wi-Fi"],"image":"assets/images/rooms/rooms-side.jpeg","price":1400,"capacity":2,"isPremium":false},{"id":"enchipai","name":"Enchipai","desc":"Enchipai wraps around you like the warmth of a fire you didn't know you needed. Rich earth tones mirror the landscape.","amenities":["Garden View","Queen Bed","Wi-Fi"],"image":"assets/images/rooms/bedsetting.jpeg","price":1200,"capacity":2,"isPremium":false}]
+                .map((room, index) => {
+                    const standardizedImage = index % 2 === 0
+                        ? "assets/images/nature/ereto.jpeg"
+                        : "assets/images/nature/enkanasa.jpeg";
+
+                    return {
+                        ...room,
+                        image: standardizedImage,
+                        price: 2500,
+                        capacity: 2,
+                        isPremium: false,
+                        amenities: ["Inclusive Bed and BreakFast"],
+                        ...(roomImageDimensions[standardizedImage] || { width: 1600, height: 1200 })
+                    };
+                }),
+                maxPrice: 2500,
                 
                 get filteredRooms() {
                     return this.allRooms.filter(room => {
-                        return room.price <= this.maxPrice && room.capacity >= this.minCapacity;
+                        return room.price <= this.maxPrice;
                     });
                 },
                 
