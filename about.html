@@ -879,15 +879,27 @@ const SIDAI_GALLERY_INITIAL_CATEGORY = "all";
 function galleryPage() {
     return {
         activeFilter: SIDAI_GALLERY_INITIAL_CATEGORY,
+        items: SIDAI_GALLERY_DATA,
         visibleCount: 0,
 
         init() {
+            const url = new URL(window.location.href);
+            const requestedCategory = (url.searchParams.get('category') || '').toLowerCase();
+            const knownCategories = new Set(['all', ...this.items.map((item) => (item.category || '').toLowerCase())]);
+            if (knownCategories.has(requestedCategory)) {
+                this.activeFilter = requestedCategory;
+            }
+
+            this.renderGalleryItems();
             this.applyFilter(false);
+            this.hydrateLazyImages();
+            this.refreshGalleryLightbox();
         },
 
         setFilter(filter) {
             this.activeFilter = filter;
             this.applyFilter(true);
+            this.hydrateLazyImages();
 
             const url = new URL(window.location.href);
             if (filter === 'all') {
@@ -897,6 +909,113 @@ function galleryPage() {
             }
 
             history.replaceState({}, '', url);
+        },
+
+        toLabel(value) {
+            return String(value || '')
+                .replace(/[-_]+/g, ' ')
+                .replace(/\b\w/g, (letter) => letter.toUpperCase());
+        },
+
+        cardHeightClass(index) {
+            const heights = ['h-56', 'h-64', 'h-72', 'h-80', 'h-60'];
+            return heights[index % heights.length];
+        },
+
+        renderGalleryItems() {
+            const grid = document.getElementById('gallery-grid');
+            if (!grid || !Array.isArray(this.items)) {
+                return;
+            }
+
+            const escapeHtml = (value) =>
+                String(value ?? '')
+                    .replace(/&/g, '&amp;')
+                    .replace(/</g, '&lt;')
+                    .replace(/>/g, '&gt;')
+                    .replace(/"/g, '&quot;')
+                    .replace(/'/g, '&#39;');
+
+            const markup = this.items
+                .map((item, index) => {
+                    const title = item.title || 'Sidai Moment';
+                    const description = item.description || `Beautiful moments at Sidai Resort (${title})`;
+                    const imagePath = item.image_path || 'placeholder.svg';
+                    const category = (item.category || 'nature').toLowerCase();
+                    const categoryLabel = this.toLabel(category);
+                    const heightClass = this.cardHeightClass(index);
+
+                    return `
+                    <article class="js-gallery-item group relative mb-4 block break-inside-avoid overflow-hidden rounded-2xl border border-brown/10 bg-white shadow-sm" data-category="${escapeHtml(category)}">
+                        <a href="${escapeHtml(imagePath)}" class="gallery-lightbox block" data-gallery="sidai-gallery" data-title="${escapeHtml(title)}" data-description="${escapeHtml(description)}">
+                            <img src="placeholder.svg" data-src="${escapeHtml(imagePath)}" alt="${escapeHtml(title)} - ${escapeHtml(categoryLabel)} at Sidai Resort" class="lazy-gallery-image ${heightClass} w-full object-cover transition duration-500 group-hover:scale-[1.03]" loading="lazy" width="1200" height="1200">
+                            <span class="absolute inset-0 bg-gradient-to-t from-night/75 via-night/20 to-transparent opacity-0 transition duration-300 group-hover:opacity-100"></span>
+                            <span class="absolute bottom-0 left-0 right-0 p-4 opacity-0 transition duration-300 group-hover:opacity-100">
+                                <span class="block text-sm font-semibold text-cream">${escapeHtml(title)}</span>
+                                <span class="mt-1 inline-flex rounded-full bg-gold/90 px-3 py-1 text-xs font-semibold uppercase tracking-[0.12em] text-night">${escapeHtml(categoryLabel)}</span>
+                            </span>
+                        </a>
+                    </article>`;
+                })
+                .join('');
+
+            grid.innerHTML = markup;
+        },
+
+        hydrateLazyImages() {
+            const lazyImages = Array.from(document.querySelectorAll('img[data-src]:not([data-lazy-bound])'));
+            if (lazyImages.length === 0) {
+                return;
+            }
+
+            if (typeof IntersectionObserver === 'undefined') {
+                lazyImages.forEach((image) => {
+                    const realSource = image.getAttribute('data-src');
+                    if (realSource) {
+                        image.setAttribute('src', realSource);
+                        image.removeAttribute('data-src');
+                    }
+                });
+                return;
+            }
+
+            const observer = new IntersectionObserver((entries, innerObserver) => {
+                entries.forEach((entry) => {
+                    if (!entry.isIntersecting) {
+                        return;
+                    }
+
+                    const image = entry.target;
+                    const realSource = image.getAttribute('data-src');
+                    if (realSource) {
+                        image.setAttribute('src', realSource);
+                        image.removeAttribute('data-src');
+                    }
+
+                    innerObserver.unobserve(image);
+                });
+            }, { rootMargin: '120px 0px' });
+
+            lazyImages.forEach((image) => {
+                image.setAttribute('data-lazy-bound', 'true');
+                observer.observe(image);
+            });
+        },
+
+        refreshGalleryLightbox() {
+            if (typeof window.GLightbox === 'undefined') {
+                return;
+            }
+
+            if (window.__sidaiGalleryLightbox && typeof window.__sidaiGalleryLightbox.destroy === 'function') {
+                window.__sidaiGalleryLightbox.destroy();
+            }
+
+            window.__sidaiGalleryLightbox = window.GLightbox({
+                selector: '.gallery-lightbox',
+                touchNavigation: true,
+                loop: true,
+            });
         },
 
         applyFilter(animate) {
@@ -1297,7 +1416,6 @@ document.addEventListener('alpine:init', () => {
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"LodgingBusiness","name":"Sidai Resort","description":"Learn the story behind Sidai Resort, explore our gallery, and connect with us to plan your next stay, event, or celebration.","url":"https://sidairesort.com","telephone":"0703 761 951 / 0705 800 802","email":"sidairesort21@gmail.com","address":{"@type":"PostalAddress","streetAddress":"FRCX+PP4 Narosura, Narok County, Kenya","addressLocality":"Narok","addressRegion":"Narok County","addressCountry":"KE"},"sameAs":["https://instagram.com/sidairesort","https://facebook.com/sidairesort"],"currenciesAccepted":"KES"}</script>
 </body>
 </html>
-
 
 
 

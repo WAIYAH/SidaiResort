@@ -12,6 +12,8 @@ exclude:
   - wrangler.toml
   - README.md
   - "*.local.json"
+  - Gemfile
+  - Gemfile.lock
 
 # Keep folder structure intact
 keep_files:
