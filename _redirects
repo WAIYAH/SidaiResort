@@ -1,3 +1,34 @@
-/home           /index.html         301
-/booking        /index.html         301
-/*              /index.html         200
+https://sidairesort.com/* https://www.sidairesort.com/:splat 301!
+
+/home / 301
+
+/about.html /about 301
+/rooms.html /rooms 301
+/services.html /services 301
+/menu.html /menu 301
+/booking.html /booking 301
+/experiences.html /experiences 301
+/privacy-policy.html /privacy-policy 301
+/cookie-policy.html /cookie-policy 301
+/terms-of-service.html /terms-of-service 301
+
+/events.html /services#events 301
+/contact.html /about#contact 301
+/gallery.html /about#gallery 301
+/events /services#events 301
+/contact /about#contact 301
+/gallery /about#gallery 301
+
+/about /about.html 200
+/rooms /rooms.html 200
+/services /services.html 200
+/menu /menu.html 200
+/booking /booking.html 200
+/experiences /experiences.html 200
+/privacy-policy /privacy-policy.html 200
+/cookie-policy /cookie-policy.html 200
+/terms-of-service /terms-of-service.html 200
+/404 /404.html 200
+/ /index.html 200
+
+/* /404.html 404
