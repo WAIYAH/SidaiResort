@@ -28,6 +28,21 @@ https://sidairesort.com/* https://www.sidairesort.com/:splat 301!
 /privacy-policy /privacy-policy.html 200
 /cookie-policy /cookie-policy.html 200
 /terms-of-service /terms-of-service.html 200
+/blog /blog/index.html 200
+/blog/ /blog/index.html 200
+/blog/index.html /blog 301
+/blog/about /blog/about.html 200
+/blog/best-hotel-naroosura /blog/best-hotel-naroosura.html 200
+/blog/best-hotel-narok /blog/best-hotel-narok.html 200
+/blog/hotel-near-maasai-mara /blog/hotel-near-maasai-mara.html 200
+/blog/naroosura-travel-guide /blog/naroosura-travel-guide.html 200
+/blog/sidai-resort-review /blog/sidai-resort-review.html 200
+/blog/things-to-do-narok /blog/things-to-do-narok.html 200
+/blog/best-nyama-choma-narok-county /blog/best-nyama-choma-narok-county.html 200
+/blog/weekend-getaway-nairobi-to-narok /blog/weekend-getaway-nairobi-to-narok.html 200
+/blog/birdwatching-loita-hills-kenya /blog/birdwatching-loita-hills-kenya.html 200
+/blog/wedding-venues-narok-county-kenya /blog/wedding-venues-narok-county-kenya.html 200
+/blog/conference-venues-narok-kenya-2026 /blog/conference-venues-narok-kenya-2026.html 200
 /404 /404.html 200
 / /index.html 200
 
