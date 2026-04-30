@@ -109,6 +109,22 @@
         }
         .critical-shell { min-height: 100dvh; }
         [x-cloak] { display: none !important; }
+        html.lenis,
+        html.lenis body {
+            height: auto;
+        }
+        .lenis.lenis-smooth {
+            scroll-behavior: auto !important;
+        }
+        .lenis.lenis-smooth [data-lenis-prevent] {
+            overscroll-behavior: contain;
+        }
+        .lenis.lenis-stopped {
+            overflow: hidden;
+        }
+        .lenis.lenis-scrolling iframe {
+            pointer-events: none;
+        }
         .menu-main {
             background:
                 radial-gradient(circle at 85% 5%, rgba(212, 175, 55, 0.12), transparent 45%),
@@ -627,15 +643,14 @@
         <section class="menu-content-wrap">
             <div id="menu-tabs-shell" class="menu-tabs-shell menu-animate-section" aria-label="Menu Categories">
                 <div class="menu-tabs-track" id="menu-tabs">
-                    <a class="menu-tab is-active" href="#breakfast" data-tab-target="breakfast">🌅 Breakfast</a>
-                    <a class="menu-tab" href="#local" data-tab-target="local">🍛 Local</a>
-                    <a class="menu-tab" href="#nyama-choma" data-tab-target="nyama-choma">🔥 Nyama Choma</a>
-                    <a class="menu-tab" href="#snacks" data-tab-target="snacks">🥪 Snacks</a>
-                    <a class="menu-tab" href="#desserts" data-tab-target="desserts">🍰 Desserts</a>
-                    <a class="menu-tab" href="#drinks" data-tab-target="drinks">🥤 Drinks</a>
-                    <a class="menu-tab" href="#hot" data-tab-target="hot">☕ Hot</a>
-                    <a class="menu-tab" href="#traditional" data-tab-target="traditional">🌿 Traditional</a>
-                    <a class="menu-tab" href="#beers" data-tab-target="beers">🍺 Beers</a>
+                    <a class="menu-tab is-active" href="#breakfast" data-tab-target="breakfast">Breakfast</a>
+                    <a class="menu-tab" href="#local" data-tab-target="local">Local</a>
+                    <a class="menu-tab" href="#nyama-choma" data-tab-target="nyama-choma">Nyama Choma</a>
+                    <a class="menu-tab" href="#snacks" data-tab-target="snacks">Snacks</a>
+                    <a class="menu-tab" href="#desserts" data-tab-target="desserts">Desserts</a>
+                    <a class="menu-tab" href="#drinks" data-tab-target="drinks">Soft Drinks</a>
+                    <a class="menu-tab" href="#hot" data-tab-target="hot">Hot Drinks</a>
+                    <a class="menu-tab" href="#beers" data-tab-target="beers">Beers</a>
                 </div>
             </div>
 
@@ -838,7 +853,6 @@ document.addEventListener('alpine:init', () => {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/glightbox/dist/js/glightbox.min.js" defer></script>
-<script src="https://cdn.jsdelivr.net/npm/@studio-freight/lenis@1.0.42/bundled/lenis.min.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/flatpickr" defer></script>
 <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js" defer></script>
@@ -902,7 +916,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 { name: 'Pancakes & Honey' },
                 { name: 'Avocado Toast' },
                 { name: 'Boiled Eggs & Bread' },
-                { name: 'Sidai Platter(2pax)' },
+                { name: 'Sidai Platter (2 pax)' },
                 { name: 'Uji wa Wimbi' }
             ]
         },
@@ -931,8 +945,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 { name: 'Goat Choma 500g' },
                 { name: 'Beef Choma 500g' },
                 { name: 'Chicken Choma Half' },
-                { name: 'Pork Ribs 400g' },
-                { name: 'Mixed Grill Platter(2pax)' },
+                { name: 'Mixed Grill Platter (2 pax)' },
                 { name: 'Tilapia Grilled' },
                 { name: 'Sausages & Chips' }
             ]
@@ -943,13 +956,13 @@ document.addEventListener('DOMContentLoaded', () => {
             subtitle: 'Quick bites for sharing or solo cravings.',
             note: 'Crispy and satisfying light bites.',
             items: [
-                { name: 'Samosa(3pc)' },
+                { name: 'Samosa (3 pc)' },
                 { name: 'Chips Large' },
                 { name: 'Bhajia' },
                 { name: 'Smokies' },
                 { name: 'Chicken Sandwich' },
                 { name: 'Boiled Maize' },
-                { name: 'Spring Rolls(4pc)' },
+                { name: 'Spring Rolls (4 pc)' },
                 { name: 'Groundnuts' }
             ]
         },
@@ -973,12 +986,10 @@ document.addEventListener('DOMContentLoaded', () => {
             subtitle: 'Refreshing chilled pours and juices.',
             note: 'Cold refreshment for every meal.',
             items: [
-                { name: 'Soda(300ml)' },
+                { name: 'Soda (300ml)' },
                 { name: 'Mango Juice' },
                 { name: 'Passion Juice' },
                 { name: 'Orange Juice' },
-                { name: 'Watermelon Juice' },
-                { name: 'Alvaro' },
                 { name: 'Water' },
                 { name: 'Delmonte' }
             ]
@@ -995,19 +1006,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 { name: 'Hot Chocolate' },
                 { name: 'Ginger Lemon Tea' },
                 { name: 'Milo' }
-            ]
-        },
-        {
-            id: 'traditional',
-            title: 'Traditional',
-            subtitle: 'Heritage drinks and local specialties.',
-            note: 'Traditional tastes from the region.',
-            items: [
-                { name: 'Muratina' },
-                { name: 'Uji wa Wimbi' },
-                { name: 'Sugarcane Juice' },
-                { name: 'Tamarind Water' },
-                { name: 'Hibiscus Tea' }
             ]
         },
         {
@@ -1028,75 +1026,100 @@ document.addEventListener('DOMContentLoaded', () => {
     const imagePools = {
         breakfast: [
             'assets/images/dining/menu-breakfast.png',
-            'assets/images/dining/breakfast.jpeg',
-            'assets/images/dining/mandazis.webp',
-            'assets/images/dining/tea.webp'
+            'assets/images/dining/mandazi.webp',
+            'assets/images/dining/Fried Eggs.jpg',
+            'assets/images/dining/pancakes.jpg',
+            'assets/images/dining/avocado-toast.webp',
+            'assets/images/dining/boiled-eggs-bread.jpg',
+            'assets/images/dining/platter.avif',
+            'assets/images/dining/uji.jpg'
         ],
         local: [
             'assets/images/dining/ugali-beef.avif',
-            'assets/images/dining/chapati-beef.jpg',
-            'assets/images/dining/rice-beef.jpg',
-            'assets/images/dining/goat-soup.jpeg'
+            'assets/images/dining/ugali-and-kuku.jpg',
+            'assets/images/dining/rice.avif',
+            'assets/images/dining/githeri.jpg',
+            'assets/images/dining/matoke.jpg',
+            'assets/images/dining/chapati&beans.webp',
+            'assets/images/dining/mukimo.jpg',
+            'assets/images/dining/rice-beans.jpg'
         ],
         'nyama-choma': [
             'assets/images/dining/mbuzi-choma.jpg',
+            'assets/images/dining/nyama-choma.webp',
+            'assets/images/dining/chicken.jpg',
             'assets/images/dining/nyama-choma-and-soup.jpeg',
-            'assets/images/dining/goat-soup.jpeg'
+            'assets/images/dining/mixed.jpg',
+            'assets/images/dining/fish.avif',
+            'assets/images/dining/chips-masala.png'
         ],
         snacks: [
+            'assets/images/dining/Samosa.jpg',
             'assets/images/dining/plain-chips.jpeg',
-            'assets/images/dining/potatoes.jpg',
-            'assets/images/dining/chapati-beef.jpg'
+            'assets/images/dining/chips-masala.png',
+            'assets/images/dining/chips.jpg',
+            'assets/images/dining/chickensandwich.jpg',
+            'assets/images/dining/boiled-maize.jpg',
+            'assets/images/dining/spring-rolls.webp',
+            'assets/images/dining/groundnuts.jpg'
         ],
         desserts: [
-            'assets/images/dining/passion-fruits.jpeg',
-            'assets/images/dining/mandazis.webp',
-            'assets/images/dining/milk.webp'
+            'assets/images/dining/Mahamri.jpg',
+            'assets/images/dining/fruit-salad.webp',
+            'assets/images/dining/chocolate-cake.png',
+            'assets/images/dining/yogurt.png',
+            'assets/images/dining/Banana Fritters.jpg',
+            'assets/images/dining/Ice Cream.png'
         ],
         drinks: [
-            'assets/images/dining/menu-beverages.png',
             'assets/images/dining/soft-drinks-image.webp',
-            'assets/images/dining/sodas-drinks.webp'
+            'assets/images/dining/mango-juice.jpg',
+            'assets/images/dining/passion-juice.jpg',
+            'assets/images/dining/Orange Juice.jpg',
+            'assets/images/dining/water.png',
+            'assets/images/dining/Delmonte-Juice.jpg'
         ],
         hot: [
             'assets/images/dining/tea.webp',
             'assets/images/dining/black-coffee.png',
-            'assets/images/dining/milk.webp'
-        ],
-        traditional: [
-            'assets/images/dining/sugarcane.jpeg',
-            'assets/images/dining/tea.webp',
-            'assets/images/dining/goat-soup.jpeg'
+            'assets/images/dining/white-coffee.webp',
+            'assets/images/dining/hot-chocolate.png',
+            'assets/images/dining/ginger-lemon-tea.jpg',
+            'assets/images/dining/milo.png'
         ],
         beers: [
             'assets/images/dining/wines.jpeg',
             'assets/images/dining/menu-beverages.png',
-            'assets/images/experiences/at-the-fireside.jpeg'
+            'assets/images/dining/white-cap.jpg',
+            'assets/images/dining/pilsner.jpg',
+            'assets/images/dining/savanna-cider.png'
         ]
     };
 
-    const imageDimensions = {
-        'assets/images/dining/black-coffee.png': { width: 360, height: 360 },
-        'assets/images/dining/breakfast.jpeg': { width: 1280, height: 960 },
-        'assets/images/dining/chapati-beef.jpg': { width: 216, height: 233 },
-        'assets/images/dining/goat-soup.jpeg': { width: 960, height: 1280 },
-        'assets/images/dining/mandazis.webp': { width: 980, height: 980 },
-        'assets/images/dining/mbuzi-choma.jpg': { width: 585, height: 450 },
-        'assets/images/dining/menu-beverages.png': { width: 1024, height: 1024 },
-        'assets/images/dining/menu-breakfast.png': { width: 1024, height: 566 },
-        'assets/images/dining/milk.webp': { width: 350, height: 350 },
-        'assets/images/dining/nyama-choma-and-soup.jpeg': { width: 1280, height: 960 },
-        'assets/images/dining/passion-fruits.jpeg': { width: 960, height: 1280 },
-        'assets/images/dining/plain-chips.jpeg': { width: 660, height: 440 },
-        'assets/images/dining/potatoes.jpg': { width: 612, height: 418 },
-        'assets/images/dining/rice-beef.jpg': { width: 275, height: 183 },
-        'assets/images/dining/sodas-drinks.webp': { width: 600, height: 381 },
-        'assets/images/dining/soft-drinks-image.webp': { width: 1080, height: 1350 },
-        'assets/images/dining/sugarcane.jpeg': { width: 1600, height: 1200 },
-        'assets/images/dining/tea.webp': { width: 1365, height: 2048 },
-        'assets/images/dining/ugali-beef.avif': { width: 626, height: 417 },
-        'assets/images/dining/wines.jpeg': { width: 750, height: 600 },
-        'assets/images/experiences/at-the-fireside.jpeg': { width: 1280, height: 960 }
+    const requestScrollRefresh = (() => {
+        let queued = false;
+        return () => {
+            if (queued) {
+                return;
+            }
+
+            queued = true;
+            window.requestAnimationFrame(() => {
+                queued = false;
+                if (window.ScrollTrigger && typeof window.ScrollTrigger.refresh === 'function') {
+                    window.ScrollTrigger.refresh(true);
+                }
+                window.dispatchEvent(new Event('resize'));
+            });
+        };
+    })();
+
+    const pickImagePath = (sectionId, index) => {
+        const pool = imagePools[sectionId] || [];
+        if (pool.length === 0) {
+            return '';
+        }
+        return pool[index % pool.length];
     };
 
     const renderCatalog = () => {
@@ -1119,16 +1142,14 @@ document.addEventListener('DOMContentLoaded', () => {
             grid.className = 'menu-card-grid';
 
             sectionData.items.forEach((item, index) => {
-                const itemImages = imagePools[sectionData.id] || [];
-                const imagePath = itemImages[index % itemImages.length];
-                const dimensions = imageDimensions[imagePath] || { width: 1600, height: 1200 };
+                const imagePath = pickImagePath(sectionData.id, index);
 
                 const card = document.createElement('article');
                 card.className = 'menu-card';
                 card.setAttribute('data-menu-card', '');
                 card.innerHTML = `
                     <div class="menu-card-media">
-                        <img loading="lazy" width="${dimensions.width}" height="${dimensions.height}" alt="${item.name} at Sidai Resort in Naroosura, Narok Kenya" onerror="menuImageFallback(this)">
+                        <img loading="lazy" decoding="async" width="1600" height="1000" alt="${item.name} at Sidai Resort in Naroosura, Narok Kenya">
                     </div>
                     <div class="menu-card-body">
                         <h3 class="menu-card-title">${item.name}</h3>
@@ -1137,8 +1158,18 @@ document.addEventListener('DOMContentLoaded', () => {
                 `;
 
                 const image = card.querySelector('img');
-                if (image && imagePath) {
-                    image.src = encodeURI(imagePath);
+                if (image) {
+                    image.addEventListener('load', requestScrollRefresh, { once: true });
+                    image.addEventListener('error', () => {
+                        menuImageFallback(image);
+                        requestScrollRefresh();
+                    }, { once: true });
+
+                    if (imagePath) {
+                        image.src = encodeURI(imagePath);
+                    } else {
+                        menuImageFallback(image);
+                    }
                 }
 
                 grid.appendChild(card);
@@ -1150,13 +1181,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
         sectionsRoot.innerHTML = '';
         sectionsRoot.appendChild(fragment);
+        requestScrollRefresh();
     };
 
-    const setActiveTab = (sectionId) => {
+    const setActiveTab = (sectionId, shouldCenter = false) => {
         tabs.forEach((tab) => {
             const isCurrent = tab.dataset.tabTarget === sectionId;
             tab.classList.toggle('is-active', isCurrent);
-            if (isCurrent) {
+            if (isCurrent && shouldCenter) {
                 tab.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
             }
         });
@@ -1180,19 +1212,13 @@ document.addEventListener('DOMContentLoaded', () => {
                     return;
                 }
 
-                setActiveTab(targetId);
-                const targetY = target.getBoundingClientRect().top + window.pageYOffset - getScrollOffset();
-
-                if (window.gsap && window.ScrollToPlugin) {
-                    window.gsap.to(window, {
-                        duration: 0.82,
-                        ease: 'power2.out',
-                        scrollTo: { y: targetY, autoKill: true }
-                    });
-                    return;
-                }
-
+                setActiveTab(targetId, true);
+                const targetY = Math.max(0, target.getBoundingClientRect().top + window.pageYOffset - getScrollOffset());
                 window.scrollTo({ top: targetY, behavior: 'smooth' });
+
+                if (window.history && typeof window.history.replaceState === 'function') {
+                    window.history.replaceState(null, '', `#${targetId}`);
+                }
             });
         });
     };
@@ -1202,92 +1228,33 @@ document.addEventListener('DOMContentLoaded', () => {
             .map((sectionData) => document.getElementById(sectionData.id))
             .filter(Boolean);
 
-        if (window.gsap && window.ScrollTrigger) {
-            if (window.ScrollToPlugin) {
-                window.gsap.registerPlugin(window.ScrollTrigger, window.ScrollToPlugin);
-            } else {
-                window.gsap.registerPlugin(window.ScrollTrigger);
-            }
-
-            sections.forEach((section) => {
-                window.ScrollTrigger.create({
-                    trigger: section,
-                    start: 'top center',
-                    end: 'bottom center',
-                    onToggle: (self) => {
-                        if (self.isActive) {
-                            setActiveTab(section.id);
-                        }
-                    }
-                });
-            });
+        if (sections.length === 0) {
             return;
         }
 
         const observer = new IntersectionObserver((entries) => {
+            let bestEntry = null;
+
             entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                    setActiveTab(entry.target.id);
+                if (!entry.isIntersecting) {
+                    return;
+                }
+
+                if (!bestEntry || entry.intersectionRatio > bestEntry.intersectionRatio) {
+                    bestEntry = entry;
                 }
             });
-        }, { threshold: 0.45 });
+
+            if (bestEntry) {
+                setActiveTab(bestEntry.target.id, false);
+            }
+        }, {
+            root: null,
+            rootMargin: '-20% 0px -45% 0px',
+            threshold: [0.1, 0.25, 0.45, 0.65]
+        });
 
         sections.forEach((section) => observer.observe(section));
-    };
-
-    const initGsapAnimations = () => {
-        if (!window.gsap || !window.ScrollTrigger) {
-            return;
-        }
-
-        const { gsap } = window;
-        const animatedSections = gsap.utils.toArray('.menu-animate-section');
-        animatedSections.forEach((section) => {
-            gsap.from(section, {
-                opacity: 0,
-                y: 32,
-                duration: 0.8,
-                ease: 'power2.out',
-                scrollTrigger: {
-                    trigger: section,
-                    start: 'top 84%'
-                }
-            });
-        });
-
-        gsap.utils.toArray('.menu-section').forEach((section) => {
-            const cards = section.querySelectorAll('[data-menu-card]');
-            gsap.from(cards, {
-                opacity: 0,
-                y: 38,
-                duration: 0.56,
-                stagger: 0.08,
-                ease: 'power2.out',
-                scrollTrigger: {
-                    trigger: section,
-                    start: 'top 78%'
-                }
-            });
-        });
-
-        gsap.utils.toArray('[data-menu-card]').forEach((card) => {
-            card.addEventListener('mouseenter', () => {
-                gsap.to(card, {
-                    y: -10,
-                    boxShadow: '0 24px 38px rgba(212, 175, 55, 0.34)',
-                    duration: 0.24,
-                    ease: 'power2.out'
-                });
-            });
-            card.addEventListener('mouseleave', () => {
-                gsap.to(card, {
-                    y: 0,
-                    boxShadow: '0 12px 22px rgba(10, 37, 24, 0.09)',
-                    duration: 0.24,
-                    ease: 'power2.out'
-                });
-            });
-        });
     };
 
     const buildWhatsAppMessage = (formData) => {
@@ -1382,7 +1349,6 @@ document.addEventListener('DOMContentLoaded', () => {
     renderCatalog();
     bindTabScroll();
     bindSectionTracking();
-    initGsapAnimations();
     initOrderForm();
 });
 </script>
@@ -1420,9 +1386,3 @@ document.addEventListener('DOMContentLoaded', () => {
 
 </body>
 </html>
-
-
-
-
-
-
