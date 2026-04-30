@@ -95,9 +95,385 @@
 
     <style>
         :root { color-scheme: light; }
-        body { margin: 0; background: #F5ECD7; }
+        body.critical-shell {
+            margin: 0;
+            background: #F5ECD7 !important;
+            color: #3D1C02;
+        }
         .critical-shell { min-height: 100dvh; }
         [x-cloak] { display: none !important; }
+
+        .services-page-main {
+            background:
+                radial-gradient(circle at 8% 12%, rgba(212, 175, 55, 0.16), transparent 26%),
+                radial-gradient(circle at 88% 78%, rgba(26, 77, 46, 0.12), transparent 30%),
+                #F5ECD7;
+        }
+        #services-tabs-section {
+            scroll-margin-top: 6.5rem;
+        }
+        .services-hero {
+            position: relative;
+            overflow: hidden;
+            padding: 2.2rem 0 2.6rem;
+            background:
+                radial-gradient(circle at 78% 22%, rgba(212, 175, 55, 0.2), transparent 38%),
+                radial-gradient(circle at 14% 64%, rgba(26, 77, 46, 0.1), transparent 34%),
+                #F6EEDD;
+        }
+        .services-hero::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            opacity: 0.4;
+            background-image: radial-gradient(rgba(61, 28, 2, 0.08) 0.8px, transparent 0.8px);
+            background-size: 18px 18px;
+            pointer-events: none;
+        }
+        .services-hero-grid {
+            position: relative;
+            z-index: 1;
+            display: grid;
+            grid-template-columns: 1.02fr 0.98fr;
+            gap: 2.2rem;
+            align-items: center;
+        }
+        .services-hero-copy {
+            max-width: 34rem;
+        }
+        .services-hero-eyebrow {
+            margin: 0;
+            font-family: "Montserrat", sans-serif;
+            font-weight: 700;
+            font-size: 0.76rem;
+            letter-spacing: 0.24em;
+            text-transform: uppercase;
+            color: #D47A21;
+        }
+        .services-hero-title {
+            margin: 1rem 0 0;
+            line-height: 0.94;
+            color: #341A06;
+        }
+        .services-hero-title-script {
+            display: block;
+            font-family: "Cormorant Garamond", serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-style: italic;
+            font-weight: 600;
+        }
+        .services-hero-title-strong {
+            display: block;
+            margin-top: 0.35rem;
+            font-family: "Montserrat", sans-serif;
+            font-size: clamp(2.6rem, 7vw, 5.9rem);
+            font-weight: 800;
+            letter-spacing: 0.02em;
+        }
+        .services-hero-lead {
+            margin: 1.25rem 0 0;
+            font-family: "Montserrat", sans-serif;
+            color: rgba(61, 28, 2, 0.82);
+            line-height: 1.68;
+            font-size: clamp(1rem, 2vw, 1.25rem);
+        }
+        .services-hero-meta {
+            margin: 1.2rem 0 0;
+            font-family: "Montserrat", sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            font-size: 0.84rem;
+            color: #2F1D0C;
+            font-weight: 700;
+        }
+        .services-hero-actions {
+            margin-top: 1.35rem;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+        }
+        .services-hero-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 0.92rem;
+            padding: 0.84rem 1.6rem;
+            font-family: "Montserrat", sans-serif;
+            font-size: 0.87rem;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: transform 0.24s ease, box-shadow 0.24s ease, background-color 0.24s ease, color 0.24s ease;
+        }
+        .services-hero-pill {
+            text-transform: none;
+            letter-spacing: 0.02em;
+            font-size: clamp(0.86rem, 2vw, 1rem);
+            padding-inline: 1.25rem;
+            cursor: default;
+        }
+        .services-hero-btn--primary {
+            background: #FF6A36;
+            color: #FFF8EE;
+            box-shadow: 0 10px 22px rgba(255, 106, 54, 0.28);
+        }
+        .services-hero-btn--primary:hover {
+            transform: translateY(-2px);
+            background: #F35B28;
+        }
+        .services-hero-btn--ghost {
+            border: 1px solid rgba(255, 106, 54, 0.72);
+            color: #FF6A36;
+            background: rgba(255, 255, 255, 0.62);
+        }
+        .services-hero-btn--ghost:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 18px rgba(255, 106, 54, 0.18);
+            background: rgba(255, 255, 255, 0.92);
+        }
+        .services-hero-visual {
+            position: relative;
+            min-height: clamp(20rem, 45vw, 34rem);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .services-hero-circle-main {
+            width: clamp(17rem, 36vw, 33rem);
+            aspect-ratio: 1;
+            border-radius: 999px;
+            overflow: hidden;
+            border: 7px solid rgba(255, 255, 255, 0.82);
+            box-shadow: 0 24px 50px rgba(61, 28, 2, 0.22);
+            background: #EFD9B8;
+            position: relative;
+            z-index: 3;
+        }
+        .services-hero-carousel {
+            position: relative;
+        }
+        .services-hero-circle-main img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        .services-hero-slide {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            transform: translateX(-6%);
+            transition: opacity 0.68s ease, transform 0.68s cubic-bezier(0.22, 1, 0.36, 1);
+            will-change: opacity, transform;
+        }
+        .services-hero-slide.is-active {
+            opacity: 1;
+            transform: translateX(0);
+            z-index: 2;
+        }
+        .services-hero-slide.is-exit {
+            opacity: 0;
+            transform: translateX(6%);
+            z-index: 1;
+        }
+        .services-tabs-scroller {
+            -webkit-overflow-scrolling: touch;
+        }
+        .services-tabs-scroller::-webkit-scrollbar {
+            display: none;
+        }
+        .services-tabs-nav {
+            scrollbar-width: none;
+            overscroll-behavior-x: contain;
+            touch-action: pan-x;
+        }
+        .services-tabs-nav > button {
+            min-height: 2.75rem;
+        }
+        .services-hero-orb {
+            position: absolute;
+            border-radius: 999px;
+            pointer-events: none;
+        }
+        .services-hero-orb--one {
+            width: clamp(1.8rem, 2.9vw, 2.7rem);
+            height: clamp(1.8rem, 2.9vw, 2.7rem);
+            top: 8%;
+            right: 10%;
+            background: radial-gradient(circle at 32% 30%, #FFDF85, #F39A45 72%);
+            z-index: 4;
+        }
+        .services-hero-orb--two {
+            width: clamp(4.9rem, 7.9vw, 7.1rem);
+            height: clamp(4.9rem, 7.9vw, 7.1rem);
+            left: 4%;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(247, 214, 194, 0.68);
+            z-index: 2;
+        }
+        .services-hero-orb--three {
+            width: clamp(2rem, 3.2vw, 2.9rem);
+            height: clamp(2rem, 3.2vw, 2.9rem);
+            right: 17%;
+            bottom: 9%;
+            background: radial-gradient(circle at 30% 30%, #FFE9AA, #EAA052 72%);
+            z-index: 4;
+        }
+        .services-hero-badge {
+            position: absolute;
+            left: 8%;
+            bottom: 16%;
+            width: clamp(6.4rem, 10vw, 8.5rem);
+            aspect-ratio: 1;
+            border-radius: 999px;
+            display: grid;
+            place-items: center;
+            text-align: center;
+            background: #FF6A36;
+            color: #FFF8EE;
+            font-family: "Montserrat", sans-serif;
+            line-height: 1.2;
+            box-shadow: 0 16px 30px rgba(255, 106, 54, 0.34);
+            z-index: 5;
+        }
+        .services-hero-badge span {
+            display: block;
+            font-size: 0.66rem;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            font-weight: 700;
+        }
+        .services-hero-badge strong {
+            display: block;
+            margin-top: 0.28rem;
+            font-size: 1.3rem;
+            font-weight: 800;
+            letter-spacing: 0.01em;
+        }
+        .services-hero-corner {
+            position: absolute;
+            width: 2.7rem;
+            height: 2.7rem;
+            border-color: rgba(255, 145, 107, 0.7);
+            z-index: 1;
+            pointer-events: none;
+        }
+        .services-hero-corner--tl {
+            top: 1.2rem;
+            left: 1.2rem;
+            border-top: 3px solid rgba(255, 145, 107, 0.66);
+            border-left: 3px solid rgba(255, 145, 107, 0.66);
+        }
+        .services-hero-corner--br {
+            right: 2rem;
+            bottom: 1.2rem;
+            border-right: 3px solid rgba(255, 145, 107, 0.6);
+            border-bottom: 3px solid rgba(255, 145, 107, 0.6);
+            transform: rotate(9deg);
+        }
+        @media (max-width: 1024px) {
+            .services-hero-grid {
+                grid-template-columns: 1fr;
+                gap: 1.8rem;
+            }
+            .services-hero-copy {
+                max-width: none;
+                text-align: center;
+            }
+            .services-hero-actions {
+                justify-content: center;
+            }
+            .services-hero-visual {
+                min-height: 18rem;
+            }
+            .services-hero-badge {
+                left: 16%;
+                bottom: 8%;
+            }
+        }
+        @media (max-width: 640px) {
+            .services-hero {
+                padding-top: 1.35rem;
+                padding-bottom: 1.9rem;
+                overflow: hidden;
+            }
+            .services-hero-grid {
+                gap: 1.3rem;
+            }
+            .services-hero-copy {
+                max-width: 100%;
+            }
+            .services-hero-title {
+                line-height: 0.98;
+            }
+            .services-hero-lead {
+                margin-top: 0.95rem;
+                line-height: 1.56;
+                font-size: 0.98rem;
+            }
+            .services-hero-meta {
+                margin-top: 0.95rem;
+                letter-spacing: 0.12em;
+                font-size: 0.74rem;
+            }
+            .services-hero-actions {
+                flex-direction: column;
+                gap: 0.6rem;
+            }
+            .services-hero-btn {
+                width: 100%;
+            }
+            .services-hero-pill {
+                white-space: normal;
+                line-height: 1.35;
+                padding-inline: 1rem;
+            }
+            .services-hero-visual {
+                min-height: 14.5rem;
+            }
+            .services-hero-circle-main {
+                width: min(80vw, 19rem);
+                border-width: 5px;
+            }
+            .services-hero-badge {
+                width: 5.6rem;
+                left: 6%;
+                bottom: 7%;
+            }
+            .services-hero-badge strong {
+                font-size: 1rem;
+            }
+            .services-hero-badge span {
+                font-size: 0.56rem;
+            }
+            .services-hero-orb--two {
+                display: none;
+            }
+            .services-hero-corner--tl {
+                top: 0.55rem;
+                left: 0.55rem;
+            }
+            .services-hero-corner--br {
+                right: 0.7rem;
+                bottom: 0.7rem;
+            }
+            .services-tabs-scroller {
+                margin-inline: -0.25rem;
+                padding-inline: 0.25rem;
+            }
+            .services-tabs-nav {
+                gap: 0.4rem;
+                border-radius: 1rem;
+                padding: 0.45rem;
+            }
+            .services-tabs-nav > button {
+                padding: 0.62rem 0.82rem;
+                font-size: 0.68rem;
+                letter-spacing: 0.11em;
+            }
+        }
     </style>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css" media="print" onload="this.media='all'">
@@ -235,27 +611,51 @@
 
 
 
-<main class="pt-28 lg:pt-32 pb-0" x-data="servicesTabs()" x-init="init()">
+<main class="services-page-main pt-28 lg:pt-32 pb-0" x-data="servicesTabs()" x-init="init()">
     <!-- Hero Section -->
-    <section class="relative overflow-hidden">
-        <div class="absolute inset-0">
-            <img src="assets/images/hero/african-sunset.avif" alt="Sidai Resort Services in Naroosura, Narok Kenya" class="h-full w-full object-cover" fetchpriority="high" width="626" height="470">
-            <div class="absolute inset-0 bg-gradient-to-r from-night/90 via-night/70 to-forest/60"></div>
-        </div>
-        <div class="relative mx-auto max-w-7xl px-4 py-16 sm:py-24 lg:py-28 sm:px-6 lg:px-8 lg:py-36 text-center">
-            <p class="text-sm font-semibold uppercase tracking-[0.28em] text-gold" data-aos="fade-down">Everything We Offer</p>
-            <h1 class="mt-4 font-display text-4xl sm:text-5xl lg:text-6xl text-white leading-tight" data-aos="fade-up">Experiences at Sidai</h1>
-            <p class="mt-6 max-w-2xl mx-auto text-base sm:text-lg leading-7 sm:leading-8 text-cream/90" data-aos="fade-up" data-aos-delay="100">
-                Discover refined experiences designed for unforgettable leisure stays, premium celebrations, business gatherings, and creative productions.
-            </p>
+    <section class="services-hero">
+        <span class="services-hero-corner services-hero-corner--tl" aria-hidden="true"></span>
+        <span class="services-hero-corner services-hero-corner--br" aria-hidden="true"></span>
+        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="services-hero-grid">
+                <div class="services-hero-copy">
+                    <p class="services-hero-eyebrow" data-aos="fade-down">Award-Worthy Hospitality</p>
+                    <h1 class="services-hero-title" data-aos="fade-up">
+                        <span class="services-hero-title-script">Elegant</span>
+                        <span class="services-hero-title-strong">SERVICES</span>
+                    </h1>
+                    <p class="services-hero-lead" data-aos="fade-up" data-aos-delay="80" id="services-hero-lead">
+                        Experience curated moments at Sidai Resort, from relaxing pool sessions to celebrations, business gatherings, and premium outdoor experiences in Narok.
+                    </p>
+                    <div class="services-hero-actions" data-aos="fade-up" data-aos-delay="140">
+                        <span id="services-hero-service-pill" class="services-hero-btn services-hero-btn--primary services-hero-pill">Services Available: Swimming</span>
+                        <a id="services-hero-explore-link" href="#swimming" class="services-hero-btn services-hero-btn--ghost">Explore</a>
+                    </div>
+                </div>
+                <div class="services-hero-visual" data-aos="zoom-in" data-aos-delay="120">
+                    <span class="services-hero-orb services-hero-orb--one" aria-hidden="true"></span>
+                    <span class="services-hero-orb services-hero-orb--two" aria-hidden="true"></span>
+                    <span class="services-hero-orb services-hero-orb--three" aria-hidden="true"></span>
+                    <div class="services-hero-circle-main services-hero-carousel" data-services-hero-carousel>
+                        <img class="services-hero-slide is-active" src="assets/images/experiences/pool-area.jpeg" alt="Sidai Resort pool and leisure experience in Naroosura, Narok Kenya" fetchpriority="high" width="1280" height="960">
+                    </div>
+                    <div class="services-hero-badge" aria-hidden="true">
+                        <div>
+                            <span>SIDAI SPECIAL</span>
+                            <strong>24/7</strong>
+                            <span>Guest Care</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
     <!-- Services Tabs -->
-    <section class="bg-cream py-10 sm:py-14">
+    <section id="services-tabs-section" class="bg-cream py-10 sm:py-14">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div class="overflow-x-auto pb-4">
-                <nav class="inline-flex w-max min-w-full gap-2 rounded-2xl border border-gold/30 bg-white/80 p-1.5 sm:p-2 overflow-x-auto whitespace-nowrap scrollbar-hide snap-x snap-mandatory">
+            <div class="services-tabs-scroller overflow-x-auto pb-4">
+                <nav class="services-tabs-nav inline-flex w-max min-w-full gap-2 rounded-2xl border border-gold/30 bg-white/80 p-1.5 sm:p-2 overflow-x-auto whitespace-nowrap scrollbar-hide snap-x snap-mandatory">
                     
         <button type="button" @click="setTab('swimming')" class="group relative rounded-xl px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm font-semibold snap-start shrink-0 uppercase tracking-[0.14em]" :class="activeTab === 'swimming' ? 'text-gold bg-night/90' : 'text-brown hover:text-gold'">
             Swimming
@@ -949,6 +1349,182 @@
             }
         };
     }
+
+    (() => {
+        const initServicesHeroCarousel = () => {
+            const carousel = document.querySelector('[data-services-hero-carousel]');
+            if (!carousel) {
+                return;
+            }
+
+            const servicePill = document.getElementById('services-hero-service-pill');
+            const exploreLink = document.getElementById('services-hero-explore-link');
+            const heroLead = document.getElementById('services-hero-lead');
+            const tabsSection = document.getElementById('services-tabs-section');
+
+            const serviceItems = Array.from(document.querySelectorAll('[data-tab-panel]'))
+                .map((panel) => {
+                    const tabId = panel.getAttribute('data-tab-panel') || '';
+                    const title = panel.querySelector('h2')?.textContent?.trim() || tabId;
+                    const lead = panel.querySelector('p.mt-4')?.textContent?.trim() || '';
+                    const image = panel.querySelector('img');
+                    const imageSrc = image?.getAttribute('src') || '';
+                    const imageAlt = image?.getAttribute('alt') || `${title} at Sidai Resort in Naroosura, Narok Kenya`;
+
+                    return {
+                        tabId,
+                        title,
+                        lead,
+                        imageSrc,
+                        imageAlt
+                    };
+                })
+                .filter((item) => item.tabId && item.imageSrc);
+
+            if (serviceItems.length === 0) {
+                return;
+            }
+
+            carousel.innerHTML = '';
+            const fragment = document.createDocumentFragment();
+            serviceItems.forEach((item, index) => {
+                const image = document.createElement('img');
+                image.className = `services-hero-slide${index === 0 ? ' is-active' : ''}`;
+                image.src = item.imageSrc;
+                image.alt = item.imageAlt;
+                image.width = 1280;
+                image.height = 960;
+                if (index > 0) {
+                    image.loading = 'lazy';
+                } else {
+                    image.fetchPriority = 'high';
+                }
+                fragment.appendChild(image);
+            });
+            carousel.appendChild(fragment);
+
+            const slides = Array.from(carousel.querySelectorAll('.services-hero-slide'));
+            if (slides.length < 2) {
+                const first = serviceItems[0];
+                if (servicePill) {
+                    servicePill.textContent = `Services Available: ${first.title}`;
+                }
+                if (exploreLink) {
+                    exploreLink.href = `#${first.tabId}`;
+                    exploreLink.setAttribute('aria-label', `Explore ${first.title}`);
+                }
+                if (heroLead && first.lead) {
+                    heroLead.textContent = first.lead;
+                }
+                return;
+            }
+
+            const shouldReduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            let activeIndex = slides.findIndex((slide) => slide.classList.contains('is-active'));
+            if (activeIndex < 0) {
+                activeIndex = 0;
+                slides[0].classList.add('is-active');
+            }
+
+            let timerId = null;
+            const slideTransitionMs = 680;
+            const autoPlayDelayMs = 3000;
+
+            const updateHeroCopy = (index) => {
+                const currentItem = serviceItems[index];
+                if (!currentItem) {
+                    return;
+                }
+
+                if (servicePill) {
+                    servicePill.textContent = `Services Available: ${currentItem.title}`;
+                }
+                if (exploreLink) {
+                    exploreLink.href = `#${currentItem.tabId}`;
+                    exploreLink.setAttribute('aria-label', `Explore ${currentItem.title}`);
+                }
+                if (heroLead && currentItem.lead) {
+                    heroLead.textContent = currentItem.lead;
+                }
+            };
+
+            const activateSlide = (nextIndex) => {
+                if (nextIndex === activeIndex) {
+                    return;
+                }
+
+                const current = slides[activeIndex];
+                const next = slides[nextIndex];
+
+                current.classList.remove('is-active');
+                current.classList.add('is-exit');
+
+                next.classList.remove('is-exit');
+                next.classList.add('is-active');
+
+                window.setTimeout(() => {
+                    current.classList.remove('is-exit');
+                }, slideTransitionMs);
+
+                activeIndex = nextIndex;
+                updateHeroCopy(activeIndex);
+            };
+
+            const stopAutoPlay = () => {
+                if (timerId !== null) {
+                    window.clearInterval(timerId);
+                    timerId = null;
+                }
+            };
+
+            const startAutoPlay = () => {
+                stopAutoPlay();
+                timerId = window.setInterval(() => {
+                    const nextIndex = (activeIndex + 1) % slides.length;
+                    activateSlide(nextIndex);
+                }, autoPlayDelayMs);
+            };
+
+            updateHeroCopy(activeIndex);
+
+            if (exploreLink) {
+                exploreLink.addEventListener('click', (event) => {
+                    const targetHash = exploreLink.getAttribute('href') || '';
+                    const targetTab = targetHash.startsWith('#') ? targetHash.slice(1) : targetHash;
+                    if (!targetTab) {
+                        return;
+                    }
+
+                    event.preventDefault();
+                    if (window.location.hash !== `#${targetTab}`) {
+                        window.location.hash = targetTab;
+                    }
+
+                    if (tabsSection) {
+                        tabsSection.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            }
+
+            carousel.addEventListener('mouseenter', stopAutoPlay);
+            carousel.addEventListener('mouseleave', startAutoPlay);
+            carousel.addEventListener('focusin', stopAutoPlay);
+            carousel.addEventListener('focusout', startAutoPlay);
+
+            if (!shouldReduceMotion) {
+                startAutoPlay();
+            }
+        };
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initServicesHeroCarousel, { once: true });
+        } else {
+            initServicesHeroCarousel();
+        }
+    })();
     </script>
 </main>
 
@@ -1145,18 +1721,6 @@ document.addEventListener('alpine:init', () => {
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"LodgingBusiness","name":"Sidai Resort & Hotel","alternateName":"Sidai Resort","description":"Explore Sidai Resort services including swimming pool sessions, fine dining, event halls, conference facilities, and curated outdoor experiences.","url":"https://www.sidairesort.com","telephone":"0703 761 951 / 0721 940 823","email":"sidairesort21@gmail.com","address":{"@type":"PostalAddress","streetAddress":"FRCX+PP4 Narosura, Narok County, Kenya","addressLocality":"Narok","addressRegion":"Narok County","addressCountry":"KE"},"sameAs":["https://instagram.com/sidairesort","https://facebook.com/sidairesort"],"currenciesAccepted":"KES"}</script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
