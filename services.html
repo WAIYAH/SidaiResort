@@ -278,14 +278,28 @@
             z-index: 1;
         }
         .services-tabs-scroller {
+            overflow-x: auto;
+            overflow-y: hidden;
             -webkit-overflow-scrolling: touch;
+            overscroll-behavior-x: contain;
+            scroll-behavior: smooth;
+            scrollbar-width: thin;
+            scrollbar-color: rgba(212, 175, 55, 0.78) transparent;
         }
         .services-tabs-scroller::-webkit-scrollbar {
-            display: none;
+            height: 6px;
+        }
+        .services-tabs-scroller::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .services-tabs-scroller::-webkit-scrollbar-thumb {
+            background: rgba(212, 175, 55, 0.72);
+            border-radius: 999px;
         }
         .services-tabs-nav {
-            scrollbar-width: none;
-            overscroll-behavior-x: contain;
+            display: flex;
+            width: max-content;
+            min-width: max-content;
             touch-action: pan-x;
         }
         .services-tabs-nav > button {
@@ -654,8 +668,8 @@
     <!-- Services Tabs -->
     <section id="services-tabs-section" class="bg-cream py-10 sm:py-14">
         <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-            <div class="services-tabs-scroller overflow-x-auto pb-4">
-                <nav class="services-tabs-nav inline-flex w-max min-w-full gap-2 rounded-2xl border border-gold/30 bg-white/80 p-1.5 sm:p-2 overflow-x-auto whitespace-nowrap scrollbar-hide snap-x snap-mandatory">
+            <div class="services-tabs-scroller pb-4" tabindex="0" aria-label="Scrollable services tabs">
+                <nav class="services-tabs-nav inline-flex gap-2 rounded-2xl border border-gold/30 bg-white/80 p-1.5 sm:p-2 whitespace-nowrap snap-x snap-mandatory">
                     
         <button type="button" @click="setTab('swimming')" class="group relative rounded-xl px-3 py-2 sm:px-4 sm:py-3 text-xs sm:text-sm font-semibold snap-start shrink-0 uppercase tracking-[0.14em]" :class="activeTab === 'swimming' ? 'text-gold bg-night/90' : 'text-brown hover:text-gold'">
             Swimming
@@ -1525,6 +1539,36 @@
             initServicesHeroCarousel();
         }
     })();
+
+    (() => {
+        const initServicesTabsScroller = () => {
+            const scrollers = Array.from(document.querySelectorAll('.services-tabs-scroller'));
+            if (scrollers.length === 0) {
+                return;
+            }
+
+            scrollers.forEach((scroller) => {
+                const hasOverflow = () => scroller.scrollWidth > scroller.clientWidth + 1;
+
+                scroller.addEventListener('wheel', (event) => {
+                    if (!hasOverflow()) {
+                        return;
+                    }
+                    if (Math.abs(event.deltaY) <= Math.abs(event.deltaX)) {
+                        return;
+                    }
+                    event.preventDefault();
+                    scroller.scrollLeft += event.deltaY;
+                }, { passive: false });
+            });
+        };
+
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initServicesTabsScroller, { once: true });
+        } else {
+            initServicesTabsScroller();
+        }
+    })();
     </script>
 </main>
 
@@ -1721,6 +1765,5 @@ document.addEventListener('alpine:init', () => {
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"LodgingBusiness","name":"Sidai Resort & Hotel","alternateName":"Sidai Resort","description":"Explore Sidai Resort services including swimming pool sessions, fine dining, event halls, conference facilities, and curated outdoor experiences.","url":"https://www.sidairesort.com","telephone":"0703 761 951 / 0721 940 823","email":"sidairesort21@gmail.com","address":{"@type":"PostalAddress","streetAddress":"FRCX+PP4 Narosura, Narok County, Kenya","addressLocality":"Narok","addressRegion":"Narok County","addressCountry":"KE"},"sameAs":["https://instagram.com/sidairesort","https://facebook.com/sidairesort"],"currenciesAccepted":"KES"}</script>
 </body>
 </html>
-
 
 
