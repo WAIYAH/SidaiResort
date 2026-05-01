@@ -59,5 +59,5 @@ Continue adding one new article each month for sustained SEO growth.
 
 ## Notes
 
-- Every core article includes multiple links to `https://www.sidairesort.com`.
+- Every core article includes multiple links to `https://sidairesort.com`.
 - Keep publishing cadence consistent for SEO growth.

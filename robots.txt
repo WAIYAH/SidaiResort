@@ -7,5 +7,5 @@ Allow: /
 User-agent: Bingbot
 Allow: /
 
-Sitemap: https://www.sidairesort.com/sitemap.xml
-Sitemap: https://www.sidairesort.com/blog/sitemap.xml
+Sitemap: https://sidairesort.com/sitemap.xml
+Sitemap: https://sidairesort.com/blog/sitemap.xml

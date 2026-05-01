@@ -4,7 +4,7 @@ Premium resort website for Sidai Resort, Naroosura, Loita Hills, Narok County, K
 Hosted free on Cloudflare Pages.
 
 ## Live Site
-https://www.sidairesort.com
+https://sidairesort.com
 
 ## Pages
 - index.html      — Homepage
