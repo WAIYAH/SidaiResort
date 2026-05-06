@@ -41,8 +41,10 @@ Core goals:
 |- assets/
 |  |- css/sidai.min.css
 |  |- js/app.min.js
+|  |- media/
+|  |  |- images/experiences/
+|  |  `- videos/experiences/
 |  `- images/
-|     |- 1. Videos/
 |     |- branding/
 |     |- dining/
 |     |- events/
@@ -117,14 +119,15 @@ Use descriptive lowercase filenames with hyphens where possible.
 
 ### Videos and posters (Moments page)
 
-Videos live in `assets/images/1. Videos/`.
+Videos live in `assets/media/videos/experiences/`.
+Uploaded photos for the moments wall live in `assets/media/images/experiences/`.
 
 Video poster images live in `assets/images/video-posters/` and should match each video 1:1 to avoid visual mismatch.
 
 Example poster generation:
 
 ```bash
-ffmpeg -y -ss 00:00:02 -i "assets/images/1. Videos/<video>.mp4" -frames:v 1 -q:v 2 "assets/images/video-posters/<video>.jpg"
+ffmpeg -y -ss 00:00:02 -i "assets/media/videos/experiences/<video>.mp4" -frames:v 1 -q:v 2 "assets/images/video-posters/<video>.jpg"
 ```
 
 After adding/changing posters, update `featuredVideos` in `experiences.html`.
