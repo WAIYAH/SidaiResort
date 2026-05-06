@@ -140,7 +140,7 @@
 </div>
 
 <header id="site-header" x-data="{ mobileOpen: false }" class="fixed top-0 inset-x-0 z-50 transition-all duration-300">
-    <div class="mx-auto max-w-7xl px-3 sm:px-6 lg:px-8">
+    <div class="sidai-container">
         <nav class="mt-3 sm:mt-4 rounded-2xl border border-gold/30 bg-cream/70 px-3 sm:px-4 py-2.5 sm:py-3 backdrop-blur-lg shadow-lg" aria-label="Primary">
             <div class="flex items-center justify-between gap-2 sm:gap-4">
                 <a href="index.html" class="flex items-center gap-2 sm:gap-3 min-w-0" aria-label="Sidai Resort Home">
@@ -254,12 +254,12 @@
 
 
     <main class="pt-28 lg:pt-32 pb-20 overflow-hidden" x-data="experiencesPage()" x-init="init()">
-    <section class="relative min-h-[72vh] overflow-hidden">
+    <section class="sidai-page-hero">
         <video class="absolute inset-0 h-full w-full object-cover" autoplay muted loop playsinline preload="metadata" poster="assets/images/nature/symbol-of-love-photo-area.jpeg" aria-label="Sidai Resort experiences hero video">
             <source src="assets/images/1.%20Videos/1-hero-video.mp4" type="video/mp4">
         </video>
         <div class="absolute inset-0 bg-gradient-to-br from-night/85 via-night/55 to-forest/45"></div>
-        <div class="relative mx-auto flex min-h-[72vh] max-w-7xl flex-col items-start justify-center px-4 py-20 sm:px-6 lg:px-8">
+        <div class="relative sidai-container flex flex-col items-start justify-center px-4 py-20 sm:px-6 lg:px-8">
             <p class="inline-flex items-center rounded-full border border-gold/50 bg-night/60 px-4 py-1 text-xs font-semibold uppercase tracking-[0.2em] text-gold" data-aos="fade-up">Sidai Experiences</p>
             <h1 class="mt-5 max-w-4xl font-display text-5xl leading-[1.05] text-white sm:text-6xl lg:text-7xl" data-aos="fade-up" data-aos-delay="80">Moments You Feel Twice, First in Real Time and Again in Every Replay.</h1>
             <p class="mt-5 max-w-2xl text-base leading-8 text-cream/90 sm:text-lg" data-aos="fade-up" data-aos-delay="140">
@@ -273,7 +273,7 @@
         </div>
     </section>
 
-    <section class="mx-auto -mt-14 max-w-7xl px-4 sm:px-6 lg:px-8 relative z-10">
+    <section class="sidai-container -mt-14 relative z-10">
         <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             <article class="rounded-2xl border border-gold/35 bg-white/95 p-5 shadow-lg backdrop-blur" data-aos="fade-up">
                 <p class="text-xs uppercase tracking-[0.16em] text-brown/60">Video Stories</p>
@@ -298,11 +298,11 @@
         </div>
     </section>
 
-    <section id="video-journal" class="mx-auto mt-14 max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section id="video-journal" class="sidai-container mt-14">
         <div class="flex flex-wrap items-end justify-between gap-4" data-aos="fade-up">
             <div>
                 <p class="text-xs font-semibold uppercase tracking-[0.18em] text-gold">Video Journal</p>
-                <h2 class="mt-2 font-display text-4xl text-brown sm:text-5xl">Watch The Energy</h2>
+                <h2 class="sidai-heading">Watch The Energy</h2>
             </div>
             <p class="max-w-xl text-sm leading-7 text-brown/75">Authentic moments from celebrations, music, pool life, and nature ambience around Sidai Resort.</p>
         </div>
@@ -325,11 +325,11 @@
         </div>
     </section>
 
-    <section id="moments-wall" class="mx-auto mt-16 max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section id="moments-wall" class="sidai-container mt-16">
         <div class="flex flex-wrap items-end justify-between gap-4" data-aos="fade-up">
             <div>
                 <p class="text-xs font-semibold uppercase tracking-[0.18em] text-gold">Moments Wall</p>
-                <h2 class="mt-2 font-display text-4xl text-brown sm:text-5xl">Photos And Fun Memories</h2>
+                <h2 class="sidai-heading">Photos And Fun Memories</h2>
             </div>
             <p class="max-w-xl text-sm leading-7 text-brown/75">Filter by mood and open any moment in full view. Every image here is a piece of Sidai life.</p>
         </div>
@@ -373,7 +373,7 @@
         </div>
     </section>
 
-    <section class="mx-auto mt-16 max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section class="sidai-container mt-16">
         <div class="grid gap-6 lg:grid-cols-2">
             <article class="overflow-hidden rounded-3xl border border-brown/15 bg-night text-cream shadow-xl" data-aos="fade-right">
                 <div class="border-b border-gold/25 px-6 py-5">
@@ -478,21 +478,21 @@ function experiencesPage() {
         { id: 'm2', title: 'Outdoor Meetings', src: 'assets/images/events/outdoor-meetings.jpeg', category: 'events', label: 'Team Moments' },
         { id: 'm3', title: 'Conference Setup', src: 'assets/images/events/conference-setting.jpeg', category: 'events', label: 'Business' },
         { id: 'm4', title: 'Conference Hall', src: 'assets/images/events/conference-hall.jpeg', category: 'events', label: 'Business' },
-        { id: 'm5', title: 'People Event', src: 'assets/images/events/people-event.jpeg', category: 'events', label: 'Celebration' },
+        { id: 'm5', title: 'People Event', src: 'assets/images/experiences/at-the-fireside.jpeg', category: 'events', label: 'Celebration' },
         { id: 'm6', title: 'Pool Area', src: 'assets/images/experiences/pool-area.jpeg', category: 'pool', label: 'Leisure' },
         { id: 'm7', title: 'Swimming Pool', src: 'assets/images/experiences/swimming-pool.jpeg', category: 'pool', label: 'Leisure' },
-        { id: 'm8', title: 'Cool Swimming', src: 'assets/images/experiences/cool-swimming.jpeg', category: 'pool', label: 'Family Fun' },
+        { id: 'm8', title: 'Cool Swimming', src: 'assets/images/nature/serene-places.jpeg', category: 'pool', label: 'Family Fun' },
         { id: 'm9', title: 'Children Swimming', src: 'assets/images/experiences/children-swimming.jpeg', category: 'pool', label: 'Family Fun' },
         { id: 'm10', title: 'Night Pool', src: 'assets/images/experiences/nightview-swimming-pool.jpeg', category: 'pool', label: 'Nightlife' },
         { id: 'm31', title: 'Pool Water Splash', src: 'assets/images/experiences/pool-water-splash.jpeg', category: 'pool', label: 'Pool Fun' },
         { id: 'm32', title: 'Pool Water Splashing', src: 'assets/images/experiences/pool-water-splashing.jpeg', category: 'pool', label: 'Pool Fun' },
-        { id: 'm33', title: 'Boy At The Pool', src: 'assets/images/experiences/a-boy-at-the-pool.jpeg', category: 'pool', label: 'Pool Fun' },
+        { id: 'm33', title: 'Boy At The Pool', src: 'assets/images/nature/serene-places.jpeg', category: 'pool', label: 'Pool Fun' },
         { id: 'm34', title: 'Girl At The Pool', src: 'assets/images/experiences/a-girl-at-the-pool.jpeg', category: 'pool', label: 'Pool Fun' },
         { id: 'm35', title: 'Children Swimming Session', src: 'assets/images/experiences/pool-children-swimming.jpeg', category: 'pool', label: 'Family Fun' },
         { id: 'm36', title: 'Night Pool Entrance', src: 'assets/images/experiences/nightview-swimming-pool.jpeg', category: 'pool', label: 'Nightlife' },
-        { id: 'm37', title: 'Poolside Group', src: 'assets/images/experiences/people-at-the-pool-side.jpeg', category: 'pool', label: 'Pool Fun' },
+        { id: 'm37', title: 'Poolside Group', src: 'assets/images/nature/serene-places.jpeg', category: 'pool', label: 'Pool Fun' },
         { id: 'm38', title: 'Playing With Water', src: 'assets/images/experiences/playing-with-water.jpeg', category: 'pool', label: 'Family Fun' },
-        { id: 'm39', title: 'Pool Party', src: 'assets/images/experiences/pool-party.jpeg', category: 'pool', label: 'Celebration' },
+        { id: 'm39', title: 'Pool Party', src: 'assets/images/nature/symbol-of-love-photo-area.jpeg', category: 'pool', label: 'Celebration' },
         { id: 'm40', title: 'Pool Swimming', src: 'assets/images/experiences/pool-swimming.jpeg', category: 'pool', label: 'Leisure' },
         { id: 'm41', title: 'Pool Vibes', src: 'assets/images/experiences/vibes-at-the-pool.jpeg', category: 'pool', label: 'Leisure' },
         { id: 'm11', title: 'Elalai View', src: 'assets/images/rooms/rooms.jpeg', category: 'stays', label: 'Accommodation' },
@@ -527,12 +527,12 @@ function experiencesPage() {
         { id: 'm56', title: 'Red Flowers', src: 'assets/images/nature/red-flowers.jpeg', category: 'nature', label: 'Nature' },
         { id: 'm57', title: 'Walkway Trail', src: 'assets/images/nature/walkway-trail.jpeg', category: 'nature', label: 'Nature' },
         { id: 'm42', title: 'Some Congregation', src: 'assets/images/events/some-congregation.jpeg', category: 'events', label: 'Celebration' },
-        { id: 'm43', title: 'People At Conference', src: 'assets/images/events/people-at-the-conference-1.jpeg', category: 'events', label: 'Business' },
+        { id: 'm43', title: 'People At Conference', src: 'assets/images/nature/serene-places.jpeg', category: 'events', label: 'Business' },
         { id: 'm44', title: 'Cars And Motobikes', src: 'assets/images/events/cars-and-motorbikes.jpeg', category: 'events', label: 'Arrival' },
         { id: 'm45', title: 'Parking Area', src: 'assets/images/events/cars-at-the-parking.jpeg', category: 'events', label: 'Arrival' },
         { id: 'm46', title: 'Guest Moments', src: 'assets/images/events/guest-moments-2026-04-25-19-10-21.jpeg', category: 'events', label: 'Celebration' },
-        { id: 'm60', title: 'Conference Team Session', src: 'assets/images/events/people-at-the-conference-2.jpeg', category: 'events', label: 'Business' },
-        { id: 'm61', title: 'Strategy Workshop', src: 'assets/images/events/people-at-the-conference-3.jpeg', category: 'events', label: 'Business' }
+        { id: 'm60', title: 'Conference Team Session', src: 'assets/images/nature/walkways.jpeg', category: 'events', label: 'Business' },
+        { id: 'm61', title: 'Strategy Workshop', src: 'assets/images/nature/eoshet.jpeg', category: 'events', label: 'Business' }
     ];
 
     const momentImageDimensions = {
@@ -548,13 +548,13 @@ function experiencesPage() {
         'assets/images/events/conference-setting.jpeg': { width: 1600, height: 1200 },
         'assets/images/events/guest-moments-2026-04-25-19-10-21.jpeg': { width: 1600, height: 1200 },
         'assets/images/events/outdoor-meetings.jpeg': { width: 1280, height: 960 },
-        'assets/images/events/people-at-the-conference-1.jpeg': { width: 1600, height: 1200 },
-        'assets/images/events/people-at-the-conference-2.jpeg': { width: 1600, height: 1200 },
-        'assets/images/events/people-at-the-conference-3.jpeg': { width: 1600, height: 1200 },
-        'assets/images/events/people-at-conference.jpeg': { width: 1600, height: 1200 },
-        'assets/images/events/people-event.jpeg': { width: 1280, height: 853 },
+        'assets/images/nature/serene-places.jpeg': { width: 1600, height: 1200 },
+        'assets/images/nature/walkways.jpeg': { width: 1600, height: 1200 },
+        'assets/images/nature/eoshet.jpeg': { width: 1600, height: 1200 },
+        'assets/images/nature/walkway-trail.jpeg': { width: 1600, height: 1200 },
+        'assets/images/experiences/at-the-fireside.jpeg': { width: 1280, height: 853 },
         'assets/images/events/some-congregation.jpeg': { width: 1600, height: 1200 },
-        'assets/images/experiences/a-boy-at-the-pool.jpeg': { width: 1200, height: 1600 },
+        'assets/images/nature/serene-places.jpeg': { width: 1200, height: 1600 },
         'assets/images/experiences/a-girl-at-the-pool.jpeg': { width: 1200, height: 1600 },
         'assets/images/experiences/at-the-fireside.jpeg': { width: 1280, height: 960 },
         'assets/images/experiences/bonfire-2.jpeg': { width: 960, height: 1280 },
@@ -563,15 +563,15 @@ function experiencesPage() {
         'assets/images/experiences/children-swimming.jpeg': { width: 1600, height: 1200 },
         'assets/images/experiences/chilling-at-sidai.jpeg': { width: 1600, height: 1200 },
         'assets/images/experiences/chilling-at-the-fireside.jpeg': { width: 1600, height: 1200 },
-        'assets/images/experiences/cool-swimming.jpeg': { width: 1040, height: 780 },
+        'assets/images/nature/serene-places.jpeg': { width: 1040, height: 780 },
         'assets/images/experiences/fireside-talks.jpeg': { width: 1600, height: 1200 },
         'assets/images/experiences/nightview-swimming-pool.jpeg': { width: 1040, height: 780 },
-        'assets/images/experiences/people-at-the-pool-side.jpeg': { width: 1600, height: 1200 },
+        'assets/images/nature/serene-places.jpeg': { width: 1600, height: 1200 },
         'assets/images/experiences/people-watching-tv.jpeg': { width: 1600, height: 1200 },
         'assets/images/experiences/playing-with-water.jpeg': { width: 1600, height: 1200 },
         'assets/images/experiences/pool-area.jpeg': { width: 1600, height: 1200 },
         'assets/images/experiences/pool-children-swimming.jpeg': { width: 1600, height: 1200 },
-        'assets/images/experiences/pool-party.jpeg': { width: 1600, height: 1200 },
+        'assets/images/nature/symbol-of-love-photo-area.jpeg': { width: 1600, height: 1200 },
         'assets/images/experiences/pool-swimming.jpeg': { width: 1600, height: 1200 },
         'assets/images/experiences/pool-water-splash.jpeg': { width: 585, height: 1040 },
         'assets/images/experiences/pool-water-splashing.jpeg': { width: 585, height: 1040 },
@@ -632,7 +632,7 @@ function experiencesPage() {
 }
 </script>
 <footer class="mt-12 sm:mt-20 bg-night text-cream">
-    <div class="mx-auto max-w-7xl px-4 py-10 sm:py-16 sm:px-6 lg:px-8">
+    <div class="sidai-container py-10 sm:py-20">
         <div class="grid gap-10 sm:gap-12 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
             <!-- Brand Column -->
             <div class="sm:col-span-2 lg:col-span-1">
@@ -741,7 +741,7 @@ function experiencesPage() {
 
 <!-- Cookie Consent Banner -->
 <div x-data="cookieConsent()" x-init="checkConsent()" x-show="showBanner" x-transition.opacity.duration.500ms class="fixed bottom-0 left-0 right-0 z-50 bg-night/95 backdrop-blur-md border-t border-gold/30 p-4 sm:p-6 shadow-2xl" style="display: none;">
-    <div class="mx-auto max-w-7xl flex flex-col sm:flex-row items-center justify-between gap-4">
+    <div class="sidai-container flex flex-col sm:flex-row items-center justify-between gap-4">
         <div class="text-cream text-sm sm:text-base flex-1">
             <h4 class="text-gold font-display text-lg mb-1">We Value Your Privacy</h4>
             <p>We use cookies to enhance your browsing experience, serve personalized content, and analyze our traffic. By clicking "Accept All", you consent to our use of cookies. <a href="cookie-policy.html" class="text-gold underline hover:text-gold-light">Read more</a>.</p>

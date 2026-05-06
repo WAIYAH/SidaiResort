@@ -554,7 +554,7 @@
 </div>
 
 <header id="site-header" x-data="{ mobileOpen: false }" class="fixed top-0 inset-x-0 z-50 transition-all duration-300">
-    <div class="mx-auto max-w-7xl px-3 sm:px-6 lg:px-8">
+    <div class="sidai-container">
         <nav class="mt-3 sm:mt-4 rounded-2xl border border-gold/30 bg-cream/70 px-3 sm:px-4 py-2.5 sm:py-3 backdrop-blur-lg shadow-lg" aria-label="Primary">
             <div class="flex items-center justify-between gap-2 sm:gap-4">
                 <a href="index.html" class="flex items-center gap-2 sm:gap-3 min-w-0" aria-label="Sidai Resort Home">
@@ -674,11 +674,11 @@
     <section class="services-hero">
         <span class="services-hero-corner services-hero-corner--tl" aria-hidden="true"></span>
         <span class="services-hero-corner services-hero-corner--br" aria-hidden="true"></span>
-        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div class="sidai-container">
             <div class="services-hero-grid">
                 <div class="services-hero-copy">
-                    <p class="services-hero-eyebrow" data-aos="fade-down">Award-Worthy Hospitality</p>
-                    <h1 class="services-hero-title" data-aos="fade-up">
+                    <p class="sidai-eyebrow" data-aos="fade-down">Award-Worthy Hospitality</p>
+                    <h1 class="sidai-heading text-5xl sm:text-6xl lg:text-7xl" data-aos="fade-up">
                         <span class="services-hero-title-script">Elegant</span>
                         <span class="services-hero-title-strong">SERVICES</span>
                     </h1>
@@ -710,8 +710,8 @@
     </section>
 
     <!-- Services Tabs -->
-    <section id="services-tabs-section" class="bg-cream py-10 sm:py-14">
-        <div class="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+    <section id="services-tabs-section" class="sidai-section sidai-bg-main sidai-divider-top">
+        <div class="sidai-container">
             <div class="services-tabs-track">
                 <div class="services-tabs-scroller pb-4" tabindex="0" aria-label="Scrollable services tabs">
                     <nav class="services-tabs-nav inline-flex gap-2 rounded-2xl border border-gold/30 bg-white/80 p-1.5 sm:p-2 whitespace-nowrap snap-x snap-mandatory">
@@ -785,7 +785,7 @@
         <section data-tab-panel="swimming" x-show="activeTab === 'swimming'" x-transition.opacity.duration.250ms class="mt-10 space-y-8" style="display: none;">
             <div class="grid gap-5 sm:p-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
                 <article class="rounded-3xl border border-brown/10 bg-white p-5 sm:p-8 shadow-sm">
-                    <h2 class="font-display text-3xl sm:text-4xl text-brown">Swimming</h2>
+                    <h2 class="sidai-heading">Swimming</h2>
                     <h4 class="text-sm font-semibold uppercase tracking-[0.15em] text-gold mt-2">Dive into our pristine pool surrounded by forest</h4>
                     <p class="mt-4 text-base leading-8 text-brown/85">
                         Our infinity-edge pool offers a serene escape. Whether you're swimming early morning laps while the forest wakes up, or lounging poolside with a cocktail in the afternoon, it's the ultimate relaxation spot.
@@ -818,7 +818,7 @@
                 </article>
             
                 <article class="overflow-hidden rounded-2xl border border-brown/10 shadow-sm h-48 sm:h-64">
-                    <img src="assets/images/experiences/cool-swimming.jpeg" alt="Swimming in Naroosura, Narok Kenya" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" width="1040" height="780">
+                    <img src="assets/images/nature/serene-places.jpeg" alt="Swimming in Naroosura, Narok Kenya" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" width="1040" height="780">
                 </article>
             
                 <article class="overflow-hidden rounded-2xl border border-brown/10 shadow-sm h-48 sm:h-64">
@@ -843,7 +843,7 @@
         <section data-tab-panel="birthdays" x-show="activeTab === 'birthdays'" x-transition.opacity.duration.250ms class="mt-10 space-y-8" style="display: none;">
             <div class="grid gap-5 sm:p-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
                 <article class="rounded-3xl border border-brown/10 bg-white p-5 sm:p-8 shadow-sm">
-                    <h2 class="font-display text-3xl sm:text-4xl text-brown">Birthday Parties & Sherehe</h2>
+                    <h2 class="sidai-heading">Birthday Parties & Sherehe</h2>
                     <h4 class="text-sm font-semibold uppercase tracking-[0.15em] text-gold mt-2">Celebrate in style with full event support</h4>
                     <p class="mt-4 text-base leading-8 text-brown/85">
                         Milestones deserve to be celebrated properly. We provide complete setup, catering, music, and an unbeatable vibe. Bring your friends, we'll handle the logistics of your sherehe.
@@ -876,7 +876,7 @@
                 </article>
             
                 <article class="overflow-hidden rounded-2xl border border-brown/10 shadow-sm h-48 sm:h-64">
-                    <img src="assets/images/events/people-event.jpeg" alt="Birthday Parties & Sherehe in Naroosura, Narok Kenya" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" width="1280" height="853">
+                    <img src="assets/images/experiences/at-the-fireside.jpeg" alt="Birthday Parties & Sherehe in Naroosura, Narok Kenya" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" loading="lazy" width="1280" height="853">
                 </article>
             
             </div>
@@ -885,7 +885,7 @@
         <section data-tab-panel="weddings" x-show="activeTab === 'weddings'" x-transition.opacity.duration.250ms class="mt-10 space-y-8" style="display: none;">
             <div class="grid gap-5 sm:p-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
                 <article class="rounded-3xl border border-brown/10 bg-white p-5 sm:p-8 shadow-sm">
-                    <h2 class="font-display text-3xl sm:text-4xl text-brown">Weddings & Receptions</h2>
+                    <h2 class="sidai-heading">Weddings & Receptions</h2>
                     <h4 class="text-sm font-semibold uppercase tracking-[0.15em] text-gold mt-2">Your perfect day in a perfect setting</h4>
                     <p class="mt-4 text-base leading-8 text-brown/85">
                         Say 'I do' against the breathtaking backdrop of the Loita Hills. Our dedicated wedding team ensures every detail—from the floral arches to the evening reception—is executed flawlessly.
@@ -931,7 +931,7 @@
         <section data-tab-panel="conferences" x-show="activeTab === 'conferences'" x-transition.opacity.duration.250ms class="mt-10 space-y-8" style="display: none;">
             <div class="grid gap-5 sm:p-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
                 <article class="rounded-3xl border border-brown/10 bg-white p-5 sm:p-8 shadow-sm">
-                    <h2 class="font-display text-3xl sm:text-4xl text-brown">Conferences & Meetings</h2>
+                    <h2 class="sidai-heading">Conferences & Meetings</h2>
                     <h4 class="text-sm font-semibold uppercase tracking-[0.15em] text-gold mt-2">Indoor and outdoor professional spaces</h4>
                     <p class="mt-4 text-base leading-8 text-brown/85">
                         Get out of the city and into a space that inspires big ideas. We offer high-speed Wi-Fi, 4K projectors, and fully catered executive boardrooms and halls.
@@ -977,7 +977,7 @@
         <section data-tab-panel="goat-eating" x-show="activeTab === 'goat-eating'" x-transition.opacity.duration.250ms class="mt-10 space-y-8" style="display: none;">
             <div class="grid gap-5 sm:p-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
                 <article class="rounded-3xl border border-brown/10 bg-white p-5 sm:p-8 shadow-sm">
-                    <h2 class="font-display text-3xl sm:text-4xl text-brown">Goat Eating</h2>
+                    <h2 class="sidai-heading">Goat Eating</h2>
                     <h4 class="text-sm font-semibold uppercase tracking-[0.15em] text-gold mt-2">Authentic Maasai-style nyama choma experiences</h4>
                     <p class="mt-4 text-base leading-8 text-brown/85">
                         A true Kenyan tradition elevated. Enjoy a whole goat roasted slowly over an open fire by our expert grillers, served with traditional accompaniments and our signature bone soup.
@@ -1023,7 +1023,7 @@
         <section data-tab-panel="bonfires" x-show="activeTab === 'bonfires'" x-transition.opacity.duration.250ms class="mt-10 space-y-8" style="display: none;">
             <div class="grid gap-5 sm:p-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
                 <article class="rounded-3xl border border-brown/10 bg-white p-5 sm:p-8 shadow-sm">
-                    <h2 class="font-display text-3xl sm:text-4xl text-brown">Bonfires</h2>
+                    <h2 class="sidai-heading">Bonfires</h2>
                     <h4 class="text-sm font-semibold uppercase tracking-[0.15em] text-gold mt-2">Magical evenings under a canopy of stars</h4>
                     <p class="mt-4 text-base leading-8 text-brown/85">
                         Our signature Enkima experience. Gather around a crackling fire as the temperature drops, sharing stories, drinks, and warmth under an unpolluted sky filled with stars.
@@ -1069,7 +1069,7 @@
         <section data-tab-panel="accommodation" x-show="activeTab === 'accommodation'" x-transition.opacity.duration.250ms class="mt-10 space-y-8" style="display: none;">
             <div class="grid gap-5 sm:p-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
                 <article class="rounded-3xl border border-brown/10 bg-white p-5 sm:p-8 shadow-sm">
-                    <h2 class="font-display text-3xl sm:text-4xl text-brown">Accommodation</h2>
+                    <h2 class="sidai-heading">Accommodation</h2>
                     <h4 class="text-sm font-semibold uppercase tracking-[0.15em] text-gold mt-2">Comfortable, elegantly appointed rooms</h4>
                     <p class="mt-4 text-base leading-8 text-brown/85">
                         Wake up to the sounds of nature. Our rooms are designed to offer deep comfort, featuring premium bedding, hot showers, and private balconies overlooking the lush grounds.
@@ -1115,7 +1115,7 @@
         <section data-tab-panel="birdwatching" x-show="activeTab === 'birdwatching'" x-transition.opacity.duration.250ms class="mt-10 space-y-8" style="display: none;">
             <div class="grid gap-5 sm:p-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
                 <article class="rounded-3xl border border-brown/10 bg-white p-5 sm:p-8 shadow-sm">
-                    <h2 class="font-display text-3xl sm:text-4xl text-brown">Birdwatching</h2>
+                    <h2 class="sidai-heading">Birdwatching</h2>
                     <h4 class="text-sm font-semibold uppercase tracking-[0.15em] text-gold mt-2">Over 300 species in the Loita Hills ecosystem</h4>
                     <p class="mt-4 text-base leading-8 text-brown/85">
                         The surrounding forests are an ornithologist's dream. Grab a pair of binoculars and let our local guides show you the vibrant, diverse birdlife that calls Sidai home.
@@ -1156,7 +1156,7 @@
         <section data-tab-panel="farm-visits" x-show="activeTab === 'farm-visits'" x-transition.opacity.duration.250ms class="mt-10 space-y-8" style="display: none;">
             <div class="grid gap-5 sm:p-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
                 <article class="rounded-3xl border border-brown/10 bg-white p-5 sm:p-8 shadow-sm">
-                    <h2 class="font-display text-3xl sm:text-4xl text-brown">Farm Visits</h2>
+                    <h2 class="sidai-heading">Farm Visits</h2>
                     <h4 class="text-sm font-semibold uppercase tracking-[0.15em] text-gold mt-2">Connect with the land and local agricultural life</h4>
                     <p class="mt-4 text-base leading-8 text-brown/85">
                         Take a walk through our neighboring Eden farms. Learn about local agricultural practices, harvest fresh produce, and reconnect with the simple, grounding rhythm of farm life.
@@ -1209,7 +1209,7 @@
         <section data-tab-panel="sundowners" x-show="activeTab === 'sundowners'" x-transition.opacity.duration.250ms class="mt-10 space-y-8" style="display: none;">
             <div class="grid gap-5 sm:p-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
                 <article class="rounded-3xl border border-brown/10 bg-white p-5 sm:p-8 shadow-sm">
-                    <h2 class="font-display text-3xl sm:text-4xl text-brown">Sundowners</h2>
+                    <h2 class="sidai-heading">Sundowners</h2>
                     <h4 class="text-sm font-semibold uppercase tracking-[0.15em] text-gold mt-2">Golden hour drinks from our stunning balcony</h4>
                     <p class="mt-4 text-base leading-8 text-brown/85">
                         There is no better way to end the day. Enjoy curated cocktails and light bitings from our elevated terrace as the sun casts a golden glow over the Narok plains.
@@ -1246,7 +1246,7 @@
         <section data-tab-panel="outdoor-meetings" x-show="activeTab === 'outdoor-meetings'" x-transition.opacity.duration.250ms class="mt-10 space-y-8" style="display: none;">
             <div class="grid gap-5 sm:p-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
                 <article class="rounded-3xl border border-brown/10 bg-white p-5 sm:p-8 shadow-sm">
-                    <h2 class="font-display text-3xl sm:text-4xl text-brown">Outdoor Meetings</h2>
+                    <h2 class="sidai-heading">Outdoor Meetings</h2>
                     <h4 class="text-sm font-semibold uppercase tracking-[0.15em] text-gold mt-2">Fresh air, clear minds, better decisions</h4>
                     <p class="mt-4 text-base leading-8 text-brown/85">
                         Break out of the boardroom. We set up professional, comfortable meeting spaces right in the shade of ancient trees, combining focus with the calming effect of nature.
@@ -1287,7 +1287,7 @@
         <section data-tab-panel="picnics" x-show="activeTab === 'picnics'" x-transition.opacity.duration.250ms class="mt-10 space-y-8" style="display: none;">
             <div class="grid gap-5 sm:p-8 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
                 <article class="rounded-3xl border border-brown/10 bg-white p-5 sm:p-8 shadow-sm">
-                    <h2 class="font-display text-3xl sm:text-4xl text-brown">Picnics</h2>
+                    <h2 class="sidai-heading">Picnics</h2>
                     <h4 class="text-sm font-semibold uppercase tracking-[0.15em] text-gold mt-2">Curated picnic experiences in our forested grounds</h4>
                     <p class="mt-4 text-base leading-8 text-brown/85">
                         We provide the blanket, the basket, and the perfect secluded spot. Enjoy a chef-prepared meal in the absolute quiet of our private forested areas.
@@ -1656,7 +1656,7 @@
 
 
 <footer class="mt-12 sm:mt-20 bg-night text-cream">
-    <div class="mx-auto max-w-7xl px-4 py-10 sm:py-16 sm:px-6 lg:px-8">
+    <div class="sidai-container py-10 sm:py-20">
         <div class="grid gap-10 sm:gap-12 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
             <!-- Brand Column -->
             <div class="sm:col-span-2 lg:col-span-1">
@@ -1765,7 +1765,7 @@
 
 <!-- Cookie Consent Banner -->
 <div x-data="cookieConsent()" x-init="checkConsent()" x-show="showBanner" x-transition.opacity.duration.500ms class="fixed bottom-0 left-0 right-0 z-50 bg-night/95 backdrop-blur-md border-t border-gold/30 p-4 sm:p-6 shadow-2xl" style="display: none;">
-    <div class="mx-auto max-w-7xl flex flex-col sm:flex-row items-center justify-between gap-4">
+    <div class="sidai-container flex flex-col sm:flex-row items-center justify-between gap-4">
         <div class="text-cream text-sm sm:text-base flex-1">
             <h4 class="text-gold font-display text-lg mb-1">We Value Your Privacy</h4>
             <p>We use cookies to enhance your browsing experience, serve personalized content, and analyze our traffic. By clicking "Accept All", you consent to our use of cookies. <a href="cookie-policy.html" class="text-gold underline hover:text-gold-light">Read more</a>.</p>

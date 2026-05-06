@@ -145,7 +145,7 @@ button,
 }
 /* ━━ CONTAINER ━━ */
 .container {
-    max-width: 1280px;
+    max-width: 1200px;
     margin: 0 auto;
     padding-left: 1rem;
     padding-right: 1rem;
@@ -277,6 +277,12 @@ button,
 #hero .hero-swiper .swiper-wrapper,
 #hero .hero-swiper .hero-slide {
     height: 100%;
+}
+
+/* Zoom-resilient hero: clamp constrains between min/max px */
+#hero.hero-section {
+    min-height: clamp(480px, 75vh, 800px);
+    max-height: 850px;
 }
 
 #hero .hero-content {
@@ -1754,7 +1760,7 @@ input[type="range"]::-moz-range-thumb {
 /* ━━ XXL: Extra Large Desktop (1280px+) */
 @media (min-width: 1280px) {
     .container {
-        max-width: 1280px;
+        max-width: 1200px;
     }
 
     .grid-cols-5 {
@@ -2004,4 +2010,135 @@ input[type="range"]::-moz-range-thumb {
 
 @media (min-width: 768px) {
     .m-mobile { margin: 2rem; }
+}
+
+/* ── STANDARDIZED LAYOUT SYSTEM ────────────────────────────── */
+/* Unified section spacing, container widths, and hero sizing  */
+
+/* Section: Consistent vertical rhythm across all pages */
+.sidai-section {
+    padding-top: clamp(3.5rem, 6vw, 5.5rem);
+    padding-bottom: clamp(3.5rem, 6vw, 5.5rem);
+}
+
+/* Container: Centered content with max-width 1200px */
+.sidai-container {
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1.25rem;
+    padding-right: 1.25rem;
+    width: 100%;
+}
+
+@media (min-width: 640px) {
+    .sidai-container {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+}
+
+@media (min-width: 1024px) {
+    .sidai-container {
+        padding-left: 2rem;
+        padding-right: 2rem;
+    }
+}
+
+/* Hero: Zoom-resilient proportional sizing using clamp + max-height */
+.sidai-hero {
+    position: relative;
+    overflow: hidden;
+    min-height: clamp(480px, 75vh, 800px);
+    max-height: 850px;
+}
+
+.sidai-hero .hero-content {
+    padding-top: clamp(5rem, 12vh, 7rem);
+    padding-bottom: clamp(4rem, 10vh, 6rem);
+}
+
+/* Override Tailwind max-w-7xl (1280px) to 1200px on sections using this class */
+.sidai-container.max-w-7xl,
+.sidai-section .max-w-7xl {
+    max-width: 1200px;
+}
+
+/* Subpage hero banners (non-slider) */
+.sidai-page-hero {
+    position: relative;
+    overflow: hidden;
+    min-height: clamp(280px, 40vh, 420px);
+    max-height: 460px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sidai-page-hero .hero-content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: clamp(2rem, 5vw, 4rem) 1.25rem;
+}
+
+/* Soft section dividers — subtle top border instead of hard color blocks */
+.sidai-divider-top {
+    border-top: 1px solid rgba(212, 175, 55, 0.15);
+}
+
+/* Section eyebrow (label above heading) — uniform style */
+.sidai-eyebrow {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.25em;
+    color: var(--earth);
+    margin-bottom: 0.5rem;
+}
+
+/* Section heading — uniform style */
+.sidai-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 5vw, 3rem);
+    font-weight: 700;
+    line-height: 1.15;
+    color: var(--brown);
+    margin-top: 0.25rem;
+}
+
+/* Dark section variants */
+.sidai-section-dark .sidai-eyebrow { color: var(--gold); }
+.sidai-section-dark .sidai-heading { color: var(--cream); }
+
+/* ── COHESIVE BACKGROUND & SOFT SEPARATION ────────────────── */
+body {
+    background: #FDFBF7; /* Extremely light cream base */
+    background-attachment: fixed;
+}
+
+.sidai-bg-main {
+    background-color: transparent; /* Let body show through */
+}
+
+.sidai-section-alt {
+    background-color: rgba(245, 236, 215, 0.4); /* Very subtle cream shift */
+}
+
+.sidai-divider-top {
+    border-top: 1px solid rgba(212, 175, 55, 0.12);
+}
+
+.sidai-card-clean {
+    background: white;
+    border: 1px solid rgba(212, 175, 55, 0.15);
+    border-radius: 1.5rem;
+    box-shadow: 0 4px 20px rgba(61, 28, 2, 0.03);
+    transition: all 0.3s ease;
+}
+
+.sidai-card-clean:hover {
+    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.1);
+    transform: translateY(-2px);
 }
