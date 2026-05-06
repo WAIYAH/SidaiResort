@@ -331,39 +331,17 @@
                             <select id="room_id" name="room_id"
                                     class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-gold">
                                 <option value="">Choose a room...</option>
-                                                                    <option value="1">
-                                        Elalai - KES Ksh 2,500.00/night (Inclusive Bed and BreakFast)
-                                    </option>
-                                                                    <option value="2">
-                                        Emirishoi - KES Ksh 2,500.00/night (Inclusive Bed and BreakFast)
-                                    </option>
-                                                                    <option value="3">
-                                        Enchipai - KES Ksh 2,500.00/night (Inclusive Bed and BreakFast)
-                                    </option>
-                                                                    <option value="4">
-                                        Eserian - KES Ksh 2,500.00/night (Inclusive Bed and BreakFast)
-                                    </option>
-                                                                    <option value="5">
-                                        Empiris - KES Ksh 2,500.00/night (Inclusive Bed and BreakFast)
-                                    </option>
-                                                                    <option value="6">
-                                        Ewangan - KES Ksh 2,500.00/night (Inclusive Bed and BreakFast)
-                                    </option>
-                                                                    <option value="7">
-                                        Enkanasa - KES Ksh 2,500.00/night (Inclusive Bed and BreakFast)
-                                    </option>
-                                                                    <option value="8">
-                                        Esipil - KES Ksh 2,500.00/night (Inclusive Bed and BreakFast)
-                                    </option>
-                                                                    <option value="9">
-                                        Enkipai - KES Ksh 2,500.00/night (Inclusive Bed and BreakFast)
-                                    </option>
-                                                                    <option value="10">
-                                        Eripoto - KES Ksh 2,500.00/night (Inclusive Bed and BreakFast)
-                                    </option>
-                                                                    <option value="11">
-                                        Ereto - KES Ksh 2,500.00/night (Inclusive Bed and BreakFast)
-                                    </option>
+                                                                    <option value="1">Elalai</option>
+                                    <option value="2">Emirishoi</option>
+                                    <option value="3">Enchipai</option>
+                                    <option value="4">Eserian</option>
+                                    <option value="5">Empiris</option>
+                                    <option value="6">Ewangan</option>
+                                    <option value="7">Enkanasa</option>
+                                    <option value="8">Esipil</option>
+                                    <option value="9">Enkipai</option>
+                                    <option value="10">Eripoto</option>
+                                    <option value="11">Ereto</option>
                                                             </select>
                         </div>
                     </div>
@@ -421,11 +399,39 @@
                               placeholder="Any special requests or dietary requirements?"></textarea>
                 </div>
 
+                <!-- Preferred Contact Method -->
+                <fieldset class="mb-8 p-6 border-2 border-gold-light rounded-lg">
+                    <legend class="text-lg font-semibold text-forest-green mb-4">How would you like to send your booking?</legend>
+                    <p class="text-sm text-gray-500 mb-4">Choose your preferred way to reach us. We'll get back to you within 2 hours.</p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <label class="flex-1 flex items-center gap-3 p-4 rounded-lg border-2 cursor-pointer transition-all"
+                               id="label-email"
+                               style="border-color: #D4AF37; background: rgba(212,175,55,0.08);">
+                            <input type="radio" name="contact_method" value="email" checked
+                                   class="w-5 h-5 text-gold accent-[#D4AF37]" id="method-email">
+                            <span class="flex items-center gap-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                                <span class="font-semibold text-forest-green">Email</span>
+                                <span class="text-xs text-gray-400 hidden sm:inline">(Recommended)</span>
+                            </span>
+                        </label>
+                        <label class="flex-1 flex items-center gap-3 p-4 rounded-lg border-2 border-gray-200 cursor-pointer transition-all hover:border-green-400"
+                               id="label-whatsapp">
+                            <input type="radio" name="contact_method" value="whatsapp"
+                                   class="w-5 h-5 text-green-600 accent-green-600" id="method-whatsapp">
+                            <span class="flex items-center gap-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="#25D366"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+                                <span class="font-semibold text-forest-green">WhatsApp</span>
+                            </span>
+                        </label>
+                    </div>
+                </fieldset>
+
                 <div class="flex gap-4">
-                    <button type="submit" class="flex-1 bg-gold hover:bg-gold-dark text-white font-semibold py-3 rounded-lg transition">
-                        Continue to Payment
+                    <button type="submit" id="booking-submit-btn" class="flex-1 bg-gold hover:bg-gold-dark text-white font-semibold py-3 rounded-lg transition">
+                        Continue to Booking
                     </button>
-                    <a href="" class="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-3 rounded-lg text-center transition">
+                    <a href="index.html" class="flex-1 bg-gray-200 hover:bg-gray-300 text-gray-800 font-semibold py-3 rounded-lg text-center transition">
                         Cancel
                     </a>
                 </div>
@@ -434,6 +440,7 @@
     </main>
 
     <script>
+        // Toggle room/hall sections
         const bookingTypeSelect = document.getElementById('booking-type');
         const roomSection = document.getElementById('roomSection');
         const hallSection = document.getElementById('hallSection');
@@ -450,6 +457,27 @@
                 }
             });
         }
+
+        // Contact method radio styling
+        const radiosMethod = document.querySelectorAll('input[name="contact_method"]');
+        const labelEmail = document.getElementById('label-email');
+        const labelWhatsapp = document.getElementById('label-whatsapp');
+
+        function updateMethodStyles() {
+            const selected = document.querySelector('input[name="contact_method"]:checked')?.value;
+            if (selected === 'email') {
+                labelEmail.style.borderColor = '#D4AF37';
+                labelEmail.style.background = 'rgba(212,175,55,0.08)';
+                labelWhatsapp.style.borderColor = '#e5e7eb';
+                labelWhatsapp.style.background = 'transparent';
+            } else {
+                labelWhatsapp.style.borderColor = '#25D366';
+                labelWhatsapp.style.background = 'rgba(37,211,102,0.08)';
+                labelEmail.style.borderColor = '#e5e7eb';
+                labelEmail.style.background = 'transparent';
+            }
+        }
+        radiosMethod.forEach(r => r.addEventListener('change', updateMethodStyles));
     </script>
 
     <footer class="mt-12 sm:mt-20 bg-night text-cream">
@@ -556,9 +584,56 @@
     </div>
 </footer>
 
-<!-- WhatsApp Floating Chat Button -->
-<a href="https://wa.me/254703761951" target="_blank" rel="noopener noreferrer" class="whatsapp-float" aria-label="Chat on WhatsApp">
-    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg></a>
+<!-- Floating "Talk to Us" Chat Widget -->
+<div x-data="{ chatOpen: false }" class="talk-to-us-widget" id="talk-to-us-widget">
+    <!-- Expanded Options Panel -->
+    <div x-show="chatOpen" x-cloak
+         x-transition:enter="transition ease-out duration-200"
+         x-transition:enter-start="opacity-0 translate-y-4 scale-95"
+         x-transition:enter-end="opacity-100 translate-y-0 scale-100"
+         x-transition:leave="transition ease-in duration-150"
+         x-transition:leave-start="opacity-100 translate-y-0 scale-100"
+         x-transition:leave-end="opacity-0 translate-y-4 scale-95"
+         class="talk-to-us-panel">
+        <div class="talk-to-us-panel-header">
+            <p class="talk-to-us-panel-title">How would you like to reach us?</p>
+            <p class="talk-to-us-panel-subtitle">Our team responds within 2 hours</p>
+        </div>
+        <div class="talk-to-us-panel-options">
+            <a href="https://wa.me/254703761951?text=Hello%20Sidai%20Resort!%20I%20would%20like%20to%20inquire%20about%20your%20services." target="_blank" rel="noopener noreferrer" class="talk-to-us-option talk-to-us-option--whatsapp" @click="chatOpen = false">
+                <span class="talk-to-us-option-icon talk-to-us-option-icon--wa">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413z"/></svg>
+                </span>
+                <span class="talk-to-us-option-text">
+                    <span class="talk-to-us-option-label">WhatsApp</span>
+                    <span class="talk-to-us-option-desc">Chat with us instantly</span>
+                </span>
+            </a>
+            <a href="mailto:sidairesort21@gmail.com?subject=Inquiry%20-%20Sidai%20Resort&body=Hello%20Sidai%20Resort%20Team,%0A%0AI%20would%20like%20to%20inquire%20about%20your%20services.%0A%0AThank%20you." class="talk-to-us-option talk-to-us-option--email" @click="chatOpen = false">
+                <span class="talk-to-us-option-icon talk-to-us-option-icon--email">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                </span>
+                <span class="talk-to-us-option-text">
+                    <span class="talk-to-us-option-label">Email Us</span>
+                    <span class="talk-to-us-option-desc">sidairesort21@gmail.com</span>
+                </span>
+            </a>
+        </div>
+    </div>
+
+    <!-- Main Floating Button -->
+    <button type="button" class="talk-to-us-btn" @click="chatOpen = !chatOpen" :aria-expanded="chatOpen.toString()" aria-label="Talk to Us">
+        <!-- Chat icon (shown when closed) -->
+        <span x-show="!chatOpen" class="talk-to-us-btn-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </span>
+        <!-- Close icon (shown when open) -->
+        <span x-show="chatOpen" x-cloak class="talk-to-us-btn-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+        </span>
+        <span class="talk-to-us-label" x-show="!chatOpen">Talk to Us</span>
+    </button>
+</div>
 
 <!-- Cookie Consent Banner -->
 <div x-data="cookieConsent()" x-init="checkConsent()" x-show="showBanner" x-transition.opacity.duration.500ms class="fixed bottom-0 left-0 right-0 z-50 bg-night/95 backdrop-blur-md border-t border-gold/30 p-4 sm:p-6 shadow-2xl" style="display: none;">
@@ -613,7 +688,7 @@ document.addEventListener('alpine:init', () => {
 document.querySelector('#booking-form').addEventListener('submit', async function(e) {
   e.preventDefault();
 
-  const btn = this.querySelector('button[type="submit"]');
+  const btn = this.querySelector('#booking-submit-btn');
   btn.disabled = true;
   btn.textContent = 'Sending...';
 
@@ -624,73 +699,126 @@ document.querySelector('#booking-form').addEventListener('submit', async functio
   const guests  = document.querySelector('#num-guests')?.value || '1';
   const date    = document.querySelector('#booking-date')?.value || '';
   const special = document.querySelector('#special-requests')?.value.trim() || 'None';
+  const method  = document.querySelector('input[name="contact_method"]:checked')?.value || 'email';
+
+  // Room details (if applicable)
+  const roomSelect = document.querySelector('#room_id');
+  const roomName = roomSelect ? roomSelect.options[roomSelect.selectedIndex]?.text.trim() : '';
+  const checkIn  = document.querySelector('#check_in')?.value || '';
+  const checkOut = document.querySelector('#check_out')?.value || '';
+
+  // Hall details (if applicable)
+  const hallSelect = document.querySelector('#hall_id');
+  const hallName = hallSelect ? hallSelect.options[hallSelect.selectedIndex]?.text.trim() : '';
+  const eventDate  = document.querySelector('#event_date')?.value || '';
+  const eventType  = document.querySelector('#event_type')?.value || '';
+  const eventSetup = document.querySelector('#event_setup')?.value || '';
 
   // Validate required fields
   if (!name || !phone || !type || type === 'Select booking type') {
     alert('Please fill in all required fields: Name, Phone, and Booking Type.');
     btn.disabled = false;
-    btn.textContent = 'Continue to Payment';
+    btn.textContent = 'Continue to Booking';
     return;
   }
 
-  // FORMSPREE — send email to manager
-  try {
-    const response = await fetch('https://formspree.io/f/xjgjdaav', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-        'Accept': 'application/json'
-      },
-      body: JSON.stringify({
-        booking_type: type,
-        full_name: name,
-        email: email,
-        phone: phone,
-        num_guests: guests,
-        booking_date: date,
-        special_requests: special,
-        _subject: 'New Booking Request — Sidai Resort'
-      })
-    });
+  // Build a rich booking summary message
+  let messageParts = [
+    `🌿 *NEW SIDAI RESORT BOOKING*`,
+    `━━━━━━━━━━━━━━━━━━━━`,
+    `📋 *Booking Type:* ${type}`,
+    `👤 *Name:* ${name}`,
+    `📞 *Phone:* ${phone}`,
+    `📧 *Email:* ${email || 'Not provided'}`,
+    `👥 *Guests:* ${guests}`,
+    `📅 *Preferred Date:* ${date || 'To be confirmed'}`
+  ];
 
-    if (!response.ok) {
-      throw new Error('Formspree submission failed');
-    }
-  } catch (err) {
-    console.error('Email notification failed:', err);
+  if (type === 'Room/Accommodation' && roomName && roomName !== 'Choose a room...') {
+    messageParts.push(`🏨 *Room:* ${roomName}`);
+    if (checkIn) messageParts.push(`📥 *Check-in:* ${checkIn}`);
+    if (checkOut) messageParts.push(`📤 *Check-out:* ${checkOut}`);
   }
 
-  // WHATSAPP — open chat with booking summary
-  const message =
-`🌿 *NEW SIDAI RESORT BOOKING*
-━━━━━━━━━━━━━━━━━━━━
-📋 *Booking Type:* ${type}
-👤 *Name:* ${name}
-📞 *Phone:* ${phone}
-📧 *Email:* ${email || 'Not provided'}
-👥 *Guests:* ${guests}
-📅 *Date:* ${date || 'To be confirmed'}
-📝 *Special Requests:* ${special}
-━━━━━━━━━━━━━━━━━━━━
-_Sent from Sidai Resort Website_`;
+  if (type === 'Hall/Event Space') {
+    if (hallName && hallName !== 'Choose a hall...') messageParts.push(`🏛️ *Hall:* ${hallName}`);
+    if (eventDate) messageParts.push(`📆 *Event Date:* ${eventDate}`);
+    if (eventType) messageParts.push(`🎉 *Event Type:* ${eventType}`);
+    if (eventSetup) messageParts.push(`🪑 *Setup:* ${eventSetup}`);
+  }
 
-  const waURL = 'https://wa.me/254703761951?text=' + encodeURIComponent(message);
-  window.open(waURL, '_blank');
+  messageParts.push(`📝 *Special Requests:* ${special}`);
+  messageParts.push(`━━━━━━━━━━━━━━━━━━━━`);
+  messageParts.push(`_Sent from Sidai Resort Website_`);
 
-  // SUCCESS — show confirmation and reset
-  btn.textContent = 'Booking Sent!';
-  btn.style.background = '#1A4D2E';
+  const message = messageParts.join('\n');
 
-  setTimeout(() => {
-    alert('✅ Booking received!\n\nWe will confirm your reservation within 2 hours via WhatsApp or Email.\n\nThank you for choosing Sidai Resort — Nothing but the Best!');
-    document.querySelector('#booking-form').reset();
-    btn.disabled = false;
-    btn.textContent = 'Continue to Payment';
-    btn.style.background = '';
-    // Close modal if one exists
-    const modal = document.querySelector('#booking-modal') || document.querySelector('.modal');
-    if (modal) modal.style.display = 'none';
-  }, 800);
+  if (method === 'whatsapp') {
+    // ── WhatsApp: open chat with booking summary ──
+    const waURL = 'https://wa.me/254703761951?text=' + encodeURIComponent(message);
+    window.open(waURL, '_blank');
+
+    btn.textContent = 'Booking Sent!';
+    btn.style.background = '#1A4D2E';
+
+    setTimeout(() => {
+      alert('✅ Your booking details have been sent via WhatsApp!\n\nOur team will review and confirm your reservation within 2 hours.\n\nThank you for choosing Sidai Resort — Nothing but the Best!');
+      document.querySelector('#booking-form').reset();
+      btn.disabled = false;
+      btn.textContent = 'Continue to Booking';
+      btn.style.background = '';
+      if (typeof updateMethodStyles === 'function') updateMethodStyles();
+    }, 800);
+
+  } else {
+    // ── Email (default): send via Formspree, then confirm ──
+    try {
+      const response = await fetch('https://formspree.io/f/xjgjdaav', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          booking_type: type,
+          full_name: name,
+          email: email,
+          phone: phone,
+          num_guests: guests,
+          booking_date: date,
+          room: roomName || 'N/A',
+          check_in: checkIn || 'N/A',
+          check_out: checkOut || 'N/A',
+          hall: hallName || 'N/A',
+          event_date: eventDate || 'N/A',
+          event_type: eventType || 'N/A',
+          event_setup: eventSetup || 'N/A',
+          special_requests: special,
+          _subject: `New Booking Request — ${type} — Sidai Resort`
+        })
+      });
+
+      if (!response.ok) throw new Error('Submission failed');
+
+      btn.textContent = 'Booking Sent!';
+      btn.style.background = '#1A4D2E';
+
+      setTimeout(() => {
+        alert('✅ Your booking request has been sent to sidairesort21@gmail.com!\n\nOur reservations team will confirm your booking within 2 hours via email or phone.\n\nThank you for choosing Sidai Resort — Nothing but the Best!');
+        document.querySelector('#booking-form').reset();
+        btn.disabled = false;
+        btn.textContent = 'Continue to Booking';
+        btn.style.background = '';
+        if (typeof updateMethodStyles === 'function') updateMethodStyles();
+      }, 800);
+
+    } catch (err) {
+      console.error('Email submission failed:', err);
+      btn.textContent = 'Continue to Booking';
+      btn.disabled = false;
+      alert('⚠️ Something went wrong sending your email. Please try again or choose WhatsApp instead.\n\nYou can also reach us directly at:\n📧 sidairesort21@gmail.com\n📞 0703 761 951 / 0721 940 823');
+    }
+  }
 });
 </script>
 
