@@ -367,6 +367,37 @@ button,
     color: rgba(245, 236, 215, 0.82);
 }
 
+/* Compact/cool stats treatment for better visual balance */
+#stats.sidai-section {
+    padding-top: clamp(2.75rem, 4.5vw, 3.75rem);
+    padding-bottom: clamp(2.75rem, 4.5vw, 3.75rem);
+}
+
+#stats .sidai-container {
+    gap: clamp(0.9rem, 2vw, 1.25rem);
+}
+
+#stats .stats-card {
+    padding: clamp(1.15rem, 2.2vw, 1.45rem);
+    border-radius: 1rem;
+}
+
+#stats .stats-icon {
+    width: clamp(2.8rem, 5.6vw, 3.2rem);
+    height: clamp(2.8rem, 5.6vw, 3.2rem);
+    margin-bottom: 0.75rem;
+}
+
+#stats .stats-icon svg {
+    width: clamp(1.3rem, 2.8vw, 1.6rem);
+    height: clamp(1.3rem, 2.8vw, 1.6rem);
+}
+
+#stats .stats-count {
+    font-size: clamp(2rem, 4.8vw, 2.7rem);
+    line-height: 1;
+}
+
 #particles-js,
 .particles-canvas {
     position: absolute;
@@ -2141,4 +2172,353 @@ body {
 .sidai-card-clean:hover {
     box-shadow: 0 10px 30px rgba(212, 175, 55, 0.1);
     transform: translateY(-2px);
+}
+
+/* ── LAYOUT NORMALIZATION (2026-05) ────────────────────────── */
+/* Consistent section rhythm + unified shell background */
+:root {
+    --sidai-content-max: 72.5rem; /* 1160px */
+    --sidai-section-space: clamp(5rem, 8vw, 6.25rem); /* ~80-100px */
+    --sidai-section-space-mobile: clamp(4rem, 10vw, 5rem);
+    --sidai-divider-soft: 1px solid rgba(61, 28, 2, 0.1);
+    --sidai-shell-bg: #F5ECD7;
+}
+
+body,
+body.critical-shell,
+body.bg-cream,
+body[class*="bg-cream"] {
+    background: var(--sidai-shell-bg) !important;
+    color: var(--brown);
+}
+
+main,
+.services-page-main,
+.menu-main {
+    background: transparent !important;
+}
+
+/* Unified content width */
+.sidai-container,
+.container,
+.menu-content-wrap,
+.sidai-container.max-w-7xl,
+.sidai-section .max-w-7xl,
+.sidai-section .max-w-6xl,
+.sidai-section .max-w-5xl,
+.sidai-section .max-w-4xl {
+    max-width: var(--sidai-content-max) !important;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.sidai-container,
+.container,
+.menu-content-wrap {
+    padding-left: clamp(1rem, 2.6vw, 2rem);
+    padding-right: clamp(1rem, 2.6vw, 2rem);
+}
+
+/* Major-section vertical rhythm */
+main > section:not(.hero-section):not(.sidai-page-hero):not(.services-hero):not(.menu-hero),
+.sidai-section,
+main > section.sidai-container,
+.menu-content-wrap > section,
+.services-hero,
+.menu-hero {
+    padding-top: var(--sidai-section-space);
+    padding-bottom: var(--sidai-section-space);
+}
+
+/* Normalize pages that use section-level containers directly */
+main > section.sidai-container {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+.menu-content-wrap {
+    margin-top: 0 !important;
+    padding-bottom: var(--sidai-section-space);
+}
+
+/* Soft separation instead of hard visual breaks */
+main > section + section {
+    border-top: var(--sidai-divider-soft);
+}
+
+.sidai-bg-main {
+    background-color: transparent;
+}
+
+.sidai-section-alt {
+    background-color: rgba(255, 255, 255, 0.28);
+}
+
+/* Keep type rhythm consistent across major sections */
+main > section h1,
+main > section h2,
+main > section .sidai-heading {
+    line-height: 1.14;
+}
+
+main > section p {
+    line-height: 1.72;
+}
+
+@media (max-width: 767px) {
+    main > section:not(.hero-section):not(.sidai-page-hero):not(.services-hero):not(.menu-hero),
+    .sidai-section,
+    main > section.sidai-container,
+    .menu-content-wrap > section,
+    .services-hero,
+    .menu-hero {
+        padding-top: var(--sidai-section-space-mobile);
+        padding-bottom: var(--sidai-section-space-mobile);
+    }
+}
+
+/* ── BENCHMARK THEME (SCOPED) ──────────────────────────────── */
+/* Applies to pages with body.sidai-benchmark */
+body.sidai-benchmark {
+    --sidai-content-max: 72.5rem; /* 1160px */
+    --sidai-section-space: clamp(5rem, 8vw, 6.25rem); /* 80-100px */
+    --sidai-section-space-mobile: clamp(3.75rem, 11vw, 4.75rem);
+    --sidai-cream-surface: #F6E8D2; /* slightly lighter warm sand */
+    --sidai-cream-surface-alt: #E8C99C; /* slightly deeper warm apricot */
+    background: #F5ECD7 !important;
+    color: var(--brown);
+}
+
+body.sidai-benchmark img {
+    -webkit-user-drag: none;
+    user-select: none;
+}
+
+body.sidai-benchmark main,
+body.sidai-benchmark .services-page-main,
+body.sidai-benchmark .menu-main {
+    background: transparent !important;
+}
+
+body.sidai-benchmark .sidai-container,
+body.sidai-benchmark .container,
+body.sidai-benchmark .menu-content-wrap,
+body.sidai-benchmark .sidai-container.max-w-7xl,
+body.sidai-benchmark .sidai-section .max-w-7xl,
+body.sidai-benchmark .sidai-section .max-w-6xl,
+body.sidai-benchmark .sidai-section .max-w-5xl,
+body.sidai-benchmark .sidai-section .max-w-4xl {
+    max-width: var(--sidai-content-max) !important;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+body.sidai-benchmark .sidai-container,
+body.sidai-benchmark .container,
+body.sidai-benchmark .menu-content-wrap {
+    padding-left: clamp(1rem, 2.6vw, 2rem);
+    padding-right: clamp(1rem, 2.6vw, 2rem);
+}
+
+body.sidai-benchmark main > section:not(.hero-section):not(.sidai-page-hero):not(.services-hero):not(.menu-hero) {
+    padding-top: var(--sidai-section-space);
+    padding-bottom: var(--sidai-section-space);
+}
+
+body.sidai-benchmark main > div > section:not(.hero-section):not(.sidai-page-hero):not(.services-hero):not(.menu-hero) {
+    padding-top: var(--sidai-section-space);
+    padding-bottom: var(--sidai-section-space);
+}
+
+body.sidai-benchmark main > section:not(.hero-section):not(.sidai-page-hero):not(.services-hero):not(.menu-hero):not(:first-child),
+body.sidai-benchmark main > div > section:not(.hero-section):not(.sidai-page-hero):not(.services-hero):not(.menu-hero):not(:first-child) {
+    margin-top: clamp(1.25rem, 2.8vw, 2rem);
+}
+
+/* Final readability polish for cream-family sections */
+body.sidai-benchmark main > section.sidai-bg-main:not(.hero-section):not(.sidai-page-hero):not(.services-hero):not(.menu-hero),
+body.sidai-benchmark main > div > section.sidai-bg-main:not(.hero-section):not(.sidai-page-hero):not(.services-hero):not(.menu-hero),
+body.sidai-benchmark main > section[class*="bg-cream"]:not(.hero-section):not(.sidai-page-hero):not(.services-hero):not(.menu-hero),
+body.sidai-benchmark main > div > section[class*="bg-cream"]:not(.hero-section):not(.sidai-page-hero):not(.services-hero):not(.menu-hero) {
+    background-color: var(--sidai-cream-surface) !important;
+    border: 1px solid rgba(160, 128, 32, 0.16);
+}
+
+body.sidai-benchmark main > section.sidai-section-alt:not(.hero-section):not(.sidai-page-hero):not(.services-hero):not(.menu-hero),
+body.sidai-benchmark main > div > section.sidai-section-alt:not(.hero-section):not(.sidai-page-hero):not(.services-hero):not(.menu-hero) {
+    background-color: var(--sidai-cream-surface-alt) !important;
+    border: 1px solid rgba(160, 128, 32, 0.2);
+}
+
+/* Neutral contained sections (e.g., moments/accommodation pages) */
+body.sidai-benchmark main > section.sidai-container:not(.hero-section):not(.sidai-page-hero):not(.services-hero):not(.menu-hero):not([class*="bg-"]):not([style*="background"]),
+body.sidai-benchmark main > div > section.sidai-container:not(.hero-section):not(.sidai-page-hero):not(.services-hero):not(.menu-hero):not([class*="bg-"]):not([style*="background"]) {
+    background-color: var(--sidai-cream-surface) !important;
+    border: 1px solid rgba(160, 128, 32, 0.16);
+}
+
+body.sidai-benchmark main > section.sidai-container:not(.hero-section):not(.sidai-page-hero):not(.services-hero):not(.menu-hero):not([class*="bg-"]):not([style*="background"]):nth-of-type(even),
+body.sidai-benchmark main > div > section.sidai-container:not(.hero-section):not(.sidai-page-hero):not(.services-hero):not(.menu-hero):not([class*="bg-"]):not([style*="background"]):nth-of-type(even) {
+    background-color: var(--sidai-cream-surface-alt) !important;
+    border: 1px solid rgba(160, 128, 32, 0.2);
+}
+
+/* Keep section backgrounds visually contained (same principle as footer) */
+body.sidai-benchmark main > section[class*="bg-"]:not(.hero-section):not(.sidai-page-hero):not(.services-hero):not(.menu-hero),
+body.sidai-benchmark main > section.sidai-section-alt:not(.hero-section):not(.sidai-page-hero):not(.services-hero):not(.menu-hero),
+body.sidai-benchmark main > section.sidai-bg-main:not(.hero-section):not(.sidai-page-hero):not(.services-hero):not(.menu-hero),
+body.sidai-benchmark main > section[style*="background"]:not(.hero-section):not(.sidai-page-hero):not(.services-hero):not(.menu-hero),
+body.sidai-benchmark main > div > section[class*="bg-"]:not(.hero-section):not(.sidai-page-hero):not(.services-hero):not(.menu-hero),
+body.sidai-benchmark main > div > section.sidai-section-alt:not(.hero-section):not(.sidai-page-hero):not(.services-hero):not(.menu-hero),
+body.sidai-benchmark main > div > section.sidai-bg-main:not(.hero-section):not(.sidai-page-hero):not(.services-hero):not(.menu-hero),
+body.sidai-benchmark main > div > section[style*="background"]:not(.hero-section):not(.sidai-page-hero):not(.services-hero):not(.menu-hero) {
+    width: min(calc(100% - clamp(1.25rem, 4vw, 3.5rem)), var(--sidai-content-max));
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: clamp(1rem, 2.1vw, 1.5rem);
+    overflow: hidden;
+}
+
+/* High-contrast defaults inside dark major sections */
+body.sidai-benchmark main > section[class*="bg-night"]:not(.hero-section):not(.sidai-page-hero):not(.services-hero):not(.menu-hero),
+body.sidai-benchmark main > section[class*="bg-forest"]:not(.hero-section):not(.sidai-page-hero):not(.services-hero):not(.menu-hero),
+body.sidai-benchmark main > section[class*="bg-[#0A0A0A]"]:not(.hero-section):not(.sidai-page-hero):not(.services-hero):not(.menu-hero),
+body.sidai-benchmark main > section[class*="bg-[#050505]"]:not(.hero-section):not(.sidai-page-hero):not(.services-hero):not(.menu-hero),
+body.sidai-benchmark main > section[style*="#0A0A0A"]:not(.hero-section):not(.sidai-page-hero):not(.services-hero):not(.menu-hero),
+body.sidai-benchmark main > section[style*="#050505"]:not(.hero-section):not(.sidai-page-hero):not(.services-hero):not(.menu-hero),
+body.sidai-benchmark main > div > section[class*="bg-night"]:not(.hero-section):not(.sidai-page-hero):not(.services-hero):not(.menu-hero),
+body.sidai-benchmark main > div > section[class*="bg-forest"]:not(.hero-section):not(.sidai-page-hero):not(.services-hero):not(.menu-hero),
+body.sidai-benchmark main > div > section[class*="bg-[#0A0A0A]"]:not(.hero-section):not(.sidai-page-hero):not(.services-hero):not(.menu-hero),
+body.sidai-benchmark main > div > section[class*="bg-[#050505]"]:not(.hero-section):not(.sidai-page-hero):not(.services-hero):not(.menu-hero),
+body.sidai-benchmark main > div > section[style*="#0A0A0A"]:not(.hero-section):not(.sidai-page-hero):not(.services-hero):not(.menu-hero),
+body.sidai-benchmark main > div > section[style*="#050505"]:not(.hero-section):not(.sidai-page-hero):not(.services-hero):not(.menu-hero) {
+    color: var(--cream);
+}
+
+body.sidai-benchmark main > section[class*="bg-night"] h1,
+body.sidai-benchmark main > section[class*="bg-night"] h2,
+body.sidai-benchmark main > section[class*="bg-night"] h3,
+body.sidai-benchmark main > section[class*="bg-forest"] h1,
+body.sidai-benchmark main > section[class*="bg-forest"] h2,
+body.sidai-benchmark main > section[class*="bg-forest"] h3,
+body.sidai-benchmark main > section[class*="bg-[#0A0A0A]"] h1,
+body.sidai-benchmark main > section[class*="bg-[#0A0A0A]"] h2,
+body.sidai-benchmark main > section[class*="bg-[#0A0A0A]"] h3,
+body.sidai-benchmark main > section[class*="bg-[#050505]"] h1,
+body.sidai-benchmark main > section[class*="bg-[#050505]"] h2,
+body.sidai-benchmark main > section[class*="bg-[#050505]"] h3,
+body.sidai-benchmark main > div > section[class*="bg-night"] h1,
+body.sidai-benchmark main > div > section[class*="bg-night"] h2,
+body.sidai-benchmark main > div > section[class*="bg-night"] h3,
+body.sidai-benchmark main > div > section[class*="bg-forest"] h1,
+body.sidai-benchmark main > div > section[class*="bg-forest"] h2,
+body.sidai-benchmark main > div > section[class*="bg-forest"] h3,
+body.sidai-benchmark main > div > section[class*="bg-[#0A0A0A]"] h1,
+body.sidai-benchmark main > div > section[class*="bg-[#0A0A0A]"] h2,
+body.sidai-benchmark main > div > section[class*="bg-[#0A0A0A]"] h3,
+body.sidai-benchmark main > div > section[class*="bg-[#050505]"] h1,
+body.sidai-benchmark main > div > section[class*="bg-[#050505]"] h2,
+body.sidai-benchmark main > div > section[class*="bg-[#050505]"] h3,
+body.sidai-benchmark main > section[class*="bg-night"] .sidai-heading,
+body.sidai-benchmark main > section[class*="bg-forest"] .sidai-heading,
+body.sidai-benchmark main > section[class*="bg-[#0A0A0A]"] .sidai-heading,
+body.sidai-benchmark main > section[class*="bg-[#050505]"] .sidai-heading,
+body.sidai-benchmark main > div > section[class*="bg-night"] .sidai-heading,
+body.sidai-benchmark main > div > section[class*="bg-forest"] .sidai-heading,
+body.sidai-benchmark main > div > section[class*="bg-[#0A0A0A]"] .sidai-heading,
+body.sidai-benchmark main > div > section[class*="bg-[#050505]"] .sidai-heading {
+    color: var(--cream);
+}
+
+body.sidai-benchmark main > section[class*="bg-night"] .text-brown,
+body.sidai-benchmark main > section[class*="bg-night"] .text-brown\/70,
+body.sidai-benchmark main > section[class*="bg-night"] .text-brown\/80,
+body.sidai-benchmark main > section[class*="bg-night"] .text-brown\/85,
+body.sidai-benchmark main > section[class*="bg-night"] .text-brown\/90,
+body.sidai-benchmark main > section[class*="bg-forest"] .text-brown,
+body.sidai-benchmark main > section[class*="bg-forest"] .text-brown\/70,
+body.sidai-benchmark main > section[class*="bg-forest"] .text-brown\/80,
+body.sidai-benchmark main > section[class*="bg-forest"] .text-brown\/85,
+body.sidai-benchmark main > section[class*="bg-forest"] .text-brown\/90,
+body.sidai-benchmark main > section[class*="bg-[#0A0A0A]"] .text-brown,
+body.sidai-benchmark main > section[class*="bg-[#050505]"] .text-brown,
+body.sidai-benchmark main > div > section[class*="bg-night"] .text-brown,
+body.sidai-benchmark main > div > section[class*="bg-night"] .text-brown\/70,
+body.sidai-benchmark main > div > section[class*="bg-night"] .text-brown\/80,
+body.sidai-benchmark main > div > section[class*="bg-night"] .text-brown\/85,
+body.sidai-benchmark main > div > section[class*="bg-night"] .text-brown\/90,
+body.sidai-benchmark main > div > section[class*="bg-forest"] .text-brown,
+body.sidai-benchmark main > div > section[class*="bg-forest"] .text-brown\/70,
+body.sidai-benchmark main > div > section[class*="bg-forest"] .text-brown\/80,
+body.sidai-benchmark main > div > section[class*="bg-forest"] .text-brown\/85,
+body.sidai-benchmark main > div > section[class*="bg-forest"] .text-brown\/90,
+body.sidai-benchmark main > div > section[class*="bg-[#0A0A0A]"] .text-brown,
+body.sidai-benchmark main > div > section[class*="bg-[#050505]"] .text-brown {
+    color: rgba(245, 236, 215, 0.92) !important;
+}
+
+body.sidai-benchmark main > section.hero-section,
+body.sidai-benchmark main > section.sidai-page-hero,
+body.sidai-benchmark main > section.services-hero,
+body.sidai-benchmark main > section.menu-hero {
+    overflow: hidden;
+}
+
+body.sidai-benchmark main > section h1,
+body.sidai-benchmark main > section h2,
+body.sidai-benchmark main > section .sidai-heading {
+    line-height: 1.14;
+}
+
+body.sidai-benchmark main > section p {
+    line-height: 1.72;
+}
+
+/* Keep footer background contained (not full-width) */
+body.sidai-benchmark footer {
+    width: min(calc(100% - clamp(1.25rem, 4vw, 3.5rem)), var(--sidai-content-max));
+    margin-left: auto;
+    margin-right: auto;
+    background: transparent !important;
+}
+
+body.sidai-benchmark footer > .sidai-container {
+    width: 100%;
+    max-width: none !important;
+    background: var(--night);
+    border: 1px solid rgba(212, 175, 55, 0.22);
+    border-radius: clamp(1rem, 2.1vw, 1.5rem);
+    padding-left: clamp(1rem, 2.6vw, 2rem);
+    padding-right: clamp(1rem, 2.6vw, 2rem);
+}
+
+@media (max-width: 767px) {
+    body.sidai-benchmark main > section:not(.hero-section):not(.sidai-page-hero):not(.services-hero):not(.menu-hero),
+    body.sidai-benchmark main > div > section:not(.hero-section):not(.sidai-page-hero):not(.services-hero):not(.menu-hero),
+    body.sidai-benchmark main > section.sidai-container,
+    body.sidai-benchmark main > div > section.sidai-container {
+        padding-top: var(--sidai-section-space-mobile);
+        padding-bottom: var(--sidai-section-space-mobile);
+    }
+
+    body.sidai-benchmark main > section:not(.hero-section):not(.sidai-page-hero):not(.services-hero):not(.menu-hero):not(:first-child),
+    body.sidai-benchmark main > div > section:not(.hero-section):not(.sidai-page-hero):not(.services-hero):not(.menu-hero):not(:first-child) {
+        margin-top: 1rem;
+    }
+
+    body.sidai-benchmark footer {
+        width: min(calc(100% - 1rem), var(--sidai-content-max));
+    }
+
+    body.sidai-benchmark main > section[class*="bg-"]:not(.hero-section):not(.sidai-page-hero):not(.services-hero):not(.menu-hero),
+    body.sidai-benchmark main > section.sidai-section-alt:not(.hero-section):not(.sidai-page-hero):not(.services-hero):not(.menu-hero),
+    body.sidai-benchmark main > section.sidai-bg-main:not(.hero-section):not(.sidai-page-hero):not(.services-hero):not(.menu-hero),
+    body.sidai-benchmark main > section[style*="background"]:not(.hero-section):not(.sidai-page-hero):not(.services-hero):not(.menu-hero),
+    body.sidai-benchmark main > div > section[class*="bg-"]:not(.hero-section):not(.sidai-page-hero):not(.services-hero):not(.menu-hero),
+    body.sidai-benchmark main > div > section.sidai-section-alt:not(.hero-section):not(.sidai-page-hero):not(.services-hero):not(.menu-hero),
+    body.sidai-benchmark main > div > section.sidai-bg-main:not(.hero-section):not(.sidai-page-hero):not(.services-hero):not(.menu-hero),
+    body.sidai-benchmark main > div > section[style*="background"]:not(.hero-section):not(.sidai-page-hero):not(.services-hero):not(.menu-hero) {
+        width: min(calc(100% - 1rem), var(--sidai-content-max));
+    }
 }
