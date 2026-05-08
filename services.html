@@ -1360,10 +1360,17 @@
             activeTab: 'swimming',
 
             init() {
+                const params = new URLSearchParams(window.location.search);
+                const queryTab = params.get('tab');
                 const hash = window.location.hash.replace('#', '');
-                const resolved = resolveTabFromHash(hash);
-                if (resolved) {
-                    this.activeTab = resolved;
+                
+                const resolvedQuery = resolveTabFromHash(queryTab);
+                const resolvedHash = resolveTabFromHash(hash);
+
+                if (resolvedQuery) {
+                    this.activeTab = resolvedQuery;
+                } else if (resolvedHash) {
+                    this.activeTab = resolvedHash;
                 } else {
                     this.activeTab = tabIds[0];
                 }

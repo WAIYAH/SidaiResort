@@ -10,10 +10,12 @@ This repository contains the main marketing and booking website for Sidai Resort
 It is a static-first site built with hand-authored HTML, a shared minified CSS/JS layer, and CDN-delivered UI libraries.
 
 Core goals:
-- strong SEO for Narok/Naroosura travel and hospitality intent
-- rich visual storytelling (gallery, videos, experiences)
-- lightweight lead capture through booking/newsletter/menu workflows
-- compatibility across static hosts (Cloudflare, Netlify, Apache)
+- **Strong SEO**: Advanced JSON-LD (Hotel, Restaurant, Attractions) for Narok/Naroosura travel and hospitality intent.
+- **Premium Aesthetics**: High-energy luxury design with cinematic GSAP animations and 3D perspective grids.
+- **Visual Storytelling**: Integrated "Sidai in Motion" video walkthroughs and immersive photography.
+- **Deep-Linking Integration**: Standardized cross-page navigation with tab-aware URL parameters for services.
+- **Lightweight workflows**: Lead capture through booking/newsletter/menu workflows optimized for mobile.
+- **Broad Compatibility**: Responsive, mobile-first design compatible across all modern browsers and static hosts.
 
 ## Tech Stack
 
@@ -78,7 +80,7 @@ Core goals:
 
 ## Page Map
 
-- `index.html`: homepage, hero, services highlights, events/testimonials, newsletter CTA
+- `index.html`: Homepage with cinematic hero, integrated stats, "Sidai in Motion" video walkthrough, service highlights, and premium dining teaser.
 - `about.html`: brand story, gallery, contact form section
 - `services.html`: service catalog and booking CTAs
 - `rooms.html`: accommodation listings
@@ -164,7 +166,8 @@ Pattern used:
 ## SEO and Discovery
 
 - Canonical tags and Open Graph metadata are embedded per page.
-- JSON-LD schema is present on key pages.
+- Expanded JSON-LD schema (LodgingBusiness, Restaurant, TouristAttraction) is present on key pages.
+- Standardized `tab` query parameters handle deep-linking between the homepage and service tabs.
 - `robots.txt` and `sitemap.xml` are included.
 - PWA manifest is configured in `manifest.json`.
 

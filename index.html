@@ -104,6 +104,10 @@
     <style>
         :root {
             color-scheme: light;
+            --luxury-teal: #0d2c2d;
+            --luxury-green: #1a4d2e;
+            --luxury-gold: #d4af37;
+            --luxury-sunset: #e67e22;
         }
 
         body {
@@ -133,30 +137,424 @@
             box-shadow: 0 18px 40px rgba(61, 28, 2, 0.18);
         }
 
-        .home-classy .hero-title {
-            text-shadow: 0 16px 30px rgba(61, 28, 2, 0.28);
+        /* Redesign Styles */
+        /* Scroll Progress */
+        #scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: var(--luxury-gold);
+            z-index: 1000;
+            transition: width 0.1s;
         }
 
-        .home-classy .hero-action {
-            box-shadow: 0 12px 24px rgba(61, 28, 2, 0.16);
+        /* Rotating Badge */
+        .rotating-badge {
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            z-index: 50;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .rotating-badge svg {
+            width: 100%;
+            height: 100%;
+            animation: rotate-slow 15s linear infinite;
+        }
+
+        .rotating-badge text {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 800;
+            fill: var(--luxury-gold);
+            text-transform: uppercase;
+            font-size: 10px;
+            letter-spacing: 2px;
+        }
+
+        /* Stats Section */
+        .stat-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 2rem;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(13, 44, 45, 0.05);
+            transition: all 0.4s ease;
+            border: 1px solid rgba(212, 175, 55, 0.1);
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--luxury-gold);
+        }
+
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--forest-green);
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .new-hero {
+            height: 100vh;
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .new-hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .new-hero-bg video,
+        .new-hero-bg img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .new-hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, rgba(13, 44, 45, 0.75) 0%, rgba(26, 77, 46, 0.4) 60%, rgba(230, 126, 34, 0.2) 100%);
+            z-index: 1;
+        }
+
+        .new-hero-content {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            color: white;
+            max-width: 1000px;
+            padding: 0 24px;
+        }
+
+        .new-hero-headline {
+            font-family: 'Playfair Display', serif;
+            font-weight: 700;
+            line-height: 1.1;
+            text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .new-hero-sub {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 400;
+            letter-spacing: 0.05em;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .animate-up {
+            opacity: 0;
+            transform: translateY(40px);
+            animation: fadeInUp 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+        }
+
+        .delay-1 {
+            animation-delay: 0.2s;
+        }
+
+        .delay-2 {
+            animation-delay: 0.4s;
+        }
+
+        .delay-3 {
+            animation-delay: 0.6s;
+        }
+
+        /* Swiper Customization */
+        .swiper-pagination-bullet {
+            background: white !important;
+            opacity: 0.5;
+            width: 12px;
+            height: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .swiper-pagination-bullet-active {
+            background: var(--luxury-gold) !important;
+            opacity: 1;
+            width: 30px;
+            border-radius: 6px;
+        }
+
+        .swiper-button-next,
+        .swiper-button-prev {
+            color: var(--luxury-gold) !important;
+            width: 50px;
+            height: 50px;
+            background: rgba(13, 44, 45, 0.4);
+            border-radius: 50%;
+            backdrop-filter: blur(5px);
+            transition: all 0.3s ease;
+        }
+
+        .swiper-button-next:hover,
+        .swiper-button-prev:hover {
+            background: var(--luxury-gold);
+            color: #0d2c2d !important;
+        }
+
+        /* Energetic Animations */
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-20px) rotate(5deg);
+            }
+        }
+
+        @keyframes rotate-slow {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes pulse-gold {
+
+            0%,
+            100% {
+                box-shadow: 0 0 0 0 rgba(212, 175, 55, 0.4);
+            }
+
+            50% {
+                box-shadow: 0 0 0 20px rgba(212, 175, 55, 0);
+            }
+        }
+
+        .floating-element {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .rotating-wireframe {
+            animation: rotate-slow 20s linear infinite;
+            opacity: 0.05;
+            pointer-events: none;
+        }
+
+        /* Perspective Hover */
+        .feature-card {
+            transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+            transform-style: preserve-3d;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-15px) scale(1.02) rotateX(5deg) rotateY(2deg);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+        }
+
+        /* Decorative Wireframes */
+        .wireframe-pattern {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            border: 1px solid var(--luxury-gold);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 0;
+        }
+
+        .wireframe-pattern::before {
+            content: '';
+            width: 80%;
+            height: 80%;
+            border: 1px dashed var(--luxury-gold);
+            border-radius: 50%;
+            position: absolute;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cta-primary {
+            background: var(--luxury-gold);
+            color: #0A0A0A;
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .cta-primary:hover {
+            background: #F0D060;
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.5);
+            border-radius: 12px;
+        }
+
+        .cta-secondary {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .cta-secondary:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: var(--luxury-gold);
+            color: var(--luxury-gold);
+            transform: translateY(-3px) scale(1.05);
+            border-radius: 12px;
+        }
+
+        .parallax-wrap {
+            transition: transform 0.2s cubic-bezier(0.1, 0.7, 0.1, 1);
+        }
+
+        /* Feature Section */
+        .feature-section {
+            padding: 120px 0;
+            background: linear-gradient(to bottom, #F5ECD7 0%, #FFFFFF 100%);
+            position: relative;
+        }
+
+        .feature-section::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('assets/images/redesign/hero_poster.png') center/cover no-repeat;
+            opacity: 0.03;
+            pointer-events: none;
+        }
+
+        .feature-card-container {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 24px;
+        }
+
+        @media (min-width: 640px) {
+            .feature-card-container {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .feature-card-container {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .feature-card {
+            position: relative;
+            height: 450px;
+            border-radius: 24px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.2);
+        }
+
+        .feature-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1.2s ease;
+        }
+
+        .feature-card:hover img {
+            transform: scale(1.15);
+        }
+
+        .feature-card-content {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(13, 44, 45, 0.9) 0%, rgba(13, 44, 45, 0.2) 60%, transparent 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 32px;
+            transition: all 0.5s ease;
+        }
+
+        .feature-card:hover .feature-card-content {
+            background: linear-gradient(to top, rgba(26, 77, 46, 0.95) 0%, rgba(13, 44, 45, 0.4) 100%);
+        }
+
+        .feature-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            color: var(--luxury-gold);
+            margin-bottom: 8px;
             transform: translateY(0);
-            transition: transform 0.35s ease, box-shadow 0.35s ease, background-color 0.35s ease, color 0.35s ease;
+            transition: transform 0.5s ease;
         }
 
-        .home-classy .hero-action:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 16px 30px rgba(61, 28, 2, 0.22);
+        .feature-card p {
+            font-size: 1rem;
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.4;
+            opacity: 0.9;
+            transform: translateY(0);
+            transition: transform 0.5s ease;
         }
 
-        .home-classy .agatha-glass-card {
-            background: linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(245, 236, 215, 0.12));
-            border: 1px solid rgba(212, 175, 55, 0.35);
-            box-shadow: 0 22px 50px rgba(4, 10, 8, 0.45);
+        .feature-card .card-icon {
+            position: absolute;
+            top: 32px;
+            right: 32px;
+            width: 48px;
+            height: 48px;
+            background: rgba(212, 175, 55, 0.2);
+            backdrop-filter: blur(5px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            color: var(--luxury-gold);
+            opacity: 0;
+            transform: scale(0.5);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
-        .home-classy .agatha-tag {
-            background: rgba(255, 255, 255, 0.08);
-            border: 1px solid rgba(212, 175, 55, 0.24);
+        .feature-card:hover .card-icon {
+            opacity: 1;
+            transform: scale(1) rotate(15deg);
+        }
+
+        @media (max-width: 640px) {
+            .new-hero-headline {
+                font-size: 3rem;
+            }
+
+            .feature-card {
+                height: 350px;
+            }
         }
     </style>
 
@@ -200,56 +598,47 @@
         "latitude": -1.3667,
         "longitude": 35.9833
       },
-      "hasMap": "https://maps.google.com/?q=Naroosura+Narok+Kenya","currenciesAccepted": "KES",
-      "paymentAccepted": "Cash, M-Pesa, Bank Transfer",
-      "starRating": {
-        "@type": "Rating",
-        "ratingValue": "4"
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Resort Services",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Luxury Accommodation",
+              "description": "Premium rooms and suites at the edge of the Maasai Mara."
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Sidai Infinity Pool",
+              "description": "Crystal-clear infinity pool with views of the Loita Hills."
+            }
+          }
+        ]
       },
       "amenityFeature": [
         {"@type": "LocationFeatureSpecification", "name": "Swimming Pool", "value": true},
         {"@type": "LocationFeatureSpecification", "name": "Free WiFi", "value": true},
         {"@type": "LocationFeatureSpecification", "name": "Restaurant", "value": true},
-        {"@type": "LocationFeatureSpecification", "name": "Conference Facilities", "value": true},
-        {"@type": "LocationFeatureSpecification", "name": "Event Halls", "value": true},
-        {"@type": "LocationFeatureSpecification", "name": "Bonfire Area", "value": true},
-        {"@type": "LocationFeatureSpecification", "name": "Birdwatching", "value": true},
-        {"@type": "LocationFeatureSpecification", "name": "Parking", "value": true}
+        {"@type": "LocationFeatureSpecification", "name": "Conference Facilities", "value": true}
       ],
       "sameAs": [
         "https://facebook.com/SidaiResort",
         "https://instagram.com/SidaiResort",
         "https://tiktok.com/@SidaiResort",
         "https://wa.me/254703761951"
-      ],
-      "openingHoursSpecification": {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": [
-          "Monday","Tuesday","Wednesday",
-          "Thursday","Friday","Saturday","Sunday"
-        ],
-        "opens": "00:00",
-        "closes": "23:59"
-      },
-      "servesCuisine": ["Kenyan", "Maasai", "International", "Nyama Choma"],
-      "nearbyAttractions": [
-        "Maasai Mara National Reserve",
-        "Loita Hills Forest",
-        "Narok Town",
-        "Maasai Cultural Sites"
       ]
     },
     {
-      "@type": "LocalBusiness",
-      "@id": "https://sidairesort.com/#business",
-      "name": "Sidai Resort & Hotel",
-      "telephone": "+254703761951",
-      "address": {
-        "@type": "PostalAddress",
-        "addressLocality": "Naroosura",
-        "addressRegion": "Narok County",
-        "addressCountry": "KE"
-      }
+      "@type": "Restaurant",
+      "name": "Sidai Dining",
+      "description": "Authentic Maasai-style nyama choma and international cuisine.",
+      "servesCuisine": ["Kenyan", "International", "Maasai"],
+      "location": { "@id": "https://sidairesort.com/#hotel" }
     }
   ]
 }
@@ -282,7 +671,7 @@
                 aria-label="Primary">
                 <div class="flex items-center justify-between gap-2 sm:gap-4 min-w-0">
                     <a href="index.html" class="home-brand-link flex items-center gap-2 sm:gap-3 min-w-0"
-                        aria-label="Sidai Resort Home">
+                        aria-label="Sidai Resort Home - Return to top">
                         <img src="assets/images/branding/sidai-logo.png" alt="Sidai Resort & Hotel logo Naroosura Kenya"
                             class="brand-logo h-10 w-10 sm:h-12 sm:w-12 object-cover flex-shrink-0 rounded-full border border-gold/40 bg-cream/80 p-0.5 shadow-sm"
                             loading="lazy" width="445" height="440">
@@ -325,7 +714,7 @@
 
                     <button type="button"
                         class="home-menu-toggle lg:hidden inline-flex h-10 w-10 sm:h-11 sm:w-11 items-center justify-center rounded-full border border-brown/25 bg-cream/90 text-brown flex-shrink-0"
-                        aria-label="Toggle mobile menu" @click="mobileOpen = !mobileOpen"
+                        aria-label="Main Menu" @click="mobileOpen = !mobileOpen"
                         :aria-expanded="mobileOpen.toString()">
                         <span x-show="!mobileOpen" x-cloak>
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none"
@@ -384,149 +773,140 @@
 
     <main class="pt-28 lg:pt-32">
 
-        <section id="hero" class="hero-section relative overflow-hidden">
-            <div class="swiper hero-swiper h-full w-full absolute inset-0">
+        <section id="hero" class="new-hero">
+            <div class="swiper hero-swiper w-full h-full absolute inset-0">
                 <div class="swiper-wrapper">
-                    <!-- Slide 1 -->
-                    <div class="swiper-slide hero-slide relative flex items-center justify-center">
-                        <img src="assets/images/facility/entrance-sidai.jpeg"
-                            alt="Entrance to Sidai Resort in Naroosura, Narok Kenya"
-                            class="absolute inset-0 h-full w-full object-cover" fetchpriority="high" width="576"
-                            height="403">
-                        <div class="absolute inset-0 bg-gradient-to-br from-cream/90 via-cream/70 to-gold/25"></div>
-                        <div
-                            class="hero-content relative z-10 sidai-container w-full text-center pt-20">
-                            <p class="hero-eyebrow mb-4 inline-flex items-center rounded-full border border-gold/40 bg-cream/90 px-4 py-1 text-xs font-semibold uppercase tracking-[0.25em] text-brown"
-                                data-swiper-parallax="-100">Welcome Entrance</p>
-                            <h1 class="hero-title font-display text-5xl leading-tight text-brown sm:text-6xl lg:text-7xl drop-shadow-lg"
-                                data-swiper-parallax="-300">Where Good Meets Luxury</h1>
-                            <p class="hero-subtitle mt-4 max-w-2xl mx-auto text-base text-brown/90 sm:text-lg"
-                                data-swiper-parallax="-200">Begin your Sidai experience with a warm and beautiful
-                                arrival.</p>
-                            <div class="hero-actions mt-8 flex justify-center gap-4" data-swiper-parallax="-100">
+                    <!-- Slide 1: Entrance -->
+                    <div class="swiper-slide relative flex items-center justify-center">
+                        <img src="assets/images/facility/entrance-sidai.jpeg" alt="Sidai Resort Entrance"
+                            class="absolute inset-0 w-full h-full object-cover">
+                        <div class="new-hero-overlay"></div>
+                        <div class="new-hero-content" data-swiper-parallax="-300">
+                            <!-- Rotating Badge -->
+                            <div class="rotating-badge -top-10 -right-10 hidden lg:flex">
+                                <svg viewBox="0 0 100 100">
+                                    <path id="circlePath" d="M 50, 50 m -37, 0 a 37,37 0 1,1 74,0 a 37,37 0 1,1 -74,0"
+                                        fill="none" />
+                                    <text>
+                                        <textPath xlink:href="#circlePath">Excellence • Sidai Resort • Since 2021 •
+                                        </textPath>
+                                    </text>
+                                </svg>
+                            </div>
+                            <p
+                                class="animate-up text-gold font-semibold uppercase tracking-[0.3em] mb-6 text-sm sm:text-base">
+                                Experience Excellence</p>
+                            <h1
+                                class="new-hero-headline animate-up delay-1 text-5xl sm:text-7xl lg:text-8xl text-white mb-8">
+                                Escape to Paradise <br>
+                                <span class="text-gold">at the Edge of the Mara</span>
+                            </h1>
+                            <p
+                                class="new-hero-sub animate-up delay-2 text-lg sm:text-xl text-white/90 max-w-3xl mx-auto mb-10 leading-relaxed italic">
+                                "Sidai" is a Maasai word meaning <span class="text-gold">excellence</span> — and
+                                excellence is not an aspiration here, it is the irreducible minimum.
+                            </p>
+                            <div class="animate-up delay-3 flex flex-col sm:flex-row items-center justify-center gap-6">
                                 <a href="booking.html"
-                                    class="hero-action inline-flex items-center rounded-full bg-gold px-7 py-3 text-sm font-semibold uppercase tracking-[0.15em] text-night transition hover:bg-gold-light">Book
-                                    Stay</a>
-                                <a href="#about"
-                                    class="hero-action inline-flex items-center rounded-full border border-brown/25 bg-cream/85 px-7 py-3 text-sm font-semibold uppercase tracking-[0.15em] text-brown transition hover:bg-gold hover:text-night backdrop-blur-sm">Explore</a>
+                                    class="cta-primary px-10 py-5 rounded-full text-sm font-bold uppercase tracking-widest w-full sm:w-auto">Book
+                                    Your Stay</a>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Slide 2 -->
-                    <div class="swiper-slide hero-slide relative flex items-center justify-center">
-                        <img src="assets/images/nature/karibu.jpeg"
-                            alt="Karibu welcome at Sidai Resort in Naroosura, Narok Kenya"
-                            class="absolute inset-0 h-full w-full object-cover" loading="eager" width="576"
-                            height="396">
-                        <div class="absolute inset-0 bg-gradient-to-br from-cream/90 via-cream/70 to-gold/25"></div>
-                        <div
-                            class="hero-content relative z-10 sidai-container w-full text-center pt-20">
-                            <p class="hero-eyebrow mb-4 inline-flex items-center rounded-full border border-gold/40 bg-cream/90 px-4 py-1 text-xs font-semibold uppercase tracking-[0.25em] text-brown"
-                                data-swiper-parallax="-100">Karibu</p>
-                            <h2 class="hero-title font-display text-5xl leading-tight text-brown sm:text-6xl lg:text-7xl drop-shadow-lg"
-                                data-swiper-parallax="-300">Welcome to Sidai</h2>
-                            <p class="hero-subtitle mt-4 max-w-2xl mx-auto text-base text-brown/90 sm:text-lg"
-                                data-swiper-parallax="-200">Feel at home from the first moment you arrive.</p>
-                            <div class="hero-actions mt-8 flex justify-center gap-4" data-swiper-parallax="-100">
-                                <a href="services.html"
-                                    class="hero-action inline-flex items-center rounded-full bg-gold px-7 py-3 text-sm font-semibold uppercase tracking-[0.15em] text-night transition hover:bg-gold-light">View
-                                    Experiences</a>
+                    <!-- Slide 2: Pool -->
+                    <div class="swiper-slide relative flex items-center justify-center">
+                        <img src="assets/images/experiences/swimming-pool.jpeg" alt="Sidai Resort Infinity Pool"
+                            class="absolute inset-0 w-full h-full object-cover">
+                        <div class="new-hero-overlay"></div>
+                        <div class="new-hero-content" data-swiper-parallax="-300">
+                            <p class="text-gold font-semibold uppercase tracking-[0.3em] mb-6 text-sm sm:text-base">Pure
+                                Serenity</p>
+                            <h2 class="new-hero-headline text-5xl sm:text-7xl lg:text-8xl text-white mb-8">
+                                Dive into <br>
+                                <span class="text-gold">The Blue Horizon</span>
+                            </h2>
+                            <p
+                                class="new-hero-sub text-lg sm:text-xl text-white/90 max-w-3xl mx-auto mb-10 leading-relaxed">
+                                Our crystal-clear infinity pool offers breathtaking views of the Loita Hills.
+                            </p>
+                            <div class="flex flex-col sm:flex-row items-center justify-center gap-6">
+                                <a href="services.html?tab=swimming"
+                                    class="cta-primary px-10 py-5 rounded-full text-sm font-bold uppercase tracking-widest w-full sm:w-auto"
+                                    aria-label="Explore Poolside Services">Explore
+                                    Poolside</a>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Slide 3 -->
-                    <div class="swiper-slide hero-slide relative flex items-center justify-center">
-                        <img src="assets/images/nature/enkanasa.jpeg"
-                            alt="Enkanasa accommodation at Sidai Resort in Naroosura, Narok Kenya"
-                            class="absolute inset-0 h-full w-full object-cover" loading="eager" width="1200"
-                            height="1600">
-                        <div class="absolute inset-0 bg-gradient-to-br from-cream/90 via-cream/70 to-gold/25"></div>
-                        <div
-                            class="hero-content relative z-10 sidai-container w-full text-center pt-20">
-                            <p class="hero-eyebrow mb-4 inline-flex items-center rounded-full border border-gold/40 bg-cream/90 px-4 py-1 text-xs font-semibold uppercase tracking-[0.25em] text-brown"
-                                data-swiper-parallax="-100">Enkanasa</p>
-                            <h2 class="hero-title font-display text-5xl leading-tight text-brown sm:text-6xl lg:text-7xl drop-shadow-lg"
-                                data-swiper-parallax="-300">Stay in Comfort</h2>
-                            <p class="hero-subtitle mt-4 max-w-2xl mx-auto text-base text-brown/90 sm:text-lg"
-                                data-swiper-parallax="-200">Experience restful accommodation with authentic Sidai
-                                hospitality.</p>
-                            <div class="hero-actions mt-8 flex justify-center gap-4" data-swiper-parallax="-100">
+                    <!-- Slide 3: Accommodation -->
+                    <div class="swiper-slide relative flex items-center justify-center">
+                        <img src="assets/images/rooms/bedsetting.jpeg" alt="Sidai Resort Luxury Suites"
+                            class="absolute inset-0 w-full h-full object-cover">
+                        <div class="new-hero-overlay"></div>
+                        <div class="new-hero-content" data-swiper-parallax="-300">
+                            <p class="text-gold font-semibold uppercase tracking-[0.3em] mb-6 text-sm sm:text-base">
+                                Refined Comfort</p>
+                            <h2 class="new-hero-headline text-5xl sm:text-7xl lg:text-8xl text-white mb-8">
+                                Luxury <br>
+                                <span class="text-gold">Maasai Retreats</span>
+                            </h2>
+                            <p
+                                class="new-hero-sub text-lg sm:text-xl text-white/90 max-w-3xl mx-auto mb-10 leading-relaxed">
+                                Exceptional service is simply the standard. Nothing less. Nothing but the best.
+                            </p>
+                            <div class="flex flex-col sm:flex-row items-center justify-center gap-6">
                                 <a href="rooms.html"
-                                    class="hero-action inline-flex items-center rounded-full bg-gold px-7 py-3 text-sm font-semibold uppercase tracking-[0.15em] text-night transition hover:bg-gold-light">View
-                                    Rooms</a>
+                                    class="cta-primary px-10 py-5 rounded-full text-sm font-bold uppercase tracking-widest w-full sm:w-auto">View
+                                    Suites</a>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Slide 4 -->
-                    <div class="swiper-slide hero-slide relative flex items-center justify-center">
-                        <img src="assets/images/experiences/swimming-pool.jpeg"
-                            alt="Swimming pool at Sidai Resort in Naroosura, Narok Kenya"
-                            class="absolute inset-0 h-full w-full object-cover" loading="eager" width="1280"
-                            height="960">
-                        <div class="absolute inset-0 bg-gradient-to-br from-cream/90 via-cream/70 to-gold/25"></div>
-                        <div
-                            class="hero-content relative z-10 sidai-container w-full text-center pt-20">
-                            <p class="hero-eyebrow mb-4 inline-flex items-center rounded-full border border-gold/40 bg-cream/90 px-4 py-1 text-xs font-semibold uppercase tracking-[0.25em] text-brown"
-                                data-swiper-parallax="-100">Pool Experience</p>
-                            <h2 class="hero-title font-display text-5xl leading-tight text-brown sm:text-6xl lg:text-7xl drop-shadow-lg"
-                                data-swiper-parallax="-300">Dive into Serenity</h2>
-                            <p class="hero-subtitle mt-4 max-w-2xl mx-auto text-base text-brown/90 sm:text-lg"
-                                data-swiper-parallax="-200">Enjoy our poolside moments with clear Sidai identity and
-                                style.</p>
-                            <div class="hero-actions mt-8 flex justify-center gap-4" data-swiper-parallax="-100">
-                                <a href="services.html#swimming"
-                                    class="hero-action inline-flex items-center rounded-full bg-gold px-7 py-3 text-sm font-semibold uppercase tracking-[0.15em] text-night transition hover:bg-gold-light">Discover
-                                    More</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Slide 5 -->
-                    <div class="swiper-slide hero-slide relative flex items-center justify-center">
-                        <img src="assets/images/nature/serene-places.jpeg"
-                            alt="A boy at the pool at Sidai Resort in Naroosura, Narok Kenya"
-                            class="absolute inset-0 h-full w-full object-cover" loading="eager" width="1200"
-                            height="1600">
-                        <div class="absolute inset-0 bg-gradient-to-br from-cream/90 via-cream/70 to-gold/25"></div>
-                        <div
-                            class="hero-content relative z-10 sidai-container w-full text-center pt-20">
-                            <p class="hero-eyebrow mb-4 inline-flex items-center rounded-full border border-gold/40 bg-cream/90 px-4 py-1 text-xs font-semibold uppercase tracking-[0.25em] text-brown"
-                                data-swiper-parallax="-100">Pool Moments</p>
-                            <h2 class="hero-title font-display text-5xl leading-tight text-brown sm:text-6xl lg:text-7xl drop-shadow-lg"
-                                data-swiper-parallax="-300">Refresh & Relax</h2>
-                            <p class="hero-subtitle mt-4 max-w-2xl mx-auto text-base text-brown/90 sm:text-lg"
-                                data-swiper-parallax="-200">Make every sunny day a memory at the Sidai poolside.</p>
-                            <div class="hero-actions mt-8 flex justify-center gap-4" data-swiper-parallax="-100">
-                                <a href="services.html#swimming"
-                                    class="hero-action inline-flex items-center rounded-full bg-gold px-7 py-3 text-sm font-semibold uppercase tracking-[0.15em] text-night transition hover:bg-gold-light">Discover
-                                    More</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Slide 6 -->
-                    <div class="swiper-slide hero-slide relative flex items-center justify-center">
-                        <img src="assets/images/events/magical-garden.jpeg"
-                            alt="Magical garden setting at Sidai Resort in Naroosura, Narok Kenya"
-                            class="absolute inset-0 h-full w-full object-cover" loading="eager" width="1600"
-                            height="1200">
-                        <div class="absolute inset-0 bg-gradient-to-br from-cream/90 via-cream/70 to-gold/25"></div>
-                        <div
-                            class="hero-content relative z-10 sidai-container w-full text-center pt-20">
-                            <p class="hero-eyebrow mb-4 inline-flex items-center rounded-full border border-gold/40 bg-cream/90 px-4 py-1 text-xs font-semibold uppercase tracking-[0.25em] text-brown"
-                                data-swiper-parallax="-100">Garden Views</p>
-                            <h2 class="hero-title font-display text-5xl leading-tight text-brown sm:text-6xl lg:text-7xl drop-shadow-lg"
-                                data-swiper-parallax="-300">Nature in Full Bloom</h2>
-                            <p class="hero-subtitle mt-4 max-w-2xl mx-auto text-base text-brown/90 sm:text-lg"
-                                data-swiper-parallax="-200">Discover the newest garden moment now featured in our hero
-                                showcase.</p>
-                            <div class="hero-actions mt-8 flex justify-center gap-4" data-swiper-parallax="-100">
+                    <!-- Slide 4: Nature -->
+                    <div class="swiper-slide relative flex items-center justify-center">
+                        <img src="assets/images/nature/serene-places.jpeg" alt="Sidai Resort Nature"
+                            class="absolute inset-0 w-full h-full object-cover">
+                        <div class="new-hero-overlay"></div>
+                        <div class="new-hero-content" data-swiper-parallax="-300">
+                            <p class="text-gold font-semibold uppercase tracking-[0.3em] mb-6 text-sm sm:text-base">
+                                Natural Beauty</p>
+                            <h2 class="new-hero-headline text-5xl sm:text-7xl lg:text-8xl text-white mb-8">
+                                Nature <br>
+                                <span class="text-gold">In Full Bloom</span>
+                            </h2>
+                            <p
+                                class="new-hero-sub text-lg sm:text-xl text-white/90 max-w-3xl mx-auto mb-10 leading-relaxed">
+                                Wander through our lush arboretum and connect with the spirit of the Mara.
+                            </p>
+                            <div class="flex flex-col sm:flex-row items-center justify-center gap-6">
                                 <a href="experiences.html"
-                                    class="hero-action inline-flex items-center rounded-full bg-gold px-7 py-3 text-sm font-semibold uppercase tracking-[0.15em] text-night transition hover:bg-gold-light">View
-                                    Moments</a>
+                                    class="cta-primary px-10 py-5 rounded-full text-sm font-bold uppercase tracking-widest w-full sm:w-auto">Nature
+                                    Walks</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 5: Karibu -->
+                    <div class="swiper-slide relative flex items-center justify-center">
+                        <img src="assets/images/nature/karibu.jpeg" alt="Welcome to Sidai"
+                            class="absolute inset-0 w-full h-full object-cover">
+                        <div class="new-hero-overlay"></div>
+                        <div class="new-hero-content" data-swiper-parallax="-300">
+                            <p class="text-gold font-semibold uppercase tracking-[0.3em] mb-6 text-sm sm:text-base">
+                                Karibu Sana</p>
+                            <h2 class="new-hero-headline text-5xl sm:text-7xl lg:text-8xl text-white mb-8">
+                                Welcome to <br>
+                                <span class="text-gold">Our Family</span>
+                            </h2>
+                            <p
+                                class="new-hero-sub text-lg sm:text-xl text-white/90 max-w-3xl mx-auto mb-10 leading-relaxed">
+                                Experience authentic hospitality where every detail is crafted for your delight.
+                            </p>
+                            <div class="flex flex-col sm:flex-row items-center justify-center gap-6">
+                                <a href="contact.html"
+                                    class="cta-primary px-10 py-5 rounded-full text-sm font-bold uppercase tracking-widest w-full sm:w-auto">Plan
+                                    Your Visit</a>
                             </div>
                         </div>
                     </div>
@@ -539,25 +919,59 @@
                 <div class="swiper-pagination"></div>
             </div>
 
-            <a href="#stats"
-                class="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 hidden flex-col items-center gap-2 rounded-full px-4 py-2 text-xs uppercase tracking-[0.25em] text-brown lg:flex transition hover:text-gold"
-                aria-label="Scroll to statistics">
-                Scroll
-                <span class="inline-block animate-bounce">&darr;</span>
-            </a>
+            <!-- Integrated Stats Overlay (Lg only) -->
+            <div class="absolute bottom-16 sm:bottom-24 left-0 w-full z-30" data-aos="fade-up" data-aos-delay="800">
+                <div class="sidai-container">
+                    <div
+                        class="max-w-4xl mx-auto bg-night/40 backdrop-blur-xl border border-white/10 p-4 sm:p-6 rounded-[1.5rem] sm:rounded-[2rem] shadow-2xl flex justify-around items-center gap-2 sm:gap-4 overflow-x-auto no-scrollbar">
+                        <div class="text-center group flex-shrink-0">
+                            <span
+                                class="block text-2xl sm:text-3xl font-display text-gold group-hover:scale-110 transition-transform">300+</span>
+                            <span class="text-[7px] sm:text-[9px] uppercase tracking-[0.2em] text-white/60">Bird Species</span>
+                        </div>
+                        <div class="w-px h-6 sm:h-8 bg-white/10 flex-shrink-0"></div>
+                        <div class="text-center group flex-shrink-0">
+                            <span
+                                class="block text-2xl sm:text-3xl font-display text-gold group-hover:scale-110 transition-transform">50+</span>
+                            <span class="text-[7px] sm:text-[9px] uppercase tracking-[0.2em] text-white/60">Organic Crops</span>
+                        </div>
+                        <div class="w-px h-6 sm:h-8 bg-white/10 flex-shrink-0"></div>
+                        <div class="text-center group flex-shrink-0">
+                            <span
+                                class="block text-2xl sm:text-3xl font-display text-gold group-hover:scale-110 transition-transform">100%</span>
+                            <span class="text-[7px] sm:text-[9px] uppercase tracking-[0.2em] text-white/60">Luxury Service</span>
+                        </div>
+                        <div class="w-px h-6 sm:h-8 bg-white/10 flex-shrink-0"></div>
+                        <div class="text-center group flex-shrink-0">
+                            <span
+                                class="block text-2xl sm:text-3xl font-display text-gold group-hover:scale-110 transition-transform">5★</span>
+                            <span class="text-[7px] sm:text-[9px] uppercase tracking-[0.2em] text-white/60">Guest Rating</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Scroll Indicator -->
+            <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 animate-bounce">
+                <a href="#experiences" class="text-white/40 hover:text-gold transition-colors">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none"
+                        stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M7 13l5 5 5-5M7 6l5 5 5-5" />
+                    </svg>
+                </a>
+            </div>
         </section>
 
-        <!-- Swiper Initialization Script -->
+        <!-- Swiper Initialization -->
         <script>
             document.addEventListener('DOMContentLoaded', () => {
                 if (window.Swiper) {
                     new Swiper('.hero-swiper', {
-                        initialSlide: 0,
-                        speed: 1200,
+                        speed: 1500,
                         parallax: true,
                         loop: true,
                         autoplay: {
-                            delay: 6000,
+                            delay: 5000,
                             disableOnInteraction: false,
                         },
                         pagination: {
@@ -577,395 +991,177 @@
             });
         </script>
 
-
-
-        <section id="stats" class="sidai-section bg-night">
-            <div class="sidai-container grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-                <article
-                    class="stats-card sidai-card-clean border-gold/30 bg-gold/5 p-8 text-center hover:border-gold/60 transition"
-                    data-aos="fade-up">
-                    <div class="stats-icon inline-flex items-center justify-center w-16 h-16 rounded-full bg-gold/20 mb-4 mx-auto">
-                        <svg class="w-8 h-8 text-gold" fill="currentColor" viewBox="0 0 24 24">
-                            <path
-                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z" />
-                        </svg>
-                    </div>
-                    <p class="stats-count text-5xl font-display text-gold font-bold" data-counter data-counter-target="2"
-                        data-counter-suffix="+">0</p>
-                    <p class="mt-3 text-sm uppercase tracking-[0.2em] text-cream font-semibold">Event Halls</p>
-                    <p class="mt-2 text-xs text-cream/70 leading-relaxed">Elegant spaces for celebrations</p>
-                </article>
-                <article
-                    class="stats-card rounded-2xl border border-gold/30 bg-gradient-to-br from-gold/10 to-transparent p-8 text-center hover:border-gold/60 transition"
-                    data-aos="fade-up" data-aos-delay="80">
-                    <div class="stats-icon inline-flex items-center justify-center w-16 h-16 rounded-full bg-gold/20 mb-4 mx-auto">
-                        <svg class="w-8 h-8 text-gold" fill="currentColor" viewBox="0 0 24 24">
-                            <path
-                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z" />
-                        </svg>
-                    </div>
-                    <p class="stats-count text-5xl font-display text-gold font-bold" data-counter data-counter-target="11">0</p>
-                    <p class="mt-3 text-sm uppercase tracking-[0.2em] text-cream font-semibold">No. of Rooms</p>
-                    <p class="mt-2 text-xs text-cream/70 leading-relaxed">Comfortable stays, thoughtfully designed</p>
-                </article>
-                <article
-                    class="stats-card rounded-2xl border border-gold/30 bg-gradient-to-br from-gold/10 to-transparent p-8 text-center hover:border-gold/60 transition"
-                    data-aos="fade-up" data-aos-delay="140">
-                    <div class="stats-icon inline-flex items-center justify-center w-16 h-16 rounded-full bg-gold/20 mb-4 mx-auto">
-                        <svg class="w-8 h-8 text-gold" fill="currentColor" viewBox="0 0 24 24">
-                            <path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z" />
-                        </svg>
-                    </div>
-                    <p class="stats-count text-5xl font-display text-gold font-bold" data-counter data-counter-target="5"
-                        data-counter-suffix="+">0</p>
-                    <p class="mt-3 text-sm uppercase tracking-[0.2em] text-cream font-semibold">Experiences</p>
-                    <p class="mt-2 text-xs text-cream/70 leading-relaxed">From poolside to fireside</p>
-                </article>
-                <article
-                    class="stats-card rounded-2xl border border-gold/30 bg-gradient-to-br from-gold/10 to-transparent p-8 text-center hover:border-gold/60 transition"
-                    data-aos="fade-up" data-aos-delay="200">
-                    <div class="stats-icon inline-flex items-center justify-center w-16 h-16 rounded-full bg-gold/20 mb-4 mx-auto">
-                        <svg class="w-8 h-8 text-gold" fill="currentColor" viewBox="0 0 24 24">
-                            <path
-                                d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-2h2v2zm0-4h-2V7h2v6z" />
-                        </svg>
-                    </div>
-                    <p class="stats-count text-5xl font-display text-gold font-bold" data-counter data-counter-target="100"
-                        data-counter-suffix="%">0</p>
-                    <p class="mt-3 text-sm uppercase tracking-[0.2em] text-cream font-semibold">Excellence</p>
-                    <p class="mt-2 text-xs text-cream/70 leading-relaxed">The Sidai standard always</p>
-                </article>
-            </div>
-        </section>
-
-        <section id="about" class="sidai-section sidai-bg-main sidai-divider-top">
-            <div class="sidai-container grid gap-10 lg:grid-cols-2 lg:items-center">
-                <div class="relative overflow-hidden rounded-3xl shadow-2xl" data-aos="fade-right">
-                    <img src="assets/images/nature/serene-places.jpeg"
-                        alt="Poolside view at Sidai Resort in Naroosura, Narok Kenya" class="h-full w-full object-cover"
-                        loading="lazy" data-parallax-speed="0.18" width="1280" height="960">
-                </div>
-                <div data-aos="fade-left">
-                    <p class="text-sm font-semibold uppercase tracking-[0.25em] text-earth">The Sidai Philosophy</p>
-                    <h2 class="mt-3 font-display text-4xl text-brown sm:text-5xl">Excellence is the irreducible minimum.
-                    </h2>
-                    <div class="mt-6 space-y-4 text-base leading-8 text-brown/90 sm:text-lg">
-                        <p><strong>"Sidai"</strong> is a Maasai word meaning <em>excellence</em> — and excellence is not
-                            an aspiration here, it is the irreducible minimum. From the moment you arrive, exceptional
-                            service is simply the standard. Nothing less. Nothing but the best.</p>
-                        <p>Whether you are seeking a tranquil escape from the city, a vibrant celebration with your
-                            loved ones, a productive conference away from the noise, or a soul-stirring encounter with
-                            raw nature — <strong>Sidai is the place to be.</strong></p>
-                    </div>
-                    <div
-                        class="mt-8 rounded-2xl border border-gold/40 bg-gradient-to-br from-gold/5 to-transparent p-6 shadow-sm">
-                        <p class="text-sm uppercase tracking-[0.2em] text-earth font-semibold">Our Commitment</p>
-                        <p class="mt-3 font-display text-2xl text-gold italic">"Nothing but the Best"</p>
-                        <p class="mt-2 text-sm text-brown/80">In every detail, every service, every moment you spend
-                            with us.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="services" class="sidai-section sidai-section-alt sidai-divider-top">
+        <!-- Redesign: Feature Section -->
+        <section id="experiences" class="feature-section">
             <div class="sidai-container">
-                <div class="flex flex-wrap items-end justify-between gap-4">
-                    <div>
-                        <p class="text-sm font-semibold uppercase tracking-[0.25em] text-earth">Experiences</p>
-                        <h2 class="sidai-heading">Signature Services</h2>
-                    </div>
-                    <a href="services.html"
-                        class="text-sm font-semibold uppercase tracking-[0.2em] text-forest hover:text-gold">Explore all
-                        services &rarr;</a>
+                <div class="text-center mb-16" data-aos="fade-up">
+                    <span class="text-earth font-bold uppercase tracking-[0.2em] mb-4 block">Signature Moments</span>
+                    <h2 class="font-display text-4xl sm:text-6xl text-brown">Unforgettable Experiences</h2>
+                    <div class="w-24 h-1 bg-gold mx-auto mt-6"></div>
                 </div>
 
-                <div class="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-                    <a href="services.html#pool"
-                        class="group overflow-hidden rounded-2xl border border-brown/10 bg-cream/50 transition hover:-translate-y-1 hover:shadow-xl"
-                        data-aos="fade-up">
-                        <img src="assets/images/nature/serene-places.jpeg"
-                            alt="Swimming pool sessions at Sidai Resort in Naroosura, Narok Kenya"
-                            class="h-52 w-full object-cover transition duration-500 group-hover:scale-105"
-                            loading="lazy" width="1040" height="780">
-                        <div class="p-5">
-                            <h3 class="font-display text-3xl text-brown">Swimming Pool</h3>
-                            <p class="mt-2 text-sm text-brown/80">Book serene pool sessions with optional lounge and
-                                beverage service.</p>
+                <div class="feature-card-container">
+                    <!-- 1. Infinity Pool -->
+                    <a href="services.html?tab=swimming" class="feature-card" data-aos="fade-up" aria-label="Explore Sidai Infinity Pool">
+                        <img src="assets/images/experiences/pool-area.jpeg" alt="Luxury Infinity Pool at Sidai Resort with forest view" loading="lazy">
+                        <div class="card-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path
+                                    d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1" />
+                                <path
+                                    d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1" />
+                                <path
+                                    d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1" />
+                            </svg>
+                        </div>
+                        <div class="feature-card-content">
+                            <h3>Infinity Pool</h3>
+                            <p>Dive into serenity with panoramic views of the African horizon.</p>
                         </div>
                     </a>
-                    <a href="services.html#halls"
-                        class="group overflow-hidden rounded-2xl border border-brown/10 bg-cream/50 transition hover:-translate-y-1 hover:shadow-xl"
-                        data-aos="fade-up" data-aos-delay="60">
-                        <img src="assets/images/events/conference-setting.jpeg"
-                            alt="Event hall setup at Sidai Resort in Naroosura, Narok Kenya"
-                            class="h-52 w-full object-cover transition duration-500 group-hover:scale-105"
-                            loading="lazy" width="1600" height="1200">
-                        <div class="p-5">
-                            <h3 class="font-display text-3xl text-brown">Event Halls</h3>
-                            <p class="mt-2 text-sm text-brown/80">Two spacious halls for weddings, graduations, parties,
-                                and corporate functions.</p>
+
+                    <!-- 2. Arboretum & Farm Visit -->
+                    <a href="services.html?tab=farm-visits" class="feature-card" data-aos="fade-up" data-aos-delay="100" aria-label="Explore Arboretum and Farm">
+                        <img src="assets/images/redesign/feature_arboretum.png"
+                            alt="Botanical Garden and Organic Farm at Sidai Resort" loading="lazy">
+                        <div class="card-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M12 2L4.5 9.5a5 5 0 0 1 7 7 5 5 0 0 1 7-7L12 2z" />
+                            </svg>
+                        </div>
+                        <div class="feature-card-content">
+                            <h3>Arboretum & Farm</h3>
+                            <p>Connect with nature through lush botanical walks and organic farm tours.</p>
                         </div>
                     </a>
-                    <a href="services.html#dining"
-                        class="group overflow-hidden rounded-2xl border border-brown/10 bg-cream/50 transition hover:-translate-y-1 hover:shadow-xl"
-                        data-aos="fade-up" data-aos-delay="120">
-                        <img src="assets/images/dining/goat-soup.jpeg"
-                            alt="Fine dining setup at Sidai Resort in Naroosura, Narok Kenya"
-                            class="h-52 w-full object-cover transition duration-500 group-hover:scale-105"
-                            loading="lazy" width="960" height="1280">
-                        <div class="p-5">
-                            <h3 class="font-display text-3xl text-brown">Fine Dining</h3>
-                            <p class="mt-2 text-sm text-brown/80">Pre-order curated Kenyan, Maasai-inspired, and
-                                international dishes.</p>
+
+                    <!-- 3. Bird Watching -->
+                    <a href="services.html?tab=birdwatching" class="feature-card" data-aos="fade-up" data-aos-delay="200" aria-label="Explore Bird Watching">
+                        <img src="assets/images/redesign/feature_bird.png" alt="Bird Watching experience in Naroosura, Narok County" loading="lazy">
+                        <div class="card-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
+                            </svg>
+                        </div>
+                        <div class="feature-card-content">
+                            <h3>Bird Watching</h3>
+                            <p>Discover a vibrant paradise for rare and exotic bird species.</p>
                         </div>
                     </a>
-                    <a href="services.html#activities"
-                        class="group overflow-hidden rounded-2xl border border-brown/10 bg-cream/50 transition hover:-translate-y-1 hover:shadow-xl"
-                        data-aos="fade-up" data-aos-delay="180">
-                        <img src="assets/images/facility/farm-eden-entrance.jpeg"
-                            alt="Nature and activities in Naroosura, Narok Kenya"
-                            class="h-52 w-full object-cover transition duration-500 group-hover:scale-105"
-                            loading="lazy" width="1200" height="1600">
-                        <div class="p-5">
-                            <h3 class="font-display text-3xl text-brown">Playground</h3>
-                            <p class="mt-2 text-sm text-brown/80">Engage in thrilling outdoor adventures and serene
-                                nature walks.</p>
+
+                    <!-- 4. Breathtaking Sunsets -->
+                    <a href="services.html?tab=sundowners" class="feature-card" data-aos="fade-up" aria-label="Explore Sundowners and Sunsets">
+                        <img src="assets/images/redesign/feature_sunset.png" alt="Spectacular sunset over Loita Hills at Sidai Resort" loading="lazy">
+                        <div class="card-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <circle cx="12" cy="12" r="5" />
+                                <line x1="12" y1="1" x2="12" y2="3" />
+                                <line x1="12" y1="21" x2="12" y2="23" />
+                                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" />
+                                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                                <line x1="1" y1="12" x2="3" y2="12" />
+                                <line x1="21" y1="12" x2="23" y2="12" />
+                                <line x1="4.22" y1="18.36" x2="5.64" y2="16.93" />
+                                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+                            </svg>
+                        </div>
+                        <div class="feature-card-content">
+                            <h3>Magical Sunsets</h3>
+                            <p>Witness the sky transform into a canvas of gold and crimson.</p>
                         </div>
                     </a>
-                    <a href="services.html#music-shoots"
-                        class="group overflow-hidden rounded-2xl border border-brown/10 bg-cream/50 transition hover:-translate-y-1 hover:shadow-xl"
-                        data-aos="fade-up" data-aos-delay="240">
-                        <img src="assets/images/nature/symbol-of-love-photo-area.jpeg"
-                            alt="Music and film shoot location in Naroosura, Narok Kenya"
-                            class="h-52 w-full object-cover transition duration-500 group-hover:scale-105"
-                            loading="lazy" width="1200" height="1600">
-                        <div class="p-5">
-                            <h3 class="font-display text-3xl text-brown">Music Shoots</h3>
-                            <p class="mt-2 text-sm text-brown/80">Premium indoor and outdoor locations for creative
-                                productions.</p>
+
+                    <!-- 5. Luxury Accommodation -->
+                    <a href="rooms.html" class="feature-card" data-aos="fade-up" data-aos-delay="100" aria-label="View Luxury Accommodation">
+                        <img src="assets/images/rooms/rooms.jpeg" alt="Luxury Suite Interior at Sidai Resort" loading="lazy">
+                        <div class="card-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                                <polyline points="9 22 9 12 15 12 15 22" />
+                            </svg>
+                        </div>
+                        <div class="feature-card-content">
+                            <h3>Luxury Suites</h3>
+                            <p>Elegant design meets rustic charm for the ultimate restful retreat.</p>
                         </div>
                     </a>
-                    <a href="services.html#conference"
-                        class="group overflow-hidden rounded-2xl border border-brown/10 bg-cream/50 transition hover:-translate-y-1 hover:shadow-xl"
-                        data-aos="fade-up" data-aos-delay="300">
-                        <img src="assets/images/events/conference-hall.jpeg"
-                            alt="Conference and business facilities in Naroosura, Narok Kenya"
-                            class="h-52 w-full object-cover transition duration-500 group-hover:scale-105"
-                            loading="lazy" width="720" height="539">
-                        <div class="p-5">
-                            <h3 class="font-display text-3xl text-brown">Conference</h3>
-                            <p class="mt-2 text-sm text-brown/80">Professional packages for meetings, launches, and
-                                strategy sessions.</p>
+
+                    <!-- 6. Maasai Mara Proximity -->
+                    <a href="experiences.html" class="feature-card" data-aos="fade-up" data-aos-delay="200" aria-label="Explore Mara Gateway">
+                        <img src="assets/images/redesign/feature_mara.png" alt="Gateway to Maasai Mara National Reserve" loading="lazy">
+                        <div class="card-icon">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round">
+                                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                                <circle cx="12" cy="10" r="3" />
+                            </svg>
+                        </div>
+                        <div class="feature-card-content">
+                            <h3>Mara Gateway</h3>
+                            <p>The perfect base for your legendary Maasai Mara safari adventures.</p>
                         </div>
                     </a>
                 </div>
             </div>
         </section>
 
-
-        <!-- Why Choose Us Section (Green Grid Replacement) -->
-        <section class="sidai-section bg-forest text-cream relative overflow-hidden" id="why-choose-us">
-            <div class="absolute inset-0 z-0 opacity-10">
-                <img src="assets/images/rooms/bedsetting.jpeg" alt="Background Texture in Naroosura, Narok Kenya"
-                    class="w-full h-full object-cover" loading="lazy" width="1280" height="960">
-            </div>
+        <!-- Redesign: Resort Walkthrough (Videos) -->
+        <section id="walkthrough" class="sidai-section relative overflow-hidden bg-night text-cream">
             <div class="sidai-container relative z-10">
                 <div class="text-center mb-16" data-aos="fade-up">
-                    <span class="text-sm font-bold uppercase tracking-[0.2em] text-gold mb-2 block">✅ Why Choose Sidai
-                        Resort?</span>
-                    <h2 class="font-display text-4xl sm:text-5xl text-white">The Sidai Standard</h2>
-                </div>
-                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    <div class="bg-night/40 backdrop-blur-sm border border-gold/30 p-6 rounded-3xl shadow-lg hover:bg-gold/10 transition"
-                        data-aos="fade-up" data-aos-delay="0">
-                        <div class="text-3xl mb-3">🌿</div>
-                        <h3 class="font-display text-xl text-gold mb-2 font-bold">1. Breathtaking Setting</h3>
-                        <p class="text-cream/80 text-sm">Perched on the stunning slopes of the Loita Hills with
-                            unbelievable sunsets.</p>
-                    </div>
-                    <div class="bg-night/40 backdrop-blur-sm border border-gold/30 p-6 rounded-3xl shadow-lg hover:bg-gold/10 transition"
-                        data-aos="fade-up" data-aos-delay="50">
-                        <div class="text-3xl mb-3">🎯</div>
-                        <h3 class="font-display text-xl text-gold mb-2 font-bold">2. Absolute Excellence</h3>
-                        <p class="text-cream/80 text-sm">"Sidai" means excellence. We guarantee nothing but the absolute
-                            best.</p>
-                    </div>
-                    <div class="bg-night/40 backdrop-blur-sm border border-gold/30 p-6 rounded-3xl shadow-lg hover:bg-gold/10 transition"
-                        data-aos="fade-up" data-aos-delay="100">
-                        <div class="text-3xl mb-3">🔥</div>
-                        <h3 class="font-display text-xl text-gold mb-2 font-bold">3. Every Occasion</h3>
-                        <p class="text-cream/80 text-sm">Built for every mood: grand weddings, large conferences, or
-                            intimate bonfires.</p>
-                    </div>
-                    <div class="bg-night/40 backdrop-blur-sm border border-gold/30 p-6 rounded-3xl shadow-lg hover:bg-gold/10 transition"
-                        data-aos="fade-up" data-aos-delay="150">
-                        <div class="text-3xl mb-3">🐦</div>
-                        <h3 class="font-display text-xl text-gold mb-2 font-bold">4. Living Nature</h3>
-                        <p class="text-cream/80 text-sm">A natural paradise teeming with over 300 bird species and
-                            ancient forests.</p>
-                    </div>
-                    <div class="bg-night/40 backdrop-blur-sm border border-gold/30 p-6 rounded-3xl shadow-lg hover:bg-gold/10 transition"
-                        data-aos="fade-up" data-aos-delay="200">
-                        <div class="text-3xl mb-3">🌅</div>
-                        <h3 class="font-display text-xl text-gold mb-2 font-bold">5. Golden Sundowners</h3>
-                        <p class="text-cream/80 text-sm">Unmatched evening views and cocktails from our elevated outdoor
-                            balcony.</p>
-                    </div>
-                    <div class="bg-night/40 backdrop-blur-sm border border-gold/30 p-6 rounded-3xl shadow-lg hover:bg-gold/10 transition"
-                        data-aos="fade-up" data-aos-delay="250">
-                        <div class="text-3xl mb-3">📍</div>
-                        <h3 class="font-display text-xl text-gold mb-2 font-bold">6. Home Away From Home</h3>
-                        <p class="text-cream/80 text-sm">Authentic Maasai-inspired hospitality that treats every guest
-                            like family.</p>
-                    </div>
-                </div>
-                <div class="mt-16 text-center text-sm text-cream/70 border-t border-gold/20 pt-8" data-aos="fade-up">
-                    <p>P.O Box 617 – 20500, Narok, Kenya | Tel: 0703 761 951 / 0721 940 823 | sidairesort21@gmail.com
-                    </p>
-                    <p class="mt-2">Follow us on Facebook, Instagram, TikTok & WhatsApp — <strong>@Sidai Resort</strong>
-                    </p>
-                </div>
-            </div>
-        </section>
-
-        <section id="quick-book" class="sidai-section bg-gradient-to-br from-gold to-gold-light">
-
-            <div class="sidai-container">
-                <div class="rounded-3xl bg-night/90 p-8 text-cream shadow-2xl" x-data="{ type: 'room' }">
-                    <div class="flex flex-wrap items-center justify-between gap-4">
-                        <h2 class="font-display text-4xl">Quick Booking</h2>
-                        <p class="text-sm uppercase tracking-[0.2em] text-gold">Instant Availability Check</p>
-                    </div>
-
-                    <form action="booking.html" method="get" class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
-                        <div>
-                            <label for="quick-type"
-                                class="mb-2 block text-xs uppercase tracking-[0.15em] text-gold">Type</label>
-                            <select id="quick-type" name="type" x-model="type"
-                                class="w-full rounded-xl border border-gold/40 bg-white/10 px-3 py-3 text-sm text-cream focus:outline-none focus:ring-2 focus:ring-gold">
-                                <option value="room">Room Stay</option>
-                                <option value="pool">Pool Day Pass</option>
-                                <option value="hall">Hall Hire</option>
-                                <option value="dining">Dining Reservation</option>
-                                <option value="spa">Spa</option>
-                                <option value="music_shoot">Music Shoot</option>
-                            </select>
-                        </div>
-
-                        <div>
-                            <label for="quick-date"
-                                class="mb-2 block text-xs uppercase tracking-[0.15em] text-gold">Date</label>
-                            <input id="quick-date" name="date" type="text"
-                                class="js-flatpickr w-full rounded-xl border border-gold/40 bg-white/10 px-3 py-3 text-sm text-cream placeholder:text-cream/60 focus:outline-none focus:ring-2 focus:ring-gold"
-                                placeholder="Select date" autocomplete="off" required>
-                        </div>
-
-                        <div>
-                            <label for="quick-guests"
-                                class="mb-2 block text-xs uppercase tracking-[0.15em] text-gold">Guests</label>
-                            <input id="quick-guests" name="guests" type="number" min="1" max="500" value="2"
-                                class="w-full rounded-xl border border-gold/40 bg-white/10 px-3 py-3 text-sm text-cream focus:outline-none focus:ring-2 focus:ring-gold"
-                                required>
-                        </div>
-
-                        <div x-show="type === 'hall'" x-transition>
-                            <label for="quick-event"
-                                class="mb-2 block text-xs uppercase tracking-[0.15em] text-gold">Event Type</label>
-                            <input id="quick-event" name="event_type" type="text"
-                                class="w-full rounded-xl border border-gold/40 bg-white/10 px-3 py-3 text-sm text-cream placeholder:text-cream/60 focus:outline-none focus:ring-2 focus:ring-gold"
-                                placeholder="Wedding, conference...">
-                        </div>
-
-                        <div class="self-end">
-                            <button type="submit"
-                                class="w-full rounded-xl bg-gold px-4 py-3 text-sm font-semibold uppercase tracking-[0.15em] text-night transition hover:bg-gold-light">Check
-                                Availability</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </section>
-
-        <section id="gallery-preview" class="sidai-section sidai-bg-main sidai-divider-top">
-            <div class="sidai-container">
-                <div class="mb-8 flex flex-wrap items-end justify-between gap-4">
-                    <div>
-                        <p class="text-sm font-semibold uppercase tracking-[0.25em] text-earth">Gallery</p>
-                        <h2 class="sidai-heading">A glimpse of Sidai</h2>
-                    </div>
-                    <a href="about.html#gallery"
-                        class="text-sm font-semibold uppercase tracking-[0.2em] text-forest hover:text-gold">View Full
-                        Gallery &rarr;</a>
+                    <span class="text-gold font-bold uppercase tracking-[0.2em] mb-4 block">Sidai in Motion</span>
+                    <h2 class="font-display text-4xl sm:text-6xl">Resort Walkthroughs</h2>
+                    <div class="w-24 h-1 bg-gold mx-auto mt-6"></div>
                 </div>
 
-                <div class="columns-1 gap-4 sm:columns-2 lg:columns-3">
-                    <a href="assets/images/hero/sunset.jpeg"
-                        class="gallery-lightbox mb-4 block overflow-hidden rounded-2xl border border-brown/10 bg-white shadow-sm"
-                        data-gallery="home-gallery" data-title="Golden Sunset Over Sidai Resort"
-                        data-description="A signature evening view across the resort grounds.">
-                        <img src="assets/images/hero/sunset.jpeg"
-                            alt="Golden Sunset Over Sidai Resort - Nature in Naroosura, Narok Kenya"
-                            class="w-full object-cover transition duration-500 hover:scale-[1.03]" loading="lazy"
-                            data-reveal-image width="1280" height="960">
-                        <span class="block px-4 py-3 text-xs uppercase tracking-[0.2em] text-earth">Golden Sunset Over
-                            Sidai Resort</span>
-                    </a>
-                    <a href="assets/images/experiences/nightview-swimming-pool.jpeg"
-                        class="gallery-lightbox mb-4 block overflow-hidden rounded-2xl border border-brown/10 bg-white shadow-sm"
-                        data-gallery="home-gallery" data-title="Executive Conference Experience"
-                        data-description="Host high-impact meetings in refined spaces.">
-                        <img src="assets/images/experiences/nightview-swimming-pool.jpeg"
-                            alt="Executive Conference Experience - Events in Naroosura, Narok Kenya"
-                            class="w-full object-cover transition duration-500 hover:scale-[1.03]" loading="lazy"
-                            data-reveal-image width="1040" height="780">
-                        <span class="block px-4 py-3 text-xs uppercase tracking-[0.2em] text-earth">Executive Conference
-                            Experience</span>
-                    </a>
-                    <a href="assets/images/nature/serene-places.jpeg"
-                        class="gallery-lightbox mb-4 block overflow-hidden rounded-2xl border border-brown/10 bg-white shadow-sm"
-                        data-gallery="home-gallery" data-title="Poolside Luxury Moments"
-                        data-description="Refresh in our serene swimming pool retreat.">
-                        <img src="assets/images/nature/serene-places.jpeg"
-                            alt="Poolside Luxury Moments - Pool in Naroosura, Narok Kenya"
-                            class="w-full object-cover transition duration-500 hover:scale-[1.03]" loading="lazy"
-                            data-reveal-image width="1280" height="960">
-                        <span class="block px-4 py-3 text-xs uppercase tracking-[0.2em] text-earth">Poolside Luxury
-                            Moments</span>
-                    </a>
-                    <a href="assets/images/dining/mbuzi-choma.jpg"
-                        class="gallery-lightbox mb-4 block overflow-hidden rounded-2xl border border-brown/10 bg-white shadow-sm"
-                        data-gallery="home-gallery" data-title="Fine Dining Ambiance"
-                        data-description="Maasai-inspired and international cuisine prepared with care.">
-                        <img src="assets/images/dining/mbuzi-choma.jpg"
-                            alt="Fine Dining Ambiance - Nyama Choma in Naroosura, Narok Kenya"
-                            class="w-full object-cover transition duration-500 hover:scale-[1.03]" loading="lazy"
-                            data-reveal-image width="1280" height="853">
-                        <span class="block px-4 py-3 text-xs uppercase tracking-[0.2em] text-earth">Fine Dining
-                            Ambiance</span>
-                    </a>
-                    <a href="assets/images/hero/hero-section.jpg"
-                        class="gallery-lightbox mb-4 block overflow-hidden rounded-2xl border border-brown/10 bg-white shadow-sm"
-                        data-gallery="home-gallery" data-title="Serene Enkima Fire"
-                        data-description="Experience our signature bonfire under the stars.">
-                        <img src="assets/images/hero/hero-section.jpg"
-                            alt="Serene Enkima Fire - Nature in Naroosura, Narok Kenya"
-                            class="w-full object-cover transition duration-500 hover:scale-[1.03]" loading="lazy"
-                            data-reveal-image width="1007" height="666">
-                        <span class="block px-4 py-3 text-xs uppercase tracking-[0.2em] text-earth">Serene Enkima
-                            Fire</span>
-                    </a>
-                    <a href="assets/images/experiences/nightview-swimming-pool.jpeg"
-                        class="gallery-lightbox mb-4 block overflow-hidden rounded-2xl border border-brown/10 bg-white shadow-sm"
-                        data-gallery="home-gallery" data-title="Celebration-Ready Spaces"
-                        data-description="Elegant venues for weddings and milestone moments.">
-                        <img src="assets/images/experiences/nightview-swimming-pool.jpeg"
-                            alt="Celebration-Ready Spaces - Weddings in Naroosura, Narok Kenya"
-                            class="w-full object-cover transition duration-500 hover:scale-[1.03]" loading="lazy"
-                            data-reveal-image width="1040" height="780">
-                        <span class="block px-4 py-3 text-xs uppercase tracking-[0.2em] text-earth">Celebration-Ready
-                            Spaces</span>
-                    </a>
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Video 1 -->
+                    <div class="group relative rounded-3xl overflow-hidden shadow-2xl" data-aos="fade-up">
+                        <video class="w-full h-[350px] sm:h-[500px] object-cover group-hover:scale-105 transition-transform duration-700" loop muted playsinline autoplay>
+                            <source src="assets/media/videos/experiences/atourinsidesidairesort.mp4" type="video/mp4">
+                        </video>
+                        <div class="absolute inset-0 bg-gradient-to-t from-night/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        <div class="absolute bottom-8 left-8 right-8 transform translate-y-4 group-hover:translate-y-0 transition-transform">
+                            <h3 class="font-display text-2xl text-gold">Interior Tour</h3>
+                            <p class="text-sm text-cream/80">A journey through our elegant spaces.</p>
+                        </div>
+                    </div>
+
+                    <!-- Video 2 -->
+                    <div class="group relative rounded-3xl overflow-hidden shadow-2xl" data-aos="fade-up" data-aos-delay="100">
+                        <video class="w-full h-[350px] sm:h-[500px] object-cover group-hover:scale-105 transition-transform duration-700" loop muted playsinline autoplay>
+                            <source src="assets/media/videos/experiences/poolside-walkthrough-guide.mp4" type="video/mp4">
+                        </video>
+                        <div class="absolute inset-0 bg-gradient-to-t from-night/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        <div class="absolute bottom-8 left-8 right-8 transform translate-y-4 group-hover:translate-y-0 transition-transform">
+                            <h3 class="font-display text-2xl text-gold">Poolside Path</h3>
+                            <p class="text-sm text-cream/80">Follow the path to serenity.</p>
+                        </div>
+                    </div>
+
+                    <!-- Video 3 -->
+                    <div class="group relative rounded-3xl overflow-hidden shadow-2xl" data-aos="fade-up" data-aos-delay="200">
+                        <video class="w-full h-[350px] sm:h-[500px] object-cover group-hover:scale-105 transition-transform duration-700" loop muted playsinline autoplay>
+                            <source src="assets/media/videos/experiences/visittotheabortretum-farm visits.mp4" type="video/mp4">
+                        </video>
+                        <div class="absolute inset-0 bg-gradient-to-t from-night/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                        <div class="absolute bottom-8 left-8 right-8 transform translate-y-4 group-hover:translate-y-0 transition-transform">
+                            <h3 class="font-display text-2xl text-gold">Farm & Arboretum</h3>
+                            <p class="text-sm text-cream/80">Connect with the roots of Sidai.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -977,100 +1173,64 @@
                         <p class="text-sm font-semibold uppercase tracking-[0.25em] text-gold">Events</p>
                         <h2 class="mt-2 font-display text-4xl sm:text-5xl">Celebrate without limits</h2>
                     </div>
-                    <a href="services.html#events-highlight"
-                        class="text-sm font-semibold uppercase tracking-[0.2em] text-gold hover:text-gold-light">Plan
+                    <a href="services.html?tab=conferences"
+                        class="text-sm font-semibold uppercase tracking-[0.2em] text-gold hover:text-gold-light"
+                        aria-label="Plan Your Event at Sidai Resort">Plan
                         Your Event &rarr;</a>
                 </div>
 
-                <div class="swiper events-swiper" data-swiper-events>
+                <div class="swiper events-swiper pb-12" data-swiper-events>
                     <div class="swiper-wrapper">
-                        <article class="swiper-slide overflow-hidden rounded-2xl border border-gold/20 bg-white/5">
-                            <video class="h-52 w-full object-cover" autoplay muted loop playsinline preload="metadata"
-                                poster="assets/images/experiences/nightview-swimming-pool.jpeg"
-                                aria-label="Agatha Naserian gospel session showcase video">
-                                <source src="assets/media/videos/experiences/agatha-naserian-live-session.mp4"
-                                    type="video/mp4">
-                            </video>
-                            <div class="p-5">
-                                <h3 class="font-display text-3xl text-gold">Agatha Naserian Gospel Session</h3>
-                                <p class="mt-3 text-sm leading-7 text-cream/80">A featured performance by popular Maasai
-                                    gospel artist celebrity Agatha Naserian at Sidai Resort.</p>
-                                <a href="about.html#contact"
-                                    class="mt-5 inline-flex text-sm font-semibold uppercase tracking-[0.16em] text-gold hover:text-gold-light">Enquire
-                                    &rarr;</a>
+                        <!-- Event 1: Gospel Sessions -->
+                        <article class="swiper-slide feature-card h-[400px]">
+                            <img src="assets/images/experiences/nightview-swimming-pool.jpeg" alt="Gospel Sessions and Live Music at Sidai Resort" loading="lazy">
+                            <div class="feature-card-content">
+                                <h3>Gospel Sessions</h3>
+                                <p>Live performances by celebrated artists like Agatha Naserian.</p>
+                                <a href="services.html?tab=birthdays"
+                                    class="text-gold text-xs font-bold uppercase tracking-widest mt-4 inline-block hover:text-white transition-colors"
+                                    aria-label="Learn more about Gospel Sessions">Learn
+                                    More &rarr;</a>
                             </div>
                         </article>
-                        <article class="swiper-slide overflow-hidden rounded-2xl border border-gold/20 bg-white/5">
-                            <video class="h-52 w-full object-cover" autoplay muted loop playsinline preload="metadata"
-                                poster="assets/images/events/outdoor-congregation.jpeg"
-                                aria-label="Birthday celebrations showcase video">
-                                <source src="assets/media/videos/experiences/song-shoot-session.mp4" type="video/mp4">
-                            </video>
-                            <div class="p-5">
-                                <h3 class="font-display text-3xl text-gold">Birthday Celebrations</h3>
-                                <p class="mt-3 text-sm leading-7 text-cream/80">Private and shared packages for
-                                    unforgettable birthdays.</p>
-                                <a href="about.html#contact"
-                                    class="mt-5 inline-flex text-sm font-semibold uppercase tracking-[0.16em] text-gold hover:text-gold-light">Enquire
-                                    &rarr;</a>
+                        <!-- Event 2: Birthdays -->
+                        <article class="swiper-slide feature-card h-[400px]">
+                            <img src="assets/images/experiences/bonfire.jpeg" alt="Birthday Party and Social Celebrations" loading="lazy">
+                            <div class="feature-card-content">
+                                <h3>Celebrations</h3>
+                                <p>Unforgettable birthday parties and milestone celebrations.</p>
+                                <a href="services.html?tab=birthdays"
+                                    class="text-gold text-xs font-bold uppercase tracking-widest mt-4 inline-block hover:text-white transition-colors"
+                                    aria-label="Learn more about Celebrations">Learn
+                                    More &rarr;</a>
                             </div>
                         </article>
-                        <article class="swiper-slide overflow-hidden rounded-2xl border border-gold/20 bg-white/5">
-                            <img src="assets/images/experiences/nightview-swimming-pool.jpeg"
-                                alt="Corporate Events at Sidai Resort in Naroosura, Narok Kenya"
-                                class="h-52 w-full object-cover" loading="lazy" width="1040" height="780">
-                            <div class="p-5">
-                                <h3 class="font-display text-3xl text-gold">Corporate Events</h3>
-                                <p class="mt-3 text-sm leading-7 text-cream/80">Professional conferencing with full
-                                    hospitality and catering.</p>
-                                <a href="about.html#contact"
-                                    class="mt-5 inline-flex text-sm font-semibold uppercase tracking-[0.16em] text-gold hover:text-gold-light">Enquire
-                                    &rarr;</a>
+                        <!-- Event 3: Corporate -->
+                        <article class="swiper-slide feature-card h-[400px]">
+                            <img src="assets/images/events/conference-hall.jpeg" alt="Corporate Conferences and Meetings" loading="lazy">
+                            <div class="feature-card-content">
+                                <h3>Corporate</h3>
+                                <p>Professional hospitality for strategy sessions and launches.</p>
+                                <a href="services.html?tab=conferences"
+                                    class="text-gold text-xs font-bold uppercase tracking-widest mt-4 inline-block hover:text-white transition-colors"
+                                    aria-label="Learn more about Corporate Events">Learn
+                                    More &rarr;</a>
                             </div>
                         </article>
-                        <article class="swiper-slide overflow-hidden rounded-2xl border border-gold/20 bg-white/5">
-                            <img src="assets/images/nature/symbol-of-love-photo-area.jpeg"
-                                alt="Music Video Shoots at Sidai Resort in Naroosura, Narok Kenya"
-                                class="h-52 w-full object-cover" loading="lazy" width="1200" height="1600">
-                            <div class="p-5">
-                                <h3 class="font-display text-3xl text-gold">Music Video Shoots</h3>
-                                <p class="mt-3 text-sm leading-7 text-cream/80">Cinematic indoor and outdoor backdrops
-                                    for creators and production teams.</p>
-                                <a href="about.html#contact"
-                                    class="mt-5 inline-flex text-sm font-semibold uppercase tracking-[0.16em] text-gold hover:text-gold-light">Enquire
-                                    &rarr;</a>
-                            </div>
-                        </article>
-                        <article class="swiper-slide overflow-hidden rounded-2xl border border-gold/20 bg-white/5">
-                            <img src="assets/images/nature/serene-places.jpeg"
-                                alt="Pool Parties at Sidai Resort in Naroosura, Narok Kenya"
-                                class="h-52 w-full object-cover" loading="lazy" width="1280" height="960">
-                            <div class="p-5">
-                                <h3 class="font-display text-3xl text-gold">Pool Parties</h3>
-                                <p class="mt-3 text-sm leading-7 text-cream/80">Lively poolside celebrations with dining
-                                    and lounge service.</p>
-                                <a href="about.html#contact"
-                                    class="mt-5 inline-flex text-sm font-semibold uppercase tracking-[0.16em] text-gold hover:text-gold-light">Enquire
-                                    &rarr;</a>
-                            </div>
-                        </article>
-                        <article class="swiper-slide overflow-hidden rounded-2xl border border-gold/20 bg-white/5">
-                            <img src="assets/images/hero/hero-section.jpg"
-                                alt="Graduations &amp; Milestones at Sidai Resort in Naroosura, Narok Kenya"
-                                class="h-52 w-full object-cover" loading="lazy" width="1007" height="666">
-                            <div class="p-5">
-                                <h3 class="font-display text-3xl text-gold">Graduations &amp; Milestones</h3>
-                                <p class="mt-3 text-sm leading-7 text-cream/80">Elegant event styling for life&#039;s
-                                    big achievements.</p>
-                                <a href="about.html#contact"
-                                    class="mt-5 inline-flex text-sm font-semibold uppercase tracking-[0.16em] text-gold hover:text-gold-light">Enquire
-                                    &rarr;</a>
+                        <!-- Event 4: Music Shoots -->
+                        <article class="swiper-slide feature-card h-[400px]">
+                            <img src="assets/images/nature/symbol-of-love-photo-area.jpeg" alt="Cinematic Music and Film Shoots" loading="lazy">
+                            <div class="feature-card-content">
+                                <h3>Music Shoots</h3>
+                                <p>Cinematic backdrops for elite creative productions.</p>
+                                <a href="services.html?tab=conferences"
+                                    class="text-gold text-xs font-bold uppercase tracking-widest mt-4 inline-block hover:text-white transition-colors"
+                                    aria-label="Learn more about Music Shoots">Learn
+                                    More &rarr;</a>
                             </div>
                         </article>
                     </div>
-                    <div class="mt-6 flex justify-center gap-2">
-                        <div class="events-swiper-pagination"></div>
-                    </div>
+                    <div class="swiper-pagination events-pagination"></div>
                 </div>
             </div>
         </section>
@@ -1078,105 +1238,169 @@
         <section id="menu-teaser" class="sidai-section sidai-section-alt sidai-divider-top">
             <div class="sidai-container">
                 <div class="mb-8 flex flex-wrap items-end justify-between gap-4">
-                    <div>
+                    <div data-aos="fade-right">
                         <p class="text-sm font-semibold uppercase tracking-[0.25em] text-earth">Dining</p>
                         <h2 class="sidai-heading">Taste the Savanna</h2>
                     </div>
-                    <a href="menu.html"
-                        class="text-sm font-semibold uppercase tracking-[0.2em] text-forest hover:text-gold">View Full
-                        Menu & Order &rarr;</a>
+                    <div data-aos="fade-left">
+                        <a href="menu.html"
+                            class="text-sm font-semibold uppercase tracking-[0.2em] text-forest hover:text-gold"
+                            aria-label="View Sidai Resort Full Menu and Order">View Full
+                            Menu & Order &rarr;</a>
+                    </div>
                 </div>
 
-                <div class="grid gap-6 md:grid-cols-3">
-                    <article class="overflow-hidden rounded-2xl border border-brown/10 bg-cream/60" data-aos="fade-up">
-                        <img src="assets/images/dining/mbuzi-choma.jpg"
-                            alt="Nyama Choma Signature Platter in Naroosura, Narok Kenya"
-                            class="h-52 w-full object-cover" loading="lazy" width="1280" height="853">
-                        <div class="p-5">
-                            <h3 class="font-display text-3xl text-brown">Nyama Choma Signature Platter</h3>
-                            <p class="mt-2 text-sm leading-7 text-brown/80">Premium grilled cuts with seasonal
-                                accompaniments.</p>
-                            <p class="mt-4 text-sm font-semibold uppercase tracking-[0.15em] text-earth">Available on
-                                Request</p>
+                <div class="grid gap-8 md:grid-cols-3">
+                    <!-- Dining: Nyama Choma -->
+                    <article class="feature-card h-[450px]" data-aos="fade-up">
+                        <img src="assets/images/food/nyama-choma-goat.jpeg" alt="Signature Nyama Choma - Maasai Style Grilled Goat" loading="lazy">
+                        <div class="feature-card-content">
+                            <h3>Signature Choma</h3>
+                            <p>Authentic Maasai-style grilled cuts, seasoned to perfection and served with bone soup.</p>
+                            <span class="text-gold text-xs font-bold uppercase tracking-widest mt-4">Available on
+                                Request</span>
                         </div>
                     </article>
-                    <article class="overflow-hidden rounded-2xl border border-brown/10 bg-cream/60" data-aos="fade-up">
-                        <img src="assets/images/nature/beautiful-lights-night.jpeg"
-                            alt="Savanna Sunset Mocktail in Naroosura, Narok Kenya" class="h-52 w-full object-cover"
-                            loading="lazy" width="1280" height="960">
-                        <div class="p-5">
-                            <h3 class="font-display text-3xl text-brown">Savanna Sunset Mocktail</h3>
-                            <p class="mt-2 text-sm leading-7 text-brown/80">A refreshing tropical blend inspired by
-                                Maasai sunset tones.</p>
-                            <p class="mt-4 text-sm font-semibold uppercase tracking-[0.15em] text-earth">Available on
-                                Request</p>
+
+                    <!-- Dining: Mocktails -->
+                    <article class="feature-card h-[450px]" data-aos="fade-up" data-aos-delay="100">
+                        <img src="assets/images/nature/beautiful-lights-night.jpeg" alt="Refreshing Savanna Sips and Tropical Blends" loading="lazy">
+                        <div class="feature-card-content">
+                            <h3>Savanna Sips</h3>
+                            <p>Refreshing tropical blends and mocktails inspired by the vibrant colors of the Mara.</p>
+                            <span class="text-gold text-xs font-bold uppercase tracking-widest mt-4">Available on
+                                Request</span>
                         </div>
                     </article>
-                    <article class="overflow-hidden rounded-2xl border border-brown/10 bg-cream/60" data-aos="fade-up">
-                        <img src="assets/images/dining/breakfast.jpeg"
-                            alt="Sidai Breakfast Experience in Naroosura, Narok Kenya" class="h-52 w-full object-cover"
-                            loading="lazy" width="1280" height="960">
-                        <div class="p-5">
-                            <h3 class="font-display text-3xl text-brown">Sidai Breakfast Experience</h3>
-                            <p class="mt-2 text-sm leading-7 text-brown/80">A curated breakfast board with local and
-                                international flavors.</p>
-                            <p class="mt-4 text-sm font-semibold uppercase tracking-[0.15em] text-earth">Available on
-                                Request</p>
+
+                    <!-- Dining: Breakfast -->
+                    <article class="feature-card h-[450px]" data-aos="fade-up" data-aos-delay="200">
+                        <img src="assets/images/dining/breakfast.jpeg" alt="Gourmet Sidai Breakfast with local flavors" loading="lazy">
+                        <div class="feature-card-content">
+                            <h3>Sidai Breakfast</h3>
+                            <p>A gourmet start to your day with a blend of local and international morning flavors.</p>
+                            <span class="text-gold text-xs font-bold uppercase tracking-widest mt-4">Available on
+                                Request</span>
                         </div>
                     </article>
                 </div>
             </div>
         </section>
-        <section id="agatha-featured-song" class="relative overflow-hidden py-24 text-cream"
-            style="background: radial-gradient(circle at 12% 20%, rgba(212,175,55,0.24), transparent 42%), radial-gradient(circle at 82% 10%, rgba(54,117,83,0.32), transparent 36%), linear-gradient(125deg, #07130E 0%, #11241B 55%, #1A3528 100%);">
-            <div class="absolute inset-0 pointer-events-none"
-                style="background: linear-gradient(to top, rgba(4,10,8,0.68), rgba(4,10,8,0.2));"></div>
-            <div class="relative sidai-container">
-                <div class="mb-10 text-center lg:text-left">
-                    <p class="text-sm font-semibold uppercase tracking-[0.3em] text-gold">Featured Gospel Session</p>
-                    <h2 class="mt-3 font-display text-4xl font-semibold leading-tight sm:text-5xl lg:text-6xl"
-                        style="color:#F5ECD7;text-shadow:0 10px 28px rgba(0,0,0,0.78),0 2px 8px rgba(0,0,0,0.62);">
-                        Agatha Naserian at Sidai Resort</h2>
-                </div>
-                <div class="grid items-center gap-8 lg:grid-cols-[1.15fr_0.85fr]">
-                    <article class="agatha-glass-card rounded-3xl p-3 sm:p-4" data-aos="fade-right">
-                        <video class="h-[300px] w-full rounded-2xl object-cover sm:h-[360px] lg:h-[420px]" controls
-                            playsinline preload="metadata" poster="assets/images/agathanaserian.jpg"
-                            aria-label="Agatha Naserian gospel video session at Sidai Resort in Naroosura, Narok Kenya">
-                            <source src="assets/media/videos/experiences/agatha-naserian-live-session.mp4"
-                                type="video/mp4">
-                        </video>
-                    </article>
-                    <article class="agatha-glass-card rounded-3xl p-7 sm:p-8 lg:p-10" data-aos="fade-left">
-                        <h3 class="font-display text-3xl text-gold sm:text-4xl">Popular Maasai Gospel Artist Celebrity
-                        </h3>
-                        <p class="mt-4 text-sm leading-8 text-cream/90 sm:text-base">
-                            Agatha Naserian is one of the most celebrated Maasai gospel voices. Her sound blends
-                            uplifting faith, rich Maasai identity, and a warm, soulful stage presence that connects
-                            deeply with audiences.
-                        </p>
-                        <p class="mt-4 text-sm leading-8 text-cream/85 sm:text-base">
-                            This featured video was captured at Sidai Resort and reflects the quality atmosphere we
-                            provide for music shoots, live sessions, and creative productions.
-                        </p>
+
+        <!-- Redesign: The World of Sidai (Consolidated High-Energy Section) -->
+        <section id="world-of-sidai" class="relative overflow-hidden py-32 bg-main-light">
+            <!-- Decorative Wireframes -->
+            <div class="wireframe-pattern rotating-wireframe -top-20 -left-20"></div>
+            <div class="wireframe-pattern rotating-wireframe -bottom-20 -right-20"
+                style="animation-direction: reverse; width: 300px; height: 300px;"></div>
+
+            <!-- Floating Icons -->
+            <div class="absolute top-40 left-10 text-gold/20 text-6xl floating-element hidden lg:block">🌿</div>
+            <div class="absolute bottom-40 right-10 text-gold/20 text-6xl floating-element hidden lg:block"
+                style="animation-delay: -2s;">🦅</div>
+
+            <div class="sidai-container relative z-10">
+                <div class="grid lg:grid-cols-2 gap-20 items-center">
+                    <!-- Left: Cinematic Image with Floating Overlay -->
+                    <div class="relative" data-aos="zoom-out">
+                        <div class="rounded-[3rem] overflow-hidden shadow-2xl relative">
+                            <img src="assets/images/nature/serene-places.jpeg" alt="The Sidai Experience"
+                                class="w-full h-[600px] object-cover">
+                            <div class="absolute inset-0 bg-gradient-to-t from-forest/60 to-transparent"></div>
+                        </div>
+                        <!-- Floating Highlight Card -->
                         <div
-                            class="mt-6 flex flex-wrap gap-3 text-xs font-semibold uppercase tracking-[0.18em] text-gold">
-                            <span class="agatha-tag rounded-full px-4 py-2">Music Video Ready Spaces</span>
-                            <span class="agatha-tag rounded-full px-4 py-2">Premium Audio-Visual Mood</span>
-                            <span class="agatha-tag rounded-full px-4 py-2">Authentic Maasai Backdrop</span>
+                            class="absolute -bottom-10 -right-10 bg-white/10 backdrop-blur-xl border border-white/20 p-8 rounded-3xl shadow-2xl max-w-xs floating-element">
+                            <p class="text-gold font-display text-2xl italic mb-2">"Nothing but the best"</p>
+                            <p class="text-white/80 text-sm">Our commitment to excellence is the irreducible minimum of
+                                every guest experience.</p>
                         </div>
-                        <div class="mt-8 flex flex-wrap gap-3">
-                            <a href="services.html#music-shoots"
-                                class="inline-flex items-center rounded-full bg-gold px-6 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-night transition hover:bg-gold-light">Explore
-                                Music Shoots</a>
-                            <a href="booking.html?type=music_shoot"
-                                class="inline-flex items-center rounded-full border border-gold/40 bg-white/10 px-6 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-cream transition hover:bg-gold hover:text-night">Book
-                                Your Session</a>
+                    </div>
+
+                    <!-- Right: Energetic Content -->
+                    <div data-aos="fade-left">
+                        <span class="text-gold font-bold uppercase tracking-[0.4em] mb-4 block">The Sidai
+                            Philosophy</span>
+                        <h2 class="font-display text-5xl sm:text-7xl text-brown mb-8 leading-tight">
+                            Where Nature <br>
+                            <span class="text-gold italic">Meets Excellence</span>
+                        </h2>
+                        <p class="text-lg text-brown/80 mb-10 leading-relaxed">
+                            "Sidai" is not just our name—it's our standard. Located on the vibrant slopes of the Loita
+                            Hills, we offer a sanctuary where the spirit of the Maasai Mara comes alive with
+                            unparalleled luxury and service.
+                        </p>
+
+                        <!-- Energetic Feature Grid -->
+                        <div class="grid grid-cols-2 gap-6">
+                            <div class="flex items-center gap-4 group">
+                                <div
+                                    class="w-12 h-12 bg-gold/10 rounded-xl flex items-center justify-center text-gold group-hover:bg-gold group-hover:text-night transition-all">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path
+                                            d="M2 6c.6.5 1.2 1 2.5 1C7 7 7 5 9.5 5c2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1" />
+                                        <path
+                                            d="M2 12c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1" />
+                                        <path
+                                            d="M2 18c.6.5 1.2 1 2.5 1 2.5 0 2.5-2 5-2 2.6 0 2.4 2 5 2 2.5 0 2.5-2 5-2 1.3 0 1.9.5 2.5 1" />
+                                    </svg>
+                                </div>
+                                <span class="font-bold text-brown uppercase tracking-widest text-xs">Infinity
+                                    Pool</span>
+                            </div>
+                            <div class="flex items-center gap-4 group">
+                                <div
+                                    class="w-12 h-12 bg-gold/10 rounded-xl flex items-center justify-center text-gold group-hover:bg-gold group-hover:text-night transition-all">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z" />
+                                        <polyline points="9 22 9 12 15 12 15 22" />
+                                    </svg>
+                                </div>
+                                <span class="font-bold text-brown uppercase tracking-widest text-xs">Luxury
+                                    Suites</span>
+                            </div>
+                            <div class="flex items-center gap-4 group">
+                                <div
+                                    class="w-12 h-12 bg-gold/10 rounded-xl flex items-center justify-center text-gold group-hover:bg-gold group-hover:text-night transition-all">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <path d="M12 2L4.5 9.5a5 5 0 0 1 7 7 5 5 0 0 1 7-7L12 2z" />
+                                    </svg>
+                                </div>
+                                <span class="font-bold text-brown uppercase tracking-widest text-xs">Farm Tours</span>
+                            </div>
+                            <div class="flex items-center gap-4 group">
+                                <div
+                                    class="w-12 h-12 bg-gold/10 rounded-xl flex items-center justify-center text-gold group-hover:bg-gold group-hover:text-night transition-all">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24"
+                                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                        stroke-linejoin="round">
+                                        <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18" />
+                                        <line x1="7" y1="2" x2="7" y2="22" />
+                                        <line x1="17" y1="2" x2="17" y2="22" />
+                                    </svg>
+                                </div>
+                                <span class="font-bold text-brown uppercase tracking-widest text-xs">Creative
+                                    Shoots</span>
+                            </div>
                         </div>
-                    </article>
+
+                        <div class="mt-12">
+                            <a href="services.html"
+                                class="cta-primary px-10 py-5 rounded-full text-sm font-bold uppercase tracking-widest inline-block pulse-gold">
+                                Explore Our World &rarr;
+                            </a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </section>
+
         <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -1188,7 +1412,8 @@
 }
 </script>
         <!-- THE ELEMENTS SECTION -->
-        <section id="elements" class="sidai-section sidai-bg-main sidai-divider-top relative overflow-hidden" x-data="{}" x-init="
+        <section id="elements" class="sidai-section sidai-bg-main sidai-divider-top relative overflow-hidden"
+            x-data="{}" x-init="
     if (window.gsap && window.ScrollTrigger) {
         window.gsap.from('.elements-text-left', {
             x: -50, opacity: 0, duration: 1, ease: 'power3.out',
@@ -1229,15 +1454,13 @@
                 </div>
 
                 <!-- Sub-section 1: Forest -->
-                <div class="grid lg:grid-cols-2 gap-12 items-center mb-24">
-                    <div class="order-2 lg:order-1 elements-text-left">
-                        <h3 class="font-display text-4xl text-brown mb-6">🌿 A Forest That Embraces You</h3>
-                        <div class="space-y-4 text-base leading-8 text-brown/85">
+                <div class="grid lg:grid-cols-2 gap-16 items-center mb-32">
+                    <div class="order-2 lg:order-1 elements-text-left" data-aos="fade-right">
+                        <h3 class="font-display text-5xl text-brown mb-8">🌿 A Forest That Embraces You</h3>
+                        <div class="space-y-6 text-lg leading-relaxed text-brown/85">
                             <p>
                                 This corner of Narok County exists in its own microclimate — cooler, greener, more
-                                alive. We have built Sidai within the forest, with it, in profound respect of it. The
-                                moment you arrive, temperature drops, birdsong becomes conversation, and the air itself
-                                feels different.
+                                alive. We have built Sidai within the forest, with it, in profound respect of it.
                             </p>
                             <p>
                                 Canopied trees filter the sun into something gentle and golden. Guests often find
@@ -1245,11 +1468,10 @@
                             </p>
                         </div>
                     </div>
-                    <div class="order-1 lg:order-2 rounded-2xl overflow-hidden shadow-xl" data-aos="fade-left">
-                        <!-- IMAGE: Wide-angle shot of resort grounds through tall indigenous trees, dappled morning light, lush green undergrowth, path visible -->
-                        <img src="assets/images/nature/serene-places.jpeg"
-                            alt="Forested grounds in Naroosura, Narok Kenya" class="w-full h-80 object-cover"
-                            loading="lazy" width="1280" height="960">
+                    <div class="order-1 lg:order-2 rounded-[2rem] overflow-hidden shadow-2xl" data-aos="zoom-in">
+                        <img src="assets/images/nature/walkways.jpeg" alt="Forested grounds"
+                            class="w-full h-[500px] object-cover transition-transform duration-700 hover:scale-110"
+                            loading="lazy">
                     </div>
                 </div>
 
@@ -1295,16 +1517,20 @@
                         <div class="grid sm:grid-cols-2 gap-4 text-sm font-medium text-brown">
                             <div
                                 class="flex items-center gap-2 bg-white/50 px-4 py-2 rounded-lg border border-brown/10 shadow-sm">
-                                <span class="text-lg">🌿</span> Multiple Locations Across Resort</div>
+                                <span class="text-lg">🌿</span> Multiple Locations Across Resort
+                            </div>
                             <div
                                 class="flex items-center gap-2 bg-white/50 px-4 py-2 rounded-lg border border-brown/10 shadow-sm">
-                                <span class="text-lg">🍃</span> Natural Shade, Zero Pretension</div>
+                                <span class="text-lg">🍃</span> Natural Shade, Zero Pretension
+                            </div>
                             <div
                                 class="flex items-center gap-2 bg-white/50 px-4 py-2 rounded-lg border border-brown/10 shadow-sm">
-                                <span class="text-lg">☕</span> In-Situ Refreshment Service</div>
+                                <span class="text-lg">☕</span> In-Situ Refreshment Service
+                            </div>
                             <div
                                 class="flex items-center gap-2 bg-white/50 px-4 py-2 rounded-lg border border-brown/10 shadow-sm">
-                                <span class="text-lg">📖</span> The Only Meeting You Need</div>
+                                <span class="text-lg">📖</span> The Only Meeting You Need
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1360,7 +1586,8 @@
                         <video class="w-full h-96 object-cover" controls playsinline preload="none"
                             poster="assets/images/experiences/nightview-swimming-pool.jpeg"
                             aria-label="Enkiu outdoor lounge video">
-                            <source src="assets/media/videos/experiences/magical-sidai-birds-chirping.mp4" type="video/mp4">
+                            <source src="assets/media/videos/experiences/magical-sidai-birds-chirping.mp4"
+                                type="video/mp4">
                         </video>
                     </div>
                 </div>
@@ -1369,8 +1596,8 @@
         </section>
 
         <!-- Sub-section 4: Enkima (Full dark width section) -->
-        <section id="enkima" class="sidai-section relative bg-[#0A0A0A] text-cream overflow-hidden" x-data="enkimaEffect()"
-            x-init="init()">
+        <section id="enkima" class="sidai-section relative bg-[#0A0A0A] text-cream overflow-hidden"
+            x-data="enkimaEffect()" x-init="init()">
             <!-- Firefly / Embers Animation Canvas -->
             <canvas id="enkima-canvas"
                 class="absolute inset-0 z-0 pointer-events-none opacity-80 w-full h-full"></canvas>
@@ -1544,88 +1771,55 @@
             }
         </script>
 
-        <section id="testimonials" class="sidai-section bg-[#050505] text-cream">
+        <!-- Parallax Script -->
+        <script>
+            document.addEventListener('mousemove', (e) => {
+                const wrap = document.getElementById('hero-parallax');
+                if (!wrap) return;
+                const x = (window.innerWidth / 2 - e.pageX) / 40;
+                const y = (window.innerHeight / 2 - e.pageY) / 40;
+                wrap.style.transform = `translateX(${x}px) translateY(${y}px)`;
+            });
+        </script>
+
+        <section id="gallery-preview" class="sidai-section sidai-bg-main sidai-divider-top">
             <div class="sidai-container">
-                <div class="mb-8 text-center">
-                    <p class="text-sm font-semibold uppercase tracking-[0.25em] text-gold">Guest Stories</p>
-                    <h2 class="mt-2 font-display text-4xl sm:text-5xl">Voices from Sidai</h2>
+                <div class="mb-8 flex flex-wrap items-end justify-between gap-4">
+                    <div>
+                        <p class="text-sm font-semibold uppercase tracking-[0.25em] text-earth">Gallery</p>
+                        <h2 class="sidai-heading">A glimpse of Sidai</h2>
+                    </div>
+                    <a href="about.html#gallery"
+                        class="text-sm font-semibold uppercase tracking-[0.2em] text-forest hover:text-gold">View Full
+                        Gallery &rarr;</a>
                 </div>
 
-                <div class="swiper testimonials-swiper" data-swiper-testimonials>
-                    <div class="swiper-wrapper">
-                        <article
-                            class="swiper-slide h-auto rounded-2xl border border-gold/30 bg-white/10 p-8 backdrop-blur-sm">
-                            <div class="mb-4 flex items-center gap-1 text-gold" aria-label="5 star rating">
-                                <span>&#9733;</span>
-                                <span>&#9733;</span>
-                                <span>&#9733;</span>
-                                <span>&#9733;</span>
-                                <span>&#9733;</span>
-                            </div>
-                            <p class="text-base leading-8 text-cream/90">"Sidai Resort made our family celebration feel
-                                effortless and luxurious from start to finish."</p>
-                            <p class="mt-6 text-sm font-semibold uppercase tracking-[0.2em] text-gold">Achieng Owuor</p>
-                        </article>
-                        <article
-                            class="swiper-slide h-auto rounded-2xl border border-gold/30 bg-white/10 p-8 backdrop-blur-sm">
-                            <div class="mb-4 flex items-center gap-1 text-gold" aria-label="5 star rating">
-                                <span>&#9733;</span>
-                                <span>&#9733;</span>
-                                <span>&#9733;</span>
-                                <span>&#9733;</span>
-                                <span>&#9733;</span>
-                            </div>
-                            <p class="text-base leading-8 text-cream/90">"The conference setup, hospitality, and dining
-                                exceeded expectations for our leadership retreat."</p>
-                            <p class="mt-6 text-sm font-semibold uppercase tracking-[0.2em] text-gold">Daniel Kimani</p>
-                        </article>
-                        <article
-                            class="swiper-slide h-auto rounded-2xl border border-gold/30 bg-white/10 p-8 backdrop-blur-sm">
-                            <div class="mb-4 flex items-center gap-1 text-gold" aria-label="5 star rating">
-                                <span>&#9733;</span>
-                                <span>&#9733;</span>
-                                <span>&#9733;</span>
-                                <span>&#9733;</span>
-                                <span>&#9733;</span>
-                            </div>
-                            <p class="text-base leading-8 text-cream/90">"From the pool to the spa and evening bonfire,
-                                every moment felt premium and warm."</p>
-                            <p class="mt-6 text-sm font-semibold uppercase tracking-[0.2em] text-gold">Grace Njeri</p>
-                        </article>
-                        <article
-                            class="swiper-slide h-auto rounded-2xl border border-gold/30 bg-white/10 p-8 backdrop-blur-sm">
-                            <div class="mb-4 flex items-center gap-1 text-gold" aria-label="5 star rating">
-                                <span>&#9733;</span>
-                                <span>&#9733;</span>
-                                <span>&#9733;</span>
-                                <span>&#9733;</span>
-                                <span>&#9733;</span>
-                            </div>
-                            <p class="text-base leading-8 text-cream/90">"The rooms were beautiful, the food was
-                                excellent, and the team made us feel at home the whole weekend."</p>
-                            <p class="mt-6 text-sm font-semibold uppercase tracking-[0.2em] text-gold">Mark Oloolto</p>
-                        </article>
-                        <article
-                            class="swiper-slide h-auto rounded-2xl border border-gold/30 bg-white/10 p-8 backdrop-blur-sm">
-                            <div class="mb-4 flex items-center gap-1 text-gold" aria-label="5 star rating">
-                                <span>&#9733;</span>
-                                <span>&#9733;</span>
-                                <span>&#9733;</span>
-                                <span>&#9733;</span>
-                                <span>&#9733;</span>
-                            </div>
-                            <p class="text-base leading-8 text-cream/90">"Our group loved the peaceful setting and warm
-                                hospitality. Sidai gave us a truly memorable stay."</p>
-                            <p class="mt-6 text-sm font-semibold uppercase tracking-[0.2em] text-gold">Ole Marima Sena
-                            </p>
-                        </article>
-                    </div>
-                    <div class="mt-6 flex justify-center">
-                        <div class="testimonials-swiper-pagination"></div>
-                    </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <a href="assets/images/hero/sunset.jpeg" class="feature-card h-[300px]" data-aos="fade-up"
+                        data-gallery="home-gallery">
+                        <img src="assets/images/hero/sunset.jpeg" alt="Golden Sunset">
+                        <div class="feature-card-content">
+                            <h3>Magical Sunsets</h3>
+                        </div>
+                    </a>
+                    <a href="assets/images/experiences/nightview-swimming-pool.jpeg" class="feature-card h-[300px]"
+                        data-aos="fade-up" data-aos-delay="100" data-gallery="home-gallery">
+                        <img src="assets/images/experiences/nightview-swimming-pool.jpeg" alt="Night Pool">
+                        <div class="feature-card-content">
+                            <h3>Evening Dips</h3>
+                        </div>
+                    </a>
+                    <a href="assets/images/nature/serene-places.jpeg" class="feature-card h-[300px]" data-aos="fade-up"
+                        data-aos-delay="200" data-gallery="home-gallery">
+                        <img src="assets/images/nature/serene-places.jpeg" alt="Serene Places">
+                        <div class="feature-card-content">
+                            <h3>Nature's Shade</h3>
+                        </div>
+                    </a>
                 </div>
             </div>
         </section>
+
 
         <section id="location" class="sidai-section sidai-section-alt sidai-divider-top">
             <div class="sidai-container grid gap-10 lg:grid-cols-2 lg:items-center">
@@ -1752,7 +1946,8 @@
         })();
     </script>
 
-    <section class="seo-text sidai-container" style="background:#1A4D2E;color:#F5ECD7;padding:40px 20px;text-align:center;border-radius:clamp(1rem,2.1vw,1.5rem);margin-top:clamp(1.25rem,2.8vw,2rem);">
+    <section class="seo-text sidai-container"
+        style="background:#1A4D2E;color:#F5ECD7;padding:40px 20px;text-align:center;border-radius:clamp(1rem,2.1vw,1.5rem);margin-top:clamp(1.25rem,2.8vw,2rem);">
         <div style="max-width:800px;margin:0 auto;">
             <h2 style="color:#D4AF37;font-size:1.4rem;margin-bottom:16px;">
                 Sidai Resort & Hotel - Naroosura, Narok County, Kenya
@@ -1847,11 +2042,11 @@
                 <div>
                     <h3 class="footer-title">Experiences</h3>
                     <ul class="footer-list">
-                        <li>Swimming Pool Sessions</li>
-                        <li>Event Hall Celebrations</li>
-                        <li>Fine Dining</li>
-                        <li>Music and Film Shoots</li>
-                        <li>Conference Facilities</li>
+                        <li><a href="services.html?tab=swimming">Swimming Pool Sessions</a></li>
+                        <li><a href="services.html?tab=birthdays">Event Hall Celebrations</a></li>
+                        <li><a href="menu.html">Fine Dining</a></li>
+                        <li><a href="services.html?tab=conferences">Music and Film Shoots</a></li>
+                        <li><a href="services.html?tab=conferences">Conference Facilities</a></li>
                     </ul>
                 </div>
 
@@ -2023,7 +2218,16 @@
     </script>
 
 
+    <!-- Scroll Progress Script -->
+    <div id="scroll-progress"></div>
+    <script>
+        window.onscroll = function () {
+            var winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            var height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            var scrolled = (winScroll / height) * 100;
+            document.getElementById("scroll-progress").style.width = scrolled + "%";
+        };
+    </script>
 </body>
 
 </html>
-
