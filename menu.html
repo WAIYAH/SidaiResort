@@ -1026,7 +1026,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const csrfField = document.getElementById('menu-csrf-token');
     const fallbackWhatsappBase = 'https://wa.me/254703761951';
     const hostname = window.location.hostname || '';
-    const useStaticFallback = /(^|\\.)vercel\\.app$/i.test(hostname) || !/sidairesort\\.com$/i.test(hostname);
+    const useStaticFallback = /(^|\.)vercel\.app$/i.test(hostname) || !/sidairesort\.com$/i.test(hostname);
 
     if (csrfField && csrfMeta) {
         csrfField.value = csrfMeta.getAttribute('content') || '';

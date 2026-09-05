@@ -1934,7 +1934,7 @@
             const form = document.getElementById('home-newsletter-form');
             const feedback = document.getElementById('home-newsletter-feedback');
             const hostname = window.location.hostname || '';
-            const useStaticFallback = /(^|\\.)vercel\\.app$/i.test(hostname) || !/sidairesort\\.com$/i.test(hostname);
+            const useStaticFallback = /(^|\.)vercel\.app$/i.test(hostname) || !/sidairesort\.com$/i.test(hostname);
 
             if (!form || !feedback) {
                 return;
@@ -1951,7 +1951,7 @@
                         const waText = encodeURIComponent(`Hello Sidai Resort, please add this email to the newsletter list: ${email}`);
                         window.open(`https://wa.me/254703761951?text=${waText}`, '_blank', 'noopener');
                     }
-                    feedback.textContent = 'Newsletter signup on this Vercel static site is handled via WhatsApp.';
+                    feedback.textContent = 'Opening WhatsApp so we can add you to the list.';
                     feedback.className = 'mt-3 text-sm text-night/80';
                     form.reset();
                     return;
@@ -1979,8 +1979,15 @@
                     feedback.className = 'mt-3 text-sm text-green-700';
                     form.reset();
                 } catch (error) {
-                    feedback.textContent = error instanceof Error ? error.message : 'Something went wrong. Please try again.';
-                    feedback.className = 'mt-3 text-sm text-red-700';
+                    // No signup endpoint on this host, or it is down - hand the
+                    // visitor to WhatsApp rather than showing them a dead end.
+                    if (email !== '') {
+                        const waText = encodeURIComponent(`Hello Sidai Resort, please add this email to the newsletter list: ${email}`);
+                        window.open(`https://wa.me/254703761951?text=${waText}`, '_blank', 'noopener');
+                    }
+                    feedback.textContent = 'Opening WhatsApp so we can add you to the list.';
+                    feedback.className = 'mt-3 text-sm text-night/80';
+                    form.reset();
                 }
             });
         })();
