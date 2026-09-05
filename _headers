@@ -21,6 +21,11 @@
   Cache-Control: public, max-age=31536000, immutable
   Content-Type: application/json; charset=utf-8
 
+# The menu card keeps its filename across updates, so it gets an hour rather
+# than a year - a guest should not be handed last season's prices.
+/assets/downloads/*
+  Cache-Control: public, max-age=3600, must-revalidate
+
 # Everything else under /assets keeps a day. These paths are not fingerprinted,
 # so `immutable` here would strand visitors on a stale logo or stylesheet until
 # the filename changes.

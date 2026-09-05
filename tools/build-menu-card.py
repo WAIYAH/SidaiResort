@@ -220,6 +220,26 @@ def build():
     return OUT
 
 
+def to_pdf(docx_path):
+    """The website links the PDF, because guests are mostly on phones and cannot
+    open a .docx. Conversion needs Word, so this is best-effort: if it cannot
+    run, the PDF already committed to the repository stays as it is.
+    """
+    pdf_path = os.path.splitext(docx_path)[0] + ".pdf"
+    try:
+        import docx2pdf
+    except ImportError:
+        print("  (docx2pdf not installed - PDF left unchanged)")
+        return None
+    try:
+        docx2pdf.convert(docx_path, pdf_path)
+    except Exception as exc:  # noqa: BLE001
+        print(f"  (PDF left unchanged: {exc})")
+        return None
+    print(f"  {pdf_path}  {os.path.getsize(pdf_path) / 1024:.0f} KB")
+    return pdf_path
+
+
 if __name__ == "__main__":
     sys.stdout.reconfigure(encoding="utf-8")
-    build()
+    to_pdf(build())

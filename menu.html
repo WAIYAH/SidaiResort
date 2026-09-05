@@ -142,6 +142,52 @@
             font-style: italic;
             line-height: 1.7;
         }
+        .menu-hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.7rem;
+            margin-top: 1.5rem;
+        }
+        .menu-download {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            min-height: 2.75rem;
+            padding: 0.6rem 1.35rem;
+            border-radius: 999px;
+            border: 1px solid var(--menu-gold);
+            background: var(--menu-gold);
+            color: #0A2518;
+            font-family: "Montserrat", sans-serif;
+            font-size: 0.8rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+        }
+        .menu-download:hover,
+        .menu-download:focus-visible {
+            background: var(--menu-gold-soft);
+            transform: translateY(-1px);
+        }
+        .menu-download--ghost {
+            background: transparent;
+            color: var(--menu-gold-soft);
+            border-color: rgba(212, 175, 55, 0.55);
+        }
+        .menu-download--ghost:hover,
+        .menu-download--ghost:focus-visible {
+            background: rgba(212, 175, 55, 0.16);
+            color: var(--menu-gold-soft);
+        }
+        @media (prefers-reduced-motion: reduce) {
+            .menu-download:hover,
+            .menu-download:focus-visible {
+                transform: none;
+            }
+        }
         .menu-content-wrap {
             max-width: 78rem;
             margin: -2.25rem auto 0;
@@ -725,6 +771,20 @@
             <div class="menu-hero-content">
                 <h1>Our Menu</h1>
                 <p>Nothing but the Best — from our kitchen to your table.</p>
+                <div class="menu-hero-actions">
+                    <a class="menu-download" href="assets/downloads/Sidai-Resort-Menu-Card.pdf"
+                       target="_blank" rel="noopener">
+                        <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor"
+                             stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
+                            <polyline points="7 10 12 15 17 10"></polyline>
+                            <line x1="12" y1="15" x2="12" y2="3"></line>
+                        </svg>
+                        Download the full menu (PDF)
+                    </a>
+                    <a class="menu-download menu-download--ghost"
+                       href="assets/downloads/Sidai-Resort-Menu-Card.docx" download>Word version</a>
+                </div>
             </div>
         </section>
 
