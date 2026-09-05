@@ -11,6 +11,7 @@
     "watch:css": "tailwindcss -i assets/css/tailwind.src.css -o assets/css/tailwind.css --watch",
     "sync": "node tools/sync-partials.js",
     "check": "node tools/sync-partials.js --check",
-    "build": "npm run build:css && npm run sync"
+    "build": "npm run build:css && npm run build:menu && npm run sync",
+    "build:menu": "node tools/build-menu.js"
   }
 }

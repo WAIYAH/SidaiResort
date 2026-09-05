@@ -206,6 +206,19 @@ npm run build        # rebuild Tailwind CSS, then sync shared partials
   and `partials/footer.html` into every page. Edit the partial, not the eleven
   copies. `npm run check` reports drift without writing, for CI or a pre-push
   hook.
+- `npm run build:menu` renders `data/menu.json` into `menu.html` as static
+  markup and regenerates the `schema.org/Menu` JSON-LD from the same data.
+  **Edit `data/menu.json`, never the generated markup in `menu.html`.**
+
+### Menu images
+
+Each item names an `img` slug. It resolves in three steps:
+
+1. `assets/images/dining/menu/<slug>.webp` - 1200x750 with a 600w variant and
+   `srcset`. These are cached for a year (`immutable`), so replace a photo by
+   adding a new filename rather than overwriting.
+2. The section's Unsplash photo, if no local file exists for that slug.
+3. An inline SVG placeholder, if whichever source was chosen fails to load.
 
 ## Quality Checklist Before Push
 

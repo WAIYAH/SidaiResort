@@ -1,0 +1,158 @@
+{
+  "currency": "Ksh",
+  "sections": [
+    {
+      "id": "breakfast",
+      "title": "Breakfast",
+      "subtitle": "Sunrise plates to start your day right.",
+      "stock": "photo-1533089860892-a7c6f0a88666",
+      "items": [
+        { "name": "Mandazi / Mahamri (Pair)", "price": 50, "desc": "Two golden mandazi, fried fresh each morning.", "img": "mandazi-mahamri" },
+        { "name": "Uji wa Wimbi", "price": 80, "desc": "Traditional millet porridge, served hot and smooth.", "img": "uji-wimbi" },
+        { "name": "Smokie Pasua (with Kachumbari)", "price": 80, "desc": "Split smokie stuffed with fresh kachumbari.", "img": "smokie-pasua" },
+        { "name": "Kienyeji Eggs (2 pcs)", "price": 120, "desc": "Two free-range eggs, boiled or fried to order.", "img": "kienyeji-eggs" },
+        { "name": "Mandazi & Chai", "price": 150, "desc": "Four warm mandazi with a pot of spiced Kenyan chai.", "img": "mandazi-chai" },
+        { "name": "Pancakes", "price": 150, "desc": "A stack of fluffy pancakes, freshly made to order.", "img": "pancakes" },
+        { "name": "Avocado Toast", "price": 150, "desc": "Ripe farm avocado mashed onto toasted bread.", "img": "avocado-toast" },
+        { "name": "Boiled Eggs & Bread", "price": 150, "desc": "Two boiled eggs, buttered bread and fresh fruit.", "img": "boiled-eggs-bread" },
+        { "name": "Ugali & Eggs", "price": 200, "desc": "Soft ugali served with fried eggs and kachumbari.", "img": "ugali-eggs" }
+      ]
+    },
+    {
+      "id": "local",
+      "title": "Local Dishes",
+      "subtitle": "Authentic Kenyan classics from our kitchen.",
+      "stock": "photo-1563379091339-03b21ab4a4f8",
+      "items": [
+        { "name": "Sukuma & Ugali", "price": 120, "desc": "Garden sukuma wiki fried with onion and tomato, served with ugali.", "img": "sukuma-ugali" },
+        { "name": "Githeri", "price": 150, "desc": "Maize and beans stewed the traditional way.", "img": "githeri" },
+        { "name": "Matoke Stew", "price": 150, "desc": "Green bananas stewed in a rich tomato base.", "img": "matoke" },
+        { "name": "Chapati & Beans", "price": 150, "desc": "Two soft chapatis with thick bean stew.", "img": "chapati-beans" },
+        { "name": "Beans / Ndengu Stew", "price": 200, "desc": "Slow-cooked beans or ndengu in a coconut-tomato sauce.", "img": "ndengu-stew" },
+        { "name": "Chapati Veg / Rice Veg", "price": 200, "desc": "Chapati or steamed rice with seasonal garden vegetables.", "img": "chapati-veg" },
+        { "name": "Lentil Stew / Green Grams", "price": 200, "desc": "Spiced lentils or green grams simmered until tender.", "img": "lentil-stew" },
+        { "name": "Pilau Rice", "price": 200, "desc": "Spiced pilau rice served with kachumbari.", "img": "pilau-rice" },
+        { "name": "Mukimo (Irio)", "price": 200, "desc": "Mashed potato, maize, beans and pumpkin leaves.", "img": "mukimo" },
+        { "name": "Spaghetti Bolognese", "price": 200, "desc": "Spaghetti in a slow-cooked beef and tomato sauce.", "img": "spaghetti-bolognese" },
+        { "name": "Nyama Stew & Ugali", "price": 250, "desc": "Slow-simmered beef stew with hot ugali.", "img": "nyama-stew-ugali" },
+        { "name": "Chapati Beef Stew / Ugali Beef Stew", "price": 300, "desc": "Your choice of chapati or ugali with rich beef stew.", "img": "chapati-beef-stew" },
+        { "name": "Pilau + Beef Stew", "price": 300, "desc": "Spiced pilau served with beef stew and kachumbari.", "img": "pilau-beef" },
+        { "name": "Veg. Rice + Beef Stew", "price": 300, "desc": "Vegetable rice plated with beef stew.", "img": "veg-rice-beef" },
+        { "name": "Fried Eggs (Egg Vindaloo)", "price": 300, "desc": "Eggs simmered in a spiced vindaloo sauce.", "img": "egg-vindaloo" },
+        { "name": "Chapati Beef Fry / Ugali Beef Fry", "price": 350, "desc": "Dry-fried beef with chapati or ugali.", "img": "beef-fry" },
+        { "name": "Chips Beef Fry", "price": 350, "desc": "Hand-cut chips topped with dry-fried beef.", "img": "chips-beef-fry" },
+        { "name": "Veg Stew & Rice", "price": 400, "desc": "Seasonal vegetable stew over steamed rice.", "img": "veg-stew-rice" },
+        { "name": "Ugali Chicken / Chicken Rice", "price": "400 / 450", "desc": "Chicken stew with ugali, or served over rice.", "img": "ugali-chicken" },
+        { "name": "Liver Fry", "price": 450, "desc": "Tender liver fried with onion, pepper and herbs.", "img": "liver-fry" },
+        { "name": "Fish Curry / Fish Fillet", "price": "500 / 450", "desc": "Fish in coconut curry, or a pan-seared fillet.", "img": "fish-curry" },
+        { "name": "Whole Fish", "price": 500, "desc": "Whole fish, deep-fried or grilled to order.", "img": "whole-fish" }
+      ]
+    },
+    {
+      "id": "nyama-choma",
+      "title": "Nyama Choma & Meats",
+      "subtitle": "Fire-grilled favorites done the Sidai way.",
+      "stock": "photo-1555939594-58d7cb561ad1",
+      "items": [
+        { "name": "1/4 Chicken", "price": 250, "desc": "Quarter chicken, grilled or fried to order.", "img": "quarter-chicken" },
+        { "name": "1/4 Chicken + Chips", "price": 400, "desc": "Quarter chicken with a side of hand-cut chips.", "img": "quarter-chicken-chips" },
+        { "name": "Meat Balls", "price": 400, "desc": "Beef meatballs in a rich tomato sauce.", "img": "meat-balls" },
+        { "name": "Fried Goat (Portion)", "price": 450, "desc": "Dry-fried goat with onion and dhania.", "img": "fried-goat" },
+        { "name": "Chicken Wings", "price": 450, "desc": "Marinated wings, grilled over charcoal.", "img": "chicken-wings" },
+        { "name": "Sausages & Chips", "price": 550, "desc": "Grilled sausages with a generous serving of chips.", "img": "sausages-chips" },
+        { "name": "Chicken Choma (Half)", "price": 750, "desc": "Half chicken marinated and slow-grilled.", "img": "chicken-choma" },
+        { "name": "Tilapia Grilled", "price": 900, "desc": "Whole tilapia grilled with lemon and herbs.", "img": "tilapia-grilled" },
+        { "name": "Beef (Dry/Wet Fry / Choma) per KG", "price": 1000, "desc": "A full kilo of beef, your choice of dry fry, wet fry or choma.", "img": "beef-choma" },
+        { "name": "Goat / Mbuzi (Dry/Wet Fry/Choma) per KG", "price": 1000, "desc": "A full kilo of goat, dry fry, wet fry or charcoal choma.", "img": "goat-choma" },
+        { "name": "Kienyeji Chicken (Whole)", "price": 1500, "desc": "Whole free-range chicken, slow-cooked the traditional way.", "img": "kienyeji-chicken" }
+      ]
+    },
+    {
+      "id": "snacks",
+      "title": "Snacks & Fast Food",
+      "subtitle": "Quick bites for sharing or solo cravings.",
+      "stock": "photo-1550547660-d9450f859349",
+      "items": [
+        { "name": "Smokies", "price": 100, "desc": "Grilled smokie served with kachumbari.", "img": "smokies" },
+        { "name": "Boiled Maize", "price": 100, "desc": "Fresh maize on the cob, boiled or roasted.", "img": "boiled-maize" },
+        { "name": "Beef Samosas (Pair)", "price": 100, "desc": "Two crisp pastries filled with spiced beef.", "img": "samosa" },
+        { "name": "Groundnuts", "price": 150, "desc": "Roasted and lightly salted groundnuts.", "img": "groundnuts" },
+        { "name": "Samosa (3 pc)", "price": 180, "desc": "Three samosas, beef or vegetable.", "img": "samosa" },
+        { "name": "Plain Chips (French Fries)", "price": 200, "desc": "Golden hand-cut chips, salted and served hot.", "img": "plain-chips" },
+        { "name": "Bhajia / Masala Chips", "price": 250, "desc": "Spiced potato slices, or chips tossed in masala sauce.", "img": "bhajia" },
+        { "name": "Chips Large", "price": 250, "desc": "A large bowl of hand-cut chips.", "img": "chips-large" },
+        { "name": "Spring Rolls (4 pc)", "price": 350, "desc": "Crispy vegetable rolls with chilli dip.", "img": "spring-rolls" },
+        { "name": "Chicken Sandwich", "price": 400, "desc": "Grilled chicken, salad and mayo on toasted bread.", "img": "chicken-sandwich" },
+        { "name": "Beef Burger", "price": 600, "desc": "Char-grilled beef patty with salad and chips.", "img": "beef-burger" },
+        { "name": "Cheese Burger / Chicken Burger", "price": 700, "desc": "Cheese or chicken burger, served with chips.", "img": "cheese-burger" }
+      ]
+    },
+    {
+      "id": "accompaniments",
+      "title": "Accompaniments",
+      "subtitle": "Sides to build the plate your way.",
+      "stock": "photo-1518977676601-b53f82aba655",
+      "items": [
+        { "name": "Plain Ugali (White or Wholemeal)", "price": 50, "desc": "Freshly turned ugali, white or wholemeal.", "img": "plain-ugali" },
+        { "name": "Chapati (White or Wholemeal)", "price": 50, "desc": "Soft layered chapati, white or wholemeal.", "img": "chapati-plain" },
+        { "name": "Managu / Terere / Sukuma / Spinach", "price": 150, "desc": "Traditional greens, lightly fried with onion.", "img": "managu-greens" },
+        { "name": "Steamed Rice / Turmeric Rice", "price": 150, "desc": "Plain steamed rice or fragrant turmeric rice.", "img": "steamed-rice" },
+        { "name": "Plain Pilau", "price": 200, "desc": "Spiced pilau rice on its own.", "img": "pilau-rice" },
+        { "name": "Creamed Potatoes (Plain / Masala / Garlic)", "price": 250, "desc": "Creamed potatoes, plain, masala or garlic.", "img": "creamed-potatoes" }
+      ]
+    },
+    {
+      "id": "desserts",
+      "title": "Desserts",
+      "subtitle": "Sweet endings and tropical comfort.",
+      "stock": "photo-1551024506-0bccd828d307",
+      "items": [
+        { "name": "Mahamri & Coconut", "price": 250, "desc": "Coconut-cardamom mahamri, served warm.", "img": "mahamri" },
+        { "name": "Banana Fritters", "price": 250, "desc": "Sweet banana fritters dusted with cinnamon sugar.", "img": "banana-fritters" },
+        { "name": "Fruit Salad", "price": 300, "desc": "Mango, pineapple, banana, watermelon and passion.", "img": "fruit-salad" },
+        { "name": "Yoghurt & Honey", "price": 300, "desc": "Chilled natural yoghurt with forest honey.", "img": "yoghurt-honey" },
+        { "name": "Ice Cream (2 Scoops)", "price": 300, "desc": "Vanilla, strawberry or chocolate scoops.", "img": "ice-cream" },
+        { "name": "Chocolate Cake", "price": 350, "desc": "Rich chocolate sponge with dark ganache.", "img": "chocolate-cake" }
+      ]
+    },
+    {
+      "id": "drinks",
+      "title": "Soft Drinks",
+      "subtitle": "Refreshing chilled pours and juices.",
+      "stock": "photo-1613478223719-2ab802602423",
+      "items": [
+        { "name": "Mineral Water (500ml)", "price": "70 / 100", "desc": "Chilled bottled mineral water, 500ml or 1L.", "img": "water" },
+        { "name": "Sodas (300ml)", "price": 100, "desc": "Ice-cold assorted sodas.", "img": "soda" },
+        { "name": "Fresh Passion / Mango / Orange Juice Glass", "price": "150 / 200", "desc": "Freshly squeezed passion, mango or orange juice.", "img": "fresh-juice" },
+        { "name": "Delmonte (1L)", "price": 350, "desc": "One-litre Delmonte pack to share.", "img": "delmonte" }
+      ]
+    },
+    {
+      "id": "hot",
+      "title": "Hot Drinks",
+      "subtitle": "Warm classics for anytime comfort.",
+      "stock": "photo-1576092768241-dec231879fc3",
+      "items": [
+        { "name": "Kahawa / Black Coffee", "price": "80 / 180", "desc": "Street-style kahawa, or a cup of Kenyan AA.", "img": "black-coffee" },
+        { "name": "Chai ya Maziwa (African Mixed Tea / Kenyan Chai)", "price": "100 / 150", "desc": "Milk tea brewed with ginger and cardamom.", "img": "kenyan-chai" },
+        { "name": "Dawa (Ginger, Lemon & Honey)", "price": "150 / 180", "desc": "The classic Kenyan remedy, hot and soothing.", "img": "ginger-lemon-tea" },
+        { "name": "White Coffee", "price": 200, "desc": "Brewed coffee with steamed milk.", "img": "white-coffee" },
+        { "name": "Milo", "price": 200, "desc": "Malt chocolate drink, hot and comforting.", "img": "milo" },
+        { "name": "Hot Chocolate", "price": 250, "desc": "Creamy cocoa topped with a dusting of chocolate.", "img": "hot-chocolate" }
+      ]
+    },
+    {
+      "id": "beers",
+      "title": "Beers",
+      "subtitle": "Popular local and premium picks.",
+      "stock": "photo-1535958636474-b021ee887b13",
+      "items": [
+        { "name": "Tusker Lager", "price": 350, "desc": "Kenya's favourite lager, served ice-cold.", "img": "tusker-lager" },
+        { "name": "White Cap", "price": 350, "desc": "Crisp, light lager for warm afternoons.", "img": "white-cap" },
+        { "name": "Pilsner", "price": 350, "desc": "Classic Kenyan pilsner, chilled and refreshing.", "img": "pilsner" },
+        { "name": "Tusker Malt", "price": 400, "desc": "Smooth premium malt with a rich finish.", "img": "tusker-malt" },
+        { "name": "Savanna Cider", "price": 400, "desc": "Dry apple cider served with a lemon wedge.", "img": "savanna-cider" }
+      ]
+    }
+  ]
+}
