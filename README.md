@@ -208,7 +208,7 @@ git push
 
 ## Contact
 
-- Phone: `0703 761 951` / `0721 940 823`
+- Phone: `0703 761 951` / `0705 800 802`
 - Email: `sidairesort21@gmail.com`
 - WhatsApp: `https://wa.me/254703761951`
 - Website: `https://sidairesort.com`
