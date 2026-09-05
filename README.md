@@ -191,6 +191,22 @@ git commit -m "Describe your update"
 git push
 ```
 
+## Build
+
+```bash
+npm install          # once
+npm run build        # rebuild Tailwind CSS, then sync shared partials
+```
+
+- `npm run build:css` compiles `assets/css/tailwind.src.css` to
+  `assets/css/tailwind.css` using `tailwind.config.js`. The site used to load
+  the Tailwind Play CDN and compile in the visitor's browser, which silently
+  dropped the custom colour palette.
+- `npm run sync` pushes `partials/header.html`, `partials/header-home.html`
+  and `partials/footer.html` into every page. Edit the partial, not the eleven
+  copies. `npm run check` reports drift without writing, for CI or a pre-push
+  hook.
+
 ## Quality Checklist Before Push
 
 - check desktop and mobile layouts on updated pages

@@ -8,6 +8,9 @@
   "description": "Static site for Sidai Resort & Hotel, Naroosura, Narok County, Kenya.",
   "scripts": {
     "build:css": "tailwindcss -i assets/css/tailwind.src.css -o assets/css/tailwind.css --minify",
-    "watch:css": "tailwindcss -i assets/css/tailwind.src.css -o assets/css/tailwind.css --watch"
+    "watch:css": "tailwindcss -i assets/css/tailwind.src.css -o assets/css/tailwind.css --watch",
+    "sync": "node tools/sync-partials.js",
+    "check": "node tools/sync-partials.js --check",
+    "build": "npm run build:css && npm run sync"
   }
 }
