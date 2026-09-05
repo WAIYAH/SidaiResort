@@ -27,9 +27,21 @@ const START = '<!-- @menu:start -->';
 const END = '<!-- @menu:end -->';
 
 const data = JSON.parse(fs.readFileSync(path.join(ROOT, 'data', 'menu.json'), 'utf8'));
-const local = new Set(
-  fs.existsSync(IMG_DIR) ? fs.readdirSync(IMG_DIR).map((f) => f.replace(/(-600)?\.webp$/, '')) : []
-);
+const files = fs.existsSync(IMG_DIR) ? fs.readdirSync(IMG_DIR) : [];
+const local = new Set(files.map((f) => f.replace(/(-600)?\.webp$/, '')));
+
+/** Intrinsic size of a WebP, read straight from its header - no dependency needed. */
+function webpSize(file) {
+  const b = fs.readFileSync(path.join(IMG_DIR, file));
+  const fourcc = b.toString('ascii', 12, 16);
+  if (fourcc === 'VP8X') return { w: 1 + b.readUIntLE(24, 3), h: 1 + b.readUIntLE(27, 3) };
+  if (fourcc === 'VP8L') {
+    const n = b.readUInt32LE(21);
+    return { w: 1 + (n & 0x3fff), h: 1 + ((n >> 14) & 0x3fff) };
+  }
+  if (fourcc === 'VP8 ') return { w: b.readUInt16LE(26) & 0x3fff, h: b.readUInt16LE(28) & 0x3fff };
+  return { w: 1200, h: 750 };
+}
 
 const esc = (s) =>
   String(s).replace(/&(?!(?:[a-zA-Z]+|#\d+);)/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
@@ -43,17 +55,26 @@ const money = (p, cur) =>
 const lowest = (p) => (typeof p === 'number' ? p : Math.min(...String(p).split('/').map((x) => Number(x.trim()))));
 const highest = (p) => (typeof p === 'number' ? p : Math.max(...String(p).split('/').map((x) => Number(x.trim()))));
 
-let stats = { local: 0, stock: 0 };
+let stats = { local: 0, stock: 0, lowRes: [] };
 
 function picture(item, section) {
   const alt = esc(`${item.name} served at Sidai Resort in Naroosura, Narok Kenya`);
   if (local.has(item.img)) {
     stats.local++;
+    // Sources vary in resolution - a few are the resort's own low-resolution
+    // photographs, kept because they show the actual dish - so the descriptors
+    // are read off the files instead of assumed, and the 600w candidate is only
+    // offered when that file really exists.
+    const { w, h } = webpSize(`${item.img}.webp`);
+    const srcset = files.includes(`${item.img}-600.webp`)
+      ? `                             srcset="${IMG_BASE}${item.img}-600.webp 600w, ${IMG_BASE}${item.img}.webp ${w}w"\n` +
+        `                             sizes="(min-width: 1024px) 24rem, (min-width: 640px) 45vw, 92vw"\n`
+      : '';
+    if (w < 900) stats.lowRes.push(`${item.img} ${w}x${h}`);
     return (
       `<img src="${IMG_BASE}${item.img}.webp"\n` +
-      `                             srcset="${IMG_BASE}${item.img}-600.webp 600w, ${IMG_BASE}${item.img}.webp 1200w"\n` +
-      `                             sizes="(min-width: 1024px) 24rem, (min-width: 640px) 45vw, 92vw"\n` +
-      `                             alt="${alt}" width="1200" height="750" loading="lazy" decoding="async"\n` +
+      srcset +
+      `                             alt="${alt}" width="${w}" height="${h}" loading="lazy" decoding="async"\n` +
       `                             onerror="menuImageFallback(this)">`
     );
   }
@@ -165,3 +186,6 @@ console.log(
     `(${stats.local} local images, ${stats.stock} Unsplash fallbacks)`
 );
 console.log(`  priceRange ${ld.priceRange}`);
+if (stats.lowRes.length) {
+  console.log(`  ${stats.lowRes.length} image(s) under 900px wide: ${stats.lowRes.join(', ')}`);
+}
