@@ -8,4 +8,3 @@ User-agent: Bingbot
 Allow: /
 
 Sitemap: https://sidairesort.com/sitemap.xml
-Sitemap: https://sidairesort.com/blog/sitemap.xml
