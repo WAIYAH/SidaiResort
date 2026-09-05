@@ -311,7 +311,7 @@
             <template x-for="video in featuredVideos" :key="video.id">
                 <article class="overflow-hidden rounded-3xl border border-brown/15 bg-white shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl" data-aos="fade-up">
                     <div class="relative">
-                        <video class="h-64 w-full bg-night object-cover" controls preload="metadata" :poster="video.poster">
+                        <video class="h-64 w-full bg-night object-cover" controls playsinline preload="none" :poster="video.poster">
                             <source :src="video.src" type="video/mp4">
                         </video>
                         <span class="absolute left-4 top-4 rounded-full border border-gold/60 bg-night/70 px-3 py-1 text-[10px] font-semibold uppercase tracking-[0.16em] text-gold" x-text="video.tag"></span>
