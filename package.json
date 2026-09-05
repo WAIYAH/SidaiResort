@@ -12,6 +12,7 @@
     "sync": "node tools/sync-partials.js",
     "check": "node tools/sync-partials.js --check",
     "build": "npm run build:css && npm run build:menu && npm run sync",
-    "build:menu": "node tools/build-menu.js"
+    "build:menu": "node tools/build-menu.js",
+    "build:card": "python tools/build-menu-card.py"
   }
 }
