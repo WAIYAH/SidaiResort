@@ -557,7 +557,7 @@
     <div class="sidai-container">
         <nav class="mt-3 sm:mt-4 rounded-2xl border border-gold/30 bg-cream/70 px-3 sm:px-4 py-2.5 sm:py-3 backdrop-blur-lg shadow-lg" aria-label="Primary">
             <div class="flex items-center justify-between gap-2 sm:gap-4">
-                <a href="index.html" class="flex items-center gap-2 sm:gap-3 min-w-0" aria-label="Sidai Resort Home">
+                <a href="/" class="flex items-center gap-2 sm:gap-3 min-w-0" aria-label="Sidai Resort Home">
                     <img src="assets/images/branding/sidai-logo.png" alt="Sidai Resort & Hotel logo Naroosura Kenya" class="brand-logo h-10 w-10 sm:h-12 sm:w-12 object-cover flex-shrink-0 rounded-full border border-gold/40 bg-cream/80 p-0.5 shadow-sm" loading="lazy" width="445" height="440">
                         <span class="brand-identity min-w-0">
                             <span class="brand-name block font-display text-xl sm:text-2xl text-brown truncate">Sidai Resort</span>
@@ -567,32 +567,32 @@
 
                 <div class="hidden lg:flex items-center gap-1" id="desktop-nav-links">
                                             <a
-                            href="index.html"
+                            href="/"
                             class="header-link rounded-full px-4 py-2 text-sm font-medium transition-colors text-brown hover:text-gold hover:bg-night/70"
                         >
                             Home                        </a>
                                             <a
-                            href="services.html"
+                            href="/services"
                             class="header-link rounded-full px-4 py-2 text-sm font-medium transition-colors text-brown hover:text-gold hover:bg-night/70"
                         >
                             Services                        </a>
                                                                                         <a
-                            href="experiences.html"
+                            href="/experiences"
                             class="header-link rounded-full px-4 py-2 text-sm font-medium transition-colors text-brown hover:text-gold hover:bg-night/70"
                         >
                             Moments                        </a>
                                             <a
-                            href="rooms.html"
+                            href="/rooms"
                             class="header-link rounded-full px-4 py-2 text-sm font-medium transition-colors text-brown hover:text-gold hover:bg-night/70"
                         >
                             Accommodation                        </a>
                                             <a
-                            href="menu.html"
+                            href="/menu"
                             class="header-link rounded-full px-4 py-2 text-sm font-medium transition-colors text-brown hover:text-gold hover:bg-night/70"
                         >
                             Menus                        </a>
                                             <a
-                            href="about.html"
+                            href="/about"
                             class="header-link rounded-full px-4 py-2 text-sm font-medium transition-colors text-brown hover:text-gold hover:bg-night/70"
                         >
                             About Us                        </a>
@@ -600,7 +600,7 @@
 
                 <div class="hidden lg:flex items-center gap-2">
 
-                    <a href="booking.html" class="ml-1 inline-flex items-center rounded-full bg-gold px-5 py-2.5 text-sm font-semibold text-night hover:bg-gold-light transition-colors">Book Now</a>
+                    <a href="/booking" class="ml-1 inline-flex items-center rounded-full bg-gold px-5 py-2.5 text-sm font-semibold text-night hover:bg-gold-light transition-colors">Book Now</a>
                 </div>
 
                 <button
@@ -622,42 +622,42 @@
             <div x-show="mobileOpen" x-cloak x-transition.origin.top class="lg:hidden mt-3 border-t border-gold/20 pt-3" id="mobile-menu">
                 <div class="space-y-1.5">
                                             <a
-                            href="index.html"
+                            href="/"
                             class="flex items-center rounded-xl px-4 py-3 text-sm font-medium transition-colors bg-white/60 text-brown hover:bg-white/80"
                             @click="mobileOpen = false"
                         >
                             Home                        </a>
                                             <a
-                            href="services.html"
+                            href="/services"
                             class="flex items-center rounded-xl px-4 py-3 text-sm font-medium transition-colors bg-white/60 text-brown hover:bg-white/80"
                             @click="mobileOpen = false"
                         >
                             Services                        </a>
                                                                                         <a
-                            href="experiences.html"
+                            href="/experiences"
                             class="flex items-center rounded-xl px-4 py-3 text-sm font-medium transition-colors bg-white/60 text-brown hover:bg-white/80"
                             @click="mobileOpen = false"
                         >
                             Moments                        </a>
                                             <a
-                            href="rooms.html"
+                            href="/rooms"
                             class="flex items-center rounded-xl px-4 py-3 text-sm font-medium transition-colors bg-white/60 text-brown hover:bg-white/80"
                             @click="mobileOpen = false"
                         >
                             Accommodation                        </a>
                                             <a
-                            href="menu.html"
+                            href="/menu"
                             class="flex items-center rounded-xl px-4 py-3 text-sm font-medium transition-colors bg-white/60 text-brown hover:bg-white/80"
                             @click="mobileOpen = false"
                         >
                             Menus                        </a>
                                             <a
-                            href="about.html"
+                            href="/about"
                             class="flex items-center rounded-xl px-4 py-3 text-sm font-medium transition-colors bg-white/60 text-brown hover:bg-white/80"
                             @click="mobileOpen = false"
                         >
                             About Us                        </a>
-                                        <a href="booking.html" class="flex items-center justify-center rounded-xl bg-gold px-4 py-3 text-sm font-semibold text-night hover:bg-gold-light transition-colors" @click="mobileOpen = false">
+                                        <a href="/booking" class="flex items-center justify-center rounded-xl bg-gold px-4 py-3 text-sm font-semibold text-night hover:bg-gold-light transition-colors" @click="mobileOpen = false">
                         Book Now
                     </a>
 
@@ -807,7 +807,7 @@
             </p>
         
                     </div>
-                    <a href="booking.html?type=swimming" class="mt-6 inline-flex rounded-full bg-gold px-6 py-3 text-sm font-semibold uppercase tracking-[0.12em] text-night transition hover:bg-gold-light">Book Now</a>
+                    <a href="/booking?type=swimming" class="mt-6 inline-flex rounded-full bg-gold px-6 py-3 text-sm font-semibold uppercase tracking-[0.12em] text-night transition hover:bg-gold-light">Book Now</a>
                 </aside>
             </div>
 
@@ -865,7 +865,7 @@
             </p>
         
                     </div>
-                    <a href="booking.html?type=birthdays" class="mt-6 inline-flex rounded-full bg-gold px-6 py-3 text-sm font-semibold uppercase tracking-[0.12em] text-night transition hover:bg-gold-light">Book Now</a>
+                    <a href="/booking?type=birthdays" class="mt-6 inline-flex rounded-full bg-gold px-6 py-3 text-sm font-semibold uppercase tracking-[0.12em] text-night transition hover:bg-gold-light">Book Now</a>
                 </aside>
             </div>
 
@@ -907,7 +907,7 @@
             </p>
         
                     </div>
-                    <a href="booking.html?type=weddings" class="mt-6 inline-flex rounded-full bg-gold px-6 py-3 text-sm font-semibold uppercase tracking-[0.12em] text-night transition hover:bg-gold-light">Book Now</a>
+                    <a href="/booking?type=weddings" class="mt-6 inline-flex rounded-full bg-gold px-6 py-3 text-sm font-semibold uppercase tracking-[0.12em] text-night transition hover:bg-gold-light">Book Now</a>
                 </aside>
             </div>
 
@@ -953,7 +953,7 @@
             </p>
         
                     </div>
-                    <a href="booking.html?type=conferences" class="mt-6 inline-flex rounded-full bg-gold px-6 py-3 text-sm font-semibold uppercase tracking-[0.12em] text-night transition hover:bg-gold-light">Book Now</a>
+                    <a href="/booking?type=conferences" class="mt-6 inline-flex rounded-full bg-gold px-6 py-3 text-sm font-semibold uppercase tracking-[0.12em] text-night transition hover:bg-gold-light">Book Now</a>
                 </aside>
             </div>
 
@@ -999,7 +999,7 @@
             </p>
         
                     </div>
-                    <a href="booking.html?type=goat-eating" class="mt-6 inline-flex rounded-full bg-gold px-6 py-3 text-sm font-semibold uppercase tracking-[0.12em] text-night transition hover:bg-gold-light">Book Now</a>
+                    <a href="/booking?type=goat-eating" class="mt-6 inline-flex rounded-full bg-gold px-6 py-3 text-sm font-semibold uppercase tracking-[0.12em] text-night transition hover:bg-gold-light">Book Now</a>
                 </aside>
             </div>
 
@@ -1045,7 +1045,7 @@
             </p>
         
                     </div>
-                    <a href="booking.html?type=bonfires" class="mt-6 inline-flex rounded-full bg-gold px-6 py-3 text-sm font-semibold uppercase tracking-[0.12em] text-night transition hover:bg-gold-light">Book Now</a>
+                    <a href="/booking?type=bonfires" class="mt-6 inline-flex rounded-full bg-gold px-6 py-3 text-sm font-semibold uppercase tracking-[0.12em] text-night transition hover:bg-gold-light">Book Now</a>
                 </aside>
             </div>
 
@@ -1091,7 +1091,7 @@
             </p>
         
                     </div>
-                    <a href="booking.html?type=accommodation" class="mt-6 inline-flex rounded-full bg-gold px-6 py-3 text-sm font-semibold uppercase tracking-[0.12em] text-night transition hover:bg-gold-light">Book Now</a>
+                    <a href="/booking?type=accommodation" class="mt-6 inline-flex rounded-full bg-gold px-6 py-3 text-sm font-semibold uppercase tracking-[0.12em] text-night transition hover:bg-gold-light">Book Now</a>
                 </aside>
             </div>
 
@@ -1132,7 +1132,7 @@
             </p>
         
                     </div>
-                    <a href="booking.html?type=birdwatching" class="mt-6 inline-flex rounded-full bg-gold px-6 py-3 text-sm font-semibold uppercase tracking-[0.12em] text-night transition hover:bg-gold-light">Book Now</a>
+                    <a href="/booking?type=birdwatching" class="mt-6 inline-flex rounded-full bg-gold px-6 py-3 text-sm font-semibold uppercase tracking-[0.12em] text-night transition hover:bg-gold-light">Book Now</a>
                 </aside>
             </div>
 
@@ -1173,7 +1173,7 @@
             </p>
         
                     </div>
-                    <a href="booking.html?type=farm-visits" class="mt-6 inline-flex rounded-full bg-gold px-6 py-3 text-sm font-semibold uppercase tracking-[0.12em] text-night transition hover:bg-gold-light">Book Now</a>
+                    <a href="/booking?type=farm-visits" class="mt-6 inline-flex rounded-full bg-gold px-6 py-3 text-sm font-semibold uppercase tracking-[0.12em] text-night transition hover:bg-gold-light">Book Now</a>
                 </aside>
             </div>
 
@@ -1226,7 +1226,7 @@
             </p>
         
                     </div>
-                    <a href="booking.html?type=sundowners" class="mt-6 inline-flex rounded-full bg-gold px-6 py-3 text-sm font-semibold uppercase tracking-[0.12em] text-night transition hover:bg-gold-light">Book Now</a>
+                    <a href="/booking?type=sundowners" class="mt-6 inline-flex rounded-full bg-gold px-6 py-3 text-sm font-semibold uppercase tracking-[0.12em] text-night transition hover:bg-gold-light">Book Now</a>
                 </aside>
             </div>
 
@@ -1263,7 +1263,7 @@
             </p>
         
                     </div>
-                    <a href="booking.html?type=outdoor-meetings" class="mt-6 inline-flex rounded-full bg-gold px-6 py-3 text-sm font-semibold uppercase tracking-[0.12em] text-night transition hover:bg-gold-light">Book Now</a>
+                    <a href="/booking?type=outdoor-meetings" class="mt-6 inline-flex rounded-full bg-gold px-6 py-3 text-sm font-semibold uppercase tracking-[0.12em] text-night transition hover:bg-gold-light">Book Now</a>
                 </aside>
             </div>
 
@@ -1309,7 +1309,7 @@
             </p>
         
                     </div>
-                    <a href="booking.html?type=picnics" class="mt-6 inline-flex rounded-full bg-gold px-6 py-3 text-sm font-semibold uppercase tracking-[0.12em] text-night transition hover:bg-gold-light">Book Now</a>
+                    <a href="/booking?type=picnics" class="mt-6 inline-flex rounded-full bg-gold px-6 py-3 text-sm font-semibold uppercase tracking-[0.12em] text-night transition hover:bg-gold-light">Book Now</a>
                 </aside>
             </div>
 
@@ -1667,7 +1667,7 @@
         <div class="grid gap-10 sm:gap-12 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
             <!-- Brand Column -->
             <div class="sm:col-span-2 lg:col-span-1">
-                <a href="index.html" class="flex items-center gap-3">
+                <a href="/" class="flex items-center gap-3">
                     <img src="assets/images/branding/sidai-logo.png" alt="Sidai Resort & Hotel logo Naroosura Kenya" class="brand-logo h-10 w-10 sm:h-12 sm:w-12 object-cover flex-shrink-0 rounded-full border border-gold/40 bg-cream/80 p-0.5 shadow-sm" loading="lazy" width="445" height="440">
                     <span class="font-display text-2xl text-gold">Sidai Resort</span>
                 </a>
@@ -1687,15 +1687,15 @@
             <div>
                 <h3 class="footer-title">Quick Links</h3>
                 <ul class="footer-list">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="services.html">Services</a></li>
-                    <li><a href="experiences.html">Experiences</a></li>
-                    <li><a href="rooms.html">Accommodation</a></li>
-                    <li><a href="menu.html">Menus</a></li>
-                    <li><a href="about.html">About Us</a></li>
-                    <li><a href="about.html#gallery">Gallery</a></li>
-                    <li><a href="about.html#contact">Contact</a></li>
-                    <li><a href="booking.html">Book Now</a></li>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/services">Services</a></li>
+                    <li><a href="/experiences">Experiences</a></li>
+                    <li><a href="/rooms">Accommodation</a></li>
+                    <li><a href="/menu">Menus</a></li>
+                    <li><a href="/about">About Us</a></li>
+                    <li><a href="/about#gallery">Gallery</a></li>
+                    <li><a href="/about#contact">Contact</a></li>
+                    <li><a href="/booking">Book Now</a></li>
                 </ul>
             </div>
 
@@ -1754,9 +1754,9 @@
                 <p class="text-xs text-cream/60">Website by <a href="https://nakolaexpertsystems.com/" target="_blank" rel="noopener noreferrer" class="text-gold hover:text-gold-light transition-colors">Nakola Expert Systems</a>.</p>
                 </div>
                 <div class="flex flex-wrap items-center gap-x-4 gap-y-2">
-                    <a href="privacy-policy.html" class="hover:text-gold transition-colors">Privacy Policy</a>
-                    <a href="terms-of-service.html" class="hover:text-gold transition-colors">Terms of Service</a>
-                    <a href="cookie-policy.html" class="hover:text-gold transition-colors">Cookie Policy</a>
+                    <a href="/privacy-policy" class="hover:text-gold transition-colors">Privacy Policy</a>
+                    <a href="/terms-of-service" class="hover:text-gold transition-colors">Terms of Service</a>
+                    <a href="/cookie-policy" class="hover:text-gold transition-colors">Cookie Policy</a>
                 </div>
                 <button id="back-to-top" type="button" class="hidden sm:inline-flex h-10 w-10 items-center justify-center rounded-full border border-gold/50 text-gold hover:bg-gold hover:text-night transition-colors" aria-label="Back to top">
                     <span aria-hidden="true">&uarr;</span>
@@ -1775,7 +1775,7 @@
     <div class="sidai-container flex flex-col sm:flex-row items-center justify-between gap-4">
         <div class="text-cream text-sm sm:text-base flex-1">
             <h4 class="text-gold font-display text-lg mb-1">We Value Your Privacy</h4>
-            <p>We use cookies to enhance your browsing experience, serve personalized content, and analyze our traffic. By clicking "Accept All", you consent to our use of cookies. <a href="cookie-policy.html" class="text-gold underline hover:text-gold-light">Read more</a>.</p>
+            <p>We use cookies to enhance your browsing experience, serve personalized content, and analyze our traffic. By clicking "Accept All", you consent to our use of cookies. <a href="/cookie-policy" class="text-gold underline hover:text-gold-light">Read more</a>.</p>
         </div>
         <div class="flex items-center gap-3 w-full sm:w-auto shrink-0">
             <button @click="declineCookies()" class="flex-1 sm:flex-none px-5 py-2 rounded-lg border border-cream/30 text-cream hover:bg-cream/10 transition-colors text-sm font-semibold uppercase tracking-wider">Decline</button>
