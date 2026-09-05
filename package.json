@@ -1,0 +1,13 @@
+{
+  "devDependencies": {
+    "tailwindcss": "^3.4.19"
+  },
+  "name": "sidai-resort",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Static site for Sidai Resort & Hotel, Naroosura, Narok County, Kenya.",
+  "scripts": {
+    "build:css": "tailwindcss -i assets/css/tailwind.src.css -o assets/css/tailwind.css --minify",
+    "watch:css": "tailwindcss -i assets/css/tailwind.src.css -o assets/css/tailwind.css --watch"
+  }
+}
