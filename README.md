@@ -153,11 +153,17 @@ After adding/changing posters, update `featuredVideos` in `experiences.html`.
 
 ## Routing and URL Behavior
 
-Routing is defined in multiple host-compatible layers:
+The live host is **Cloudflare Pages** (confirmed from production: `Server:
+cloudflare`, and `/menu.html` answers `308 -> /menu`, which is Cloudflare's
+built-in clean-URL redirect). Only two files affect routing and headers there:
 
-- `_redirects` (Cloudflare/Netlify style rules)
-- `netlify.toml` (Netlify redirects + headers)
-- `.htaccess` (Apache rewrites + headers + caching)
+- `_redirects` - redirect and rewrite rules
+- `_headers` - security headers and asset caching
+
+`netlify.toml` and `.htaccess` were also present but had no effect on this
+host; the security headers in `netlify.toml` were never actually served, which
+is why they now live in `_headers`. Both files were removed - `git log` has
+them if the site ever moves to Netlify or Apache.
 
 Pattern used:
 - clean routes (`/about`) map to HTML files (`/about.html`)
@@ -173,7 +179,9 @@ Pattern used:
 
 ## Deployment
 
-The site is static and can be deployed on Cloudflare Pages, Netlify, Apache/Nginx static hosting, or similar.
+The site is static and is deployed on Cloudflare Pages. It will run on Netlify
+or Apache/Nginx too, but `_headers` and `_redirects` use the Cloudflare Pages
+format and would need translating.
 
 Typical Git deploy flow:
 
